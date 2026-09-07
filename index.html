@@ -16,10 +16,9 @@
       --card-bg: #FFFFFF;
       --primary-accent: #E65100;
       --price-color: #D32F2F;
-      --text-main: #1A1A1A;
+      --text-main: #111111;
       --text-sub: #666666;
-      --card-border: #E0DAD0;
-      --shadow-pop: 0 12px 28px rgba(0, 0, 0, 0.08), 0 4px 10px rgba(0, 0, 0, 0.04);
+      --shadow-pop: 0 10px 25px rgba(0, 0, 0, 0.08);
     }
 
     * {
@@ -32,68 +31,76 @@
       background-color: var(--bg-page);
       color: var(--text-main);
       font-family: "Kantumruy Pro", sans-serif;
-      padding: 20px 14px 130px 14px;
+      padding: 16px 12px 130px 12px;
       max-width: 480px;
       margin: 0 auto;
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* --- HEADER SECTION --- */
+    /* --- HEADER --- */
     header {
       text-align: center;
-      margin-bottom: 22px;
+      margin-bottom: 16px;
+      position: relative;
     }
 
     .brand-title {
       font-family: 'Moulpali', cursive, sans-serif;
-      font-size: 32px;
+      font-size: 30px;
       color: var(--text-main);
-      line-height: 1.2;
-      margin-bottom: 4px;
+      line-height: 1.1;
     }
 
     .brand-subtitle {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text-sub);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary-accent);
+      margin-top: 2px;
     }
 
-    /* --- MEDIA CARD --- */
-    .media-card {
-      background: #000;
-      border-radius: 22px;
-      overflow: hidden;
-      box-shadow: var(--shadow-pop);
-      margin-bottom: 24px;
-      border: 3px solid #FFFFFF;
-    }
-
-    .media-card video {
-      width: 100%;
-      display: block;
-    }
-
-    /* --- PROMO BANNER --- */
-    .promo-card {
-      background: #FFF9EF;
-      border: 2px dashed #F39C12;
+    /* --- ANIMATED STICKER (ស្ទីកឃ័រមានចលនា) --- */
+    .animated-sticker {
+      position: absolute;
+      top: -6px;
+      right: 10px;
+      background: #FFE082;
+      color: #E65100;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
       border-radius: 20px;
-      padding: 18px;
-      margin-bottom: 28px;
-      box-shadow: 0 4px 12px rgba(243, 156, 18, 0.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      animation: floatSticker 2.5s ease-in-out infinite alternate;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    @keyframes floatSticker {
+      0% { transform: translateY(0px) rotate(-3deg); }
+      100% { transform: translateY(-8px) rotate(4deg); }
+    }
+
+    /* --- PROMO & WHOLESALE BANNER --- */
+    .promo-card {
+      background: #FFF8E7;
+      border: 1.5px dashed #FFA000;
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 20px;
     }
 
     .promo-header {
-      font-size: 17px;
+      font-size: 15px;
       font-weight: 800;
       color: var(--primary-accent);
-      margin-bottom: 8px;
+      margin-bottom: 4px;
     }
 
     .promo-list {
       list-style: none;
-      font-size: 14px;
-      line-height: 1.7;
+      font-size: 13px;
+      line-height: 1.5;
       color: #333;
     }
 
@@ -102,51 +109,55 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin: 32px 0 18px 0;
-      padding-bottom: 8px;
-      border-bottom: 3px solid var(--text-main);
+      margin: 24px 0 12px 0;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--text-main);
     }
 
     .section-title {
-      font-size: 19px;
+      font-size: 18px;
       font-weight: 800;
-      color: var(--text-main);
     }
 
     .section-badge {
       background: var(--text-main);
       color: #FFF;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
-      padding: 4px 12px;
-      border-radius: 8px;
+      padding: 3px 10px;
+      border-radius: 6px;
     }
 
-    /* --- PRODUCT GRID (ប្រអប់ធំៗ POP OUT) --- */
+    /* --- PRODUCT GRID (PINTEREST STYLE - ធំពេញៗ) --- */
     .product-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
+      gap: 12px;
     }
 
     .product-card {
       background: var(--card-bg);
-      border-radius: 22px;
-      padding: 16px 14px;
-      border: 1.5px solid var(--card-border);
+      border-radius: 20px;
+      overflow: hidden;
       box-shadow: var(--shadow-pop);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      position: relative;
     }
 
+    .product-card:active {
+      transform: scale(0.98);
+    }
+
+    /* រូបភាពធំលាតពេញ Card អត់សល់ចន្លោះ */
     .img-box {
       width: 100%;
-      height: 150px;
-      border-radius: 16px;
-      overflow: hidden;
-      background: #F0ECE1;
-      margin-bottom: 12px;
+      height: 185px; /* ទំហំធំទំនងឆ្ងាញ់ */
+      background: #EFEBE0;
+      position: relative;
     }
 
     .img-box img {
@@ -155,92 +166,188 @@
       object-fit: cover;
     }
 
+    .badge-pop {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(4px);
+      color: #FFF;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 12px;
+    }
+
+    /* ផ្នែកអក្សរ៖ កៀកៗគ្នា ចំណេញ Space */
+    .card-info {
+      padding: 10px 10px 12px 10px;
+    }
+
     .product-category {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
       color: var(--text-sub);
+      line-height: 1;
       margin-bottom: 2px;
     }
 
-    /* ឈ្មោះរសជាតិ៖ ធំ ដិតខ្លាំង Pop Out! */
     .flavour-name {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 900;
       color: var(--text-main);
-      line-height: 1.3;
-      margin-bottom: 8px;
-      min-height: 48px;
+      line-height: 1.2;
+      margin-bottom: 4px;
     }
 
-    /* តម្លៃលុយ៖ ធំៗច្បាស់ៗ */
     .product-price {
-      font-size: 21px;
+      font-size: 18px;
       font-weight: 900;
       color: var(--price-color);
-      margin-bottom: 12px;
-      letter-spacing: -0.5px;
+      line-height: 1;
+      margin-bottom: 8px;
     }
 
-    /* --- QTY CONTROL --- */
+    /* QTY CONTROL (តូចល្មមស្អាត) */
     .qty-control {
       display: flex;
       align-items: center;
       justify-content: space-between;
       background: #F4F0E6;
-      border-radius: 14px;
-      padding: 5px;
+      border-radius: 12px;
+      padding: 3px;
     }
 
     .qty-btn {
-      width: 38px;
-      height: 38px;
+      width: 32px;
+      height: 32px;
       border: none;
       background: #FFFFFF;
       color: var(--text-main);
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 800;
-      border-radius: 10px;
+      border-radius: 8px;
       cursor: pointer;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.08);
-    }
-
-    .qty-btn:active {
-      background: var(--primary-accent);
-      color: #FFF;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
     }
 
     .qty-num {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 800;
-      color: var(--text-main);
     }
 
-    /* --- FLOATING CART BAR --- */
+    /* --- POPUP DETAILS MODAL --- */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      z-index: 2000;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: #FFFFFF;
+      width: 100%;
+      max-width: 480px;
+      border-top-left-radius: 28px;
+      border-top-right-radius: 28px;
+      padding: 20px;
+      max-height: 85vh;
+      overflow-y: auto;
+      animation: slideUp 0.3s ease-out;
+      position: relative;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+      background: #F0ECE1;
+      border: none;
+      border-radius: 50%;
+      font-size: 20px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .modal-img {
+      width: 100%;
+      height: 240px;
+      border-radius: 20px;
+      object-fit: cover;
+      margin-bottom: 14px;
+    }
+
+    .modal-title {
+      font-size: 21px;
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+
+    .modal-price {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--price-color);
+      margin-bottom: 16px;
+    }
+
+    .detail-box {
+      background: #F8F6F0;
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin-bottom: 12px;
+    }
+
+    .detail-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--primary-accent);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .detail-text {
+      font-size: 13px;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    /* --- FLOATING CART --- */
     .cart-bar {
       position: fixed;
-      bottom: 18px;
-      left: 14px;
-      right: 14px;
-      max-width: 452px;
+      bottom: 16px;
+      left: 12px;
+      right: 12px;
+      max-width: 456px;
       margin: 0 auto;
       background: #111111;
-      border-radius: 24px;
-      padding: 16px 22px;
+      border-radius: 22px;
+      padding: 14px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 16px 35px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
       z-index: 1000;
     }
 
-    .cart-label {
-      font-size: 12px;
-      color: #999999;
-      text-transform: uppercase;
-    }
-
     .cart-price {
-      font-size: 22px;
+      font-size: 21px;
       font-weight: 900;
       color: #FFB74D;
     }
@@ -249,289 +356,176 @@
       background: linear-gradient(135deg, #FF8C00, #E65100);
       color: #FFFFFF;
       border: none;
-      padding: 14px 26px;
-      border-radius: 18px;
-      font-size: 16px;
+      padding: 12px 24px;
+      border-radius: 16px;
+      font-size: 15px;
       font-weight: 800;
       font-family: "Kantumruy Pro", sans-serif;
       cursor: pointer;
-      box-shadow: 0 6px 18px rgba(230, 81, 0, 0.4);
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
+  <!-- HEADER (បោះដុំ) -->
   <header>
+    <div class="animated-sticker">📦 តម្លៃបោះដុំពិសេស ✨</div>
     <div class="brand-title">ម៉ូម៉័រ MOMORE</div>
-    <div class="brand-subtitle">ហាងបោះដុំដំណាប់ចេក និងចេកបំពងស្រួយខ្មែរ</div>
+    <div class="brand-subtitle">ប្រព័ន្ធបញ្ជាទិញបោះដុំ ដំណាប់ចេក និងចេកបំពង</div>
   </header>
 
-  <!-- VIDEO MEDIA -->
-  <div class="media-card">
-    <video controls poster="d-orig200.jpg">
-      <source src="promo-video.mp4" type="video/mp4">
-    </video>
-  </div>
-
-  <!-- PROMO BANNER -->
+  <!-- PROMO BANNER (បោះដុំ) -->
   <div class="promo-card">
-    <div class="promo-header">🔥 ប្រូម៉ូសិនបោះដុំពិសេស</div>
+    <div class="promo-header">📦 លក្ខខណ្ឌកុម្ម៉ង់បោះដុំ</div>
     <ul class="promo-list">
-      <li>• <b>កញ្ចប់ធំ (200g):</b> ទិញ 30 កញ្ចប់ => FREE ដឹក + ថែម 2</li>
-      <li>• <b>កញ្ចប់តូច (100g):</b> ទិញ 60 កញ្ចប់ => FREE ដឹក + ថែម 4</li>
-      <li>• 🚚 ថ្លៃដឹកជញ្ជូនស្តង់ដារ៖ 8,000 ៛</li>
+      <li>• 🚚 **ការដឹកជញ្ជូន៖** ដឹកឥតគិតថ្លៃតាមគោលការណ៍កំណត់</li>
+      <li>• 💡 ចុចលើរូបផលិតផលដើម្បីមើល **ព័ត៌មានលម្អិត និងរបៀបរក្សាទុក**</li>
     </ul>
   </div>
 
-  <!-- ==================== CATEGORY 1: ដំណាប់ចេក (200g) ==================== -->
+  <!-- SECTION 1: ដំណាប់ចេក 200g (បោះដុំ) -->
   <div class="section-header">
     <div class="section-title">🍌 ដំណាប់ចេកខ្មែរ (200g)</div>
     <span class="section-badge">កញ្ចប់ធំ</span>
   </div>
 
   <div class="product-grid">
-    <div class="product-card">
-      <div class="img-box"><img src="d-orig200.jpg" alt="រសជាតិដើម" onerror="this.src='https://via.placeholder.com/300x300/F0ECE1/1A1A1A?text=MoMore+200g'"></div>
-      <div>
-        <div class="product-category">ដំណាប់ចេក</div>
+
+    <!-- ITEM 1 -->
+    <div class="product-card" onclick="openDetails('d-orig200')">
+      <div class="img-box">
+        <span class="badge-pop">🔥 លក់ដាច់ខ្លាំង</span>
+        <img src="d-orig200.jpg" alt="រសជាតិដើម" onerror="this.src='https://via.placeholder.com/300x350/F0ECE1/1A1A1A?text=MoMore+200g'">
+      </div>
+      <div class="card-info">
+        <div class="product-category">ដំណាប់ចេក 200g</div>
         <div class="flavour-name">រសជាតិដើម</div>
-      </div>
-      <div class="product-price">8,000 ៛</div>
-      <div class="qty-control">
-        <button class="qty-btn" onclick="updateQty('d-orig200', -1)">-</button>
-        <span class="qty-num" id="qty-d-orig200">0</span>
-        <button class="qty-btn" onclick="updateQty('d-orig200', 1)">+</button>
+        <div class="product-price">តម្លៃបោះដុំ</div>
+        <div class="qty-control" onclick="event.stopPropagation()">
+          <button class="qty-btn" onclick="updateQty('d-orig200', -1)">-</button>
+          <span class="qty-num" id="qty-d-orig200">0</span>
+          <button class="qty-btn" onclick="updateQty('d-orig200', 1)">+</button>
+        </div>
       </div>
     </div>
 
-    <div class="product-card">
-      <div class="img-box"><img src="d-sesm200.jpg" alt="រោយល្ង ស/ខ្មៅ" onerror="this.src='https://via.placeholder.com/300x300/F0ECE1/1A1A1A?text=MoMore+200g'"></div>
-      <div>
-        <div class="product-category">ដំណាប់ចេក</div>
+    <!-- ITEM 2 -->
+    <div class="product-card" onclick="openDetails('d-sesm200')">
+      <div class="img-box">
+        <span class="badge-pop">✨ ឈ្ងុយល្ង</span>
+        <img src="d-sesm200.jpg" alt="រោយល្ង" onerror="this.src='https://via.placeholder.com/300x350/F0ECE1/1A1A1A?text=MoMore+200g'">
+      </div>
+      <div class="card-info">
+        <div class="product-category">ដំណាប់ចេក 200g</div>
         <div class="flavour-name">រោយល្ង ស/ខ្មៅ</div>
-      </div>
-      <div class="product-price">8,000 ៛</div>
-      <div class="qty-control">
-        <button class="qty-btn" onclick="updateQty('d-sesm200', -1)">-</button>
-        <span class="qty-num" id="qty-d-sesm200">0</span>
-        <button class="qty-btn" onclick="updateQty('d-sesm200', 1)">+</button>
+        <div class="product-price">តម្លៃបោះដុំ</div>
+        <div class="qty-control" onclick="event.stopPropagation()">
+          <button class="qty-btn" onclick="updateQty('d-sesm200', -1)">-</button>
+          <span class="qty-num" id="qty-d-sesm200">0</span>
+          <button class="qty-btn" onclick="updateQty('d-sesm200', 1)">+</button>
+        </div>
       </div>
     </div>
 
-    <div class="product-card">
-      <div class="img-box"><img src="d-mixg200.jpg" alt="រោយធញ្ញជាតិគ្រប់មុខ" onerror="this.src='https://via.placeholder.com/300x300/F0ECE1/1A1A1A?text=MoMore+200g'"></div>
-      <div>
-        <div class="product-category">ដំណាប់ចេក</div>
+    <!-- ITEM 3 -->
+    <div class="product-card" onclick="openDetails('d-mixg200')">
+      <div class="img-box">
+        <span class="badge-pop">🥜 សុខភាព</span>
+        <img src="d-mixg200.jpg" alt="រោយធញ្ញជាតិ" onerror="this.src='https://via.placeholder.com/300x350/F0ECE1/1A1A1A?text=MoMore+200g'">
+      </div>
+      <div class="card-info">
+        <div class="product-category">ដំណាប់ចេក 200g</div>
         <div class="flavour-name">រោយធញ្ញជាតិគ្រប់មុខ</div>
-      </div>
-      <div class="product-price">10,000 ៛</div>
-      <div class="qty-control">
-        <button class="qty-btn" onclick="updateQty('d-mixg200', -1)">-</button>
-        <span class="qty-num" id="qty-d-mixg200">0</span>
-        <button class="qty-btn" onclick="updateQty('d-mixg200', 1)">+</button>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="img-box"><img src="d-coco200.jpg" alt="រោយដូង" onerror="this.src='https://via.placeholder.com/300x300/F0ECE1/1A1A1A?text=MoMore+200g'"></div>
-      <div>
-        <div class="product-category">ដំណាប់ចេក</div>
-        <div class="flavour-name">រោយដូង</div>
-      </div>
-      <div class="product-price">10,000 ៛</div>
-      <div class="qty-control">
-        <button class="qty-btn" onclick="updateQty('d-coco200', -1)">-</button>
-        <span class="qty-num" id="qty-d-coco200">0</span>
-        <button class="qty-btn" onclick="updateQty('d-coco200', 1)">+</button>
+        <div class="product-price">តម្លៃបោះដុំ</div>
+        <div class="qty-control" onclick="event.stopPropagation()">
+          <button class="qty-btn" onclick="updateQty('d-mixg200', -1)">-</button>
+          <span class="qty-num" id="qty-d-mixg200">0</span>
+          <button class="qty-btn" onclick="updateQty('d-mixg200', 1)">+</button>
+        </div>
       </div>
     </div>
 
-    <div class="product-card">
-      <div class="img-box"><img src="d-almd200.jpg" alt="រោយគ្រាប់អាល់ម៉ុន" onerror="this.src='https://via.placeholder.com/300x300/F0ECE1/1A1A1A?text=MoMore+200g'"></div>
-      <div>
-        <div class="product-category">ដំណាប់ចេក</div>
-        <div class="flavour-name">រោយគ្រាប់អាល់ម៉ុន</div>
+    <!-- ITEM 4 -->
+    <div class="product-card" onclick="openDetails('c-orig')">
+      <div class="img-box">
+        <span class="badge-pop">🤤 ស្រួយឆ្ងាញ់</span>
+        <img src="c-orig.jpg" alt="ចេកបំពង" onerror="this.src='https://via.placeholder.com/300x350/F0ECE1/1A1A1A?text=MoMore+Crispy'">
       </div>
-      <div class="product-price">10,000 ៛</div>
-      <div class="qty-control">
-        <button class="qty-btn" onclick="updateQty('d-almd200', -1)">-</button>
-        <span class="qty-num" id="qty-d-almd200">0</span>
-        <button class="qty-btn" onclick="updateQty('d-almd200', 1)">+</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================== CATEGORY 2: ដំណាប់ចេក (100g) ==================== -->
-  <div class="section-header">
-    <div class="section-title">🍌 ដំណាប់ចេកខ្មែរ (100g)</div>
-    <span class="section-badge">កញ្ចប់តូច</span>
-  </div>
-
-  <div class="product-grid">
-    <div class="product-card">
-      <div class="img-box"><img src="d-orig100.jpg" alt="រសជាតិដើម" onerror="this.src='https://via.placeholder.com/300x300/F0ECE1/1A1A1A?text=MoMore+100g'"></div>
-      <div>
-        <div class="product-category">ដំណាប់ចេក</div>
-        <div class="flavour-name">រសជាតិដើម</div>
-      </div>
-      <div class="product-price">4,000 ៛</div>
-      <div class="qty-control">
-        <button class="qty-btn" onclick="updateQty('d-orig100', -1)">-</button>
-        <span class="qty-num" id="qty-d-orig100">0</span>
-        <button class="qty-btn" onclick="updateQty('d-orig100', 1)">+</button>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="img-box"><img src="d-sesm100.jpg" alt="រោយល្ង ស/ខ្មៅ" onerror="this.src='https://via.placeholder.com/300x300/F0ECE1/1A1A1A?text=MoMore+100g'"></div>
-      <div>
-        <div class="product-category">ដំណាប់ចេក</div>
-        <div class="flavour-name">រោយល្ង ស/ខ្មៅ</div>
-      </div>
-      <div class="product-price">4,000 ៛</div>
-      <div class="qty-control">
-        <button class="qty-btn" onclick="updateQty('d-sesm100', -1)">-</button>
-        <span class="qty-num" id="qty-d-sesm100">0</span>
-        <button class="qty-btn" onclick="updateQty('d-sesm100', 1)">+</button>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="img-box"><img src="d-mixg100.jpg" alt="រោយធញ្ញជាតិគ្រប់មុខ" onerror="this.src='https://via.placeholder.com/300x300/F0ECE1/1A1A1A?text=MoMore+100g'"></div>
-      <div>
-        <div class="product-category">ដំណាប់ចេក</div>
-        <div class="flavour-name">រោយធញ្ញជាតិគ្រប់មុខ</div>
-      </div>
-      <div class="product-price">5,000 ៛</div>
-      <div class="qty-control">
-        <button class="qty-btn" onclick="updateQty('d-mixg100', -1)">-</button>
-        <span class="qty-num" id="qty-d-mixg100">0</span>
-        <button class="qty-btn" onclick="updateQty('d-mixg100', 1)">+</button>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="img-box"><img src="d-coco100.jpg" alt="រោយដូង" onerror="this.src='https://via.placeholder.com/300x300/F0ECE1/1A1A1A?text=MoMore+100g'"></div>
-      <div>
-        <div class="product-category">ដំណាប់ចេក</div>
-        <div class="flavour-name">រោយដូង</div>
-      </div>
-      <div class="product-price">5,000 ៛</div>
-      <div class="qty-control">
-        <button class="qty-btn" onclick="updateQty('d-coco100', -1)">-</button>
-        <span class="qty-num" id="qty-d-coco100">0</span>
-        <button class="qty-btn" onclick="updateQty('d-coco100', 1)">+</button>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="img-box"><img src="d-almd100.jpg" alt="រោយគ្រាប់អាល់ម៉ុន" onerror="this.src='https://via.placeholder.com/300x300/F0ECE1/1A1A1A?text=MoMore+100g'"></div>
-      <div>
-        <div class="product-category">ដំណាប់ចេក</div>
-        <div class="flavour-name">រោយគ្រាប់អាល់ម៉ុន</div>
-      </div>
-      <div class="product-price">5,000 ៛</div>
-      <div class="qty-control">
-        <button class="qty-btn" onclick="updateQty('d-almd100', -1)">-</button>
-        <span class="qty-num" id="qty-d-almd100">0</span>
-        <button class="qty-btn" onclick="updateQty('d-almd100', 1)">+</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================== CATEGORY 3: ចេកបំពងស្រួយ ==================== -->
-  <div class="section-header">
-    <div class="section-title">🍌 ចេកបំពងស្រួយខ្មែរ</div>
-    <span class="section-badge">ស្រួយឆ្ងាញ់</span>
-  </div>
-
-  <div class="product-grid">
-    <div class="product-card">
-      <div class="img-box"><img src="c-orig.jpg" alt="រសជាតិដើម" onerror="this.src='https://via.placeholder.com/300x300/F0ECE1/1A1A1A?text=MoMore+Crispy'"></div>
-      <div>
+      <div class="card-info">
         <div class="product-category">ចេកបំពងស្រួយ</div>
         <div class="flavour-name">រសជាតិដើម (ជូរអែម)</div>
-      </div>
-      <div class="product-price">5,000 ៛</div>
-      <div class="qty-control">
-        <button class="qty-btn" onclick="updateQty('c-orig', -1)">-</button>
-        <span class="qty-num" id="qty-c-orig">0</span>
-        <button class="qty-btn" onclick="updateQty('c-orig', 1)">+</button>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="img-box"><img src="c-butter.jpg" alt="រសជាតិប័រ" onerror="this.src='https://via.placeholder.com/300x300/F0ECE1/1A1A1A?text=MoMore+Crispy'"></div>
-      <div>
-        <div class="product-category">ចេកបំពងស្រួយ</div>
-        <div class="flavour-name">រសជាតិប័រផ្អែមស្រួយ</div>
-      </div>
-      <div class="product-price">5,000 ៛</div>
-      <div class="qty-control">
-        <button class="qty-btn" onclick="updateQty('c-butter', -1)">-</button>
-        <span class="qty-num" id="qty-c-butter">0</span>
-        <button class="qty-btn" onclick="updateQty('c-butter', 1)">+</button>
+        <div class="product-price">តម្លៃបោះដុំ</div>
+        <div class="qty-control" onclick="event.stopPropagation()">
+          <button class="qty-btn" onclick="updateQty('c-orig', -1)">-</button>
+          <span class="qty-num" id="qty-c-orig">0</span>
+          <button class="qty-btn" onclick="updateQty('c-orig', 1)">+</button>
+        </div>
       </div>
     </div>
 
-    <div class="product-card">
-      <div class="img-box"><img src="c-spicy.jpg" alt="រសជាតិអំបិលម្ទេស" onerror="this.src='https://via.placeholder.com/300x300/F0ECE1/1A1A1A?text=MoMore+Crispy'"></div>
-      <div>
-        <div class="product-category">ចេកបំពងស្រួយ</div>
-        <div class="flavour-name">រសជាតិអំបិលម្ទេស</div>
-      </div>
-      <div class="product-price">5,000 ៛</div>
-      <div class="qty-control">
-        <button class="qty-btn" onclick="updateQty('c-spicy', -1)">-</button>
-        <span class="qty-num" id="qty-c-spicy">0</span>
-        <button class="qty-btn" onclick="updateQty('c-spicy', 1)">+</button>
-      </div>
-    </div>
+  </div>
 
-    <div class="product-card">
-      <div class="img-box"><img src="c-bbq.jpg" alt="រសជាតិ BBQ" onerror="this.src='https://via.placeholder.com/300x300/F0ECE1/1A1A1A?text=MoMore+Crispy'"></div>
-      <div>
-        <div class="product-category">ចេកបំពងស្រួយ</div>
-        <div class="flavour-name">រសជាតិ BBQ</div>
+  <!-- POPUP DETAILS MODAL -->
+  <div class="modal-overlay" id="detailModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeDetails()">✕</button>
+      <img src="" id="m-img" class="modal-img">
+      <div class="modal-title" id="m-title">ឈ្មោះផលិតផល</div>
+      <div class="modal-price" id="m-price">តម្លៃបោះដុំ</div>
+
+      <div class="detail-box">
+        <div class="detail-title">🌿 អត្ថប្រយោជន៍ និងគុណតម្លៃ</div>
+        <div class="detail-text" id="m-benefit">ធ្វើចេញពីចេកនំវ៉ាធម្មជាតិ ១០០% គ្មានសារធាតុគីមីរក្សាទុក រក្សាក្លិន និងរសជាតិដើម ផ្អែមឆ្ងាញ់បែបធម្មជាតិ និងជួយដល់ប្រព័ន្ធរំលាយអាហារ។</div>
       </div>
-      <div class="product-price">5,000 ៛</div>
-      <div class="qty-control">
-        <button class="qty-btn" onclick="updateQty('c-bbq', -1)">-</button>
-        <span class="qty-num" id="qty-c-bbq">0</span>
-        <button class="qty-btn" onclick="updateQty('c-bbq', 1)">+</button>
+
+      <div class="detail-box">
+        <div class="detail-title">⏳ រយៈពេល និងវិធីសាស្រ្តរក្សាទុក</div>
+        <div class="detail-text" id="m-storage">អាចរក្សាទុកបានរហូតដល់ **៣ ទៅ ៦ ខែ** ដោយគ្រាន់តែបិទមាត់ថង់ឱ្យជិត និងទុកក្នុងកន្លែងស្ងួត ជៀសវាងពន្លឺព្រះអាទិត្យផ្ទាល់។</div>
       </div>
+
+      <button class="btn-checkout" style="width: 100%; margin-top: 10px;" onclick="closeDetails()">បិទវិញ</button>
     </div>
   </div>
 
   <!-- FLOATING CART -->
   <div class="cart-bar">
     <div>
-      <div class="cart-label">សរុបការកុម្ម៉ង់</div>
-      <div class="cart-price" id="total-price">0 ៛</div>
+      <div style="font-size: 11px; color: #999;">សរុបការកុម្ម៉ង់បោះដុំ</div>
+      <div class="cart-price" id="total-qty">0 កញ្ចប់</div>
     </div>
-    <button class="btn-checkout" onclick="sendOrder()">ធ្វើការកុម្ម៉ង់</button>
+    <button class="btn-checkout" onclick="alert('ប្រព័ន្ធបានរៀបចំការកុម្ម៉ង់បោះដុំ!')">ផ្ញើការកុម្ម៉ង់</button>
   </div>
 
   <script>
-    const prices = {
-      // ដំណាប់ចេក 200g
-      'd-orig200': 8000,
-      'd-sesm200': 8000,
-      'd-mixg200': 10000,
-      'd-coco200': 10000,
-      'd-almd200': 10000,
-      // ដំណាប់ចេក 100g
-      'd-orig100': 4000,
-      'd-sesm100': 4000,
-      'd-mixg100': 5000,
-      'd-coco100': 5000,
-      'd-almd100': 5000,
-      // ចេកបំពងស្រួយ
-      'c-orig': 5000,
-      'c-butter': 5000,
-      'c-spicy': 5000,
-      'c-bbq': 5000
+    const productsData = {
+      'd-orig200': {
+        name: 'ដំណាប់ចេកខ្មែរ រសជាតិដើម (200g)',
+        price: 'តម្លៃបោះដុំពិសេស',
+        img: 'd-orig200.jpg',
+        benefit: 'សាច់ដំណាប់ទន់ស្អិតល្មម ផ្អែមឆ្ងាញ់បែបធម្មជាតិចេញពីចេកទុំ គ្មានបន្ថែមស្ករគីមី។',
+        storage: 'រក្សាទុកបាន ៣ ខែនៅសីតុណ្ហភាពធម្មតា។ ត្រូវបិទមាត់ថង់ឱ្យជិតបន្ទាប់ពីពិសារួច។'
+      },
+      'd-sesm200': {
+        name: 'ដំណាប់ចេកខ្មែរ រោយល្ង ស/ខ្មៅ (200g)',
+        price: 'តម្លៃបោះដុំពិសេស',
+        img: 'd-sesm200.jpg',
+        benefit: 'រួមបញ្ចូលគ្នារវាងដំណាប់ចេកផ្អែមឆ្ងាញ់ និងល្ងលីងឈ្ងុយ។ សម្បូរដោយជាតិកាល់ស្យូម និងជាតិដែក។',
+        storage: 'រក្សាទុកបាន ៣ ខែ។ ទុកក្នុងប្រអប់ ឬថង់ជិតជៀសវាងត្រូវខ្យល់យូរ។'
+      },
+      'd-mixg200': {
+        name: 'ដំណាប់ចេក រោយធញ្ញជាតិគ្រប់មុខ (200g)',
+        price: 'តម្លៃបោះដុំពិសេស',
+        img: 'd-mixg200.jpg',
+        benefit: 'បន្ថែមដោយគ្រាប់ធញ្ញជាតិចម្រុះអាល់ម៉ុន ស្វាយចន្ទី និងល្ង។',
+        storage: 'រក្សាទុកបាន ៣ ខែក្នុងកន្លែងត្រជាក់ និងស្ងួត។'
+      },
+      'c-orig': {
+        name: 'ចេកបំពងស្រួយខ្មែរ រសជាតិដើម',
+        price: 'តម្លៃបោះដុំពិសេស',
+        img: 'c-orig.jpg',
+        benefit: 'ចេកបំពងស្រួយស្រេប រសជាតិជូរអែមឆ្ងាញ់ជក់មាត់ បំពងដោយប្រេងស្អាត។',
+        storage: 'រក្សាទុកបាន ៦ ខែ។ បន្ទាប់ពីបើកថង់ហើយ ត្រូវចងឱ្យជិតដើម្បីរក្សាភាពស្រួយ។'
+      }
     };
 
     const cart = {};
@@ -545,15 +539,28 @@
     }
 
     function calculateTotal() {
-      let total = 0;
+      let totalQty = 0;
       for (let key in cart) {
-        total += (cart[key] * (prices[key] || 0));
+        totalQty += cart[key];
       }
-      document.getElementById('total-price').innerText = total.toLocaleString() + ' ៛';
+      document.getElementById('total-qty').innerText = totalQty + ' កញ្ចប់';
     }
 
-    function sendOrder() {
-      alert('ប្រព័ន្ធបានរៀបចំការកុម្ម៉ង់រួចរាល់!');
+    function openDetails(id) {
+      const item = productsData[id];
+      if (!item) return;
+
+      document.getElementById('m-title').innerText = item.name;
+      document.getElementById('m-price').innerText = item.price;
+      document.getElementById('m-img').src = item.img;
+      document.getElementById('m-benefit').innerText = item.benefit;
+      document.getElementById('m-storage').innerText = item.storage;
+
+      document.getElementById('detailModal').classList.add('active');
+    }
+
+    function closeDetails() {
+      document.getElementById('detailModal').classList.remove('active');
     }
   </script>
 </body>
