@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MOMORE Wholesale Mini App</title>
+  <title>MOMORE Wholesale App</title>
   
-  <!-- Google Fonts: Kantumruy Pro & Moulpali -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700;800;900&family=Moulpali&display=swap" rel="stylesheet">
@@ -20,11 +19,7 @@
       --text-sub: #555555;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       background-color: var(--bg-page);
@@ -36,39 +31,15 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* --- HEADER --- */
-    header {
-      text-align: center;
-      margin-bottom: 20px;
-      position: relative;
-    }
-
-    .brand-title {
-      font-family: 'Moulpali', cursive, sans-serif;
-      font-size: 34px;
-      color: #111;
-      line-height: 1.1;
-    }
-
-    .brand-subtitle {
-      font-size: 16px;
-      font-weight: 800;
-      color: var(--primary-accent);
-      margin-top: 4px;
-    }
-
+    header { text-align: center; margin-bottom: 20px; position: relative; }
+    .brand-logo { width: 90px; height: auto; margin-bottom: 6px; border-radius: 50%; }
+    .brand-title { font-family: 'Moulpali', cursive, sans-serif; font-size: 28px; color: #111; }
+    .brand-subtitle { font-size: 15px; font-weight: 800; color: var(--primary-accent); margin-top: 2px; }
+    
     .animated-sticker {
-      position: absolute;
-      top: -8px;
-      right: 4px;
-      background: #FFD54F;
-      color: #D84315;
-      font-size: 13px;
-      font-weight: 900;
-      padding: 6px 12px;
-      border-radius: 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      animation: float 2.5s ease-in-out infinite alternate;
+      position: absolute; top: -8px; right: 4px; background: #FFD54F; color: #D84315;
+      font-size: 12px; font-weight: 900; padding: 6px 12px; border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15); animation: float 2.5s ease-in-out infinite alternate;
     }
 
     @keyframes float {
@@ -76,262 +47,186 @@
       100% { transform: translateY(-8px) rotate(3deg); }
     }
 
-    /* --- SECTION TITLE --- */
     .section-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin: 28px 0 14px 0;
-      padding-bottom: 8px;
-      border-bottom: 3px solid #111;
+      display: flex; align-items: center; justify-content: space-between;
+      margin: 24px 0 14px 0; padding-bottom: 8px; border-bottom: 3px solid #111;
     }
+    .section-title { font-size: 19px; font-weight: 900; }
+    .section-badge { background: #111; color: #FFF; font-size: 12px; font-weight: 800; padding: 4px 10px; border-radius: 8px; }
 
-    .section-title {
-      font-size: 22px;
-      font-weight: 900;
-    }
-
-    .section-badge {
-      background: #111;
-      color: #FFF;
-      font-size: 13px;
-      font-weight: 800;
-      padding: 4px 12px;
-      border-radius: 8px;
-    }
-
-    /* --- PRODUCT GRID (PINTEREST / TIKTOK STYLE ធំវែង) --- */
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-
+    .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .product-card {
-      background: var(--card-bg);
-      border-radius: 22px;
-      overflow: hidden;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-      display: flex;
-      flex-direction: column;
+      background: var(--card-bg); border-radius: 20px; overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); display: flex; flex-direction: column;
       justify-content: space-between;
-      position: relative;
     }
 
-    /* ប្រអប់រូបភាព / វីដេអូ ធំវែងខ្លាំង (400px) */
-    .media-box {
-      width: 100%;
-      height: 400px;
-      background: #EFEBE0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .media-box img, .media-box video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+    /* ប្រអប់បង្ហាញវីដេអូ */
+    .media-box { width: 100%; height: 320px; background: #EFEBE0; position: relative; overflow: hidden; }
+    .media-box video, .media-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     .badge-pop {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: rgba(0, 0, 0, 0.75);
-      color: #FFF;
-      font-size: 12px;
-      font-weight: 800;
-      padding: 4px 10px;
-      border-radius: 10px;
-      backdrop-filter: blur(4px);
+      position: absolute; top: 10px; left: 10px; background: rgba(0, 0, 0, 0.75);
+      color: #FFF; font-size: 11px; font-weight: 800; padding: 4px 8px; border-radius: 8px; backdrop-filter: blur(4px);
     }
 
-    /* --- INFO AREA (អក្សរ និងទឹកលុយធំៗ) --- */
-    .card-info {
-      padding: 14px 12px;
-      display: flex;
-      flex-direction: column;
-    }
+    .card-info { padding: 12px 10px; display: flex; flex-direction: column; }
+    .product-category { font-size: 12px; font-weight: 700; color: var(--text-sub); }
+    .flavour-name { font-size: 17px; font-weight: 900; color: #000; line-height: 1.3; margin: 4px 0 6px 0; }
+    .product-price { font-size: 17px; font-weight: 900; color: var(--price-color); margin-bottom: 10px; }
 
-    .product-category {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text-sub);
-    }
-
-    /* អក្សរឈ្មោះរសជាតិធំៗច្បាស់ៗ */
-    .flavour-name {
-      font-size: 22px;
-      font-weight: 900;
-      color: #000;
-      line-height: 1.3;
-      margin: 4px 0 6px 0;
-    }
-
-    /* ទឹកលុយ/តម្លៃ ធំដិតច្បាស់ */
-    .product-price {
-      font-size: 22px;
-      font-weight: 900;
-      color: var(--price-color);
-      line-height: 1.1;
-      margin-bottom: 10px;
-    }
-
-    /* --- QTY CONTROL (តូចស្អាត លេខបូកដកមិនបាំងរូប) --- */
     .qty-control {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: #F0ECE1;
-      border-radius: 10px;
-      padding: 3px 6px;
-      width: 100%;
+      display: flex; align-items: center; justify-content: space-between;
+      background: #F0ECE1; border-radius: 10px; padding: 4px 8px; width: 100%;
     }
-
     .qty-btn {
-      width: 24px;
-      height: 24px;
-      border: none;
-      background: #FFFFFF;
-      color: #000;
-      font-size: 14px;
-      font-weight: 900;
-      border-radius: 6px;
-      cursor: pointer;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 26px; height: 26px; border: none; background: #FFFFFF; color: #000;
+      font-size: 15px; font-weight: 900; border-radius: 6px; cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center;
     }
+    .qty-num { font-size: 16px; font-weight: 900; }
 
-    .qty-num {
-      font-size: 15px;
-      font-weight: 900;
-    }
-
-    /* --- FLOATING CART BAR --- */
     .cart-bar {
-      position: fixed;
-      bottom: 16px;
-      left: 12px;
-      right: 12px;
-      max-width: 476px;
-      margin: 0 auto;
-      background: #111111;
-      border-radius: 22px;
-      padding: 14px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-      z-index: 1000;
+      position: fixed; bottom: 16px; left: 12px; right: 12px; max-width: 476px; margin: 0 auto;
+      background: #111111; border-radius: 22px; padding: 14px 20px; display: flex;
+      align-items: center; justify-content: space-between; box-shadow: 0 12px 30px rgba(0,0,0,0.35); z-index: 1000;
     }
-
-    .cart-price {
-      font-size: 24px;
-      font-weight: 900;
-      color: #FFB74D;
-    }
-
+    .cart-price { font-size: 20px; font-weight: 900; color: #FFB74D; }
     .btn-checkout {
-      background: linear-gradient(135deg, #FF8C00, #E65100);
-      color: #FFFFFF;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 16px;
-      font-size: 16px;
-      font-weight: 800;
-      font-family: "Kantumruy Pro", sans-serif;
-      cursor: pointer;
+      background: linear-gradient(135deg, #FF8C00, #E65100); color: #FFF; border: none;
+      padding: 12px 20px; border-radius: 16px; font-size: 15px; font-weight: 800;
+      font-family: "Kantumruy Pro", sans-serif; cursor: pointer;
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER (បោះដុំ) -->
   <header>
-    <div class="animated-sticker">📦 តម្លៃបោះដុំពិសេស ✨</div>
+    <div class="animated-sticker">📦 តម្លៃបោះដុំ (រៀល) ✨</div>
+    <img src="logo.png" alt="MoMore Logo" class="brand-logo" onerror="this.style.display='none'">
     <div class="brand-title">ម៉ូម៉័រ MOMORE</div>
-    <div class="brand-subtitle">ប្រព័ន្ធបញ្ជាទិញបោះដុំ (Wholesale App)</div>
+    <div class="brand-subtitle">ប្រព័ន្ធបញ្ជាទិញបោះដុំ</div>
   </header>
 
-  <!-- SECTION 1: ដំណាប់ចេក 200g -->
+  <!-- ផ្នែកទី ១: ដំណាប់ចេកខ្មែរ (សាច់ទន់) -->
   <div class="section-header">
-    <div class="section-title">🍌 ដំណាប់ចេកខ្មែរ (200g)</div>
+    <div class="section-title">🍌 ដំណាប់ចេកខ្មែរ (សាច់ទន់)</div>
     <span class="section-badge">បោះដុំ</span>
   </div>
 
   <div class="product-grid">
-    <!-- ITEM 1 -->
+    <!-- Item 1: promo1.mp4 -->
     <div class="product-card">
       <div class="media-box">
-        <span class="badge-pop">🔥 លក់ដាច់ខ្លាំង</span>
-        <img src="d-orig200.jpg" alt="រសជាតិដើម" onerror="this.src='https://via.placeholder.com/400x800/F0ECE1/1A1A1A?text=Banana+200g'">
+        <span class="badge-pop">🎬 Promo 1</span>
+        <video src="promo1.mp4" autoplay loop muted playsinline poster="logo1.png"></video>
       </div>
       <div class="card-info">
-        <div class="product-category">ដំណាប់ចេក 200g</div>
-        <div class="flavour-name">រសជាតិដើម</div>
-        <div class="product-price">$1.80 / កញ្ចប់</div>
+        <div class="product-category">ដំណាប់ចេកខ្មែរ</div>
+        <div class="flavour-name">សាច់ទន់ រសជាតិដើម</div>
+        <div class="product-price">10,000 ៛</div>
         <div class="qty-control">
-          <button class="qty-btn" onclick="updateQty('d-orig200', -1)">-</button>
-          <span class="qty-num" id="qty-d-orig200">0</span>
-          <button class="qty-btn" onclick="updateQty('d-orig200', 1)">+</button>
+          <button class="qty-btn" onclick="updateQty('p1', -1)">-</button>
+          <span class="qty-num" id="qty-p1">0</span>
+          <button class="qty-btn" onclick="updateQty('p1', 1)">+</button>
         </div>
       </div>
     </div>
 
-    <!-- ITEM 2 -->
+    <!-- Item 2: promo2.mp4 -->
     <div class="product-card">
       <div class="media-box">
-        <span class="badge-pop">✨ ឈ្ងុយល្ង</span>
-        <img src="d-sesm200.jpg" alt="រោយល្ង" onerror="this.src='https://via.placeholder.com/400x800/F0ECE1/1A1A1A?text=Sesame+200g'">
+        <span class="badge-pop">🎬 Promo 2</span>
+        <video src="promo2.mp4" autoplay loop muted playsinline poster="logo2.png"></video>
       </div>
       <div class="card-info">
-        <div class="product-category">ដំណាប់ចេក 200g</div>
-        <div class="flavour-name">រោយល្ង ស/ខ្មៅ</div>
-        <div class="product-price">$2.00 / កញ្ចប់</div>
-        <div class="qty-control">
-          <button class="qty-btn" onclick="updateQty('d-sesm200', -1)">-</button>
-          <span class="qty-num" id="qty-d-sesm200">0</span>
-          <button class="qty-btn" onclick="updateQty('d-sesm200', 1)">+</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- ITEM 3 -->
-    <div class="product-card">
-      <div class="media-box">
-        <span class="badge-pop">🥜 សុខភាព</span>
-        <img src="d-mixg200.jpg" alt="រោយធញ្ញជាតិ" onerror="this.src='https://via.placeholder.com/400x800/F0ECE1/1A1A1A?text=Grain+200g'">
-      </div>
-      <div class="card-info">
-        <div class="product-category">ដំណាប់ចេក 200g</div>
+        <div class="product-category">ដំណាប់ចេកខ្មែរ</div>
         <div class="flavour-name">រោយធញ្ញជាតិចម្រុះ</div>
-        <div class="product-price">$2.20 / កញ្ចប់</div>
+        <div class="product-price">12,000 ៛</div>
         <div class="qty-control">
-          <button class="qty-btn" onclick="updateQty('d-mixg200', -1)">-</button>
-          <span class="qty-num" id="qty-d-mixg200">0</span>
-          <button class="qty-btn" onclick="updateQty('d-mixg200', 1)">+</button>
+          <button class="qty-btn" onclick="updateQty('p2', -1)">-</button>
+          <span class="qty-num" id="qty-p2">0</span>
+          <button class="qty-btn" onclick="updateQty('p2', 1)">+</button>
         </div>
       </div>
     </div>
 
-    <!-- ITEM 4: ឧទាហរណ៍វីដេអូ ឬរូបភាព -->
+    <!-- Item 3: promo3.mp4 -->
     <div class="product-card">
       <div class="media-box">
-        <span class="badge-pop">🎬 វីដេអូបង្ហាញ</span>
-        <!-- អាចដាក់ <video src="demo.mp4" autoplay loop muted></video> បាន -->
-        <img src="c-orig.jpg" alt="ចេកបំពង" onerror="this.src='https://via.placeholder.com/400x800/F0ECE1/1A1A1A?text=Crispy+Banana'">
+        <span class="badge-pop">🎬 Promo 3</span>
+        <video src="promo3.mp4" autoplay loop muted playsinline poster="logo3.png"></video>
       </div>
       <div class="card-info">
-        <div class="product-category">ចេកបំពងស្រួយ</div>
-        <div class="flavour-name">រសជាតិដើមជូរអែម</div>
-        <div class="product-price">$1.50 / កញ្ចប់</div>
+        <div class="product-category">ដំណាប់ចេកខ្មែរ</div>
+        <div class="flavour-name">រោយដូងឈ្ងុយ</div>
+        <div class="product-price">12,000 ៛</div>
         <div class="qty-control">
-          <button class="qty-btn" onclick="updateQty('c-orig', -1)">-</button>
-          <span class="qty-num" id="qty-c-orig">0</span>
-          <button class="qty-btn" onclick="updateQty('c-orig', 1)">+</button>
+          <button class="qty-btn" onclick="updateQty('p3', -1)">-</button>
+          <span class="qty-num" id="qty-p3">0</span>
+          <button class="qty-btn" onclick="updateQty('p3', 1)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 4: promo4.mp4 -->
+    <div class="product-card">
+      <div class="media-box">
+        <span class="badge-pop">🎬 Promo 4</span>
+        <video src="promo4.mp4" autoplay loop muted playsinline poster="logo.png"></video>
+      </div>
+      <div class="card-info">
+        <div class="product-category">ដំណាប់ចេកខ្មែរ</div>
+        <div class="flavour-name">រោយគ្រាប់អាល់ម៉ុន</div>
+        <div class="product-price">12,000 ៛</div>
+        <div class="qty-control">
+          <button class="qty-btn" onclick="updateQty('p4', -1)">-</button>
+          <span class="qty-num" id="qty-p4">0</span>
+          <button class="qty-btn" onclick="updateQty('p4', 1)">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ផ្នែកទី ២: ចេកអាំងបន្ទះស្តើង & ផលិតផលបន្ថែម -->
+  <div class="section-header">
+    <div class="section-title">🍌 ចេកអាំងបន្ទះស្តើង & ជម្រើសផ្សេងៗ</div>
+    <span class="section-badge">ពិសេស</span>
+  </div>
+
+  <div class="product-grid">
+    <!-- Item 5: promo5.mp4 -->
+    <div class="product-card">
+      <div class="media-box">
+        <span class="badge-pop">🎬 Promo 5</span>
+        <video src="promo5.mp4" autoplay loop muted playsinline poster="logo1.png"></video>
+      </div>
+      <div class="card-info">
+        <div class="product-category">ចេកក្រៀម</div>
+        <div class="flavour-name">ចេកអាំងបន្ទះស្តើង</div>
+        <div class="product-price">10,000 ៛</div>
+        <div class="qty-control">
+          <button class="qty-btn" onclick="updateQty('p5', -1)">-</button>
+          <span class="qty-num" id="qty-p5">0</span>
+          <button class="qty-btn" onclick="updateQty('p5', 1)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 6: promo6.mp4 -->
+    <div class="product-card">
+      <div class="media-box">
+        <span class="badge-pop">🎬 Promo 6</span>
+        <video src="promo6.mp4" autoplay loop muted playsinline poster="logo2.png"></video>
+      </div>
+      <div class="card-info">
+        <div class="product-category">ប្រអប់ពិសេស</div>
+        <div class="flavour-name">ប្រអប់សិតដំណាប់ចេកចម្រុះ</div>
+        <div class="product-price">35,000 ៛</div>
+        <div class="qty-control">
+          <button class="qty-btn" onclick="updateQty('p6', -1)">-</button>
+          <span class="qty-num" id="qty-p6">0</span>
+          <button class="qty-btn" onclick="updateQty('p6', 1)">+</button>
         </div>
       </div>
     </div>
@@ -340,13 +235,22 @@
   <!-- FLOATING CART -->
   <div class="cart-bar">
     <div>
-      <div style="font-size: 12px; color: #AAA;">សរុបការកុម្ម៉ង់បោះដុំ</div>
-      <div class="cart-price" id="total-qty">0 កញ្ចប់</div>
+      <div style="font-size: 11px; color: #AAA;">ទឹកប្រាក់សរុប</div>
+      <div class="cart-price" id="total-amount">0 ៛</div>
     </div>
-    <button class="btn-checkout" onclick="alert('ប្រព័ន្ធបានរក្សាទុកការកុម្ម៉ង់បោះដុំ!')">ផ្ញើការកុម្ម៉ង់</button>
+    <button class="btn-checkout" onclick="alert('បញ្ជាទិញជោគជ័យ!')">បញ្ជាទិញ</button>
   </div>
 
   <script>
+    const prices = {
+      'p1': 10000,
+      'p2': 12000,
+      'p3': 12000,
+      'p4': 12000,
+      'p5': 10000,
+      'p6': 35000
+    };
+
     const cart = {};
 
     function updateQty(id, change) {
@@ -355,11 +259,12 @@
       if (cart[id] < 0) cart[id] = 0;
       document.getElementById('qty-' + id).innerText = cart[id];
       
-      let totalQty = 0;
+      let totalMoney = 0;
       for (let key in cart) {
-        totalQty += cart[key];
+        totalMoney += cart[key] * (prices[key] || 0);
       }
-      document.getElementById('total-qty').innerText = totalQty + ' កញ្ចប់';
+      
+      document.getElementById('total-amount').innerText = totalMoney.toLocaleString('km-KH') + ' ៛';
     }
   </script>
 </body>
