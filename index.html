@@ -34,7 +34,7 @@
     
     /* Header - រៀបចំការពារបាំងផ្នែកខាងលើទូរសព្ទ និងទម្លាក់ឱ្យចុះក្រោមបន្តិច */
     header { 
-      background: linear-gradient(135deg, #121212 0%, #2c2c2c 100%); 
+      background: linear-gradient(150deg, #121212 0%, #2c2c2c 100%); 
       color: var(--primary); 
       padding: 16px; 
       text-align: center; 
@@ -641,7 +641,7 @@
         if (total100gQty > 0 && total100gQty < 20) { minQtyMet = false; qtyStatusMsg += ` (100g ខ្វះ ${20 - total100gQty} ទៀត)`; }
 
         if (!minQtyMet) {
-          btnSubmit.disabled = true;
+          btnSubmit.disabled = true; 
           btnSubmit.innerText = "កុម្ម៉ង់មិនទាន់គ្រប់ចំនួន" + qtyStatusMsg;
         } else {
           btnSubmit.disabled = false;
