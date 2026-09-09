@@ -663,7 +663,7 @@
       return { grandTotal, totalItemPrice, deliveryFee, promoFreeMsg, minQtyMet };
     }
 
-    async function submitOrder() {
+        async function submitOrder() {
       let calc = calculateTotal();
       if (calc.totalItemPrice === 0) { alert("សូមជ្រើសរើសចំនួនទំនិញយ៉ាងហោចណាស់ ១ ជាមុនសិន!"); return; }
       if (!calc.minQtyMet) { alert("សូមពិនិត្យចំនួនកុម្ម៉ង់អប្បបរមា!"); return; }
@@ -677,9 +677,29 @@
       if (!phone || !province) { alert("សូមបំពេញលេខទូរស័ព្ទ និង ខេត្ត/ក្រុង!"); return; }
       if (!slipFile) { alert("⚠️ សូម Upload រូបភាពវិក្កយបត្រ (Payment Slip) ជាមុនសិន!"); return; }
 
-      alert("✅ ការកុម្ម៉ង់ត្រូវបានផ្ញើជោគជ័យ! Admin នឹងពិនិត្យ និងរៀបចំផ្ញើទំនិញជូនឆាប់ៗនេះ!");
-      tg.close();
+      // ១. រៀបចំទម្រង់អត្ថបទសារសម្រាប់ផ្ញើ
+      let orderDetails = "🛒 *ការកុម្ម៉ង់ទំនិញថ្មីពី MoMore* 🛒\n\n";
+      for (let key in products) {
+        if (products[key].qty > 0) {
+          let p = products[key];
+          orderDetails += `- ${p.type} (${p.flavor} - ${p.size}): ${p.qty} ប្រអប់ (${(p.qty * p.price).toLocaleString()} ៛)\n`;
+        }
+      }
+      orderDetails += `\n💰 *សរុបទឹកប្រាក់:* ${calc.grandTotal.toLocaleString()} ៛`;
+      orderDetails += `\n📞 *ទូរស័ព្ទអតិថិជន:* ${phone}`;
+      orderDetails += `\n📍 *ខេត្ត/ក្រុង:* ${province}`;
+      orderDetails += `\n🏢 *សាខា/ទីតាំង:* ${branch || 'អត់មានបញ្ជាក់'}`;
+      orderDetails += `\n🚚 *ក្រុមហ៊ុនដឹក:* ${courier}`;
+
+      // ២. បើក Telegram ភ្ជាប់ទៅកាន់ Admin Chat ឬ Group តាមរយៈ Share Link មានសុវត្ថិភាព
+      const encodedText = encodeURIComponent(orderDetails);
+      
+      // (បើចង់ឱ្យវាលោតចូល Group ID: -1004387546731 ឬ Telegram Username របស់អដមីន អាចជំនួសតំណខាងក្រោមបាន)
+      window.open(`https://t.me/share/url?url=${encodedText}`, '_blank');
+
+      alert("✅ ទិន្នន័យការកុម្ម៉ង់ត្រូវបានត្រៀមរួចរាល់ សូមចុចបញ្ជូនក្នុង Telegram!");
     }
+
 
     renderVideoGallery();
     renderProducts();
