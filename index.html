@@ -8,7 +8,7 @@
   <!-- Google Fonts: Kantumruy Pro & Moul -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700;800&family=Moul&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700;800&family=Moul&display=stylesheet">
   
   <style>
     :root {
@@ -32,7 +32,7 @@
       font-size: 15px; 
     }
     
-    /* Header - រៀបចំការពារបាំងផ្នែកខាងលើទូរសព្ទ */
+    /* Header - រៀបចំការពារបាំងផ្នែកខាងលើទូរសព្ទ និងទម្លាក់ឱ្យចុះក្រោមបន្តិច */
     header { 
       background: linear-gradient(135deg, #121212 0%, #2c2c2c 100%); 
       color: var(--primary); 
@@ -47,30 +47,50 @@
       border-bottom: 3px solid var(--primary);
     }
     
-    .container { max-width: 600px; margin: auto; padding: 12px 10px; }
+    .container { 
+      max-width: 600px; 
+      margin: auto; 
+      padding: 16px 10px 10px 10px; /* បន្ថែម padding ផ្នែកខាងលើ ដើម្បីការពារការបាំងសេវា/ម៉ោង */
+    }
 
-    /* Hero Banner - កែសម្រួលកម្ពស់ និង Padding សមរម្យ មិនបាំងកន្លែងសេវា */
+    /* True Hero Banner (ខ្នាត 16:9 អាចដាក់រូបភាពស្អាតបាន) */
     .hero-banner {
       width: 100%;
-      background: linear-gradient(135deg, #1a1a1a 0%, #2d251e 100%);
+      aspect-ratio: 16 / 9; /* រក្សាចន្លោះខ្នាត 16:9 យ៉ាងជាក់លាក់ */
+      background: #1a1a1a;
       border-radius: 14px;
-      padding: 18px 14px;
+      overflow: hidden;
       margin-bottom: 14px;
       border: 2px solid var(--primary);
-      color: #ffffff;
       box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      position: relative;
+    }
+    .hero-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* ករណីចង់បង្ហាញអក្សរពីលើរូបភាពបន្តិចបន្តួច */
+    .hero-banner-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+      padding: 16px 12px 10px 12px;
+      color: #ffffff;
       text-align: center;
     }
-    .hero-banner h1 {
-      font-size: 1.3rem;
+    .hero-banner-content h1 {
+      font-size: 1.15rem;
       color: var(--primary);
-      margin-bottom: 6px;
+      margin-bottom: 2px;
       font-weight: 800;
     }
-    .hero-banner p {
-      font-size: 0.88rem;
+    .hero-banner-content p {
+      font-size: 0.78rem;
       color: #eeeeee;
-      line-height: 1.5;
       font-weight: 500;
     }
 
@@ -142,7 +162,7 @@
     .qr-sub { font-size: 0.8rem; color: #ddd; margin-bottom: 8px; }
     .qr-image { width: 190px; height: 190px; object-fit: contain; margin: 6px auto; display: block; border-radius: 8px; background: #fff; padding: 4px; }
 
-    /* Fixed Bottom Cart Bar - ដំឡើងឱ្យខ្ពស់ផុតពីបាតទូរសព្ទ (Touch Screen) មិនបាំងកន្លែងបញ្ជា */
+    /* Fixed Bottom Cart Bar */
     .cart-bar { 
       position: fixed; 
       bottom: 22px; 
@@ -185,10 +205,13 @@
 
   <div class="container">
 
-    <!-- 1. HERO BANNER (គ្មានកាក់) -->
+    <!-- 1. TRUE HERO BANNER (ខ្នាត 16:9 សម្រាប់ដាក់រូបភាពស្អាត) -->
     <div class="hero-banner">
-      <h1>MoMore Wholesale (តម្លៃបោះដុំ)</h1>
-      <p>ប្រព័ន្ធបញ្ជាទិញបោះដុំផ្ទាល់ពីរោងចក្រ គុណភាពខ្ពស់ និងអនាម័យស្តង់ដារសម្រាប់ដៃគូអាជីវកម្ម!</p>
+      <img src="hero-banner.jpg" alt="MoMore Wholesale Banner" onerror="this.src='https://via.placeholder.com/800x450/1a1a1a/f39c12?text=MoMore+Wholesale+16:9+Banner'">
+      <div class="hero-banner-content">
+        <h1>MoMore Wholesale (តម្លៃបោះដុំ)</h1>
+        <p>ប្រព័ន្ធបញ្ជាទិញបោះដុំផ្ទាល់ពីរោងចក្រ គុណភាពខ្ពស់ និងអនាម័យស្តង់ដារសម្រាប់ដៃគូអាជីវកម្ម!</p>
+      </div>
     </div>
 
     <!-- 2. VIDEO GALLERY / FEED SECTION -->
@@ -282,7 +305,7 @@
 
   </div>
 
-  <!-- Modal វីដេអូ (ទម្រង់ 9:16) -->
+  <!-- Modal វីដេអូ -->
   <div class="modal" id="videoModal">
     <div class="modal-content" style="background:#000; max-width: 360px;">
       <span class="close-modal" onclick="closeVideoModal()">&times;</span>
@@ -290,7 +313,7 @@
     </div>
   </div>
 
-  <!-- Modal Detail ព័ត៌មានលម្អិត & Review ផលិតផល -->
+  <!-- Modal Detail -->
   <div class="modal" id="detailModal">
     <div class="modal-content">
       <span class="close-modal" onclick="closeDetailModal()">&times;</span>
@@ -316,7 +339,7 @@
     </div>
   </div>
 
-  <!-- Cart Fixed Bottom (ហើបឡើងលើផុតពី Touch Bar មិនបាំង) -->
+  <!-- Cart Fixed Bottom -->
   <div class="cart-bar">
     <div>
       <div style="font-size:0.7rem; color:#aaa;">សរុបសាច់ប្រាក់:</div>
