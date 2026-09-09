@@ -32,12 +32,7 @@
       margin-bottom: 15px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
-    .reward-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-    }
+    .reward-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
     .reward-title { font-weight: bold; font-size: 1rem; color: var(--secondary); display: flex; align-items: center; gap: 5px; }
     .coin-badge { background: #e67e22; color: white; padding: 4px 10px; border-radius: 15px; font-weight: bold; font-size: 0.85rem; }
     
@@ -47,85 +42,44 @@
     .day-box .pts { font-size: 0.65rem; color: #888; display: block; margin-top: 2px; }
     .day-box.active .pts { color: #fff; }
     
-    .btn-checkin {
-      width: 100%;
-      background: var(--secondary);
-      color: white;
-      border: none;
-      padding: 10px;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 0.9rem;
-      margin-top: 10px;
-      cursor: pointer;
-    }
+    .btn-checkin { width: 100%; background: var(--secondary); color: white; border: none; padding: 10px; border-radius: 8px; font-weight: bold; font-size: 0.9rem; margin-top: 10px; cursor: pointer; }
     .btn-checkin:disabled { background: #bdc3c7; cursor: not-allowed; }
 
     /* Notice Box */
-    .notice-box {
-      background: #eef9f1;
-      border-left: 4px solid var(--green);
-      padding: 10px 12px;
-      border-radius: 6px;
-      margin-bottom: 15px;
-      font-size: 0.82rem;
-      line-height: 1.5;
-    }
+    .notice-box { background: #eef9f1; border-left: 4px solid var(--green); padding: 10px 12px; border-radius: 6px; margin-bottom: 15px; font-size: 0.82rem; line-height: 1.5; }
 
-    /* Products Grid - Enlarged Image & Text */
+    /* Products Grid */
     .section-title { font-size: 1.15rem; font-weight: bold; margin: 20px 0 10px 5px; color: var(--secondary); border-left: 5px solid var(--primary); padding-left: 8px; }
     .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .product-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.08); display: flex; flex-direction: column; justify-content: space-between; border: 1px solid #eee; }
     
-    /* Image container made larger: 220px */
-    .media-box { width: 100%; height: 220px; background-color: #fdfdfd; position: relative; overflow: hidden; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .media-box { width: 100%; height: 200px; background-color: #fdfdfd; position: relative; overflow: hidden; cursor: pointer; display: flex; align-items: center; justify-content: center; }
     .media-box img { width: 100%; height: 100%; object-fit: contain; }
     
-    .play-video-badge {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      background: rgba(0, 0, 0, 0.75);
-      color: #fff;
-      padding: 5px 10px;
-      border-radius: 14px;
-      font-size: 0.75rem;
-      font-weight: bold;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 3px;
-      backdrop-filter: blur(2px);
-      z-index: 2;
-    }
+    .play-video-badge { position: absolute; top: 8px; right: 8px; background: rgba(0, 0, 0, 0.75); color: #fff; padding: 5px 10px; border-radius: 14px; font-size: 0.75rem; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 3px; backdrop-filter: blur(2px); z-index: 2; }
 
     .product-info { padding: 12px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
-    /* Font sizes increased */
-    .product-name { font-size: 1.05rem; font-weight: bold; margin-bottom: 6px; color: #1a252f; line-height: 1.3; cursor: pointer; }
-    .product-weight { font-size: 0.82rem; color: var(--gray); margin-bottom: 6px; font-weight: 500; }
-    .product-price { font-size: 1.25rem; font-weight: bold; color: var(--secondary); margin-bottom: 10px; }
+    .product-name { font-size: 1rem; font-weight: bold; margin-bottom: 4px; color: #1a252f; line-height: 1.3; cursor: pointer; }
+    .product-weight { font-size: 0.8rem; color: var(--gray); margin-bottom: 6px; font-weight: 500; }
+    
+    /* ផ្នែកបង្ហាញការរៀបចំ & វេចខ្ចប់លើ Card */
+    .product-details-summary { font-size: 0.75rem; background: #fff8f0; border-radius: 6px; padding: 6px 8px; margin-bottom: 8px; border: 1px solid #fce3ce; line-height: 1.4; color: #555; }
+    .product-details-summary div { margin-bottom: 3px; }
+    .product-details-summary div:last-child { margin-bottom: 0; }
+    .product-details-summary strong { color: var(--secondary); }
+
+    .product-price { font-size: 1.2rem; font-weight: bold; color: var(--secondary); margin-bottom: 8px; }
     
     .quantity-control { display: flex; align-items: center; justify-content: space-between; background: #f1f2f6; border-radius: 8px; padding: 4px; }
     .btn-qty { width: 32px; height: 32px; background: white; border: 1px solid #ccc; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; color: var(--secondary); }
     .qty-number { font-weight: bold; font-size: 1.05rem; }
     
     /* Form Styles */
-    .form-section {
-      background: var(--card-bg);
-      padding: 15px;
-      border-radius: 12px;
-      margin-top: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    }
+    .form-section { background: var(--card-bg); padding: 15px; border-radius: 12px; margin-top: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
     .form-group { margin-bottom: 12px; }
     .form-group label { display: block; font-weight: bold; font-size: 0.88rem; margin-bottom: 5px; color: var(--secondary); }
-    .form-group input, .form-group select, .form-group textarea {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 0.9rem;
-    }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.9rem; }
+    .required-tag { color: red; }
 
     /* Cart Bar Fixed */
     .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: white; padding: 12px 18px; box-shadow: 0 -3px 12px rgba(0,0,0,0.12); display: flex; justify-content: space-between; align-items: center; max-width: 600px; margin: auto; border-top-left-radius: 18px; border-top-right-radius: 18px; z-index: 999; }
@@ -139,7 +93,7 @@
     .modal-content { width: 100%; max-width: 420px; background: #fff; border-radius: 15px; overflow: hidden; position: relative; max-height: 85vh; display: flex; flex-direction: column; }
     .close-modal { position: absolute; top: 10px; right: 12px; color: white; font-size: 22px; font-weight: bold; cursor: pointer; z-index: 2001; background: rgba(0,0,0,0.6); width: 32px; height: 32px; border-radius: 50%; text-align: center; line-height: 30px; }
     
-    .detail-header-img { width: 100%; height: 240px; object-fit: contain; background: #fff; }
+    .detail-header-img { width: 100%; height: 220px; object-fit: contain; background: #fff; }
     .detail-body { padding: 18px; overflow-y: auto; font-size: 0.9rem; line-height: 1.6; color: #333; }
     .detail-title { font-size: 1.2rem; font-weight: bold; color: var(--secondary); margin-bottom: 6px; }
     .detail-price { font-size: 1.3rem; font-weight: bold; color: var(--secondary); margin-bottom: 12px; }
@@ -176,15 +130,15 @@
       <button class="btn-checkin" id="checkin-btn" onclick="doCheckIn()">ចុច Check-in យក ១០០ កាក់ថ្ងៃនេះ</button>
     </div>
 
-    <!-- Notice Box for Wholesale Conditions -->
+    <!-- Notice Box -->
     <div class="notice-box">
-      <strong>📌 លក្ខខណ្ឌកុម្ម៉ង់តម្លៃបោះដុំ៖</strong><br>
-      • កញ្ចប់ <strong>200g / 300g / 500g</strong>: ទិញចាប់ពី <strong>10 ប្រអប់ឡើងទៅ</strong><br>
-      • កញ្ចប់ <strong>100g</strong>: ទិញចាប់ពី <strong>20 ប្រអប់ឡើងទៅ</strong><br>
-      🎁 <strong>ប្រូម៉ូសិនហ្វ្រីសេវាដឹក (8000៛) & ថែមជូន៖</strong><br>
-      • 200g ចាប់ពី 30 ប្រអប់ ➔ ហ្វ្រីដឹក + ថែម 200g មួយប្រអប់<br>
-      • 100g ចាប់ពី 60 ប្រអប់ ➔ ហ្វ្រីដឹក + ថែម 100g ពីរប្រអប់<br>
-      • លាយចម្រុះ (200g=15ប្រអប់ + 100g=30កញ្ចប់) ➔ ហ្វ្រីដឹក + ថែម 200g មួយប្រអប់
+      <strong>📌 លក្ខខណ្ឌ និងប្រូម៉ូសិនបោះដុំ៖</strong><br>
+      • <strong>ក្រុមទី១ (ដំណាប់ចេក):</strong> ទិញ 200g គ្រប់ 30 ប្រអប់ ➔ FREE ដឹក + ថែម 200g 3 ប្រអប់ (300g មិនចូលក្នុងលក្ខខណ្ឌថែមទេ)<br>
+      • <strong>ក្រុមទី២ (ចេកបំពង):</strong> 100g លក់ចាប់ពី 20 កញ្ចប់ឡើង | 200g/500g លក់ចាប់ពី 10 កញ្ចប់ឡើង<br>
+      • <strong>ប្រូម៉ូសិនចេកបំពង:</strong> 200g/500g ទិញ 30 កញ្ចប់ ➔ FREE ដឹក + ថែម 200g 1កញ្ចប់ | 100g ទិញ 60 កញ្ចប់ ➔ FREE ដឹក + ថែម 200g 1កញ្ចប់<br>
+      🎁 <strong>Combo Packs (FREE ដឹក + ថែម 200g 1ប្រអប់):</strong><br>
+      • Combo A: ដំណាប់ចេក 200g (15) + ចេកបំពង 100g (30)<br>
+      • Combo B: ដំណាប់ចេក 200g (15) + ចេកបំពង 200g/500g (15)
     </div>
 
     <!-- ផលិតផល ដំណាប់ចេក -->
@@ -199,23 +153,35 @@
     <div class="section-title">🚚 ផ្នែកទី ៣៖ ព័ត៌មានដឹកជញ្ជូន & ទូទាត់ប្រាក់ KHQR</div>
     <div class="form-section">
       <div class="form-group">
-        <label>📞 លេខទូរស័ព្ទទទួលទំនិញ *</label>
+        <label>📞 លេខទូរស័ព្ទទទួលទំនិញ <span class="required-tag">*</span></label>
         <input type="tel" id="cust-phone" placeholder="ឧទាហរណ៍៖ 012 345 678" required>
       </div>
 
       <div class="form-group">
-        <label>📍 រាជធានី / ខេត្ត *</label>
-        <input type="text" id="cust-province" placeholder="ឧទាហរណ៍៖ ភ្នំពេញ ឬ សៀមរាប" required>
+        <label>📍 រាជធានី / ខេត្ត <span class="required-tag">*</span></label>
+        <input type="text" id="cust-province" placeholder="ឧទាហរណ៍៖ បាត់ដំបង, សៀមរាប, ភ្នំពេញ" required>
       </div>
 
       <div class="form-group">
-        <label>🏙️ ខណ្ឌ / ស្រុក / ក្រុង *</label>
-        <input type="text" id="cust-district" placeholder="ឧទាហរណ៍៖ ទួលគោក ឬ សែនសុខ" required>
+        <label>🚚 ក្រុមហ៊ុនដឹកជញ្ជូន <span class="required-tag">*</span></label>
+        <select id="courier-select">
+          <option value="វីរៈ ប៊ុនថាំ (Virak Buntham)">វីរៈ ប៊ុនថាំ (Virak Buntham)</option>
+          <option value="J&T Express">J&T Express</option>
+          <option value="Flash Express">Flash Express</option>
+          <option value="VET Express (កាពីតូល)">VET Express (កាពីតូល)</option>
+          <option value="ដឹកជញ្ជូនរហ័ស (ក្នុងភ្នំពេញ)">ដឹកជញ្ជូនរហ័ស Express (ក្នុងភ្នំពេញ)</option>
+          <option value="ក្រុមហ៊ុនផ្សេងៗ">ក្រុមហ៊ុនផ្សេងៗ</option>
+        </select>
       </div>
 
       <div class="form-group">
-        <label>🏠 អាសយដ្ឋានលម្អិត (ផ្ទះលេខ, ផ្លូវ) *</label>
-        <textarea id="cust-address" rows="2" placeholder="ឧទាហរណ៍៖ ផ្ទះលេខ ១២, ផ្លូវ ២៧១..." required></textarea>
+        <label>🏢 សាខាដឹកជញ្ជូន (សម្រាប់អ្នកនៅតាមខេត្ត)</label>
+        <input type="text" id="cust-branch" placeholder="ឧទាហរណ៍៖ សាខាខេត្តបាត់ដំបង ឬ សាខាទីរួមខេត្ត">
+      </div>
+
+      <div class="form-group">
+        <label>🏠 អាសយដ្ឋានលម្អិត (សម្រាប់អ្នកភ្នំពេញ ឬផ្ញើដល់ផ្ទះ)</label>
+        <textarea id="cust-address" rows="2" placeholder="ឧទាហរណ៍៖ ផ្ទះលេខ ១២, ផ្លូវ ២៧១... (បើផ្ញើតាមសាខាមិនបាច់បំពេញទេ)"></textarea>
       </div>
 
       <div class="form-group">
@@ -223,28 +189,16 @@
         <input type="url" id="cust-location" placeholder="https://maps.app.goo.gl/...">
       </div>
 
-      <div class="form-group">
-        <label>🚚 ជ្រើសរើសក្រុមហ៊ុនដឹកជញ្ជូន *</label>
-        <select id="courier-select">
-          <option value="ដឹកជញ្ជូនរហ័ស (ភ្នំពេញ)">ដឹកជញ្ជូនរហ័ស Express (ក្នុងភ្នំពេញ)</option>
-          <option value="វីរៈ ប៊ុនថាំ (Virak Buntham)">វីរៈ ប៊ុនថាំ (Virak Buntham)</option>
-          <option value="J&T Express">J&T Express</option>
-          <option value="Flash Express">Flash Express</option>
-          <option value="VET Express (កាពីតូល)">VET Express</option>
-          <option value="ក្រុមហ៊ុនផ្សេងៗ">ក្រុមហ៊ុនផ្សេងៗ (ប្រាប់ Admin តាមក្រោយ)</option>
-        </select>
-      </div>
-
       <!-- KHQR Section -->
       <div class="qr-container">
         <div style="font-weight:bold; color:var(--secondary);">💳 ទូទាត់ប្រាក់តាម KHQR</div>
-        <div style="font-size:0.8rem; color:#666;">សូមបាញ់ស្កែនទូទាត់ប្រាក់សរុប រួចបង្ហោះ Slip ខាងក្រោម៖</div>
+        <div style="font-size:0.8rem; color:#666;">សូមស្កែនទូទាត់ប្រាក់សរុប រួច Upload រូបភាពវិក្កយបត្រខាងក្រោមដើម្បីបញ្ជាក់៖</div>
         <img src="khqr.jpg" alt="KHQR Code" class="qr-image" onerror="this.src='https://via.placeholder.com/200x200?text=KHQR+Code'">
       </div>
 
       <div class="form-group" style="margin-top:15px;">
-        <label>🧾 បង្ហោះរូបភាពវិក្កយបត្រ (Payment Slip) *</label>
-        <input type="file" id="slip-file" accept="image/*">
+        <label>🧾 បង្ហោះរូបភាពវិក្កយបត្រ (Payment Slip) <span class="required-tag">* (ចាំបាច់)</span></label>
+        <input type="file" id="slip-file" accept="image/*" required>
       </div>
     </div>
 
@@ -270,6 +224,9 @@
         <div class="detail-sec-title">🍌 គ្រឿងផ្សំ និងប្រភពដើម</div>
         <p id="detail-ingredients"></p>
 
+        <div class="detail-sec-title">📦 ការរៀបចំ និងការវេចខ្ចប់</div>
+        <p id="detail-packaging"></p>
+
         <div class="detail-sec-title">✨ លក្ខណៈពិសេស & រសជាតិ</div>
         <p id="detail-taste"></p>
 
@@ -293,114 +250,133 @@
     const tg = window.Telegram.WebApp;
     tg.expand();
 
+    // ទិន្នន័យផលិតផលដែលបន្ថែម «ការរៀបចំ & វេចខ្ចប់» យ៉ាងលម្អិត
     const products = {
       D_ORIG200: { 
-        name: "ដំណាប់ចេក រសជាតិដើម", price: 8000, qty: 0, size: '200g', id: 'D_ORIG200',
-        ingredients: "ចេកណាំវ៉ាខ្មែរ ធម្មជាតិជ្រើសរើសយ៉ាងសម្រិតសម្រាំង ១០០% មិនមានសារជាតិគីមី",
-        taste: "សាច់ដំណាប់ទន់ល្មើយ ផ្អែមឆ្ងាញ់បែបធម្មជាតិ ជូរអែម ឆ្ងាញ់",
-        storage: "ផលិតតាមស្តង់ដារអនាម័យ គ្មានសារធាតុគីមី រក្សាទុកក្នុងសីតុណ្ហភាពបន្ទប់បាន រហូតដល់ ៦ ខែ"
+        name: "ដំណាប់ចេក រសជាតិដើម", price: 8000, qty: 0, size: '200g', id: 'D_ORIG200', 
+        ingredients: "ចេកណាំវ៉ាខ្មែរ ធម្មជាតិជ្រើសរើសយ៉ាងសម្រិតសម្រាំង ១០០%", 
+        packaging: "ចិតបន្ទះស្តើង សម្ងួតក្នុងទូអនាម័យ វេចខ្ចប់ក្នុងប្រអប់បិទជិតការពារខ្យល់ និងសំណើម", 
+        taste: "សាច់ដំណាប់ទន់ល្មើយ ផ្អែមឆ្ងាញ់បែបធម្មជាតិ ជូរអែម", 
+        storage: "រក្សាទុកក្នុងសីតុណ្ហភាពធម្មតា កន្លែងស្ងួតត្រជាក់ បានរហូតដល់ ៦ ខែ" 
       },
       D_SESM200: { 
-        name: "ដំណាប់ចេក រោយល្ង ស/ខ្មៅ", price: 8000, qty: 0, size: '200g', id: 'D_SESM200',
-        ingredients: "ចេកណាំវ៉ាធម្មជាតិ + ល្ងស និងល្ងខ្មៅលីងឈ្ងុយៗ បែបខ្មែរ",
-        taste: "សាច់ចេកទន់ស្វិតផ្អែមល្មម លាយជាមួយក្លិនឈ្ងុយពិសេសនៃល្ងរលីង",
-        storage: "រក្សាទុកក្នុងកញ្ចប់បិទជិត ជៀសវាងពន្លឺថ្ងៃផ្ទាល់ រក្សាទុកបាន រហូតដល់ ៦ ខែ"
+        name: "ដំណាប់ចេក រោយល្ង ស/ខ្មៅ", price: 8000, qty: 0, size: '200g', id: 'D_SESM200', 
+        ingredients: "ចេកណាំវ៉ាធម្មជាតិ + ល្ងស និងល្ងខ្មៅលីងឈ្ងុយៗ", 
+        packaging: "សម្ងួតស្អាត រោយល្ងស្មើល្អ វេចខ្ចប់ក្នុងប្រអប់អនាម័យត្រឹមត្រូវ", 
+        taste: "សាច់ចេកទន់ស្វិតផ្អែមល្មម លាយក្លិនឈ្ងុយល្ងរលីង", 
+        storage: "រក្សាទុកក្នុងប្រអប់បិទជិត បានរហូតដល់ ៦ ខែ" 
       },
       D_ALMD200: { 
-        name: "ដំណាប់ចេក រោយអាល់ម៉ុន", price: 10000, qty: 0, size: '200g', id: 'D_ALMD200',
-        ingredients: "ចេកណាវ៉ាខ្មែរធម្មជាតិ + ចំណិតគ្រាប់អាល់ម៉ុន (Almond) ស្រួយស្រស់",
-        taste: "រសជាតិប្លែកអារម្មណ៍ផ្អែមតិចៗ ឈ្ងុយខ្ទិះ និងភាពស្រួយឈ្ងុយនៃគ្រាប់អាល់ម៉ុន",
-        storage: "រក្សាទុកបាន រហូតដល់ ៦ ខែ ក្នុងកន្លែងស្ងួត និងត្រជាក់"
+        name: "ដំណាប់ចេក រោយអាល់ម៉ុន", price: 10000, qty: 0, size: '200g', id: 'D_ALMD200', 
+        ingredients: "ចេកណាវ៉ាខ្មែរ + ចំណិតគ្រាប់អាល់ម៉ុន (Almond)", 
+        packaging: "ប្រកបដោយអនាម័យខ្ពស់ វេចខ្ចប់កញ្ចប់ការពារភាពទន់ និងសំណើម", 
+        taste: "រសជាតិប្លែកអារម្មណ៍ ឈ្ងុយខ្ទិះ និងភាពស្រួយនៃអាល់ម៉ុន", 
+        storage: "រក្សាទុកបាន ៦ ខែ ក្នុងកន្លែងស្ងួត" 
       },
       D_MIXG200: { 
-        name: "ដំណាប់ចេក រោយធញ្ញជាតិ", price: 10000, qty: 0, size: '200g', id: 'D_MIXG200',
-        ingredients: "ចេកណាំវ៉ា + គ្រាប់ធញ្ញជាតិចម្រុះ + គ្រាប់ល្ពៅលីង + ល្ងរលីង",
-        taste: "ទន់ស្វិត និងមានអាហាររូបត្ថម្ភខ្ពស់ពីធញ្ញជាតិចម្រុះ ផ្តល់សុខភាពល្អ",
-        storage: "បិទមាត់ថង់ឱ្យជិតបន្ទាប់ពីបើក ទុកបាន រហូត ៦ ខែ"
+        name: "ដំណាប់ចេក រោយធញ្ញជាតិ", price: 10000, qty: 0, size: '200g', id: 'D_MIXG200', 
+        ingredients: "ចេកណាំវ៉ា + គ្រាប់ធញ្ញជាតិចម្រុះ + គ្រាប់ល្ពៅលីង", 
+        packaging: "រៀបចំយ៉ាងប្រុងប្រយ័ត្ន វេចខ្ចប់ប្រអប់ស្អាតបិទជិត", 
+        taste: "ទន់ស្វិត ផ្តល់អាហាររូបត្ថម្ភខ្ពស់ពីធញ្ញជាតិ", 
+        storage: "បិទមាត់ថង់ឱ្យជិត ទុកបាន ៦ ខែ" 
       },
       D_COCO200: { 
-        name: "ដំណាប់ចេក រោយដូង", price: 10000, qty: 0, size: '200g', id: 'D_COCO200',
-        ingredients: "ចេកណាំវ៉ាខ្មែរធម្មជាតិ + សាច់ដូង សម្ងួត ឈ្ងុយឆ្ងាញ់",
-        taste: "ក្លិនដូងឈ្ងុយឆ្ងាញ់ ត្រូវជាមួយសាច់ចេក ទន់ផ្អែម កាន់តែឆ្ងាញ់",
-        storage: "រក្សាទុកក្នុងសីតុណ្ហភាពធម្មតាបាន រហូតដល់ ៦ ខែ"
+        name: "ដំណាប់ចេក រោយដូង", price: 10000, qty: 0, size: '200g', id: 'D_COCO200', 
+        ingredients: "ចេកណាំវ៉ា + សាច់ដូង សម្ងួតឈ្ងុយឆ្ងាញ់", 
+        packaging: "សម្ងួតតាមស្តង់ដារ វេចខ្ចប់ក្នុងប្រអប់ការពារក្លិន និងខ្យល់", 
+        taste: "ក្លិនដូងឈ្ងុយឆ្ងាញ់ ត្រូវជាមួយសាច់ចេកទន់ផ្អែម", 
+        storage: "រក្សាទុកសីតុណ្ហភាពធម្មតាបាន ៦ ខែ" 
       },
       D_BALL200: { 
-        name: "ដំណាប់ចេកមូល", price: 10000, qty: 0, size: '200g', id: 'D_BALL200',
-        ingredients: "ចេកណាំវ៉ាទុំជោរ ប្រពៃណីខ្មែរ រាងមូលតូចៗងាយស្រួលញ៉ាំ",
-        taste: "ទន់ស្វិតល្មើយ ងាយស្រួលទំពា និងកាន់ញ៉ាំ លោកតា លោកយាយចូលចិត្តខ្លាំង",
-        storage: "រក្សាទុកបាន រហូត ៦ ខែ"
+        name: "ដំណាប់ចេកមូល", price: 10000, qty: 0, size: '200g', id: 'D_BALL200', 
+        ingredients: "ចេកណាំវ៉ាទុំជោរ រាងមូលតូចៗងាយស្រួលញ៉ាំ", 
+        packaging: "មូលរាងស្អាត ងាយស្រួលកាន់ វេចខ្ចប់ប្រអប់អនាម័យ", 
+        taste: "ទន់ស្វិតល្មើយ ងាយស្រួលទំពា និងកាន់ញ៉ាំ", 
+        storage: "រក្សាទុកបាន រហូត ៦ ខែ" 
       },
       D_RCHCS300: { 
-        name: "ដំណាប់ចេក ស្នូលសូកូឡាដូង លាយល្ង", price: 17000, qty: 0, size: '300g', id: 'D_RCHCS300',
-        ingredients: "បន្ទះចេកណាំវ៉ា + ស្នូលសូកូឡា + កម្ទេចដូង + ល្ងលីង",
-        taste: "រសជាតិខ្ទិះដូងលាយសូកូឡា និង ល្ង ខ្ទិះផ្អែម ឆ្ងាញ់ប្លែកមាត់ខ្លាំង",
-        storage: "រក្សាទុកក្នុងកន្លែងត្រជាក់បាន ៣-៦ ខែ"
+        name: "ដំណាប់ចេក ស្នូលសូកូឡាដូង លាយល្ង", price: 17000, qty: 0, size: '300g', id: 'D_RCHCS300', 
+        ingredients: "បន្ទះចេកណាំវ៉ា + ស្នូលសូកូឡា + កម្ទេចដូង + ល្ង", 
+        packaging: "រៀបចំជាស្រទាប់ស្នូលសូកូឡា វេចខ្ចប់ប្រអប់ស្អាតទាក់ទាញ", 
+        taste: "រសជាតិខ្ទិះដូងលាយសូកូឡា និងល្ង ឆ្ងាញ់ប្លែកមាត់", 
+        storage: "រក្សាទុកបាន ៣-៦ ខែ ក្នុងកន្លែងត្រជាក់" 
       },
       D_RCHCC300: { 
-        name: "ដំណាប់ចេក ស្នូលសូកូឡាចន្ទី", price: 17000, qty: 0, size: '300g', id: 'D_RCHCC300',
-        ingredients: "បន្ទះចេកណាំវ៉ា + ស្នូលសូកូឡា + គ្រាប់ចន្ទីលីងឈ្ងុយ",
-        taste: "ឈ្ងុយគ្រាប់ចន្ទី លាយភាពផ្អែមស្រទន់នៃសូកូឡា លាយដំណាប់ចេក ឆ្ងាញ់",
-        storage: "រក្សាទុកបាន ៣-៦ ខែ"
+        name: "ដំណាប់ចេក ស្នូលសូកូឡាចន្ទី", price: 17000, qty: 0, size: '300g', id: 'D_RCHCC300', 
+        ingredients: "បន្ទះចេកណាំវ៉ា + ស្នូលសូកូឡា + គ្រាប់ចន្ទីលីង", 
+        packaging: "វេចខ្ចប់យ៉ាងផ្ចិតផ្ចង់ក្នុងប្រអប់ ព្រីមៀម ការពាររលាយ", 
+        taste: "ឈ្ងុយគ្រាប់ចន្ទី លាយភាពផ្អែមស្រទន់នៃសូកូឡា", 
+        storage: "រក្សាទុកបាន ៣-៦ ខែ" 
       },
       D_RCHCD300: { 
-        name: "ដំណាប់ចេក សូកូឡាស្នូលដូង", price: 17000, qty: 0, size: '300g', id: 'D_RCHCD300',
-        ingredients: "ចេកណាំវ៉ា + ស្នូលសូកូឡា + កម្ទេចដូងលីង",
-        taste: "ផ្អែមល្មម ឈ្ងុយដូង និងសូកូឡា លំដាប់ព្រីមៀម",
-        storage: "រក្សាទុកបាន ៣-៦ ខែ"
+        name: "ដំណាប់ចេក សូកូឡាស្នូលដូង", price: 17000, qty: 0, size: '300g', id: 'D_RCHCD300', 
+        ingredients: "ចេកណាំវ៉ា + ស្នូលសូកូឡា + កម្ទេចដូងលីង", 
+        packaging: "រៀបចំស្នូលដូង និងសូកូឡាអនាម័យ វេចខ្ចប់ប្រអប់បិទជិត", 
+        taste: "ផ្អែមល្មម ឈ្ងុយដូង និងសូកូឡា ព្រីមៀម", 
+        storage: "រក្សាទុកបាន ៣-៦ ខែ" 
       },
       C_ORIG500: { 
-        name: "ចេកបំពងស្រួយ រសជាតិដើមសាប", price: 10000, qty: 0, size: '500g', id: 'C_ORIG500',
-        ingredients: "ចេកបន្ទះស្តើងបំពង + ប្រេងរុក្ខជាតិស្អាត",
-        taste: "ស្រួយស្រែស មិនជាប់ខ្លាញ់ រសជាតិដើមសាបបែបធម្មជាតិ",
-        storage: "រក្សាទុកក្នុងថង់បិទជិតដើម្បីរក្សាភាពស្រួយបានយូរ ៦ ខែ"
+        name: "ចេកបំពងស្រួយ រសជាតិដើមសាប", price: 10000, qty: 0, size: '500g', id: 'C_ORIG500', 
+        ingredients: "ចេកបន្ទះស្តើងបំពង + ប្រេងរុក្ខជាតិស្អាត", 
+        packaging: "បំពងស្រួយ ចែកប្រេងស្អាត វេចខ្ចប់ថង់ហ្ស៊ីប (Zip Lock) ការពារខ្យល់ចូល", 
+        taste: "ស្រួយស្រែស មិនជាប់ខ្លាញ់ រសជាតិដើមសាប", 
+        storage: "រក្សាទុកក្នុងថង់បិទជិតបាន ៦ ខែ" 
       },
       C_CHOC200: { 
-        name: "ចេកបំពងស្រួយ សូកូឡាដោះគោ", price: 10000, qty: 0, size: '200g', id: 'C_CHOC200',
-        ingredients: "ចេកបន្ទះស្រួយ + ស្រោបសូកូឡាដោះគោ",
-        taste: "ស្រួយផ្អែមឈ្ងុយ សូកូឡាដោះគោ (សុទ្ធ ១០០%)",
-        storage: "រក្សាទុកក្នុងសីតុណ្ហភាពត្រជាក់ ឬល្មម ហាមត្រូវក្តៅ"
+        name: "ចេកបំពងស្រួយ សូកូឡាដោះគោ", price: 10000, qty: 0, size: '200g', id: 'C_CHOC200', 
+        ingredients: "ចេកបន្ទះស្រួយ + ស្រោបសូកូឡាដោះគោ", 
+        packaging: "ស្រោបសូកូឡាស្មើ វេចខ្ចប់ក្នុងថង់ការពារសំណើមយ៉ាងល្អ", 
+        taste: "ស្រួយផ្អែមឈ្ងុយ សូកូឡាដោះគោ (សុទ្ធ ១០០%)", 
+        storage: "រក្សាទុកក្នុងសីតុណ្ហភាពត្រជាក់ ជៀសវាងកម្តៅថ្ងៃ" 
       },
       C_CHOC100: { 
-        name: "ចេកបំពងស្រួយ សូកូឡាដោះគោ", price: 5000, qty: 0, size: '100g', id: 'C_CHOC100',
-        ingredients: "ចេកបន្ទះស្រួយ + ស្រោបសូកូឡាដោះគោ",
-        taste: "ស្រួយផ្អែមឈ្ងុយ សូកូឡាដោះគោ (សុទ្ធ ១០០%)",
-        storage: "រក្សាទុកក្នុងកន្លែងស្ងួតត្រជាក់"
+        name: "ចេកបំពងស្រួយ សូកូឡាដោះគោ", price: 5000, qty: 0, size: '100g', id: 'C_CHOC100', 
+        ingredients: "ចេកបន្ទះស្រួយ + ស្រោបសូកូឡាដោះគោ", 
+        packaging: "កញ្ចប់តូចច្រឡឹង វេចខ្ចប់អនាម័យ ការពារខ្យល់ចូល", 
+        taste: "ស្រួយផ្អែមឈ្ងុយ សូកូឡាដោះគោ", 
+        storage: "រក្សាទុកក្នុងកន្លែងស្ងួតត្រជាក់" 
       },
       C_CHES200: { 
-        name: "ចេកបំពងស្រួយ ឈីស ដោះគោ", price: 10000, qty: 0, size: '200g', id: 'C_CHES200',
-        ingredients: "ចេកបន្ទះស្រួយ + ម្សៅឈីស ព្រីមៀម និង ដោះគោ",
-        taste: "ប្រៃផ្អែម ឈ្ងុយឈីសខ្លាំង ញ៉ាំជក់មាត់",
-        storage: "បិទមាត់ថង់ឱ្យជិតជានិច្ច"
+        name: "ចេកបំពងស្រួយ ឈីស ដោះគោ", price: 10000, qty: 0, size: '200g', id: 'C_CHES200', 
+        ingredients: "ចេកបន្ទះស្រួយ + ម្សៅឈីស ព្រីមៀម និងដោះគោ", 
+        packaging: "រោយម្សៅឈីសសព្វល្អ វេចខ្ចប់ថង់ហ្ស៊ីបការពារខ្យល់ និងទន់", 
+        taste: "ប្រៃផ្អែម ឈ្ងុយឈីសខ្លាំង ញ៉ាំជក់មាត់", 
+        storage: "បិទមាត់ថង់ឱ្យជិតជានិច្ច ទុកបាន ៦ ខែ" 
       },
       C_CHES100: { 
-        name: "ចេកបំពងស្រួយ ឈីស ដោះគោ", price: 5000, qty: 0, size: '100g', id: 'C_CHES100',
-        ingredients: "ចេកបន្ទះស្រួយ + ម្សៅឈីសព្រីមៀម ដោះគោ",
-        taste: "ប្រៃផ្អែម ឈ្ងុយឈីស ញ៉ាំកម្សាន្ត",
-        storage: "រក្សាទុកបានយូរក្នុងថង់បិទជិត"
+        name: "ចេកបំពងស្រួយ ឈីស ដោះគោ", price: 5000, qty: 0, size: '100g', id: 'C_CHES100', 
+        ingredients: "ចេកបន្ទះស្រួយ + ម្សៅឈីសព្រីមៀម", 
+        packaging: "កញ្ចប់តូចអនាម័យ វេចខ្ចប់បិទជិតស្អាត", 
+        taste: "ប្រៃផ្អែម ឈ្ងុយឈីស ញ៉ាំកម្សាន្ត", 
+        storage: "រក្សាទុកបានយូរក្នុងថង់បិទជិត" 
       },
       C_SPIC200: { 
-        name: "ចេកបំពងស្រួយ ម្ទេសខ្ទឹម", price: 14000, qty: 0, size: '200g', id: 'C_SPIC200',
-        ingredients: "ចេកបន្ទះស្រួយ + ម្ទេស និងខ្ទឹមស បំពងឈ្ងុយ",
-        taste: "ហឹរតិចៗ ឈ្ងុយខ្ទឹមស ត្រូវម៉ែសម្រាប់អ្នកចូលចិត្តរសជាតិប្លែក",
-        storage: "រក្សាទុកក្នុងកន្លែងស្ងួត"
+        name: "ចេកបំពងស្រួយ ម្ទេសខ្ទឹម", price: 14000, qty: 0, size: '200g', id: 'C_SPIC200', 
+        ingredients: "ចេកបន្ទះស្រួយ + ម្ទេស និងខ្ទឹមស បំពងឈ្ងុយ", 
+        packaging: "លាយគ្រឿងទេសស្មើល្អ វេចខ្ចប់ក្នុងថង់អនាម័យការពារខ្យល់", 
+        taste: "ហឹរតិចៗ ឈ្ងុយខ្ទឹមស ត្រូវម៉ែ", 
+        storage: "រក្សាទុកក្នុងកន្លែងស្ងួត" 
       },
       C_SPIC100: { 
-        name: "ចេកបំពងស្រួយ ម្ទេសខ្ទឹម", price: 5000, qty: 0, size: '100g', id: 'C_SPIC100',
-        ingredients: "ចេកបន្ទះស្រួយ + ម្ទេស និងខ្ទឹមស",
-        taste: "ហឹរតិចៗ ប្រៃផ្អែមខ្ទិះ ឈ្ងុយខ្ទឹម",
-        storage: "រក្សាទុកក្នុងកន្លែងស្ងួត"
+        name: "ចេកបំពងស្រួយ ម្ទេសខ្ទឹម", price: 5000, qty: 0, size: '100g', id: 'C_SPIC100', 
+        ingredients: "ចេកបន្ទះស្រួយ + ម្ទេស និងខ្ទឹមស", 
+        packaging: "កញ្ចប់តូចងាយស្រួលកាន់ វេចខ្ចប់បិទជិត", 
+        taste: "ហឹរតិចៗ ប្រៃផ្អែមខ្ទិះ ឈ្ងុយខ្ទឹម", 
+        storage: "រក្សាទុកក្នុងកន្លែងស្ងួត" 
       },
       C_BBQ200: { 
-        name: "ចេកបំពងស្រួយ រសជាតិបាប៊ីឃ្យូ BBQ", price: 10000, qty: 0, size: '200g', id: 'C_BBQ200',
-        ingredients: "ចេកបន្ទះស្រួយ + គ្រឿងទេសបាប៊ីឃ្យូ BBQ",
-        taste: "រសជាតិបាប៊ីឃ្យូ ឈ្ងុយឆ្ងាញ់ Chill Chill",
-        storage: "រក្សាទុកបានយូរក្នុងថង់បិទជិត"
+        name: "ចេកបំពងស្រួយ រសជាតិបាប៊ីឃ្យូ BBQ", price: 10000, qty: 0, size: '200g', id: 'C_BBQ200', 
+        ingredients: "ចេកបន្ទះស្រួយ + គ្រឿងទេសបាប៊ីឃ្យូ BBQ", 
+        packaging: "វេចខ្ចប់ថង់អនាម័យការពារខ្យល់ និងភាពស្រួយ", 
+        taste: "រសជាតិបាប៊ីឃ្យូ ឈ្ងុយឆ្ងាញ់", 
+        storage: "រក្សាទុកបានយូរក្នុងថង់បិទជិត" 
       },
       C_BBQ100: { 
-        name: "ចេកបំពងស្រួយ រសជាតិបាប៊ីឃ្យូ BBQ", price: 5000, qty: 0, size: '100g', id: 'C_BBQ100',
-        ingredients: "ចេកបន្ទះស្រួយ + គ្រឿងទេស BBQ",
-        taste: "រសជាតិបាប៊ីឃ្យូ BBQ",
-        storage: "រក្សាទុកក្នុងថង់បិទជិត"
+        name: "ចេកបំពងស្រួយ រសជាតិបាប៊ីឃ្យូ BBQ", price: 5000, qty: 0, size: '100g', id: 'C_BBQ100', 
+        ingredients: "ចេកបន្ទះស្រួយ + គ្រឿងទេស BBQ", 
+        packaging: "កញ្ចប់តូចច្រឡឹង វេចខ្ចប់បិទជិត", 
+        taste: "រសជាតិបាប៊ីឃ្យូ BBQ", 
+        storage: "រក្សាទុកក្នុងថង់បិទជិត" 
       }
     };
 
@@ -455,6 +431,13 @@
               <div>
                 <div class="product-name" onclick="openProductDetail('${key}')">${p.name}</div>
                 <div class="product-weight">ទំហំ: ${p.size}</div>
+                
+                <!-- បង្ហាញព័ត៌មានការរៀបចំ វេចខ្ចប់ និងការរក្សាទុក លើ Card -->
+                <div class="product-details-summary">
+                  <div><strong>📦 វេចខ្ចប់:</strong> ${p.packaging}</div>
+                  <div><strong>🛡️ រក្សាទុក:</strong> ${p.storage}</div>
+                </div>
+
                 <div class="product-price">${p.price.toLocaleString()} ៛</div>
               </div>
               <div class="quantity-control">
@@ -480,28 +463,25 @@
       document.getElementById('detail-name').innerText = p.name;
       document.getElementById('detail-price').innerText = `${p.price.toLocaleString()} ៛ (ទំហំ ${p.size})`;
       document.getElementById('detail-ingredients').innerText = p.ingredients;
+      document.getElementById('detail-packaging').innerText = p.packaging;
       document.getElementById('detail-taste').innerText = p.taste;
       document.getElementById('detail-storage').innerText = p.storage;
-      
       document.getElementById('detailModal').style.display = 'flex';
     }
 
-    function closeDetailModal() {
-      document.getElementById('detailModal').style.display = 'none';
-    }
+    function closeDetailModal() { document.getElementById('detailModal').style.display = 'none'; }
 
     function playVideo(videoFile) {
       const modal = document.getElementById('videoModal');
       const video = document.getElementById('popupVideo');
       video.src = videoFile;
       modal.style.display = 'flex';
-      video.play().catch(e => console.log("Video not found or unplayable"));
+      video.play().catch(e => console.log("Video missing"));
     }
 
     function closeVideoModal() {
       const modal = document.getElementById('videoModal');
-      const video = document.getElementById('popupVideo');
-      video.pause();
+      document.getElementById('popupVideo').pause();
       modal.style.display = 'none';
     }
 
@@ -514,23 +494,34 @@
 
     function calculateTotal() {
       let totalItemPrice = 0;
-      let total200gQty = 0; // Includes 200g, 300g, 500g
-      let total100gQty = 0;
+      
+      let domnap200gQty = 0;
+      let crispy100gQty = 0;
+      let crispy200and500Qty = 0;
 
       for (let key in products) {
         let p = products[key];
         totalItemPrice += p.qty * p.price;
-        if (p.size === '100g') {
-          total100gQty += p.qty;
-        } else {
-          total200gQty += p.qty;
+
+        if (p.qty > 0) {
+          if (key.startsWith('D_')) {
+            if (p.size === '200g') {
+              domnap200gQty += p.qty;
+            }
+          } else if (key.startsWith('C_')) {
+            if (p.size === '100g') {
+              crispy100gQty += p.qty;
+            } else {
+              crispy200and500Qty += p.qty;
+            }
+          }
         }
       }
 
       let deliveryFee = 8000;
       let promoFreeMsg = "";
       let minQtyMet = true;
-      let qtyStatusMsg = "";
+      let errorMsg = "";
 
       const btnSubmit = document.getElementById('submit-btn');
 
@@ -540,19 +531,18 @@
         btnSubmit.innerText = "ផ្ញើការកុម្ម៉ង់";
         btnSubmit.style.background = "var(--primary)";
       } else {
-        // Validate Wholesale Min Quantities
-        if (total200gQty > 0 && total200gQty < 10) {
+        if (crispy100gQty > 0 && crispy100gQty < 20) {
           minQtyMet = false;
-          qtyStatusMsg = ` (200g ខ្វះ ${10 - total200gQty} ទៀត)`;
+          errorMsg += ` [ចេកបំពង 100g ទិញចាប់ពី 20 កញ្ចប់ឡើង]`;
         }
-        if (total100gQty > 0 && total100gQty < 20) {
+        if (crispy200and500Qty > 0 && crispy200and500Qty < 10) {
           minQtyMet = false;
-          qtyStatusMsg += ` (100g ខ្វះ ${20 - total100gQty} ទៀត)`;
+          errorMsg += ` [ចេកបំពង 200g/500g ទិញចាប់ពី 10 កញ្ចប់ឡើង]`;
         }
 
         if (!minQtyMet) {
           btnSubmit.disabled = true;
-          btnSubmit.innerText = "កុម្ម៉ង់មិនទាន់គ្រប់ចំនួន" + qtyStatusMsg;
+          btnSubmit.innerText = "មិនទាន់គ្រប់ចំនួនលក់ដុំ" + errorMsg;
           btnSubmit.style.background = "var(--red)";
         } else {
           btnSubmit.disabled = false;
@@ -560,21 +550,25 @@
           btnSubmit.style.background = "var(--primary)";
         }
 
-        // Promo Conditions Logic
-        // 1. Mixed Promo: 200g >= 15 AND 100g >= 30
-        if (total200gQty >= 15 && total100gQty >= 30) {
+        if (domnap200gQty >= 15 && crispy100gQty >= 30) {
           deliveryFee = 0;
-          promoFreeMsg = " [FREE ដឹក + ថែម 200g មួយប្រអប់ (លាយចម្រុះ)]";
+          promoFreeMsg = " 🎁 [FREE ដឹក + ថែម 200g 1ប្រអប់ (Combo A)]";
+        } 
+        else if (domnap200gQty >= 15 && crispy200and500Qty >= 15) {
+          deliveryFee = 0;
+          promoFreeMsg = " 🎁 [FREE ដឹក + ថែម 200g 1ប្រអប់ (Combo B)]";
         }
-        // 2. 200g Promo: >= 30
-        else if (total200gQty >= 30) {
+        else if (domnap200gQty >= 30) {
           deliveryFee = 0;
-          promoFreeMsg = " [FREE ដឹក + ថែម 200g មួយប្រអប់]";
+          promoFreeMsg = " 🎁 [FREE ដឹក + ថែម ដំណាប់ចេក 200g ចំនួន 3 ប្រអប់]";
         }
-        // 3. 100g Promo: >= 60
-        else if (total100gQty >= 60) {
+        else if (crispy200and500Qty >= 30) {
           deliveryFee = 0;
-          promoFreeMsg = " [FREE ដឹក + ថែម 100g ពីរប្រអប់]";
+          promoFreeMsg = " 🎁 [FREE ដឹក + ថែម ចេកបំពង 200g 1កញ្ចប់]";
+        } 
+        else if (crispy100gQty >= 60) {
+          deliveryFee = 0;
+          promoFreeMsg = " 🎁 [FREE ដឹក + ថែម ចេកបំពង 200g 1កញ្ចប់]";
         }
       }
 
@@ -590,7 +584,7 @@
         delBox.innerText = `🚚 ថ្លៃដឹកជញ្ជូន៖ ${deliveryFee.toLocaleString()} ៛`;
       }
 
-      return { grandTotal, totalItemPrice, deliveryFee, promoFreeMsg, minQtyMet, total200gQty, total100gQty };
+      return { grandTotal, totalItemPrice, deliveryFee, promoFreeMsg, minQtyMet };
     }
 
     async function submitOrder() {
@@ -602,26 +596,30 @@
       }
 
       if (!calc.minQtyMet) {
-        alert("សូមពិនិត្យចំនួនកុម្ម៉ង់៖\n• កញ្ចប់ 200g/300g/500g ត្រូវយកចាប់ពី 10 ប្រអប់ឡើង\n• កញ្ចប់ 100g ត្រូវយកចាប់ពី 20 ប្រអប់ឡើង!");
+        alert("សូមពិនិត្យចំនួនកុម្ម៉ង់ឱ្យបានគ្រប់ចំនួនលក់ដុំមុននឹងផ្ញើ!");
         return;
       }
 
-      // Read form data
       const phone = document.getElementById('cust-phone').value.trim();
       const province = document.getElementById('cust-province').value.trim();
-      const district = document.getElementById('cust-district').value.trim();
+      const courier = document.getElementById('courier-select').value;
+      const branch = document.getElementById('cust-branch').value.trim();
       const address = document.getElementById('cust-address').value.trim();
       const location = document.getElementById('cust-location').value.trim();
-      const courier = document.getElementById('courier-select').value;
       const slipFile = document.getElementById('slip-file').files[0];
 
-      if (!phone || !province || !district || !address) {
-        alert("សូមបំពេញព័ត៌មានអាសយដ្ឋាន និងលេខទូរស័ព្ទឱ្យបានគ្រប់គ្រាន់!");
+      if (!phone || !province) {
+        alert("សូមបំពេញលេខទូរស័ព្ទ និង ឈ្មោះខេត្ត/ក្រុង ឱ្យបានត្រឹមត្រូវ!");
+        return;
+      }
+
+      if (!slipFile) {
+        alert("⚠️ សូមស្កែនទូទាត់ប្រាក់តាម KHQR រួច Upload រូបភាពវិក្កយបត្រ (Payment Slip) ជាមុនសិន ទើបអាចផ្ញើការកុម្ម៉ង់បាន!");
         return;
       }
 
       const btn = document.getElementById('submit-btn');
-      btn.innerText = "កំពុងផ្ញើ...";
+      btn.innerText = "កំពុងផ្ញើទិន្នន័យ...";
       btn.disabled = true;
 
       const user = tg.initDataUnsafe?.user;
@@ -639,48 +637,36 @@
       let msg = `📦 *មានការកុម្ម៉ង់បោះដុំថ្មី (MOMORE)!*\n\n` +
                 `👤 *អ្នកទិញ:* ${customerName} (${username})\n` +
                 `📞 *លេខទូរស័ព្ទ:* ${phone}\n` +
-                `📍 *អាសយដ្ឋាន:* ${address}, ${district}, ${province}\n` +
+                `📍 *ខេត្ត/ក្រុង:* ${province}\n` +
+                `🚚 *ក្រុមហ៊ុនដឹក:* ${courier}\n` +
+                (branch ? `🏢 *សាខាដឹក:* ${branch}\n` : '') +
+                (address ? `🏠 *អាសយដ្ឋាន:* ${address}\n` : '') +
                 (location ? `🗺️ *Location:* ${location}\n` : '') +
-                `🚚 *ក្រុមហ៊ុនដឹកជញ្ជូន:* ${courier}\n` +
                 `💰 *កាក់សន្សំដែលមាន:* ${userCoins} កាក់\n\n` +
                 `📝 *មុខទំនិញកុម្ម៉ង់:*\n${orderText}\n` +
                 `🚚 *ថ្លៃដឹក:* ${calc.deliveryFee === 0 ? "FREE ឥតគិតថ្លៃ" : calc.deliveryFee.toLocaleString() + " ៛"}\n` +
-                (calc.promoFreeMsg ? `🎁 *ប្រូម៉ូសិនថែម:* ${calc.promoFreeMsg}\n` : '') +
-                `💰 *សរុបទឹកប្រាក់ត្រូវទូទាត់:* ${calc.grandTotal.toLocaleString()} ៛\n\n` +
-                `✅ *សូម Admin ពិនិត្យ និងរៀបចំអីវ៉ាន់ជូនអតិថិជន!*`;
+                (calc.promoFreeMsg ? `🎁 *ប្រូម៉ូសិន:* ${calc.promoFreeMsg}\n` : '') +
+                `💰 *សរុបទឹកប្រាក់បានទូទាត់:* ${calc.grandTotal.toLocaleString()} ៛\n\n` +
+                `✅ *ស្ថានភាព៖ បាន Upload Payment Slip រួចរាល់ (រង់ចាំ Admin ពិនិត្យ)*`;
 
       try {
-        if (slipFile) {
-          let formData = new FormData();
-          formData.append("chat_id", GROUP_ID);
-          formData.append("photo", slipFile);
-          formData.append("caption", msg);
-          formData.append("parse_mode", "Markdown");
+        let formData = new FormData();
+        formData.append("chat_id", GROUP_ID);
+        formData.append("photo", slipFile);
+        formData.append("caption", msg);
+        formData.append("parse_mode", "Markdown");
 
-          let res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
-            method: "POST",
-            body: formData
-          });
-          let data = await res.json();
-          if (data.ok) {
-            alert("ការកុម្ម៉ង់ និងវិក្កយបត្រត្រូវបានផ្ញើជូន Admin រួចរាល់!");
-            tg.close();
-          } else {
-            alert("មានបញ្ហាក្នុងការផ្ញើរូបភាពវិក្កយបត្រ! " + data.description);
-          }
+        let res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+          method: "POST",
+          body: formData
+        });
+        let data = await res.json();
+
+        if (data.ok) {
+          alert("✅ ការកុម្ម៉ង់ និងវិក្កយបត្រត្រូវបានផ្ញើជោគជ័យ!\n\nប្រព័ន្ធបានទទួល Payment Slip របស់បងរួចរាល់ហើយ។ Admin នឹងពិនិត្យ និងរៀបចំផ្ញើទំនិញជូនឆាប់ៗនេះ!");
+          tg.close();
         } else {
-          let res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ chat_id: GROUP_ID, text: msg, parse_mode: "Markdown" })
-          });
-          let data = await res.json();
-          if (data.ok) {
-            alert("ការកុម្ម៉ង់ត្រូវបានផ្ញើជូន Admin រួចរាល់!");
-            tg.close();
-          } else {
-            alert("មានបញ្ហាក្នុងការផ្ញើសារ! សូមពិនិត្យ Bot Token ឬ Group ID។");
-          }
+          alert("មានបញ្ហាក្នុងការផ្ញើរូបភាពវិក្កយបត្រ! សូមព្យាយាមម្តងទៀត។ Error: " + data.description);
         }
       } catch (err) {
         alert("Error: " + err);
