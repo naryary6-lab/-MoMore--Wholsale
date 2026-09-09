@@ -5,91 +5,75 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MoMore Wholesale WebApp</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <!-- Google Fonts: Kantumruy Pro & Moul -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700;800&family=Moul&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700;800&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --primary: #f39c12;        /* Vibrant Orange */
-      --primary-dark: #d35400;   /* Deep Orange */
+      --primary: #f39c12;        
+      --primary-dark: #d35400;   
       --dark-bg: #121212;
       --light-bg: #f8f9fa;
       --card-bg: #ffffff;
-      --text-dark: #111111;
-      --text-gray: #555555;
       --price-red: #e74c3c;     
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Kantumruy Pro', sans-serif; }
-    body { background-color: var(--light-bg); color: var(--text-dark); padding-bottom: 120px; font-size: 15px; }
+    body { background-color: var(--light-bg); color: #111111; padding-bottom: 120px; font-size: 15px; }
     
-    /* Header */
+    /* Sticky Top Header */
     header { 
       background: linear-gradient(135deg, #121212 0%, #2c2c2c 100%); 
       color: var(--primary); 
-      padding: 16px; 
+      padding: 14px 16px; 
       text-align: center; 
       font-weight: 800; 
-      font-size: 1.35rem; 
+      font-size: 1.25rem; 
       position: sticky; 
       top: 0; 
       z-index: 100; 
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       border-bottom: 3px solid var(--primary);
+      letter-spacing: 0.5px;
     }
     
     .container { max-width: 600px; margin: auto; padding: 12px; }
 
-    /* Hero Banner */
-    .hero-banner {
+    /* DYNAMIC HERO BANNER */
+    .hero-banner-wrapper {
       width: 100%;
-      background: linear-gradient(135deg, #1a1a1a 0%, #2d251e 100%);
-      border-radius: 18px;
-      padding: 20px 16px;
+      border-radius: 16px;
+      overflow: hidden;
       margin-bottom: 18px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
       border: 2px solid var(--primary);
+      position: relative;
+      background: #000000;
+      aspect-ratio: 16 / 9;
+    }
+
+    .hero-banner-media-video, .hero-banner-media-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .banner-text-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px 14px 10px 14px;
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
       color: #ffffff;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
     }
-    .hero-banner h1 {
-      font-size: 1.45rem;
-      color: var(--primary);
-      margin-bottom: 6px;
-      font-weight: 800;
-      text-align: center;
-    }
-    .hero-banner p {
-      font-size: 0.92rem;
-      color: #eeeeee;
-      line-height: 1.5;
-      text-align: center;
-      margin-bottom: 14px;
-      font-weight: 500;
-    }
+    .banner-title { font-size: 1.1rem; font-weight: 800; color: var(--primary); }
+    .banner-sub { font-size: 0.82rem; color: #ffffff; font-weight: 600; opacity: 0.95; }
 
-    /* Check-in Inside Hero */
-    .checkin-box {
-      background: rgba(0, 0, 0, 0.5);
-      border-radius: 14px;
-      padding: 14px;
-      border: 1.5px dashed var(--primary);
-    }
-    .reward-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-    .reward-title { font-weight: 700; font-size: 1rem; color: var(--primary); }
-    .coin-badge { background: var(--primary); color: #121212; padding: 4px 12px; border-radius: 20px; font-weight: 800; font-size: 0.9rem; }
-    
-    .checkin-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; margin-top: 10px; text-align: center; }
-    .day-box { background: #2a2a2a; border-radius: 8px; padding: 8px 2px; border: 1px solid #444; font-size: 0.75rem; color: #ccc; font-weight: 600; }
-    .day-box.active { background: var(--primary); color: #121212; border-color: var(--primary); font-weight: 800; }
-    .day-box .pts { font-size: 0.65rem; color: #aaa; display: block; margin-top: 2px; }
-    .day-box.active .pts { color: #121212; font-weight: 700; }
-    
-    .btn-checkin { width: 100%; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; border: none; padding: 12px; border-radius: 10px; font-weight: 800; font-size: 0.95rem; margin-top: 12px; cursor: pointer; transition: 0.2s; }
-    .btn-checkin:disabled { background: #444; color: #888; cursor: not-allowed; }
-
-    /* Video Feed Section (Large Thumbnails) */
+    /* Video Gallery Section */
     .video-gallery-section {
       background: #ffffff;
       border-radius: 18px;
@@ -98,7 +82,7 @@
       border: 1px solid #e0e0e0;
       box-shadow: 0 4px 14px rgba(0,0,0,0.06);
     }
-    .gallery-title { font-weight: 800; font-size: 1.1rem; color: #121212; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+    .gallery-title { font-weight: 800; font-size: 1.05rem; color: #121212; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
     
     .filter-scroll { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 12px; scrollbar-width: none; }
     .filter-scroll::-webkit-scrollbar { display: none; }
@@ -108,72 +92,86 @@
     }
     .chip-btn.active { background: var(--primary); color: #121212; border-color: var(--primary); font-weight: 800; }
 
-    /* Large Thumbnail Scroll Bar */
     .video-cards-scroll { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 8px; scrollbar-width: thin; }
-    .video-card-item { flex: 0 0 165px; background: #121212; border-radius: 14px; overflow: hidden; position: relative; cursor: pointer; border: 1.5px solid #333; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
-    .video-card-thumb { width: 100%; height: 220px; object-fit: cover; display: block; }
-    .video-play-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 42px; height: 42px; background: rgba(243, 156, 18, 0.95); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #121212; font-size: 1.1rem; font-weight: bold; box-shadow: 0 2px 8px rgba(0,0,0,0.4); }
-    .video-card-title { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.95), transparent); color: #fff; padding: 16px 6px 6px 6px; font-size: 0.78rem; font-weight: 700; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .video-card-item { flex: 0 0 140px; background: #121212; border-radius: 14px; overflow: hidden; position: relative; cursor: pointer; border: 1.5px solid #333; box-shadow: 0 4px 10px rgba(0,0,0,0.15); aspect-ratio: 9/16; }
+    .video-card-thumb { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .video-play-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 38px; height: 38px; background: rgba(243, 156, 18, 0.95); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #121212; font-size: 0.95rem; font-weight: bold; box-shadow: 0 2px 8px rgba(0,0,0,0.4); }
+    .video-card-title { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.95), transparent); color: #fff; padding: 18px 6px 8px 6px; font-size: 0.75rem; font-weight: 700; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
     /* Notice Box */
     .notice-box { background: #fff8f0; border-left: 5px solid var(--primary); padding: 14px 16px; border-radius: 12px; margin-bottom: 20px; font-size: 0.88rem; line-height: 1.6; border: 1px solid #ffe8cc; }
 
-    /* Section Header Styles (ចំណុច ១, ២, ៣) */
+    /* Section Title Header */
     .section-title-box { margin: 24px 0 14px 0; padding: 12px 16px; background: linear-gradient(135deg, #121212 0%, #2a2a2a 100%); border-radius: 12px; border-left: 6px solid var(--primary); color: #ffffff; box-shadow: 0 3px 8px rgba(0,0,0,0.1); }
-    .sec-title-main { font-size: 1.25rem; font-weight: 800; color: var(--primary); }
-    .sec-title-sub { font-size: 0.85rem; color: #dddddd; margin-top: 2px; font-weight: 500; }
+    .sec-title-main { font-size: 1.2rem; font-weight: 800; color: var(--primary); }
+    .sec-title-sub { font-size: 0.83rem; color: #dddddd; margin-top: 2px; font-weight: 500; }
 
-    /* Grid & Product Card Layout */
+    /* Grid & Product Card */
     .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .product-card { background: var(--card-bg); border-radius: 14px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); display: flex; flex-direction: column; justify-content: space-between; border: 1.5px solid #e2e8f0; }
 
-    .media-box { width: 100%; height: 210px; background-color: #121212; position: relative; overflow: hidden; cursor: pointer; }
+    .media-box { width: 100%; height: 200px; background-color: #121212; position: relative; overflow: hidden; cursor: pointer; }
     .media-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    
-    .play-video-badge { position: absolute; top: 8px; right: 8px; background: rgba(18, 18, 18, 0.88); color: #fff; padding: 4px 10px; border-radius: 14px; font-size: 0.75rem; font-weight: 700; border: 1px solid var(--primary); z-index: 2; }
+    .info-badge { position: absolute; top: 8px; right: 8px; background: rgba(18, 18, 18, 0.88); color: #fff; padding: 4px 10px; border-radius: 14px; font-size: 0.72rem; font-weight: 700; border: 1px solid var(--primary); z-index: 2; }
 
     .product-info { padding: 10px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
-    .row-1-type { font-size: 0.82rem; color: var(--text-gray); font-weight: 600; }
-    .row-2-flavor { font-size: 1.05rem; font-weight: 800; color: #121212; margin: 2px 0 6px 0; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .clickable-info { cursor: pointer; }
+    .row-1-type { font-size: 0.8rem; color: #555; font-weight: 600; }
+    .row-2-flavor { font-size: 1rem; font-weight: 800; color: #121212; margin: 2px 0 6px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .row-3-price-weight { display: flex; align-items: baseline; gap: 4px; margin-bottom: 8px; }
-    .price-tag { font-size: 1.2rem; font-weight: 800; color: var(--price-red); }
-    .weight-tag { font-size: 0.82rem; font-weight: 600; color: #666; }
+    .price-tag { font-size: 1.15rem; font-weight: 800; color: var(--price-red); }
+    .weight-tag { font-size: 0.8rem; font-weight: 600; color: #666; }
     
     .quantity-control { display: flex; align-items: center; justify-content: space-between; background: #f1f2f6; border-radius: 8px; padding: 4px 6px; }
     .btn-qty { width: 32px; height: 32px; background: white; border: 1px solid #ccc; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; color: var(--primary-dark); }
-    .qty-number { font-weight: 800; font-size: 1rem; color: #121212; }
+    .qty-number { font-weight: 800; font-size: 0.98rem; color: #121212; }
     
-    /* Expanded Order Form Section (ច្បាស់ៗ ធំៗ) */
+    /* Order Form */
     .form-section { background: #ffffff; padding: 18px; border-radius: 16px; margin-top: 12px; border: 1.5px solid #e0e0e0; box-shadow: 0 4px 14px rgba(0,0,0,0.05); }
     .form-group { margin-bottom: 16px; }
-    .form-group label { display: block; font-weight: 700; font-size: 0.98rem; margin-bottom: 6px; color: #121212; }
-    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 14px; border: 1.5px solid #bbb; border-radius: 10px; font-size: 0.95rem; background: #fafafa; font-weight: 500; }
-    .form-group input:focus, .form-group select:focus { border-color: var(--primary); outline: none; background: #fff; }
+    .form-group label { display: block; font-weight: 700; font-size: 0.95rem; margin-bottom: 6px; color: #121212; }
+    .form-group input, .form-group select { width: 100%; padding: 12px 14px; border: 1.5px solid #bbb; border-radius: 10px; font-size: 0.95rem; background: #fafafa; font-weight: 500; }
     .required-tag { color: var(--price-red); font-weight: bold; }
 
-    /* Expanded KHQR Container */
     .qr-container { text-align: center; margin-top: 14px; padding: 16px; background: #1a1a1a; border-radius: 14px; border: 2px dashed var(--primary); color: white; }
-    .qr-title { font-weight: 800; color: var(--primary); font-size: 1.15rem; margin-bottom: 4px; }
-    .qr-sub { font-size: 0.85rem; color: #ddd; margin-bottom: 10px; }
-    .qr-image { width: 210px; height: 210px; object-fit: contain; margin: 8px auto; display: block; border-radius: 10px; background: #fff; padding: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+    .qr-title { font-weight: 800; color: var(--primary); font-size: 1.1rem; margin-bottom: 4px; }
+    .qr-image { width: 210px; height: 210px; object-fit: contain; margin: 8px auto; display: block; border-radius: 10px; background: #fff; padding: 6px; }
 
-    /* Fixed Bottom Cart Bar */
+    /* Cart Bar Fixed Bottom */
     .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #121212; color: white; padding: 12px 16px; box-shadow: 0 -4px 20px rgba(0,0,0,0.3); display: flex; justify-content: space-between; align-items: center; max-width: 600px; margin: auto; border-top-left-radius: 16px; border-top-right-radius: 16px; border-top: 3px solid var(--primary); z-index: 999; }
-    .total-price { font-size: 1.35rem; font-weight: 800; color: var(--primary); }
+    .total-price { font-size: 1.3rem; font-weight: 800; color: var(--primary); }
     .delivery-info { font-size: 0.78rem; color: #2ecc71; font-weight: 700; margin-top: 2px; }
-    .btn-checkout { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; border: none; padding: 10px 20px; border-radius: 10px; font-weight: 800; cursor: pointer; font-size: 0.98rem; }
-    .btn-checkout:disabled { background: #555; color: #888; cursor: not-allowed; }
 
-    /* Modal Styles */
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.88); z-index: 2000; justify-content: center; align-items: center; padding: 15px; }
-    .modal-content { width: 100%; max-width: 460px; background: #fff; border-radius: 16px; overflow: hidden; position: relative; max-height: 88vh; display: flex; flex-direction: column; }
-    .close-modal { position: absolute; top: 12px; right: 12px; color: white; font-size: 20px; font-weight: bold; cursor: pointer; z-index: 2001; background: rgba(0,0,0,0.75); width: 32px; height: 32px; border-radius: 50%; text-align: center; line-height: 30px; border: 1px solid var(--primary); }
+    .btn-checkout { 
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark)); 
+      color: #ffffff; border: none; padding: 12px 18px; border-radius: 12px; font-weight: 800; cursor: pointer; font-size: 0.95rem; transition: all 0.3s ease;
+    }
+    .btn-checkout:disabled { 
+      background: linear-gradient(135deg, #e74c3c, #c0392b) !important; color: #ffffff !important; opacity: 1 !important; cursor: not-allowed; box-shadow: 0 4px 10px rgba(231, 76, 60, 0.4);
+    }
+
+    /* Modals CSS */
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center; padding: 15px; }
+    .close-modal { position: absolute; top: 12px; right: 12px; color: white; font-size: 20px; font-weight: bold; cursor: pointer; z-index: 2001; background: rgba(0,0,0,0.75); width: 34px; height: 34px; border-radius: 50%; text-align: center; line-height: 32px; border: 1px solid var(--primary); }
     
-    .detail-header-img { width: 100%; height: 240px; object-fit: cover; background: #121212; }
-    .detail-body { padding: 16px; overflow-y: auto; font-size: 0.9rem; line-height: 1.5; color: #333; }
-    .detail-title { font-size: 1.2rem; font-weight: 800; color: #121212; }
-    .detail-price { font-size: 1.25rem; font-weight: 800; color: var(--price-red); margin-bottom: 10px; }
-    .detail-sec-title { font-weight: 800; color: var(--primary-dark); margin-top: 10px; margin-bottom: 3px; font-size: 0.95rem; }
+    /* Video Only Modal */
+    .video-modal-content { 
+      width: 100%; max-width: 380px; aspect-ratio: 9 / 16; background: #000; border-radius: 18px; overflow: hidden; position: relative; display: flex; justify-content: center; align-items: center; box-shadow: 0 8px 30px rgba(0,0,0,0.8); border: 1px solid #333;
+    }
+    video.vertical-player { width: 100%; height: 100%; object-fit: cover; }
+
+    /* Product Detail Modal (Pop-up) */
+    .detail-modal-card {
+      width: 100%; max-width: 450px; max-height: 90vh; background: #ffffff; border-radius: 20px; overflow-y: auto; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); padding: 0; border: 2px solid var(--primary);
+    }
+    .detail-video-box { width: 100%; aspect-ratio: 16 / 9; background: #000; position: relative; }
+    .detail-video-box video { width: 100%; height: 100%; object-fit: cover; }
+    .detail-body { padding: 18px; }
+    .detail-title { font-size: 1.25rem; font-weight: 800; color: #121212; margin-bottom: 6px; }
+    .detail-price { font-size: 1.2rem; font-weight: 800; color: var(--price-red); margin-bottom: 12px; }
+    .detail-section-title { font-weight: 800; font-size: 0.95rem; color: var(--primary-dark); margin: 12px 0 4px 0; display: flex; align-items: center; gap: 6px; }
+    .detail-text { font-size: 0.88rem; color: #444; line-height: 1.6; }
+    .detail-list { font-size: 0.88rem; color: #444; padding-left: 18px; line-height: 1.6; }
   </style>
 </head>
 <body>
@@ -182,35 +180,22 @@
 
   <div class="container">
 
-    <!-- 1. HERO BANNER + DAILY CHECK-IN -->
-    <div class="hero-banner">
-      <h1>MoMore Wholesale (តម្លៃបោះដុំ)</h1>
-      <p>ប្រព័ន្ធបញ្ជាទិញបោះដុំផ្ទាល់ពីរោងចក្រ គុណភាពខ្ពស់ និងអនាម័យស្តង់ដារ!</p>
-      
-      <!-- Check-in Box Inside Banner -->
-      <div class="checkin-box">
-        <div class="reward-header">
-          <div class="reward-title">🎁 Check-in សន្សំកាក់ (Daily Points)</div>
-          <div class="coin-badge">💰 កាក់សរុប: <span id="user-coins">0</span></div>
-        </div>
-        <div class="checkin-days">
-          <div class="day-box active">ថ្ងៃ 1<span class="pts">+100</span></div>
-          <div class="day-box">ថ្ងៃ 2<span class="pts">+100</span></div>
-          <div class="day-box">ថ្ងៃ 3<span class="pts">+100</span></div>
-          <div class="day-box">ថ្ងៃ 4<span class="pts">+100</span></div>
-          <div class="day-box">ថ្ងៃ 5<span class="pts">+100</span></div>
-          <div class="day-box">ថ្ងៃ 6<span class="pts">+100</span></div>
-          <div class="day-box">ថ្ងៃ 7<span class="pts">+300</span></div>
-        </div>
-        <button class="btn-checkin" id="checkin-btn" onclick="doCheckIn()">ចុច Check-in យក ១០០ កាក់ថ្ងៃនេះ</button>
+    <!-- HERO BANNER SECTION -->
+    <div class="hero-banner-wrapper">
+      <video class="hero-banner-media-video" autoplay loop muted playsinline poster="hero-banner.jpg">
+        <source src="hero-banner.mp4" type="video/mp4">
+        <img src="hero-banner.jpg" class="hero-banner-media-img" alt="MoMore Promo Banner">
+      </video>
+      <div class="banner-text-overlay">
+        <div class="banner-title">🍌 MoMore Wholesale Express</div>
+        <div class="banner-sub">ទំនិញបោះដុំផ្ទាល់ពីរោងចក្រ គុណភាពខ្ពស់ ស្ដង់ដារអនាម័យ</div>
       </div>
     </div>
 
-    <!-- 2. VIDEO GALLERY / FEED SECTION (គ្រប់ប្រភេទវីដេអូទាំងអស់) -->
+    <!-- VIDEO GALLERY / FEED SECTION -->
     <div class="video-gallery-section">
-      <div class="gallery-title">🎬 មើលវីដេអូស្ពត & Review (Video Feed)</div>
+      <div class="gallery-title">🎬 ស្ពតពាណិជ្ជកម្ម & Review (Video Feed)</div>
       
-      <!-- Filter Chips -->
       <div class="filter-scroll">
         <button class="chip-btn active" onclick="filterVideos('ALL', this)">ទាំងអស់</button>
         <button class="chip-btn" onclick="filterVideos('B-TO-B', this)">🤝 B-TO-B / ដៃគូ</button>
@@ -221,7 +206,6 @@
         <button class="chip-btn" onclick="filterVideos('REV-MARKET', this)">🏪 Review Market</button>
       </div>
 
-      <!-- Large Video Cards Track -->
       <div class="video-cards-scroll" id="video-feed-container"></div>
     </div>
 
@@ -282,10 +266,9 @@
         <input type="text" id="cust-branch" placeholder="ឧទាហរណ៍៖ សាខាខេត្តបាត់ដំបង ឬ ផ្ទះលេខ...">
       </div>
 
-      <!-- Large KHQR Section -->
       <div class="qr-container">
         <div class="qr-title">💳 ទូទាត់ប្រាក់តាម KHQR</div>
-        <div class="qr-sub">សូមស្កែនទូទាត់ប្រាក់សរុប រួច Upload វិក្កយបត្រ៖</div>
+        <div style="font-size: 0.85rem; color: #ddd;">សូមស្កែនទូទាត់ប្រាក់សរុប រួច Upload វិក្កយបត្រ៖</div>
         <img src="khqr.jpg" alt="KHQR Code" class="qr-image" onerror="this.src='https://via.placeholder.com/210x210?text=KHQR+Code'">
       </div>
 
@@ -297,34 +280,33 @@
 
   </div>
 
-  <!-- Modal វីដេអូ -->
+  <!-- Modal 1: 9:16 Feed Video Player -->
   <div class="modal" id="videoModal">
-    <div class="modal-content" style="background:#000;">
+    <div class="video-modal-content">
       <span class="close-modal" onclick="closeVideoModal()">&times;</span>
-      <video id="popupVideo" controls style="width:100%; max-height: 75vh; display:block;" autoplay></video>
+      <video id="popupVideo" class="vertical-player" controls autoplay playsinline></video>
     </div>
   </div>
 
-  <!-- Modal Detail ព័ត៌មានលម្អិតផលិតផល -->
-  <div class="modal" id="detailModal">
-    <div class="modal-content">
-      <span class="close-modal" onclick="closeDetailModal()">&times;</span>
-      <img id="detail-img" class="detail-header-img" src="" alt="">
+  <!-- Modal 2: Product Detail Pop-up (បង្ហាញ Review, ការថែរក្សា, គុណប្រយោជន៍) -->
+  <div class="modal" id="productDetailModal">
+    <div class="detail-modal-card">
+      <span class="close-modal" onclick="closeProductDetailModal()">&times;</span>
+      <div class="detail-video-box">
+        <video id="detailVideoPlayer" controls playsinline poster=""></video>
+      </div>
       <div class="detail-body">
-        <div id="detail-name" class="detail-title"></div>
-        <div id="detail-price" class="detail-price"></div>
+        <div class="detail-title" id="dt-title">ឈ្មោះផលិតផល</div>
+        <div class="detail-price" id="dt-price">0 ៛</div>
         
-        <div class="detail-sec-title">🌟 អត្ថប្រយោជន៍ និងគុណសម្បត្តិ</div>
-        <p id="detail-benefits"></p>
+        <div class="detail-section-title">✨ គុណប្រយោជន៍ និងលក្ខណៈពិសេស</div>
+        <div class="detail-text" id="dt-benefits">...</div>
 
-        <div class="detail-sec-title">✨ រសជាតិ & គុណភាព</div>
-        <p id="detail-taste"></p>
-
-        <div class="detail-sec-title">📦 ការវេចខ្ចប់</div>
-        <p id="detail-pack"></p>
-
-        <div class="detail-sec-title">🛡️ ការរក្សាទុក</div>
-        <p id="detail-storage"></p>
+        <div class="detail-section-title">📦 ការរក្សាទុក និងអាយុកាល</div>
+        <ul class="detail-list" id="dt-storage">
+          <li>រក្សាទុកក្នុងកន្លែងស្ងួត ត្រជាក់ ជៀសវាងពន្លឺព្រះអាទិត្យផ្ទាល់។</li>
+          <li>បិទមាត់ថង់/ប្រអប់ឱ្យជិតបន្ទាប់ពីបើកប្រើប្រាស់។</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -343,167 +325,84 @@
     const tg = window.Telegram.WebApp;
     tg.expand();
 
-    // បញ្ជី Video Feed គ្រប់ប្រភេទ (ស្រង់ចេញពី File ជាក់ស្តែងរបស់អ្នក)
     const videoList = [
-      { id: 'B-TO-B-001', name: 'B-TO-B 001', type: 'B-TO-B', file: 'B-TO-B-001.mp4' },
-      { id: 'B-TO-B-002', name: 'B-TO-B 002', type: 'B-TO-B', file: 'B-TO-B-002.mp4' },
-      { id: 'B-TO-B-003', name: 'B-TO-B 003', type: 'B-TO-B', file: 'B-TO-B-003.mp4' },
-      { id: 'B-TO-B-004', name: 'B-TO-B 004', type: 'B-TO-B', file: 'B-TO-B-004.mp4' },
-      
-      { id: 'EAT-MUKBANG-001', name: 'Mukbang 001', type: 'EAT-MUKBANG', file: 'EAT-MUKBANG-001.mp4' },
-      { id: 'EAT-MUKBANG-002', name: 'Mukbang 002', type: 'EAT-MUKBANG', file: 'EAT-MUKBANG-002.mp4' },
-      { id: 'EAT-MUKBANG-003', name: 'Mukbang 003', type: 'EAT-MUKBANG', file: 'EAT-MUKBANG-003.mp4' },
-      { id: 'EAT-MUKBANG-004', name: 'Mukbang 004', type: 'EAT-MUKBANG', file: 'EAT-MUKBANG-004.mp4' },
-      { id: 'EAT-MUKBANG-005', name: 'Mukbang 005', type: 'EAT-MUKBANG', file: 'EAT-MUKBANG-005.mp4' },
-      
-      { id: 'PROC-001', name: 'សង្វាក់ផលិតកម្ម 001', type: 'PROC', file: 'PROC-001.mp4' },
-      
-      { id: 'PROD-001', name: 'ផលិតផល 001', type: 'PROD', file: 'PROD-001.mp4' },
-      { id: 'PROD-002', name: 'ផលិតផល 002', type: 'PROD', file: 'PROD-002.mp4' },
-      { id: 'PROD-003', name: 'ផលិតផល 003', type: 'PROD', file: 'PROD-003.mp4' },
-      { id: 'PROD-004', name: 'ផលិតផល 004', type: 'PROD', file: 'PROD-004.mp4' },
-      { id: 'PROD-005', name: 'ផលិតផល 005', type: 'PROD', file: 'PROD-005.mp4' },
-      
-      { id: 'PROMO-001', name: 'ប្រូម៉ូសិន 001', type: 'PROMO', file: 'PROMO-001.mp4' },
-      { id: 'PROMO-002', name: 'ប្រូម៉ូសិន 002', type: 'PROMO', file: 'PROMO-002.mp4' },
-      { id: 'PROMO-003', name: 'ប្រូម៉ូសិន 003', type: 'PROMO', file: 'PROMO-003.mp4' },
-      { id: 'PROMO-004', name: 'ប្រូម៉ូសិន 004', type: 'PROMO', file: 'PROMO-004.mp4' },
-      { id: 'PROMO-005', name: 'ប្រូម៉ូសិន 005', type: 'PROMO', file: 'PROMO-005.mp4' },
-      { id: 'PROMO-006', name: 'ប្រូម៉ូសិន 006', type: 'PROMO', file: 'PROMO-006.mp4' },
-      { id: 'PROMO-007', name: 'ប្រូម៉ូសិន 007', type: 'PROMO', file: 'PROMO-007.mp4' },
-      { id: 'PROMO-008', name: 'ប្រូម៉ូសិន 008', type: 'PROMO', file: 'PROMO-008.mp4' },
-      { id: 'PROMO-009', name: 'ប្រូម៉ូសិន 009', type: 'PROMO', file: 'PROMO-009.mp4' },
-      
-      { id: 'REV-MARKET-001', name: 'Review Market 001', type: 'REV-MARKET', file: 'REV-MARKET-001.mp4' },
-      { id: 'REV-MARKET-002', name: 'Review Market 002', type: 'REV-MARKET', file: 'REV-MARKET-002.mp4' },
-      { id: 'REV-MARKET-003', name: 'Review Market 003', type: 'REV-MARKET', file: 'REV-MARKET-003.mp4' }
+      { id: 'B-TO-B-001', name: '🤝 កិច្ចសហការ B-TO-B 01', type: 'B-TO-B', file: 'B-TO-B-001.mp4' },
+      { id: 'B-TO-B-002', name: '🤝 ដៃគូជំនួញ B-TO-B 02', type: 'B-TO-B', file: 'B-TO-B-002.mp4' },
+      { id: 'B-TO-B-003', name: '🤝 ឱកាសបោះដុំ B-TO-B 03', type: 'B-TO-B', file: 'B-TO-B-003.mp4' },
+      { id: 'B-TO-B-004', name: '🤝 ដៃគូចែកចាយ B-TO-B 04', type: 'B-TO-B', file: 'B-TO-B-004.mp4' },
+      { id: 'EAT-MUKBANG-001', name: '😋 Mukbang ញ៉ាំចេក 01', type: 'EAT-MUKBANG', file: 'EAT-MUKBANG-001.mp4' },
+      { id: 'EAT-MUKBANG-002', name: '😋 Mukbang ដំណាប់ចេក 02', type: 'EAT-MUKBANG', file: 'EAT-MUKBANG-002.mp4' },
+      { id: 'EAT-MUKBANG-003', name: '😋 ញ៉ាំស្រួយៗ Mukbang 03', type: 'EAT-MUKBANG', file: 'EAT-MUKBANG-003.mp4' },
+      { id: 'EAT-MUKBANG-004', name: '😋 Mukbang រសជាតិ BBQ 04', type: 'EAT-MUKBANG', file: 'EAT-MUKBANG-004.mp4' },
+      { id: 'EAT-MUKBANG-005', name: '😋 Mukbang សូកូឡា 05', type: 'EAT-MUKBANG', file: 'EAT-MUKBANG-005.mp4' },
+      { id: 'PROC-001', name: '🏭 សង្វាក់ផលិតកម្មអនាម័យ 01', type: 'PROC', file: 'PROC-001.mp4' },
+      { id: 'PROD-001', name: '🍌 ដំណាប់ចេកបន្ទះស្ដើង 01', type: 'PROD', file: 'PROD-001.mp4' },
+      { id: 'PROD-002', name: '🍌 ចេកបំពង រសជាតិដើម 02', type: 'PROD', file: 'PROD-002.mp4' },
+      { id: 'PROD-003', name: '🍌 ចេកបំពង រសជាតិឈីស 03', type: 'PROD', file: 'PROD-003.mp4' },
+      { id: 'PROD-004', name: '🍌 ចេកបំពង ម្ទេសខ្ទឹម 04', type: 'PROD', file: 'PROD-004.mp4' },
+      { id: 'PROD-005', name: '🍌 ចេកបំពង រសជាតិ BBQ 05', type: 'PROD', file: 'PROD-005.mp4' },
+      { id: 'PROMO-001', name: '🎁 ប្រូម៉ូសិន ពិសេស 01', type: 'PROMO', file: 'PROMO-001.mp4' },
+      { id: 'PROMO-002', name: '🎁 ប្រូម៉ូសិន ហ្វ្រីសេវាដឹក 02', type: 'PROMO', file: 'PROMO-002.mp4' },
+      { id: 'PROMO-003', name: '🎁 កញ្ចប់បោះដុំចំណេញ 03', type: 'PROMO', file: 'PROMO-003.mp4' },
+      { id: 'PROMO-004', name: '🎁 ប្រូម៉ូសិន បោះដុំ 04', type: 'PROMO', file: 'PROMO-004.mp4' },
+      { id: 'PROMO-005', name: '🎁 ប្រូម៉ូសិន បោះដុំ 05', type: 'PROMO', file: 'PROMO-005.mp4' },
+      { id: 'PROMO-006', name: '🎁 ប្រូម៉ូសិន បោះដុំ 06', type: 'PROMO', file: 'PROMO-006.mp4' },
+      { id: 'PROMO-007', name: '🎁 ប្រូម៉ូសិន បោះដុំ 07', type: 'PROMO', file: 'PROMO-007.mp4' },
+      { id: 'PROMO-008', name: '🎁 ប្រូម៉ូសិន បោះដុំ 08', type: 'PROMO', file: 'PROMO-008.mp4' },
+      { id: 'PROMO-009', name: '🎁 ប្រូម៉ូសិន បោះដុំ 09', type: 'PROMO', file: 'PROMO-009.mp4' },
+      { id: 'REV-MARKET-001', name: '🏪 Review Market ទីផ្សារ 01', type: 'REV-MARKET', file: 'REV-MARKET-001.mp4' },
+      { id: 'REV-MARKET-002', name: '🏪 Review Market ទីផ្សារ 02', type: 'REV-MARKET', file: 'REV-MARKET-002.mp4' },
+      { id: 'REV-MARKET-003', name: '🏪 Review Market ទីផ្សារ 03', type: 'REV-MARKET', file: 'REV-MARKET-003.mp4' }
     ];
 
-    // ផលិតផលទាំងអស់ (មានព័ត៌មានអត្ថប្រយោជន៍ និងការរក្សាទុក)
+    /* បញ្ជីផលិតផលជាមួយព័ត៌មានលម្អិតសម្រាប់ Pop-up */
     const products = {
       D_ORIG200: { 
-        type: "ដំណាប់ចេក", flavor: "រសជាតិដើម", price: 8000, qty: 0, size: '200g', id: 'D_ORIG200', 
-        benefits: "សម្បូរវីតាមីន និងប៉ូតាមស្យូម ផ្តល់ថាមពលភ្លាមៗ គ្មានសារធាតុគីមីរក្សាទុក។",
-        taste: "សាច់ដំណាប់ទន់ស្វិត ផ្អែមឆ្ងាញ់បែបធម្មជាតិ ជូរអែម",
-        pack: "ចិតបន្ទះស្តើង សម្ងួតក្នុងទូអនាម័យ វេចខ្ចប់ក្នុងប្រអប់បិទជិតការពារខ្យល់ និងសំណើម", 
-        storage: "រក្សាទុកក្នុងសីតុណ្ហភាពធម្មតា កន្លែងស្ងួតត្រជាក់ បានរហូតដល់ ៦ ខែ"
+        type: "ដំណាប់ចេក", flavor: "រសជាតិដើម", price: 8000, qty: 0, size: '200g', id: 'D_ORIG200', video: 'PROD-001.mp4',
+        benefits: "ដំណាប់ចេកណាំវ៉ាធម្មជាតិ សាច់ទន់ស្វិតបន្ទះស្ដើង ផ្អែមឆ្ងាញ់ធម្មជាតិ គ្មានសារធាតុគីមី រក្សាគុណតម្លៃអាហាររូបត្ថម្ភខ្ពស់។",
+        storage: ["អាយុកាលរក្សាទុក៖ ៦ ខែ", "រក្សាទុកក្នុងកន្លែងត្រជាក់ និងស្ងួត", "ជៀសវាងពន្លឺព្រះអាទិត្យផ្ទាល់"]
       },
       D_SESM200: { 
-        type: "ដំណាប់ចេក", flavor: "រោយល្ង ស/ខ្មៅ", price: 8000, qty: 0, size: '200g', id: 'D_SESM200', 
-        benefits: "ល្ងជួយទ្រទ្រង់ឆ្អឹង និងផ្តល់ជាតិកាល់ស្យូម បូករួមជាតិហ្វាយបឺពីចេក។",
-        taste: "សាច់ចេកទន់ស្វិតផ្អែមល្មម លាយក្លិនឈ្ងុយល្ងរលីង",
-        pack: "សម្ងួតស្អាត រោយល្ងស្មើល្អ វេចខ្ចប់ក្នុងប្រអប់អនាម័យត្រឹមត្រូវ", 
-        storage: "រក្សាទុកក្នុងប្រអប់បិទជិត បានរហូតដល់ ៦ ខែ"
+        type: "ដំណាប់ចេក", flavor: "រោយល្ង ស/ខ្មៅ", price: 8000, qty: 0, size: '200g', id: 'D_SESM200', video: 'PROD-001.mp4',
+        benefits: "បន្ថែមរសជាតិឈ្ងុយឆ្ងាញ់ពីល្ងស និងល្ងខ្មៅលីង ជួយបង្កើនប្រូតេអ៊ីន និងជាតិរ៉ែល្អសម្រាប់សុខភាព។",
+        storage: ["អាយុកាលរក្សាទុក៖ ៦ ខែ", "រក្សាទុកក្នុងកន្លែងត្រជាក់ និងស្ងួត"]
       },
       D_ALMD200: { 
-        type: "ដំណាប់ចេក", flavor: "រោយអាល់ម៉ុន", price: 10000, qty: 0, size: '200g', id: 'D_ALMD200', 
-        benefits: "ផ្តល់ជាតិប្រូតេអ៊ីន និងខ្លាញ់ល្អពីគ្រាប់អាល់ម៉ុន ជួយសុខភាពបេះដូង។",
-        taste: "រសជាតិប្លែកអារម្មណ៍ ឈ្ងុយខ្ទិះ និងភាពស្រួយនៃអាល់ម៉ុន",
-        pack: "វេចខ្ចប់ក្នុងប្រអប់ការពារជម្រាបខ្យល់យ៉ាងល្អ", 
-        storage: "រក្សាទុកបាន ៦ ខែ ក្នុងកន្លែងស្ងួត"
+        type: "ដំណាប់ចេក", flavor: "រោយអាល់ម៉ុន", price: 10000, qty: 0, size: '200g', id: 'D_ALMD200', video: 'PROD-001.mp4',
+        benefits: "ផ្សំជាមួយគ្រាប់អាល់ម៉ុនស្រួយ ឈ្ងុយឆ្ងាញ់ ផ្តល់ថាមពល និងអាស៊ីតខ្លាញ់ល្អសម្រាប់រាងកាយ។",
+        storage: ["អាយុកាលរក្សាទុក៖ ៦ ខែ", "រក្សាទុកក្នុងកន្លែងត្រជាក់"]
       },
       D_MIXG200: { 
-        type: "ដំណាប់ចេក", flavor: "រោយធញ្ញជាតិគ្រប់មុខ", price: 10000, qty: 0, size: '200g', id: 'D_MIXG200', 
-        benefits: "ទទួលបានអាហាររូបត្ថម្ភចម្រុះពីធញ្ញជាតិ ជួយប្រព័ន្ធរំលាយអាហារ។",
-        taste: "ទន់ស្វិត ផ្តល់អាហាររូបត្ថម្ភខ្ពស់ពីធញ្ញជាតិ",
-        pack: "ប្រអប់ស្តង់ដារអនាម័យ បិទជិតយ៉ាងប្រុងប្រយ័ត្ន", 
-        storage: "បិទមាត់ថង់/ប្រអប់ឱ្យជិត ទុកបាន ៦ ខែ"
-      },
-      D_COCO200: { 
-        type: "ដំណាប់ចេក", flavor: "រោយដូង", price: 10000, qty: 0, size: '200g', id: 'D_COCO200', 
-        benefits: "ផ្តល់ថាមពលលឿន ជួយឱ្យអារម្មណ៍ស្រស់ថ្លាជាមួយក្លិនដូងធម្មជាតិ។",
-        taste: "ក្លិនដូងឈ្ងុយឆ្ងាញ់ ត្រូវជាមួយសាច់ចេកទន់ផ្អែម",
-        pack: "ប្រអប់អនាម័យបិទជិត", 
-        storage: "រក្សាទុកសីតុណ្ហភាពធម្មតាបាន ៦ ខែ"
-      },
-      D_BALL200: { 
-        type: "ដំណាប់ចេក", flavor: "ដំណាប់ចេកមូល", price: 10000, qty: 0, size: '200g', id: 'D_BALL200', 
-        benefits: "ងាយស្រួលកាន់ញ៉ាំ ផ្តល់កម្លាំង និងកាត់បន្ថយភាពហត់នឿយ។",
-        taste: "ទន់ស្វិតល្មើយ ងាយស្រួលទំពា និងកាន់ញ៉ាំ",
-        pack: "ប្រអប់ការពារសំណើមត្រឹមត្រូវ", 
-        storage: "រក្សាទុកបាន រហូត ៦ ខែ"
-      },
-      D_RCHCS300: { 
-        type: "ដំណាប់ចេក", flavor: "ស្នូលសូកូឡាដូងល្ងរ", price: 17000, qty: 0, size: '300g', id: 'D_RCHCS300', 
-        benefits: "សូកូឡាជួយកាត់បន្ថយស្រ្តេស បូករួមសារធាតុចិញ្ចឹមពីចេក និងដូង។",
-        taste: "រសជាតិខ្ទិះដូងលាយសូកូឡា និងល្ង ឆ្ងាញ់ប្លែកមាត់",
-        pack: "ប្រអប់ 300g ស្អាតសប្រណីត", 
-        storage: "រក្សាទុកបាន ៣-៦ ខែ"
-      },
-      D_RCHCC300: { 
-        type: "ដំណាប់ចេក", flavor: "ស្នូលសូកូឡាចន្ទី", price: 17000, qty: 0, size: '300g', id: 'D_RCHCC300', 
-        benefits: "គ្រាប់ចន្ទីជួយពង្រឹងឆ្អឹង និងផ្តល់ជាតិម៉ាញេស្យូមខ្ពស់។",
-        taste: "ឈ្ងុយគ្រាប់ចន្ទី លាយភាពផ្អែមស្រទន់នៃសូកូឡា",
-        pack: "ប្រអប់ស្តង់ដារអនាម័យ", 
-        storage: "រក្សាទុកបាន ៣-៦ ខែ"
+        type: "ដំណាប់ចេក", flavor: "រោយធញ្ញជាតិគ្រប់មុខ", price: 10000, qty: 0, size: '200g', id: 'D_MIXG200', video: 'PROD-001.mp4',
+        benefits: "សម្បូរដោយធញ្ញជាតិចម្រុះ ជួយដល់ការរំលាយអាហារ ឆ្ងាញ់ពិសា និងមានអត្ថប្រយោជន៍ច្រើន។",
+        storage: ["អាយុកាលរក្សាទុក៖ ៦ ខែ", "រក្សាទុកក្នុងកន្លែងស្ងួត"]
       },
       C_ORIG500: { 
-        type: "ចេកបំពងស្រួយ", flavor: "រសជាតិដើមសាប", price: 10000, qty: 0, size: '500g', id: 'C_ORIG500', 
-        benefits: "មិនមានជាតិស្ករបន្ថែម ញ៉ាំមិនទ្រលាន់ និងគ្មានខ្លាញ់កក។",
-        taste: "ស្រួយស្រែស មិនជាប់ខ្លាញ់ រសជាតិដើមសាប",
-        pack: "ថង់ហ្ស៊ីបបិទជិតការពារខ្យល់ចូល", 
-        storage: "រក្សាទុកក្នុងថង់បិទជិតបាន ៦ ខែ"
+        type: "ចេកបំពងស្រួយ", flavor: "រសជាតិដើមសាប", price: 10000, qty: 0, size: '500g', id: 'C_ORIG500', video: 'PROD-002.mp4',
+        benefits: "ចេកបំពងស្រួយស្រែស គ្មានសារធាតុរក្សាទុក រសជាតិដើមបែបធម្មជាតិ មិនទ្រលាន់។",
+        storage: ["អាយុកាលរក្សាទុក៖ ៣ ខែ", "បិទគម្រប/មាត់ថង់ឱ្យជិតរាល់ពេលញ៉ាំរួចដើម្បីរក្សាភាពស្រួយ"]
       },
       C_CHOC200: { 
-        type: "ចេកបំពងស្រួយ", flavor: "សូកូឡាដោះគោ", price: 10000, qty: 0, size: '200g', id: 'C_CHOC200', 
-        benefits: "ផ្តល់ភាពរីករាយ និងថាមពលជាមួយសូកូឡាដោះគោគុណភាពខ្ពស់។",
-        taste: "ស្រួយផ្អែមឈ្ងុយ សូកូឡាដោះគោ (សុទ្ធ ១០០%)",
-        pack: "ប្រអប់អនាម័យបិទជិត", 
-        storage: "រក្សាទុកក្នុងសីតុណ្ហភាពត្រជាក់"
-      },
-      C_CHOC100: { 
-        type: "ចេកបំពងស្រួយ", flavor: "សូកូឡាដោះគោ", price: 5000, qty: 0, size: '100g', id: 'C_CHOC100', 
-        benefits: "កញ្ចប់តូចងាយស្រួលតាមខ្លួន ផ្តល់ថាមពលសម្រន់ពេលល្ងាច។",
-        taste: "ស្រួយផ្អែមឈ្ងុយ សូកូឡាដោះគោ",
-        pack: "កញ្ចប់តូចច្រឡឹង បិទជិត", 
-        storage: "រក្សាទុកក្នុងកន្លែងស្ងួតត្រជាក់"
+        type: "ចេកបំពងស្រួយ", flavor: "សូកូឡាដោះគោ", price: 10000, qty: 0, size: '200g', id: 'C_CHOC200', video: 'EAT-MUKBANG-005.mp4',
+        benefits: "ស្រោបដោយម្សៅសូកូឡាដោះគោប្លែកមាត់ ផ្អែមល្មម ឈ្ងុយឆ្ងាញ់ ត្រូវចិត្តយុវវ័យ។",
+        storage: ["អាយុកាលរក្សាទុក៖ ៣ ខែ", "រក្សាទុកក្នុងសីតុណ្ហភាពបន្ទប់"]
       },
       C_CHES200: { 
-        type: "ចេកបំពងស្រួយ", flavor: "ឈីស ដោះគោ", price: 10000, qty: 0, size: '200g', id: 'C_CHES200', 
-        benefits: "រសជាតិប្រៃផ្អែមប្លែកមាត់ ជួយបង្កើនអារម្មណ៍ស្រស់ស្រាយ។",
-        taste: "ប្រៃផ្អែម ឈ្ងុយឈីសខ្លាំង ញ៉ាំជក់មាត់",
-        pack: "ប្រអប់បិទជិតអនាម័យ", 
-        storage: "បិទមាត់ថង់/ប្រអប់ឱ្យជិតជានិច្ច"
-      },
-      C_CHES100: { 
-        type: "ចេកបំពងស្រួយ", flavor: "ឈីស ដោះគោ", price: 5000, qty: 0, size: '100g', id: 'C_CHES100', 
-        benefits: "សម្រន់ឈីសស្រួយ ងាយស្រួលញ៉ាំកម្សាន្តគ្រប់ទីកន្លែង។",
-        taste: "ប្រៃផ្អែម ឈ្ងុយឈីស ញ៉ាំកម្សាន្ត",
-        pack: "កញ្ចប់តូចច្រឡឹង", 
-        storage: "រក្សាទុកបានយូរក្នុងថង់បិទជិត"
+        type: "ចេកបំពងស្រួយ", flavor: "ឈីស ដោះគោ", price: 10000, qty: 0, size: '200g', id: 'C_CHES200', video: 'PROD-003.mp4',
+        benefits: "រសជាតិឈីសដោះគោប្រៃផ្អែម ឈ្ងុយឆ្ងាញ់ ស្រួយស្រែស ញ៉ាំហើយចង់ញ៉ាំទៀត។",
+        storage: ["អាយុកាលរក្សាទុក៖ ៣ ខែ", "បិទមាត់ថង់ឱ្យជិត"]
       },
       C_SPIC200: { 
-        type: "ចេកបំពងស្រួយ", flavor: "ម្ទេសខ្ទឹម", price: 10000, qty: 0, size: '200g', id: 'C_SPIC200', 
-        benefits: "ខ្ទឹមសជួយពង្រឹងប្រព័ន្ធការពាររាងកាយ និងប្រឆាំងបាក់តេរី។",
-        taste: "ហឹរតិចៗ ឈ្ងុយខ្ទឹមស ត្រូវម៉ែ",
-        pack: "ប្រអប់បិទជិត", 
-        storage: "រក្សាទុកក្នុងកន្លែងស្ងួត"
+        type: "ចេកបំពងស្រួយ", flavor: "ម្ទេសខ្ទឹម", price: 14000, qty: 0, size: '200g', id: 'C_SPIC200', video: 'PROD-004.mp4',
+        benefits: "រសជាតិហឹរតិចៗ ឈ្ងុយប្រេងខ្ទឹម និងម្ទេសបែបប្រកបដោយអនាម័យ ញ៉ាំកំដរមាត់ជក់ចិត្ត។",
+        storage: ["អាយុកាលរក្សាទុក៖ ៣ ខែ", "រក្សាទុកក្នុងកន្លែងស្ងួត"]
       },
-      C_SPIC100: { 
-        type: "ចេកបំពងស្រួយ", flavor: "ម្ទេសខ្ទឹម", price: 5000, qty: 0, size: '100g', id: 'C_SPIC100', 
-        benefits: "រសជាតិហឹរអែម បើកភ្នែក និងជួយឱ្យបាត់ងងុយគេង។",
-        taste: "ហឹរតិចៗ ប្រៃផ្អែមខ្ទិះ ឈ្ងុយខ្ទឹម",
-        pack: "កញ្ចប់តូច បិទជិត", 
-        storage: "រក្សាទុកក្នុងកន្លែងស្ងួត"
-      },
-      C_BBQ200: { 
-        type: "ចេកបំពងស្រួយ", flavor: "រសជាតិបាប៊ីឃ្យូ BBQ", price: 10000, qty: 0, size: '200g', id: 'C_BBQ200', 
-        benefits: "រសជាតិ BBQ ប្លែក ញ៉ាំជុំគ្នាយ៉ាងសប្បាយរីករាយ។",
-        taste: "រសជាតិបាប៊ីឃ្យូ ឈ្ងុយឆ្ងាញ់",
-        pack: "ប្រអប់បិទជិត", 
-        storage: "រក្សាទុកបានយូរក្នុងថង់/ប្រអប់បិទជិត"
-      },
-      C_BBQ100: { 
-        type: "ចេកបំពងស្រួយ", flavor: "រសជាតិបាប៊ីឃ្យូ BBQ", price: 5000, qty: 0, size: '100g', id: 'C_BBQ100', 
-        benefits: "កញ្ចប់ល្មមញ៉ាំ ឈ្ងុយគ្រឿងបាប៊ីឃ្យូស្តង់ដារ។",
-        taste: "រសជាតិបាប៊ីឃ្យូ BBQ",
-        pack: "កញ្ចប់តូច បិទជិត", 
-        storage: "រក្សាទុកក្នុងថង់បិទជិត"
+      C_BBQ200:  { 
+        type: "ចេកបំពងស្រួយ", flavor: "រសជាតិបាប៊ីឃ្យូ BBQ", price: 10000, qty: 0, size: '200g', id: 'C_BBQ200', video: 'PROD-005.mp4',
+        benefits: "រសជាតិ BBQ ដុតឈ្ងុយឆ្ងាញ់ ប្លែកអារម្មណ៍ ស្រួយប្លែកមាត់។",
+        storage: ["អាយុកាលរក្សាទុក៖ ៣ ខែ", "រក្សាទុកក្នុងកន្លែងស្ងួត"]
       }
     };
-
-    let userCoins = parseInt(localStorage.getItem('momore_coins') || '0');
-    let lastCheckin = localStorage.getItem('momore_last_checkin');
 
     function renderVideoGallery(filterType = 'ALL') {
       const container = document.getElementById('video-feed-container');
@@ -515,7 +414,7 @@
         div.className = 'video-card-item';
         div.onclick = () => playVideo(item.file);
         div.innerHTML = `
-          <img src="${item.id}.jpg" class="video-card-thumb" onerror="this.src='https://via.placeholder.com/165x220/121212/f39c12?text=MoMore+Video'">
+          <img src="${item.id}.jpg" class="video-card-thumb" onerror="this.src='https://via.placeholder.com/140x248/121212/f39c12?text=MoMore'">
           <div class="video-play-overlay">▶</div>
           <div class="video-card-title">${item.name}</div>
         `;
@@ -527,31 +426,6 @@
       document.querySelectorAll('.chip-btn').forEach(b => b.classList.remove('active'));
       btnElem.classList.add('active');
       renderVideoGallery(type);
-    }
-
-    function initCheckIn() {
-      document.getElementById('user-coins').innerText = userCoins;
-      const today = new Date().toDateString();
-      if (lastCheckin === today) {
-        const btn = document.getElementById('checkin-btn');
-        btn.innerText = "បាន Check-in រួចរាល់ថ្ងៃនេះ!";
-        btn.disabled = true;
-      }
-    }
-
-    function doCheckIn() {
-      const today = new Date().toDateString();
-      if (lastCheckin !== today) {
-        userCoins += 100;
-        localStorage.setItem('momore_coins', userCoins);
-        localStorage.setItem('momore_last_checkin', today);
-        document.getElementById('user-coins').innerText = userCoins;
-        
-        const btn = document.getElementById('checkin-btn');
-        btn.innerText = "បាន Check-in រួចរាល់ (+100 កាក់)!";
-        btn.disabled = true;
-        alert("🎉 អបអរសាទរ! អ្នកទទួលបាន ១០០ កាក់សម្រាប់ការ Check-in ថ្ងៃនេះ!");
-      }
     }
 
     function renderProducts() {
@@ -566,15 +440,13 @@
           <div class="product-card">
             <div class="media-box" onclick="openProductDetail('${key}')">
               <img src="${p.id}.jpg" alt="${p.type} ${p.flavor}" onerror="this.src='https://via.placeholder.com/250x250/121212/f39c12?text=MoMore'">
-              <div class="play-video-badge" onclick="event.stopPropagation(); playVideo('${p.id}.mp4');">
-                ▶️ វីដេអូ
-              </div>
+              <div class="info-badge">ℹ️ ព័ត៌មាន & Review</div>
             </div>
             <div class="product-info">
-              <div>
-                <div class="row-1-type" onclick="openProductDetail('${key}')">${p.type}</div>
-                <div class="row-2-flavor" onclick="openProductDetail('${key}')">${p.flavor}</div>
-                <div class="row-3-price-weight" onclick="openProductDetail('${key}')">
+              <div class="clickable-info" onclick="openProductDetail('${key}')">
+                <div class="row-1-type">${p.type}</div>
+                <div class="row-2-flavor">${p.flavor}</div>
+                <div class="row-3-price-weight">
                   <span class="price-tag">${p.price.toLocaleString()} ៛</span>
                   <span class="weight-tag">(${p.size})</span>
                 </div>
@@ -596,26 +468,43 @@
       }
     }
 
+    /* Pop-up បង្ហាញព័ត៌មានលម្អិត និង Review ផលិតផល */
     function openProductDetail(key) {
       const p = products[key];
-      document.getElementById('detail-img').src = `${p.id}.jpg`;
-      document.getElementById('detail-name').innerText = `${p.type} ${p.flavor}`;
-      document.getElementById('detail-price').innerText = `${p.price.toLocaleString()} ៛ (${p.size})`;
-      document.getElementById('detail-benefits').innerText = p.benefits;
-      document.getElementById('detail-taste').innerText = p.taste;
-      document.getElementById('detail-pack').innerText = p.pack;
-      document.getElementById('detail-storage').innerText = p.storage;
-      document.getElementById('detailModal').style.display = 'flex';
+      if(!p) return;
+
+      document.getElementById('dt-title').innerText = `${p.type} ${p.flavor} (${p.size})`;
+      document.getElementById('dt-price').innerText = `${p.price.toLocaleString()} ៛`;
+      document.getElementById('dt-benefits').innerText = p.benefits;
+      
+      const storageList = document.getElementById('dt-storage');
+      storageList.innerHTML = '';
+      p.storage.forEach(item => {
+        const li = document.createElement('li');
+        li.innerText = item;
+        storageList.appendChild(li);
+      });
+
+      const videoPlayer = document.getElementById('detailVideoPlayer');
+      videoPlayer.src = p.video;
+      videoPlayer.poster = `${p.id}.jpg`;
+      videoPlayer.play().catch(e => console.log('Auto-play prevented'));
+
+      document.getElementById('productDetailModal').style.display = 'flex';
     }
 
-    function closeDetailModal() { document.getElementById('detailModal').style.display = 'none'; }
+    function closeProductDetailModal() {
+      const videoPlayer = document.getElementById('detailVideoPlayer');
+      videoPlayer.pause();
+      document.getElementById('productDetailModal').style.display = 'none';
+    }
 
     function playVideo(videoFile) {
       const modal = document.getElementById('videoModal');
       const video = document.getElementById('popupVideo');
       video.src = videoFile;
       modal.style.display = 'flex';
-      video.play().catch(e => console.log("Video missing: " + videoFile));
+      video.play().catch(e => console.log("Video playback error: " + videoFile));
     }
 
     function closeVideoModal() {
@@ -634,19 +523,16 @@
     function calculateTotal() {
       let totalItemPrice = 0;
       let total200gQty = 0;
-      let total100gQty = 0;
 
       for (let key in products) {
         let p = products[key];
         totalItemPrice += p.qty * p.price;
-        if (p.size === '100g') total100gQty += p.qty;
-        else total200gQty += p.qty;
+        if (p.size === '200g') total200gQty += p.qty;
       }
 
       let deliveryFee = 8000;
       let promoFreeMsg = "";
       let minQtyMet = true;
-      let qtyStatusMsg = "";
 
       const btnSubmit = document.getElementById('submit-btn');
 
@@ -655,19 +541,19 @@
         btnSubmit.disabled = false;
         btnSubmit.innerText = "ផ្ញើការកុម្ម៉ង់";
       } else {
-        if (total200gQty > 0 && total200gQty < 10) { minQtyMet = false; qtyStatusMsg = ` (200g ខ្វះ ${10 - total200gQty} ទៀត)`; }
-        if (total100gQty > 0 && total100gQty < 20) { minQtyMet = false; qtyStatusMsg += ` (100g ខ្វះ ${20 - total100gQty} ទៀត)`; }
+        if (total200gQty > 0 && total200gQty < 10) { 
+          minQtyMet = false; 
+        }
 
         if (!minQtyMet) {
           btnSubmit.disabled = true;
-          btnSubmit.innerText = "កុម្ម៉ង់មិនទាន់គ្រប់ចំនួន" + qtyStatusMsg;
+          btnSubmit.innerText = `⚠️ កុម្ម៉ង់មិនទាន់គ្រប់ចំនួន (ខ្វះ ${10 - total200gQty} ទៀត)`;
         } else {
           btnSubmit.disabled = false;
-          btnSubmit.innerText = "ផ្ញើការកុម្ម៉ង់";
+          btnSubmit.innerText = "🚀 ផ្ញើការកុម្ម៉ង់";
         }
 
-        if (total200gQty >= 30) { deliveryFee = 0; promoFreeMsg = " [FREE ដឹក + ថែម 200g មួយប្រអប់]"; }
-        else if (total100gQty >= 60) { deliveryFee = 0; promoFreeMsg = " [FREE ដឹក + ថែម 100g ពីរប្រអប់]"; }
+        if (total200gQty >= 30) { deliveryFee = 0; promoFreeMsg = " [FREE ដឹក]"; }
       }
 
       let grandTotal = totalItemPrice + deliveryFee;
@@ -678,7 +564,7 @@
       else if (deliveryFee === 0) delBox.innerText = `🚚 ថ្លៃដឹកជញ្ជូន៖ FREE ឥតគិតថ្លៃ! ${promoFreeMsg}`;
       else delBox.innerText = `🚚 ថ្លៃដឹកជញ្ជូន៖ ${deliveryFee.toLocaleString()} ៛`;
 
-      return { grandTotal, totalItemPrice, deliveryFee, promoFreeMsg, minQtyMet };
+      return { grandTotal, totalItemPrice, deliveryFee, minQtyMet };
     }
 
     async function submitOrder() {
@@ -688,21 +574,17 @@
 
       const phone = document.getElementById('cust-phone').value.trim();
       const province = document.getElementById('cust-province').value.trim();
-      const courier = document.getElementById('courier-select').value;
-      const branch = document.getElementById('cust-branch').value.trim();
       const slipFile = document.getElementById('slip-file').files[0];
 
       if (!phone || !province) { alert("សូមបំពេញលេខទូរស័ព្ទ និង ខេត្ត/ក្រុង!"); return; }
       if (!slipFile) { alert("⚠️ សូម Upload រូបភាពវិក្កយបត្រ (Payment Slip) ជាមុនសិន!"); return; }
 
-      alert("✅ ការកុម្ម៉ង់ត្រូវបានផ្ញើជោគជ័យ! Admin នឹងពិនិត្យ និងរៀបចំផ្ញើទំនិញជូនឆាប់ៗនេះ!");
+      alert("✅ ការកុម្ម៉ង់ត្រូវបានផ្ញើជោគជ័យ!");
       tg.close();
     }
 
-    // Run Initializers
     renderVideoGallery();
     renderProducts();
-    initCheckIn();
   </script>
 </body>
 </html>
