@@ -664,22 +664,37 @@
     }
 
     async function submitOrder() {
-      let calc = calculateTotal();
-      if (calc.totalItemPrice === 0) { alert("សូមជ្រើសរើសចំនួនទំនិញយ៉ាងហោចណាស់ ១ ជាមុនសិន!"); return; }
-      if (!calc.minQtyMet) { alert("សូមពិនិត្យចំនួនកុម្ម៉ង់អប្បបរមា!"); return; }
+  let calc = calculateTotal();
+  if (calc.totalItemPrice === 0) { alert("សូមជ្រើសរើសចំនួនទំនិញយ៉ាងហោចណាស់ ១ ជាមុនសិន!"); return; }
+  if (!calc.minQtyMet) { alert("សូមពិនិត្យចំនួនកុម្ម៉ង់អប្បបរមា!"); return; }
 
-      const phone = document.getElementById('cust-phone').value.trim();
-      const province = document.getElementById('cust-province').value.trim();
-      const courier = document.getElementById('courier-select').value;
-      const branch = document.getElementById('cust-branch').value.trim();
-      const slipFile = document.getElementById('slip-file').files[0];
+  const phone = document.getElementById('cust-phone').value.trim();
+  const province = document.getElementById('cust-province').value.trim();
+  const courier = document.getElementById('courier-select').value;
+  const branch = document.getElementById('cust-branch').value.trim();
+  const slipFile = document.getElementById('slip-file').files[0];
 
-      if (!phone || !province) { alert("សូមបំពេញលេខទូរស័ព្ទ និង ខេត្ត/ក្រុង!"); return; }
-      if (!slipFile) { alert("⚠️ សូម Upload រូបភាពវិក្កយបត្រ (Payment Slip) ជាមុនសិន!"); return; }
+  if (!phone || !province) { alert("សូមបំពេញលេខទូរស័ព្ទ និង ខេត្ត/ក្រុង!"); return; }
+  if (!slipFile) { alert("⚠️ សូម Upload រូបភាពវិក្កយបត្រ (Payment Slip) ជាមុនសិន!"); return; }
 
-      alert("✅ ការកុម្ម៉ង់ត្រូវបានផ្ញើជោគជ័យ! Admin នឹងពិនិត្យ និងរៀបចំផ្ញើទំនិញជូនឆាប់ៗនេះ!");
-      tg.close();
+  let orderDetails = "🛒 *ការកុម្ម៉ង់ទំនិញថ្មីពី MoMore* 🛒\n\n";
+  for (let key in products) {
+    if (products[key].qty > 0) {
+      let p = products[key];
+      orderDetails += `- ${p.type} (${p.flavor} - ${p.size}): ${p.qty} ប្រអប់ (${(p.qty * p.price).toLocaleString()} ៛)\n`;
     }
+  }
+  orderDetails += `\n💰 *សរុបទឹកប្រាក់:* ${calc.grandTotal.toLocaleString()} ៛`;
+  orderDetails += `\n📞 *ទូរស័ព្ទអតិថិជន:* ${phone}`;
+  orderDetails += `\n📍 *ខេត្ត/ក្រុង:* ${province}`;
+  orderDetails += `\n🏢 *សាខា/ទីតាំង:* ${branch || 'អត់មានបញ្ជាក់'}`;
+  orderDetails += `\n🚚 *ក្រុមហ៊ុនដឹក:* ${courier}`;
+
+  const encodedText = encodeURIComponent(orderDetails);
+  window.open(`https://t.me/share/url?url=${encodedText}`, '_blank');
+
+  alert("✅ ទិន្នន័យការកុម្ម៉ង់ត្រូវបានត្រៀមរួចរាល់ សូមចុចបញ្ជូនក្នុង Telegram!");
+}
 
     renderVideoGallery();
     renderProducts();
