@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Momore Wholesale WebApp - Modern Orange & Dark Theme</title>
+  <title>Momore Wholesale WebApp - Compact Modern UI</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <!-- Google Fonts: Kantumruy Pro (Modern Khmer) & Moul -->
+  <!-- Google Fonts: Kantumruy Pro & Moul -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&family=Moul&display=swap" rel="stylesheet">
@@ -14,95 +14,89 @@
     :root {
       --primary: #f39c12;        /* Vibrant Orange */
       --primary-dark: #d35400;   /* Deep Orange */
-      --dark-bg: #121212;        /* Dark Theme Accent */
-      --dark-card: #1e1e1e;
+      --dark-bg: #121212;
       --light-bg: #f5f6fa;
       --card-bg: #ffffff;
       --text-dark: #1a1a1a;
       --text-gray: #666666;
-      --green: #27ae60;
-      --red: #e74c3c;
+      --price-red: #e74c3c;     /* ពណ៌ក្រហមសម្រាប់តម្លៃ */
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Kantumruy Pro', sans-serif; }
     body { background-color: var(--light-bg); color: var(--text-dark); padding-bottom: 150px; }
     
-    /* Sticky Header */
+    /* Header */
     header { 
       background: linear-gradient(135deg, #121212 0%, #2c2c2c 100%); 
       color: var(--primary); 
-      padding: 16px; 
+      padding: 14px; 
       text-align: center; 
       font-weight: 700; 
-      font-size: 1.35rem; 
+      font-size: 1.3rem; 
       position: sticky; 
       top: 0; 
       z-index: 100; 
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      letter-spacing: 0.5px;
       border-bottom: 2px solid var(--primary);
     }
     
-    .container { max-width: 600px; margin: auto; padding: 12px; }
+    .container { max-width: 600px; margin: auto; padding: 10px; }
     
-    /* Daily Check-in Banner (Orange-Dark Styling) */
+    /* Daily Check-in Banner */
     .reward-card {
       background: linear-gradient(135deg, #1e1e1e 0%, #2d251e 100%);
       border: 1.5px solid var(--primary);
       border-radius: 16px;
-      padding: 16px;
-      margin-bottom: 20px;
+      padding: 14px;
+      margin-bottom: 15px;
       color: #ffffff;
-      box-shadow: 0 6px 16px rgba(243, 156, 18, 0.15);
     }
-    .reward-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-    .reward-title { font-weight: 700; font-size: 1.05rem; color: var(--primary); display: flex; align-items: center; gap: 6px; }
-    .coin-badge { background: var(--primary); color: #121212; padding: 5px 12px; border-radius: 20px; font-weight: 700; font-size: 0.88rem; }
+    .reward-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .reward-title { font-weight: 700; font-size: 1rem; color: var(--primary); }
+    .coin-badge { background: var(--primary); color: #121212; padding: 4px 10px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; }
     
-    .checkin-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-top: 12px; text-align: center; }
-    .day-box { background: #2a2a2a; border-radius: 8px; padding: 8px 2px; border: 1px solid #444; font-size: 0.72rem; color: #ccc; }
+    .checkin-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-top: 10px; text-align: center; }
+    .day-box { background: #2a2a2a; border-radius: 8px; padding: 6px 2px; border: 1px solid #444; font-size: 0.7rem; color: #ccc; }
     .day-box.active { background: var(--primary); color: #121212; border-color: var(--primary); font-weight: 700; }
-    .day-box .pts { font-size: 0.65rem; color: #aaa; display: block; margin-top: 2px; }
+    .day-box .pts { font-size: 0.62rem; color: #aaa; display: block; }
     .day-box.active .pts { color: #121212; font-weight: 600; }
     
-    .btn-checkin { width: 100%; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; border: none; padding: 12px; border-radius: 10px; font-weight: 700; font-size: 0.95rem; margin-top: 12px; cursor: pointer; transition: 0.2s; }
+    .btn-checkin { width: 100%; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; border: none; padding: 10px; border-radius: 10px; font-weight: 700; font-size: 0.9rem; margin-top: 10px; cursor: pointer; }
     .btn-checkin:disabled { background: #444; color: #888; cursor: not-allowed; }
 
     /* Notice Box */
-    .notice-box { background: #fff8f0; border-left: 5px solid var(--primary); padding: 12px 15px; border-radius: 10px; margin-bottom: 20px; font-size: 0.85rem; line-height: 1.6; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+    .notice-box { background: #fff8f0; border-left: 5px solid var(--primary); padding: 10px 12px; border-radius: 10px; margin-bottom: 15px; font-size: 0.82rem; line-height: 1.5; }
 
-    /* Modern Section Titles */
+    /* Section Titles */
     .section-title-box {
-      margin: 25px 0 14px 0;
-      padding: 12px 15px;
+      margin: 20px 0 10px 0;
+      padding: 10px 12px;
       background: linear-gradient(135deg, #121212 0%, #2a2a2a 100%);
-      border-radius: 12px;
-      border-left: 6px solid var(--primary);
+      border-radius: 10px;
+      border-left: 5px solid var(--primary);
       color: #ffffff;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
     }
-    .sec-title-main { font-size: 1.25rem; font-weight: 700; color: var(--primary); line-height: 1.3; }
-    .sec-title-sub { font-size: 0.85rem; color: #dddddd; margin-top: 4px; font-weight: 400; }
+    .sec-title-main { font-size: 1.15rem; font-weight: 700; color: var(--primary); }
+    .sec-title-sub { font-size: 0.8rem; color: #dddddd; margin-top: 2px; }
 
-    /* Product Grid & Cards */
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    /* Grid & Enhanced Product Card Layout */
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    
     .product-card { 
       background: var(--card-bg); 
-      border-radius: 16px; 
+      border-radius: 14px; 
       overflow: hidden; 
-      box-shadow: 0 6px 18px rgba(0,0,0,0.06); 
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06); 
       display: flex; 
       flex-direction: column; 
       justify-content: space-between; 
-      border: 1px solid #eaeaea;
-      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid #e0e0e0;
     }
-    .product-card:active { transform: scale(0.98); }
-    
-    /* រូបភាពពេញប្រអប់ ១០០% (Full Cover) */
+
+    /* ពង្រីកផ្ទៃរូបភាពឱ្យធំ (Image Area Expanded) */
     .media-box { 
       width: 100%; 
-      height: 220px; 
+      height: 250px; /* ពង្រីកផ្ទៃរូបភាពឱ្យកាន់តែធំ */
       background-color: #121212; 
       position: relative; 
       overflow: hidden; 
@@ -111,63 +105,64 @@
     .media-box img { 
       width: 100%; 
       height: 100%; 
-      object-fit: cover; /* ប្លង់រូបពេញប្រអប់ គ្មានសល់ជើង ឬកៀម */
+      object-fit: cover; /* ប្លង់រូបពេញប្រអប់ */
       display: block;
     }
     
     .play-video-badge { 
       position: absolute; 
-      top: 10px; 
-      right: 10px; 
+      top: 8px; 
+      right: 8px; 
       background: rgba(18, 18, 18, 0.85); 
       color: #fff; 
-      padding: 5px 12px; 
-      border-radius: 20px; 
-      font-size: 0.75rem; 
+      padding: 4px 10px; 
+      border-radius: 16px; 
+      font-size: 0.72rem; 
       font-weight: 700; 
-      cursor: pointer; 
-      display: flex; 
-      align-items: center; 
-      gap: 4px; 
       backdrop-filter: blur(4px); 
       border: 1px solid var(--primary);
       z-index: 2; 
     }
 
-    .product-info { padding: 12px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
+    /* ពង្រួញកម្ពស់ប្រអប់អក្សរ (Compact Info Area - Exactly 3 Rows) */
+    .product-info { padding: 8px 10px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
     
-    /* ឈ្មោះផលិតផល (ជួរទី ១ និង ជួរទី ២) */
-    .type-label { font-size: 0.82rem; color: var(--text-gray); font-weight: 600; line-height: 1.2; }
-    .flavor-label { font-size: 1.05rem; font-weight: 700; color: #121212; margin-top: 2px; margin-bottom: 6px; line-height: 1.3; }
+    /* ជួរទី ១៖ ដំណាប់ចេក / ចេកបំពងស្រួយ */
+    .row-1-type { font-size: 0.82rem; color: var(--text-gray); font-weight: 600; line-height: 1.2; }
     
-    .product-weight { font-size: 0.8rem; color: #777; margin-bottom: 8px; font-weight: 500; }
-    .product-price { font-size: 1.2rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 12px; }
+    /* ជួរទី ២៖ ឈ្មោះរសជាតិ (អក្សរធំ) */
+    .row-2-flavor { font-size: 1.1rem; font-weight: 700; color: #121212; margin: 2px 0 4px 0; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     
-    .quantity-control { display: flex; align-items: center; justify-content: space-between; background: #f1f2f6; border-radius: 10px; padding: 4px; }
-    .btn-qty { width: 34px; height: 34px; background: white; border: 1px solid #ddd; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; color: var(--primary-dark); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-    .qty-number { font-weight: 700; font-size: 1.05rem; color: #121212; }
+    /* ជួរទី ៣៖ តម្លៃ (ពណ៌ក្រហម ធំ) + ចំណុះ (តូចជាង នៅខាងចុង) */
+    .row-3-price-weight { 
+      display: flex; 
+      align-items: baseline; 
+      gap: 6px; 
+      margin-bottom: 8px; 
+    }
+    .price-tag { font-size: 1.25rem; font-weight: 700; color: var(--price-red); }
+    .weight-tag { font-size: 0.82rem; font-weight: 600; color: #777; }
     
-    /* Form Styles Section 3 (Modern Dark & Orange Accent) */
-    .form-section { background: #ffffff; padding: 18px; border-radius: 16px; margin-top: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #eaeaea; }
-    .form-group { margin-bottom: 15px; }
-    .form-group label { display: block; font-weight: 700; font-size: 0.92rem; margin-bottom: 6px; color: #121212; }
+    /* Controls */
+    .quantity-control { display: flex; align-items: center; justify-content: space-between; background: #f1f2f6; border-radius: 8px; padding: 2px 4px; }
+    .btn-qty { width: 30px; height: 30px; background: white; border: 1px solid #ccc; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; color: var(--primary-dark); }
+    .qty-number { font-weight: 700; font-size: 1rem; color: #121212; }
+    
+    /* Section 3 Form */
+    .form-section { background: #ffffff; padding: 15px; border-radius: 14px; margin-top: 10px; border: 1px solid #eaeaea; }
+    .form-group { margin-bottom: 12px; }
+    .form-group label { display: block; font-weight: 700; font-size: 0.88rem; margin-bottom: 4px; color: #121212; }
     .form-group input, .form-group select, .form-group textarea { 
       width: 100%; 
-      padding: 12px; 
+      padding: 10px; 
       border: 1.5px solid #ccc; 
-      border-radius: 10px; 
-      font-size: 0.95rem; 
+      border-radius: 8px; 
+      font-size: 0.9rem; 
       background: #fafafa;
-      transition: border-color 0.2s;
     }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-      outline: none;
-      border-color: var(--primary);
-      background: #fff;
-    }
-    .required-tag { color: var(--red); }
+    .required-tag { color: var(--price-red); }
 
-    /* Cart Bar Fixed Bottom */
+    /* Fixed Bottom Cart Bar */
     .cart-bar { 
       position: fixed; 
       bottom: 0; 
@@ -175,46 +170,45 @@
       right: 0; 
       background: #121212; 
       color: white;
-      padding: 14px 20px; 
+      padding: 12px 16px; 
       box-shadow: 0 -4px 20px rgba(0,0,0,0.25); 
       display: flex; 
       justify-content: space-between; 
       align-items: center; 
       max-width: 600px; 
       margin: auto; 
-      border-top-left-radius: 20px; 
-      border-top-right-radius: 20px; 
+      border-top-left-radius: 16px; 
+      border-top-right-radius: 16px; 
       border-top: 2px solid var(--primary);
       z-index: 999; 
     }
-    .total-price { font-size: 1.35rem; font-weight: 700; color: var(--primary); }
-    .delivery-info { font-size: 0.78rem; color: #2ecc71; margin-top: 2px; font-weight: 600; }
+    .total-price { font-size: 1.3rem; font-weight: 700; color: var(--primary); }
+    .delivery-info { font-size: 0.75rem; color: #2ecc71; font-weight: 600; }
     .btn-checkout { 
       background: linear-gradient(135deg, var(--primary), var(--primary-dark)); 
       color: white; 
       border: none; 
-      padding: 12px 22px; 
-      border-radius: 12px; 
+      padding: 10px 18px; 
+      border-radius: 10px; 
       font-weight: 700; 
       cursor: pointer; 
-      font-size: 1rem; 
-      box-shadow: 0 4px 10px rgba(243, 156, 18, 0.3);
+      font-size: 0.95rem; 
     }
-    .btn-checkout:disabled { background: #555; color: #888; box-shadow: none; cursor: not-allowed; }
+    .btn-checkout:disabled { background: #555; color: #888; cursor: not-allowed; }
 
-    /* Modals General */
+    /* Modal */
     .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center; padding: 15px; }
-    .modal-content { width: 100%; max-width: 440px; background: #fff; border-radius: 20px; overflow: hidden; position: relative; max-height: 88vh; display: flex; flex-direction: column; }
-    .close-modal { position: absolute; top: 12px; right: 14px; color: white; font-size: 22px; font-weight: bold; cursor: pointer; z-index: 2001; background: rgba(0,0,0,0.7); width: 34px; height: 34px; border-radius: 50%; text-align: center; line-height: 32px; border: 1px solid var(--primary); }
+    .modal-content { width: 100%; max-width: 440px; background: #fff; border-radius: 16px; overflow: hidden; position: relative; max-height: 88vh; display: flex; flex-direction: column; }
+    .close-modal { position: absolute; top: 10px; right: 12px; color: white; font-size: 20px; font-weight: bold; cursor: pointer; z-index: 2001; background: rgba(0,0,0,0.7); width: 30px; height: 30px; border-radius: 50%; text-align: center; line-height: 28px; border: 1px solid var(--primary); }
     
-    .detail-header-img { width: 100%; height: 280px; object-fit: cover; background: #121212; }
-    .detail-body { padding: 20px; overflow-y: auto; font-size: 0.92rem; line-height: 1.6; color: #333; }
-    .detail-title { font-size: 1.3rem; font-weight: 700; color: #121212; margin-bottom: 4px; }
-    .detail-price { font-size: 1.35rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 15px; }
-    .detail-sec-title { font-weight: 700; color: var(--primary-dark); margin-top: 14px; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+    .detail-header-img { width: 100%; height: 260px; object-fit: cover; background: #121212; }
+    .detail-body { padding: 16px; overflow-y: auto; font-size: 0.88rem; line-height: 1.5; color: #333; }
+    .detail-title { font-size: 1.2rem; font-weight: 700; color: #121212; }
+    .detail-price { font-size: 1.25rem; font-weight: 700; color: var(--price-red); margin-bottom: 10px; }
+    .detail-sec-title { font-weight: 700; color: var(--primary-dark); margin-top: 10px; margin-bottom: 2px; }
 
-    .qr-container { text-align: center; margin-top: 15px; padding: 12px; background: #1e1e1e; border-radius: 12px; border: 1.5px dashed var(--primary); color: white; }
-    .qr-image { width: 210px; height: 210px; object-fit: contain; margin: 10px auto; display: block; border-radius: 10px; background: #fff; padding: 5px; }
+    .qr-container { text-align: center; margin-top: 12px; padding: 10px; background: #1e1e1e; border-radius: 10px; border: 1.5px dashed var(--primary); color: white; }
+    .qr-image { width: 190px; height: 190px; object-fit: contain; margin: 8px auto; display: block; border-radius: 8px; background: #fff; padding: 4px; }
   </style>
 </head>
 <body>
@@ -223,13 +217,13 @@
 
   <div class="container">
     
-    <!-- Daily Check-in System -->
+    <!-- Daily Check-in -->
     <div class="reward-card">
       <div class="reward-header">
         <div class="reward-title">🎁 Check-in សន្សំកាក់ (Daily Points)</div>
         <div class="coin-badge">💰 កាក់សរុប: <span id="user-coins">0</span></div>
       </div>
-      <div style="font-size:0.78rem; color:#ccc;">Check-in រាល់ថ្ងៃដើម្បីបាន ១០០ កាក់/ថ្ងៃ ដូរយកកាដូ និងបញ្ចុះតម្លៃពិសេស!</div>
+      <div style="font-size:0.75rem; color:#ccc;">Check-in រាល់ថ្ងៃដើម្បីបាន ១០០ កាក់/ថ្ងៃ ដូរយកកាដូ និងប្រូម៉ូសិន!</div>
       
       <div class="checkin-days">
         <div class="day-box active">ថ្ងៃ 1<span class="pts">+100</span></div>
@@ -305,7 +299,7 @@
 
       <div class="form-group">
         <label>🏠 អាសយដ្ឋានលម្អិត (សម្រាប់អ្នកភ្នំពេញ ឬផ្ញើដល់ផ្ទះ)</label>
-        <textarea id="cust-address" rows="2" placeholder="ឧទាហរណ៍៖ ផ្ទះលេខ ១២, ផ្លូវ ២៧១... (បើផ្ញើតាមសាខាមិនបាច់បំពេញទេ)"></textarea>
+        <textarea id="cust-address" rows="2" placeholder="ឧទាហរណ៍៖ ផ្ទះលេខ ១២, ផ្លូវ ២៧១..."></textarea>
       </div>
 
       <div class="form-group">
@@ -315,20 +309,20 @@
 
       <!-- KHQR Section -->
       <div class="qr-container">
-        <div style="font-weight:700; color:var(--primary); font-size: 1.05rem;">💳 ទូទាត់ប្រាក់តាម KHQR</div>
-        <div style="font-size:0.82rem; color:#ccc; margin-top: 4px;">សូមស្កែនទូទាត់ប្រាក់សរុប រួច Upload រូបភាពវិក្កយបត្រខាងក្រោមដើម្បីបញ្ជាក់៖</div>
-        <img src="khqr.jpg" alt="KHQR Code" class="qr-image" onerror="this.src='https://via.placeholder.com/210x210?text=KHQR+Code'">
+        <div style="font-weight:700; color:var(--primary); font-size: 1rem;">💳 ទូទាត់ប្រាក់តាម KHQR</div>
+        <div style="font-size:0.78rem; color:#ccc; margin-top: 2px;">សូមស្កែនទូទាត់ប្រាក់សរុប រួច Upload វិក្កយបត្រ៖</div>
+        <img src="khqr.jpg" alt="KHQR Code" class="qr-image" onerror="this.src='https://via.placeholder.com/190x190?text=KHQR+Code'">
       </div>
 
-      <div class="form-group" style="margin-top:15px;">
-        <label>🧾 បង្ហោះរូបភាពវិក្កយបត្រ (Payment Slip) <span class="required-tag">* (ចាំបាច់)</span></label>
+      <div class="form-group" style="margin-top:12px;">
+        <label>🧾 បង្ហោះរូបភាពវិក្កយបត្រ (Payment Slip) <span class="required-tag">*</span></label>
         <input type="file" id="slip-file" accept="image/*" required>
       </div>
     </div>
 
   </div>
 
-  <!-- Modal បើកវីដេអូ -->
+  <!-- Modal វីដេអូ -->
   <div class="modal" id="videoModal">
     <div class="modal-content" style="background:#000;">
       <span class="close-modal" onclick="closeVideoModal()">&times;</span>
@@ -336,7 +330,7 @@
     </div>
   </div>
 
-  <!-- Modal បង្ហាញព័ត៌មានលម្អិតទំនិញពេលចុចលើ Card -->
+  <!-- Modal Detail -->
   <div class="modal" id="detailModal">
     <div class="modal-content">
       <span class="close-modal" onclick="closeDetailModal()">&times;</span>
@@ -360,7 +354,7 @@
   <!-- Cart Fixed Bottom -->
   <div class="cart-bar">
     <div>
-      <div style="font-size:0.78rem; color:#aaa;">សរុបសាច់ប្រាក់:</div>
+      <div style="font-size:0.75rem; color:#aaa;">សរុបសាច់ប្រាក់:</div>
       <div class="total-price"><span id="total-val">0</span> ៛</div>
       <div class="delivery-info" id="delivery-info">🚚 ថ្លៃដឹកជញ្ជូន៖ 8,000 ៛</div>
     </div>
@@ -371,7 +365,6 @@
     const tg = window.Telegram.WebApp;
     tg.expand();
 
-    // រក្សាទិន្នន័យផលិតផលដដែល ប៉ុន្តែបំបែកប្រភេទ និង រសជាតិ
     const products = {
       D_ORIG200: { 
         type: "ដំណាប់ចេក",
@@ -558,7 +551,7 @@
         let p = products[key];
         const isDomnap = key.startsWith('D_');
 
-        // Layout: ជួរទី១ អក្សរប្រភេទ, ជួរទី២ ឈ្មោះរសជាតិធំៗ ខ្មែរយូនីកូដស្អាត
+        // រៀបចំជា ៣ ជួរយ៉ាងស្អាត៖ ជួរ១ ប្រភេទ | ជួរ២ រសជាតិ | ជួរ៣ តម្លៃ (ក្រហម) + ចំណុះ (នៅខាងចុង)
         const cardHtml = `
           <div class="product-card">
             <div class="media-box" onclick="openProductDetail('${key}')">
@@ -569,10 +562,15 @@
             </div>
             <div class="product-info">
               <div>
-                <div class="type-label" onclick="openProductDetail('${key}')">${p.type}</div>
-                <div class="flavor-label" onclick="openProductDetail('${key}')">${p.flavor}</div>
-                <div class="product-weight">ទំហំ: ${p.size}</div>
-                <div class="product-price">${p.price.toLocaleString()} ៛</div>
+                <!-- ជួរទី ១ -->
+                <div class="row-1-type" onclick="openProductDetail('${key}')">${p.type}</div>
+                <!-- ជួរទី ២ -->
+                <div class="row-2-flavor" onclick="openProductDetail('${key}')">${p.flavor}</div>
+                <!-- ជួរទី ៣៖ តម្លៃក្រហម + ចំណុះនៅចុងជួរ -->
+                <div class="row-3-price-weight" onclick="openProductDetail('${key}')">
+                  <span class="price-tag">${p.price.toLocaleString()} ៛</span>
+                  <span class="weight-tag">(${p.size})</span>
+                </div>
               </div>
               <div class="quantity-control">
                 <button class="btn-qty" onclick="changeQty('${key}', -1)">-</button>
@@ -595,7 +593,7 @@
       const p = products[key];
       document.getElementById('detail-img').src = `${p.id}.jpg`;
       document.getElementById('detail-name').innerText = `${p.type} ${p.flavor}`;
-      document.getElementById('detail-price').innerText = `${p.price.toLocaleString()} ៛ (ទំហំ ${p.size})`;
+      document.getElementById('detail-price').innerText = `${p.price.toLocaleString()} ៛ (${p.size})`;
       document.getElementById('detail-pack').innerText = p.pack;
       document.getElementById('detail-storage').innerText = p.storage;
       document.getElementById('detail-taste').innerText = p.taste;
@@ -665,7 +663,7 @@
         if (!minQtyMet) {
           btnSubmit.disabled = true;
           btnSubmit.innerText = "កុម្ម៉ង់មិនទាន់គ្រប់ចំនួន" + qtyStatusMsg;
-          btnSubmit.style.background = "var(--red)";
+          btnSubmit.style.background = "var(--price-red)";
         } else {
           btnSubmit.disabled = false;
           btnSubmit.innerText = "ផ្ញើការកុម្ម៉ង់";
@@ -778,7 +776,7 @@
           alert("✅ ការកុម្ម៉ង់ និងវិក្កយបត្រត្រូវបានផ្ញើជោគជ័យ!\n\nប្រព័ន្ធបានទទួល Payment Slip រួចរាល់ហើយ។ Admin នឹងពិនិត្យ និងរៀបចំផ្ញើទំនិញជូនឆាប់ៗនេះ!");
           tg.close();
         } else {
-          alert("មានបញ្ហាក្នុងការផ្ញើរូបភាពវិក្កយបត្រ! សូមព្យាយាមម្តងទៀត។ Error: " + data.description);
+          alert("មានបញ្ហាក្នុងការផ្ញើរូបភាពវិក្កយបត្រ! error: " + data.description);
         }
       } catch (err) {
         alert("Error: " + err);
