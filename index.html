@@ -23,13 +23,20 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Kantumruy Pro', sans-serif; }
-    body { background-color: var(--light-bg); color: var(--text-dark); padding-bottom: 140px; font-size: 15px; }
     
-    /* Header */
+    /* ទុកចន្លោះបាតទូរសព្ទការពារការបាំង Touch Screen ផ្នែកខាងក្រោម */
+    body { 
+      background-color: var(--light-bg); 
+      color: var(--text-dark); 
+      padding-bottom: 160px; 
+      font-size: 15px; 
+    }
+    
+    /* Header - រៀបចំការពារបាំងផ្នែកខាងលើទូរសព្ទ */
     header { 
       background: linear-gradient(135deg, #121212 0%, #2c2c2c 100%); 
       color: var(--primary); 
-      padding: 12px 16px; 
+      padding: 16px; 
       text-align: center; 
       font-weight: 800; 
       font-size: 1.25rem; 
@@ -40,54 +47,32 @@
       border-bottom: 3px solid var(--primary);
     }
     
-    .container { max-width: 600px; margin: auto; padding: 8px; }
+    .container { max-width: 600px; margin: auto; padding: 12px 10px; }
 
-    /* Hero Banner - មិនឱ្យខ្ពស់ពេក និងមិនបាំងអក្សរ */
+    /* Hero Banner - កែសម្រួលកម្ពស់ និង Padding សមរម្យ មិនបាំងកន្លែងសេវា */
     .hero-banner {
       width: 100%;
       background: linear-gradient(135deg, #1a1a1a 0%, #2d251e 100%);
       border-radius: 14px;
-      padding: 14px 12px;
+      padding: 18px 14px;
       margin-bottom: 14px;
       border: 2px solid var(--primary);
       color: #ffffff;
       box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      text-align: center;
     }
     .hero-banner h1 {
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       color: var(--primary);
-      margin-bottom: 4px;
+      margin-bottom: 6px;
       font-weight: 800;
-      text-align: center;
     }
     .hero-banner p {
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       color: #eeeeee;
-      line-height: 1.4;
-      text-align: center;
-      margin-bottom: 10px;
+      line-height: 1.5;
       font-weight: 500;
     }
-
-    /* Check-in Inside Hero */
-    .checkin-box {
-      background: rgba(0, 0, 0, 0.5);
-      border-radius: 10px;
-      padding: 10px;
-      border: 1.5px dashed var(--primary);
-    }
-    .reward-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-    .reward-title { font-weight: 700; font-size: 0.9rem; color: var(--primary); }
-    .coin-badge { background: var(--primary); color: #121212; padding: 3px 10px; border-radius: 20px; font-weight: 800; font-size: 0.82rem; }
-    
-    .checkin-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-top: 8px; text-align: center; }
-    .day-box { background: #2a2a2a; border-radius: 6px; padding: 6px 2px; border: 1px solid #444; font-size: 0.7rem; color: #ccc; font-weight: 600; }
-    .day-box.active { background: var(--primary); color: #121212; border-color: var(--primary); font-weight: 800; }
-    .day-box .pts { font-size: 0.6rem; color: #aaa; display: block; margin-top: 2px; }
-    .day-box.active .pts { color: #121212; font-weight: 700; }
-    
-    .btn-checkin { width: 100%; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; border: none; padding: 10px; border-radius: 8px; font-weight: 800; font-size: 0.9rem; margin-top: 10px; cursor: pointer; }
-    .btn-checkin:disabled { background: #444; color: #888; cursor: not-allowed; }
 
     /* Video Feed Section */
     .video-gallery-section {
@@ -123,17 +108,15 @@
     .sec-title-main { font-size: 1.15rem; font-weight: 800; color: var(--primary); }
     .sec-title-sub { font-size: 0.8rem; color: #dddddd; margin-top: 2px; font-weight: 500; }
 
-    /* Grid & Product Card Layout - ពង្រីកអស់សាច់ កុំឱ្យសល់ */
+    /* Grid & Product Card Layout */
     .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; }
     .product-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between; border: 1.5px solid #e2e8f0; }
 
-    /* Thumbnail ផលិតផលពង្រីកឱ្យធំ និងប្រអប់ធំជាងមុន */
     .media-box { width: 100%; height: 220px; background-color: #121212; position: relative; overflow: hidden; cursor: pointer; }
     .media-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
     
     .play-video-badge { position: absolute; top: 6px; right: 6px; background: rgba(18, 18, 18, 0.88); color: #fff; padding: 3px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 700; border: 1px solid var(--primary); z-index: 2; }
 
-    /* កន្លែងសរសេរអក្សរក្រោមផលិតផល Padding ឱ្យទាបបន្តិច អក្សរមិនធំពេក */
     .product-info { padding: 8px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
     .row-1-type { font-size: 0.78rem; color: var(--text-gray); font-weight: 600; }
     .row-2-flavor { font-size: 0.98rem; font-weight: 800; color: #121212; margin: 1px 0 4px 0; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -159,16 +142,16 @@
     .qr-sub { font-size: 0.8rem; color: #ddd; margin-bottom: 8px; }
     .qr-image { width: 190px; height: 190px; object-fit: contain; margin: 6px auto; display: block; border-radius: 8px; background: #fff; padding: 4px; }
 
-    /* Fixed Bottom Cart Bar - គិតឡើងលើដើម្បីកុំឱ្យប៉ះពាល់ Touch Screen ទូរសព្ទ */
+    /* Fixed Bottom Cart Bar - ដំឡើងឱ្យខ្ពស់ផុតពីបាតទូរសព្ទ (Touch Screen) មិនបាំងកន្លែងបញ្ជា */
     .cart-bar { 
       position: fixed; 
-      bottom: 12px; 
-      left: 10px; 
-      right: 10px; 
+      bottom: 22px; 
+      left: 12px; 
+      right: 12px; 
       background: #121212; 
       color: white; 
-      padding: 10px 14px; 
-      box-shadow: 0 -4px 20px rgba(0,0,0,0.4); 
+      padding: 12px 16px; 
+      box-shadow: 0 -6px 25px rgba(0,0,0,0.5); 
       display: flex; 
       justify-content: space-between; 
       align-items: center; 
@@ -188,7 +171,6 @@
     .modal-content { width: 100%; max-width: 440px; background: #fff; border-radius: 14px; overflow: hidden; position: relative; max-height: 85vh; display: flex; flex-direction: column; }
     .close-modal { position: absolute; top: 10px; right: 10px; color: white; font-size: 18px; font-weight: bold; cursor: pointer; z-index: 2001; background: rgba(0,0,0,0.75); width: 30px; height: 30px; border-radius: 50%; text-align: center; line-height: 28px; border: 1px solid var(--primary); }
     
-    /* Popup Review / Detail ផលិតផល ប្លង់ផ្ដេក/បញ្ឆរ ធំទូលាយសម្រាប់រូបភាព/វីដេអូ */
     .detail-header-media { width: 100%; height: 260px; background: #121212; position: relative; }
     .detail-header-media img, .detail-header-media video { width: 100%; height: 100%; object-fit: cover; display: block; }
     .detail-body { padding: 14px; overflow-y: auto; font-size: 0.88rem; line-height: 1.45; color: #333; }
@@ -203,28 +185,10 @@
 
   <div class="container">
 
-    <!-- 1. HERO BANNER + DAILY CHECK-IN -->
+    <!-- 1. HERO BANNER (គ្មានកាក់) -->
     <div class="hero-banner">
       <h1>MoMore Wholesale (តម្លៃបោះដុំ)</h1>
-      <p>ប្រព័ន្ធបញ្ជាទិញបោះដុំផ្ទាល់ពីរោងចក្រ គុណភាពខ្ពស់ និងអនាម័យស្តង់ដារ!</p>
-      
-      <!-- Check-in Box Inside Banner -->
-      <div class="checkin-box">
-        <div class="reward-header">
-          <div class="reward-title">🎁 Check-in សន្សំកាក់ (Daily Points)</div>
-          <div class="coin-badge">💰 កាក់សរុប: <span id="user-coins">0</span></div>
-        </div>
-        <div class="checkin-days">
-          <div class="day-box active">ថ្ងៃ 1<span class="pts">+100</span></div>
-          <div class="day-box">ថ្ងៃ 2<span class="pts">+100</span></div>
-          <div class="day-box">ថ្ងៃ 3<span class="pts">+100</span></div>
-          <div class="day-box">ថ្ងៃ 4<span class="pts">+100</span></div>
-          <div class="day-box">ថ្ងៃ 5<span class="pts">+100</span></div>
-          <div class="day-box">ថ្ងៃ 6<span class="pts">+100</span></div>
-          <div class="day-box">ថ្ងៃ 7<span class="pts">+300</span></div>
-        </div>
-        <button class="btn-checkin" id="checkin-btn" onclick="doCheckIn()">ចុច Check-in យក ១០០ កាក់ថ្ងៃនេះ</button>
-      </div>
+      <p>ប្រព័ន្ធបញ្ជាទិញបោះដុំផ្ទាល់ពីរោងចក្រ គុណភាពខ្ពស់ និងអនាម័យស្តង់ដារសម្រាប់ដៃគូអាជីវកម្ម!</p>
     </div>
 
     <!-- 2. VIDEO GALLERY / FEED SECTION -->
@@ -326,7 +290,7 @@
     </div>
   </div>
 
-  <!-- Modal Detail ព័ត៌មានលម្អិត & Review ផលិតផល (ប្លង់ធំទូលាយ បញ្ឆរផ្ដេក) -->
+  <!-- Modal Detail ព័ត៌មានលម្អិត & Review ផលិតផល -->
   <div class="modal" id="detailModal">
     <div class="modal-content">
       <span class="close-modal" onclick="closeDetailModal()">&times;</span>
@@ -352,7 +316,7 @@
     </div>
   </div>
 
-  <!-- Cart Fixed Bottom -->
+  <!-- Cart Fixed Bottom (ហើបឡើងលើផុតពី Touch Bar មិនបាំង) -->
   <div class="cart-bar">
     <div>
       <div style="font-size:0.7rem; color:#aaa;">សរុបសាច់ប្រាក់:</div>
@@ -366,7 +330,6 @@
     const tg = window.Telegram.WebApp;
     tg.expand();
 
-    // បញ្ជី Video Feed ទាំង ២៧ វីដេអូ ដាក់ឈ្មោះនិង File ត្រូវគ្នាពិតប្រាកដ
     const videoList = [
       { id: 'B-TO-B-001', name: 'B-TO-B 001', type: 'B-TO-B', file: 'B-TO-B-001.mp4' },
       { id: 'B-TO-B-002', name: 'B-TO-B 002', type: 'B-TO-B', file: 'B-TO-B-002.mp4' },
@@ -402,7 +365,6 @@
       { id: 'REV-MARKET-003', name: 'Review Market 003', type: 'REV-MARKET', file: 'REV-MARKET-003.mp4' }
     ];
 
-    // ផលិតផលទាំងអស់ (ដកចេញមុខទំនិញស្រោបទឹកឃ្មុំ)
     const products = {
       D_ORIG200: { 
         type: "ដំណាប់ចេក", flavor: "រសជាតិដើម", price: 8000, qty: 0, size: '200g', id: 'D_ORIG200', 
@@ -465,7 +427,7 @@
         benefits: "មិនមានជាតិស្ករបន្ថែម ញ៉ាំមិនទ្រលាន់ និងគ្មានខ្លាញ់កក។",
         taste: "ស្រួយស្រែស មិនជាប់ខ្លាញ់ រសជាតិដើមសាប",
         pack: "ថង់ហ្ស៊ីបបិទជិតការពារខ្យល់ចូល", 
-        storage: "រក្សាទុកក្នុងថង់បិទជិតได้ ៦ ខែ"
+        storage: "រក្សាទុកក្នុងថង់បិទជិតបាន ៦ ខែ"
       },
       C_CHOC200: { 
         type: "ចេកបំពងស្រួយ", flavor: "សូកូឡាដោះគោ", price: 10000, qty: 0, size: '200g', id: 'C_CHOC200', 
@@ -514,7 +476,7 @@
         benefits: "រសជាតិ BBQ ប្លែក ញ៉ាំជុំគ្នាយ៉ាងសប្បាយរីករាយ។",
         taste: "រសជាតិបាប៊ីឃ្យូ ឈ្ងុយឆ្ងាញ់",
         pack: "ប្រអប់បិទជិត", 
-        storage: "រក្សាទុកបានយូរក្នុងប្រអប់បិទជិត"
+        storage: "រក្សាទុកได้យូរក្នុងប្រអប់បិទជិត"
       },
       C_BBQ100: { 
         type: "ចេកបំពងស្រួយ", flavor: "រសជាតិបាប៊ីឃ្យូ BBQ", price: 5000, qty: 0, size: '100g', id: 'C_BBQ100', 
@@ -547,32 +509,6 @@
       document.querySelectorAll('.chip-btn').forEach(b => b.classList.remove('active'));
       btnElem.classList.add('active');
       renderVideoGallery(type);
-    }
-
-    function initCheckIn() {
-      let userCoins = parseInt(localStorage.getItem('momore_coins') || '0');
-      let lastCheckin = localStorage.getItem('momore_last_checkin');
-      document.getElementById('user-coins').innerText = userCoins;
-      const today = new Date().toDateString();
-      if (lastCheckin === today) {
-        const btn = document.getElementById('checkin-btn');
-        btn.innerText = "បាន Check-in រួចរាល់ថ្ងៃនេះ!";
-        btn.disabled = true;
-      }
-    }
-
-    function doCheckIn() {
-      let userCoins = parseInt(localStorage.getItem('momore_coins') || '0');
-      const today = new Date().toDateString();
-      userCoins += 100;
-      localStorage.setItem('momore_coins', userCoins);
-      localStorage.setItem('momore_last_checkin', today);
-      document.getElementById('user-coins').innerText = userCoins;
-      
-      const btn = document.getElementById('checkin-btn');
-      btn.innerText = "បាន Check-in រួចរាល់ (+100 កាក់)!";
-      btn.disabled = true;
-      alert("🎉 អបអរសាទរ! អ្នកទទួលបាន ១០០ កាក់សម្រាប់ការ Check-in ថ្ងៃនេះ!");
     }
 
     function renderProducts() {
@@ -722,10 +658,8 @@
       tg.close();
     }
 
-    // Run Initializers
     renderVideoGallery();
     renderProducts();
-    initCheckIn();
   </script>
 </body>
 </html>
