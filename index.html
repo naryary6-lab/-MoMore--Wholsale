@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MoMore Wholesale - បោះដុំ</title>
+  <title>Momore Banana - ហាងលក់រាយ & ប្រូម៉ូសិន</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,13 +35,13 @@
     
     .container { max-width: 600px; margin: auto; padding: 10px; }
 
-    /* Cover Banner */
+    /* Cover / Hero Banner */
     .hero-banner {
       width: 100%;
       height: 180px;
       border-radius: 16px;
-      background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.8)), url('D_ORIG200.jpg') center/cover no-repeat;
-      background-color: #1e1e1e;
+      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('banner_cover.jpg') center/cover no-repeat;
+      background-color: #222;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -50,10 +50,10 @@
       margin-bottom: 15px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.15);
     }
-    .hero-title { font-size: 1.35rem; font-weight: 700; color: var(--primary); }
-    .hero-subtitle { font-size: 0.85rem; opacity: 0.9; margin-top: 3px; }
+    .hero-title { font-size: 1.3rem; font-weight: 700; color: var(--primary); }
+    .hero-subtitle { font-size: 0.85rem; opacity: 0.9; margin-top: 2px; }
 
-    /* Video Feed Section (Pinterest Style) */
+    /* Video Gallery Section */
     .video-section {
       background: #ffffff;
       padding: 12px;
@@ -65,9 +65,9 @@
     .video-tab-btn {
       background: #f1f2f6;
       border: 1px solid #ccc;
-      padding: 6px 12px;
+      padding: 6px 14px;
       border-radius: 20px;
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       font-weight: 700;
       white-space: nowrap;
       cursor: pointer;
@@ -76,40 +76,32 @@
 
     .video-grid { display: flex; gap: 10px; overflow-x: auto; padding: 6px 0; }
     .video-card-thumb {
-      min-width: 125px;
-      height: 165px;
-      background: #222;
+      min-width: 130px;
+      height: 170px;
+      background: #111;
       border-radius: 10px;
       position: relative;
       overflow: hidden;
       cursor: pointer;
       flex-shrink: 0;
+      border: 1px solid #333;
     }
+    .video-card-thumb video { width: 100%; height: 100%; object-fit: cover; }
     .video-card-title {
       position: absolute; bottom: 0; left: 0; right: 0;
-      background: rgba(0,0,0,0.85); color: #fff;
-      font-size: 0.68rem; padding: 4px 6px; text-align: center;
+      background: rgba(0,0,0,0.8); color: #fff;
+      font-size: 0.7rem; padding: 4px 6px; text-align: center;
+      line-height: 1.2;
     }
     .play-icon-center {
-      position: absolute; top: 45%; left: 50%;
+      position: absolute; top: 40%; left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 1.6rem; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.7);
+      font-size: 1.6rem; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+      pointer-events: none;
     }
 
-    /* Section Category Titles */
-    .section-title { 
-      font-size: 1.15rem; 
-      font-weight: 700; 
-      margin: 20px 0 10px 0; 
-      color: #121212; 
-      background: #fff;
-      padding: 10px 12px;
-      border-radius: 10px;
-      border-left: 5px solid var(--primary); 
-      box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-    }
-
-    /* Grid Display Products */
+    /* Retail Product Section Grid */
+    .section-title { font-size: 1.1rem; font-weight: 700; margin: 15px 0 8px 0; color: #121212; border-left: 4px solid var(--primary); padding-left: 8px; }
     .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     
     .product-card {
@@ -117,138 +109,72 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid #e0e0e0;
       display: flex; flex-direction: column; justify-content: space-between;
     }
-    .media-box { width: 100%; height: 170px; background: #f1f2f6; position: relative; cursor: pointer; }
+    .media-box { width: 100%; height: 200px; background: #121212; position: relative; }
     .media-box img { width: 100%; height: 100%; object-fit: cover; }
-    .btn-detail-badge {
-      position: absolute; top: 6px; right: 6px;
-      background: rgba(0,0,0,0.7); color: #fff;
-      font-size: 0.65rem; padding: 3px 6px; border-radius: 6px;
-    }
     
     .product-info { padding: 8px 10px; }
-    .row-1-type { font-size: 0.75rem; color: #666; }
+    .row-1-type { font-size: 0.78rem; color: #666; }
     .row-2-flavor { font-size: 0.95rem; font-weight: 700; color: #121212; margin: 2px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    
-    /* Price Dropdown for Pack Sizes */
-    .pack-select {
-      width: 100%;
-      padding: 4px 6px;
-      font-size: 0.78rem;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      margin: 4px 0 8px 0;
-      background: #fff;
-      font-weight: 600;
-    }
-
-    .row-3-price { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 6px; }
+    .row-3-price { display: flex; align-items: baseline; gap: 6px; margin-bottom: 6px; }
     .price-tag { font-size: 1.1rem; font-weight: 700; color: var(--price-red); }
+    .weight-tag { font-size: 0.75rem; color: #777; }
 
     .quantity-control { display: flex; align-items: center; justify-content: space-between; background: #f1f2f6; border-radius: 8px; padding: 2px 4px; }
     .btn-qty { width: 28px; height: 28px; background: white; border: 1px solid #ccc; border-radius: 6px; font-weight: bold; cursor: pointer; }
 
-    /* Shipping Box (ចំណុចទី ៣) */
-    .shipping-box {
-      background: #ffffff;
-      padding: 15px;
-      border-radius: 12px;
-      border: 1px solid #e0e0e0;
-      margin-top: 10px;
-      font-size: 0.88rem;
-      line-height: 1.6;
-    }
-    .shipping-title { font-weight: 700; color: var(--primary-dark); margin-bottom: 8px; font-size: 1rem; }
-    .shipping-item { margin-bottom: 8px; padding-left: 10px; border-left: 3px solid var(--primary); }
-
-    /* Product Detail Modal (បង្ហាញអត្ថប្រយោជន៍ និងព័ត៌មានលម្អិត) */
-    .detail-modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.7); z-index: 3000; justify-content: center; align-items: center; }
-    .detail-content { background: #fff; width: 90%; max-width: 450px; border-radius: 16px; padding: 18px; max-height: 85vh; overflow-y: auto; position: relative; }
-    .detail-close { position: absolute; top: 12px; right: 15px; font-size: 1.4rem; font-weight: bold; cursor: pointer; }
-    .benefit-tag { background: #e8f5e9; color: #2e7d32; padding: 4px 8px; border-radius: 6px; font-size: 0.78rem; font-weight: 600; display: inline-block; margin-bottom: 8px; }
-
-    /* Video Player Modal */
+    /* Modal Video Player with Related Feed */
     .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); z-index: 2000; flex-direction: column; justify-content: center; align-items: center; }
     .modal-video-container { width: 100%; max-width: 450px; height: 92vh; background: #000; border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; position: relative; }
     .close-modal { position: absolute; top: 10px; right: 12px; color: white; font-size: 22px; cursor: pointer; z-index: 2001; background: rgba(0,0,0,0.6); width: 32px; height: 32px; border-radius: 50%; text-align: center; line-height: 30px; }
     
-    .main-video-player { width: 100%; height: 62%; background: #000; }
+    .main-video-player { width: 100%; height: 65%; background: #000; }
     .main-video-player video { width: 100%; height: 100%; object-fit: contain; }
 
-    .related-videos-zone { height: 38%; background: #121212; padding: 10px; overflow-y: auto; color: white; }
+    .related-videos-zone { height: 35%; background: #121212; padding: 10px; overflow-y: auto; color: white; }
     .related-title { font-size: 0.85rem; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
     .related-list { display: flex; gap: 8px; overflow-x: auto; }
     .related-item { min-width: 95px; height: 115px; background: #222; border-radius: 8px; position: relative; overflow: hidden; cursor: pointer; flex-shrink: 0; }
+    .related-item video { width: 100%; height: 100%; object-fit: cover; }
 
-    /* Bottom Cart */
+    /* Bottom Cart Bar */
     .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #121212; color: white; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; max-width: 600px; margin: auto; border-top: 2px solid var(--primary); z-index: 999; }
     .btn-checkout { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; border: none; padding: 10px 18px; border-radius: 10px; font-weight: 700; cursor: pointer; }
   </style>
 </head>
 <body>
 
-  <header>🍌 MOMORE WHOLESALE - បោះដុំ</header>
+  <header>🍌 MOMORE - ហាងលក់រាយ</header>
 
   <div class="container">
     
-    <!-- Cover Banner -->
+    <!-- Cover Page / Banner -->
     <div class="hero-banner">
-      <div class="hero-title">MoMore Wholesale (តម្លៃបោះដុំ)</div>
-      <div class="hero-subtitle">ប្រព័ន្ធបញ្ជាទិញបោះដុំផ្ទាល់ពីរោងចក្រ គុណភាពខ្ពស់ និងអនាម័យស្តង់ដារ</div>
+      <div class="hero-title">ចេកបំពង & ដំណាប់ចេក ម៉ូម័រ</div>
+      <div class="hero-subtitle">សាច់ទន់ស្វិត ស្រួយឆ្ងាញ់ អនាម័យខ្ពស់</div>
     </div>
 
-    <!-- Video Feed Section -->
+    <!-- Video Gallery Zone -->
     <div class="video-section">
-      <div style="font-weight:700; font-size:0.95rem;">🎬 មើលវីដេអូស្តុក & Review (Pinterest Feed)</div>
+      <div style="font-weight:700; font-size:0.95rem;">🎬 មើលវីដេអូតាមផ្នែក (Video Feed)</div>
       <div class="video-tabs">
-        <button class="video-tab-btn active" onclick="filterVideos('all')">ទាំងអស់</button>
-        <button class="video-tab-btn" onclick="filterVideos('btob')">🤝 B-TO-B / ដៃគូ</button>
-        <button class="video-tab-btn" onclick="filterVideos('eat')">😋 វីដេអូញ៉ាំ</button>
-        <button class="video-tab-btn" onclick="filterVideos('prod')">🍌 ផលិតផល</button>
-        <button class="video-tab-btn" onclick="filterVideos('promo')">🔥 Promo</button>
-        <button class="video-tab-btn" onclick="filterVideos('rev')">⭐ Review Market</button>
-        <button class="video-tab-btn" onclick="filterVideos('proc')">🧼 សង្វាក់ផលិតកម្ម</button>
+        <button class="video-tab-btn active" onclick="filterVideos('all', event)">ទាំងអស់</button>
+        <button class="video-tab-btn" onclick="filterVideos('promo', event)">🔥 ប្រូម៉ូសិន (PROMO)</button>
+        <button class="video-tab-btn" onclick="filterVideos('eat', event)">😋 វីដេអូញ៉ាំ (EAT)</button>
+        <button class="video-tab-btn" onclick="filterVideos('prod', event)">🍌 ផលិតផល (PROD)</button>
+        <button class="video-tab-btn" onclick="filterVideos('b2b', event)">🤝 B2B / ដេប៉ូ</button>
+        <button class="video-tab-btn" onclick="filterVideos('rev', event)">⭐ Review ទីផ្សារ</button>
+        <button class="video-tab-btn" onclick="filterVideos('proc', event)">🧼 សង្វាក់ផលិតកម្ម</button>
       </div>
-      <div class="video-grid" id="video-feed"></div>
+
+      <div class="video-grid" id="video-feed">
+        <!-- Render វីដេអូដោយ JavaScript -->
+      </div>
     </div>
 
-    <!-- 📍 ចំណុចទី ១ ៖ ដំណាប់ចេក -->
-    <div class="section-title">🍌 ចំណុចទី ១ ៖ ដំណាប់ចេក (Banana Preserves)</div>
-    <div class="grid" id="preserves-grid"></div>
+    <!-- បញ្ជីផលិតផល -->
+    <div class="section-title">🍌 ផលិតផលលក់រាយ</div>
+    <div class="grid" id="retail-products"></div>
 
-    <!-- 📍 ចំណុចទី ២ ៖ ចេកបំពងស្រួយ -->
-    <div class="section-title">🍿 ចំណុចទី ២ ៖ ចេកបំពងស្រួយ (Crisp Bananas)</div>
-    <div class="grid" id="crisp-grid"></div>
-
-    <!-- 📍 ចំណុចទី ៣ ៖ កន្លែងដឹកជញ្ជូន -->
-    <div class="section-title">🚚 ចំណុចទី ៣ ៖ ព័ត៌មានដឹកជញ្ជូន (Shipping Info)</div>
-    <div class="shipping-box">
-      <div class="shipping-title">📦 លក្ខខណ្ឌដឹកជញ្ជូនទំនិញបោះដុំ៖</div>
-      <div class="shipping-item">
-        <strong>🛵 ភ្នំពេញ (Phnom Penh)៖</strong> ដឹកជញ្ជូនតាមសេវាកម្ម Grab / Express Delivery ឬក្រុមការងារផ្ទាល់។
-      </div>
-      <div class="shipping-item">
-        <strong>🚌 តាមបណ្តាខេត្ត (Provinces)៖</strong> ផ្ញើតាមក្រុមហ៊ុនរថយន្តឈ្នួល ឬសេវាកម្មដឹកជញ្ជូនដែលអតិថិជនស្នើសុំ (តាក់ស៊ី / វីរៈបុនថាំង / កំពង់សោម ផ្សេងៗ)។
-      </div>
-      <div style="font-size: 0.8rem; color: #777; margin-top: 5px;">* ក្រុមការងារនឹងទំនាក់ទំនងសម្រួលថ្លៃសេវាដឹកជញ្ជូនជាក់ស្តែង បន្ទាប់ពីទទួលបានការបញ្ជាទិញ។</div>
-    </div>
-
-  </div>
-
-  <!-- Detail Pop-up Modal (បង្ហាញព័ត៌មានលម្អិត + អត្ថប្រយោជន៍) -->
-  <div class="detail-modal" id="detailModal">
-    <div class="detail-content">
-      <span class="detail-close" onclick="closeDetailModal()">&times;</span>
-      <h3 id="modal-p-title" style="color:var(--primary-dark); margin-bottom:6px;"></h3>
-      <div class="benefit-tag" id="modal-p-benefit"></div>
-      
-      <div style="margin: 10px 0; font-size:0.88rem; line-height:1.5;" id="modal-p-desc"></div>
-      
-      <div style="font-weight:700; margin-top:12px; font-size:0.9rem;">✨ រសជាតិ & លក្ខណៈពិសេស៖</div>
-      <p style="font-size:0.85rem; color:#555;" id="modal-p-flavor"></p>
-
-      <div style="font-weight:700; margin-top:12px; font-size:0.9rem;">📦 ជម្រើសតម្លៃតាមកញ្ចប់/ទំហំ៖</div>
-      <ul style="font-size:0.85rem; color:#333; padding-left:18px; margin-top:4px;" id="modal-p-packs"></ul>
-    </div>
   </div>
 
   <!-- Video Player Modal -->
@@ -261,147 +187,82 @@
       </div>
 
       <div class="related-videos-zone">
-        <div class="related-title">📺 វីដេអូពាក់ព័ន្ធបន្តបន្ទាប់៖</div>
+        <div class="related-title">📺 វីដេអូផ្សេងទៀតក្នុងផ្នែកនេះ៖</div>
         <div class="related-list" id="related-list"></div>
       </div>
     </div>
   </div>
 
+  <!-- Cart Bar -->
   <div class="cart-bar">
     <div>
-      <div style="font-size:0.75rem; color:#aaa;">សរុបសាច់ប្រាក់បោះដុំ:</div>
+      <div style="font-size:0.75rem; color:#aaa;">សរុបសាច់ប្រាក់:</div>
       <div style="font-size:1.2rem; font-weight:700; color:var(--primary);"><span id="total-val">0</span> ៛</div>
     </div>
-    <button class="btn-checkout" onclick="alert('ប្រព័ន្ធបោះដុំ៖ បញ្ជូនការបញ្ជាទិញ!')">កម៉្មង់បោះដុំ</button>
+    <button class="btn-checkout" onclick="alert('ប្រព័ន្ធលក់រាយ៖ សូមបំពេញព័ត៌មានដឹកជញ្ជូន!')">បញ្ជាទិញរាយ</button>
   </div>
 
   <script>
+    // បញ្ជីវីដេអូទាំងអស់ដែលដកស្រង់ចេញពី File ជាក់ស្តែងរបស់អ្នក
     const videoData = [
-      { id: 'b1', cat: 'btob', title: 'B-TO-B 001', src: 'B-TO-B-001.mp4' },
-      { id: 'b2', cat: 'btob', title: 'B-TO-B 002', src: 'B-TO-B-002.mp4' },
-      { id: 'b3', cat: 'btob', title: 'B-TO-B 003', src: 'B-TO-B-003.mp4' },
-      { id: 'b4', cat: 'btob', title: 'B-TO-B 004', src: 'B-TO-B-004.mp4' },
-      { id: 'e1', cat: 'eat', title: 'Mukbang 001', src: 'EAT-MUKBANG-001.mp4' },
-      { id: 'e2', cat: 'eat', title: 'Mukbang 002', src: 'EAT-MUKBANG-002.mp4' },
-      { id: 'e3', cat: 'eat', title: 'Mukbang 003', src: 'EAT-MUKBANG-003.mp4' },
-      { id: 'e4', cat: 'eat', title: 'Mukbang 004', src: 'EAT-MUKBANG-004.mp4' },
-      { id: 'e5', cat: 'eat', title: 'Mukbang 005', src: 'EAT-MUKBANG-005.mp4' },
-      { id: 'pr1', cat: 'proc', title: 'Process 001', src: 'PROC-001.mp4' },
-      { id: 'p1', cat: 'prod', title: 'Product 001', src: 'PROD-001.mp4' },
-      { id: 'p2', cat: 'prod', title: 'Product 002', src: 'PROD-002.mp4' },
-      { id: 'p3', cat: 'prod', title: 'Product 003', src: 'PROD-003.mp4' },
-      { id: 'p4', cat: 'prod', title: 'Product 004', src: 'PROD-004.mp4' },
-      { id: 'p5', cat: 'prod', title: 'Product 005', src: 'PROD-005.mp4' },
-      { id: 'pm1', cat: 'promo', title: 'Promo 001', src: 'PROMO-001.mp4' },
-      { id: 'pm2', cat: 'promo', title: 'Promo 002', src: 'PROMO-002.mp4' },
-      { id: 'pm3', cat: 'promo', title: 'Promo 003', src: 'PROMO-003.mp4' },
-      { id: 'pm4', cat: 'promo', title: 'Promo 004', src: 'PROMO-004.mp4' },
-      { id: 'pm5', cat: 'promo', title: 'Promo 005', src: 'PROMO-005.mp4' },
-      { id: 'pm6', cat: 'promo', title: 'Promo 006', src: 'PROMO-006.mp4' },
-      { id: 'pm7', cat: 'promo', title: 'Promo 007', src: 'PROMO-007.mp4' },
-      { id: 'pm8', cat: 'promo', title: 'Promo 008', src: 'PROMO-008.mp4' },
-      { id: 'pm9', cat: 'promo', title: 'Promo 009', src: 'PROMO-009.mp4' },
-      { id: 'rm1', cat: 'rev', title: 'Review Market 001', src: 'REV-MARKET-001.mp4' },
-      { id: 'rm2', cat: 'rev', title: 'Review Market 002', src: 'REV-MARKET-002.mp4' },
-      { id: 'rm3', cat: 'rev', title: 'Review Market 003', src: 'REV-MARKET-003.mp4' }
+      // PROMO Videos
+      { id: 'promo1', cat: 'promo', title: 'PROMO 001', src: 'PROMO-001.mp4' },
+      { id: 'promo2', cat: 'promo', title: 'PROMO 002', src: 'PROMO-002.mp4' },
+      { id: 'promo3', cat: 'promo', title: 'PROMO 003', src: 'PROMO-003.mp4' },
+      { id: 'promo4', cat: 'promo', title: 'PROMO 004', src: 'PROMO-004.mp4' },
+      { id: 'promo5', cat: 'promo', title: 'PROMO 005', src: 'PROMO-005.mp4' },
+      { id: 'promo6', cat: 'promo', title: 'PROMO 006', src: 'PROMO-006.mp4' },
+      { id: 'promo7', cat: 'promo', title: 'PROMO 007', src: 'PROMO-007.mp4' },
+      { id: 'promo8', cat: 'promo', title: 'PROMO 008', src: 'PROMO-008.mp4' },
+      { id: 'promo9', cat: 'promo', title: 'PROMO 009', src: 'PROMO-009.mp4' },
+
+      // EAT / Mukbang Videos
+      { id: 'eat1', cat: 'eat', title: 'EAT Mukbang 1', src: 'EAT-MUKBANG-001.mp4' },
+      { id: 'eat2', cat: 'eat', title: 'EAT Mukbang 2', src: 'EAT-MUKBANG-002.mp4' },
+      { id: 'eat3', cat: 'eat', title: 'EAT Mukbang 3', src: 'EAT-MUKBANG-003.mp4' },
+      { id: 'eat4', cat: 'eat', title: 'EAT Mukbang 4', src: 'EAT-MUKBANG-004.mp4' },
+      { id: 'eat5', cat: 'eat', title: 'EAT Mukbang 5', src: 'EAT-MUKBANG-005.mp4' },
+
+      // PROD / Product Showcase Videos
+      { id: 'prod1', cat: 'prod', title: 'PROD 001', src: 'PROD-001.mp4' },
+      { id: 'prod2', cat: 'prod', title: 'PROD 002', src: 'PROD-002.mp4' },
+      { id: 'prod3', cat: 'prod', title: 'PROD 003', src: 'PROD-003.mp4' },
+      { id: 'prod4', cat: 'prod', title: 'PROD 004', src: 'PROD-004.mp4' },
+      { id: 'prod5', cat: 'prod', title: 'PROD 005', src: 'PROD-005.mp4' },
+
+      // B2B Videos
+      { id: 'b2b1', cat: 'b2b', title: 'B-TO-B 001', src: 'B-TO-B-001.mp4' },
+      { id: 'b2b2', cat: 'b2b', title: 'B-TO-B 002', src: 'B-TO-B-002.mp4' },
+      { id: 'b2b3', cat: 'b2b', title: 'B-TO-B 003', src: 'B-TO-B-003.mp4' },
+      { id: 'b2b4', cat: 'b2b', title: 'B-TO-B 004', src: 'B-TO-B-004.mp4' },
+
+      // REV / Market Review Videos
+      { id: 'rev1', cat: 'rev', title: 'REV Market 1', src: 'REV-MARKET-001.mp4' },
+      { id: 'rev2', cat: 'rev', title: 'REV Market 2', src: 'REV-MARKET-002.mp4' },
+      { id: 'rev3', cat: 'rev', title: 'REV Market 3', src: 'REV-MARKET-003.mp4' },
+
+      // Process Videos
+      { id: 'proc1', cat: 'proc', title: 'PROC 001', src: 'PROC-001.mp4' }
     ];
 
-    // 📍 ចំណុចទី ១៖ ដំណាប់ចេក (មានអត្ថប្រយោជន៍ + រសជាតិ + តម្លៃកញ្ចប់ផ្សេងៗគ្នា)
-    const preservesProducts = [
-      {
-        id: "D_ORIG",
-        type: "ដំណាប់ចេក",
-        name: "ដំណាប់ចេក រស់ជាតិដើម",
-        flavor: "ផ្អែមឆ្ងាញ់ធម្មជាតិ ទន់ល្មួត មិនស្ករ",
-        benefit: "🌿 ធម្មជាតិ 100% គ្មានសារធាតុគីមីរក្សាទុកបានយូរ ផ្តល់ថាមពល",
-        desc: "ផលិតចេញពីចេកណាំវ៉ាទុំធម្មជាតិ ឆ្លងកាត់ការសម្ងួតតាមស្តង់ដារអនាម័យ ផ្តល់រសជាតិផ្អែមឆ្ងាញ់ទន់ល្មួតជាប់ចិត្ត។",
-        img: "D_ORIG200.jpg",
-        packs: [
-          { size: "កញ្ចប់ 200g", price: 8000 },
-          { size: "ប្រអប់ 500g", price: 18000 },
-          { size: "កញ្ចប់ធំ 1kg", price: 34000 }
-        ]
-      },
-      {
-        id: "D_HONEY",
-        type: "ដំណាប់ចេក",
-        name: "ដំណាប់ចេក ស្រោចទឹកឃ្មុំ",
-        flavor: "ឈ្ងុយទឹកឃ្មុំព្រៃ ផ្អែមមុត ឆ្ងាញ់ពិសេស",
-        benefit: "🍯 ជំនួយបំពង់ក ផ្តល់ជាតិវីតាមីន និងថាមពលលឿន",
-        desc: "បន្ថែមរសជាតិកាន់តែពិសេសជាមួយទឹកឃ្មុំសុទ្ធ ធ្វើឱ្យសាច់ចេកកាន់តែទន់ និងមានក្លិនឈ្ងុយឆ្ងាញ់។",
-        img: "D_ORIG200.jpg",
-        packs: [
-          { size: "កញ្ចប់ 200g", price: 9500 },
-          { size: "ប្រអប់ 500g", price: 21000 }
-        ]
-      },
-      {
-        id: "D_SESAME",
-        type: "ដំណាប់ចេក",
-        name: "ដំណាប់ចេក រ៉កល្ងស",
-        flavor: "ឈ្ងុយល្ងលីង ផ្អែមល្មម សាច់ទន់",
-        benefit: "🌾 មានជាតិកាល់ស្យូមពីល្ង និងប្រេងរ៉ែធម្មជាតិ",
-        desc: "ដំណាប់ចេកស្រោចល្ងសលីងឈ្ងុយ ញ៉ាំហើយជួយឱ្យរាងកាយទទួលបានអាហារូបត្ថម្ភបន្ថែម។",
-        img: "D_ORIG200.jpg",
-        packs: [
-          { size: "កញ្ចប់ 200g", price: 9000 },
-          { size: "ប្រអប់ 500g", price: 20000 }
-        ]
-      }
-    ];
-
-    // 📍 ចំណុចទី ២៖ ចេកបំពងស្រួយ (មានអត្ថប្រយោជន៍ + រសជាតិ + តម្លៃកញ្ចប់ផ្សេងៗគ្នា)
-    const crispProducts = [
-      {
-        id: "C_SPIC",
-        type: "ចេកបំពងស្រួយ",
-        name: "ចេកបំពង ម្ទេសខ្ទឹម",
-        flavor: "ហឹរតិចៗ ឈ្ងុយខ្ទឹមស និងស្លឹកក្រូចសើច",
-        benefit: "🌶️ បើកវិទ្យុសកម្មរសជាតិ ញ៉ាំជក់មាត់ គ្មានក្លិនប្រេង",
-        desc: "ចេកបន្ទះស្តើងស្រួយស្រែប បំពងតាមរូបមន្តពិសេស រ៉កគ្រឿងម្ទេសខ្ទឹមហឹរល្មមញ៉ាំ។",
-        img: "C_SPIC200.jpg",
-        packs: [
-          { size: "កញ្ចប់ 100g", price: 6000 },
-          { size: "កញ្ចប់ 200g", price: 12000 },
-          { size: "កំប៉ុង 300g", price: 17000 }
-        ]
-      },
-      {
-        id: "C_CHES",
-        type: "ចេកបំពងស្រួយ",
-        name: "ចេកបំពង ឈីស ដោះគោ",
-        flavor: "ឈ្ងុយឈីស ផ្អែមឡែមៗ ស្រួយខ្លាំង",
-        benefit: "🧀 រសជាតិពេញនិយមសម្រាប់កុមារ និងយុវវ័យ",
-        desc: "រ៉កម្សៅឈីសគុណភាពខ្ពស់ ផ្តល់រសជាតិឈ្ងុយឆ្ងាញ់ប្លែកមាត់។",
-        img: "C_CHES100.jpg",
-        packs: [
-          { size: "កញ្ចប់ 100g", price: 5000 },
-          { size: "កញ្ចប់ 200g", price: 11000 },
-          { size: "កំប៉ុង 300g", price: 16000 }
-        ]
-      },
-      {
-        id: "C_BBQ",
-        type: "ចេកបំពងស្រួយ",
-        name: "ចេកបំពង រសជាតិ បាប៊ីឃ្យូ",
-        flavor: "ឈ្ងុយបាប៊ីឃ្យូ អាំង  đậm đà",
-        benefit: "🔥 អាហារសម្រន់ដ៏ល្អឥតខ្ចោះពេលទស្សនាភាពយន្ត ឬជួបជុំ",
-        desc: "រសជាតិបាប៊ីឃ្យូ đậm đà ជ្រៀបចូលសាច់ចេកបំពងស្រួយ។",
-        img: "C_SPIC200.jpg",
-        packs: [
-          { size: "កញ្ចប់ 150g", price: 8500 },
-          { size: "កញ្ចប់ 250g", price: 13500 }
-        ]
-      }
-    ];
+    // ទិន្នន័យផលិតផល
+    const retailProducts = {
+      R1: { type: "ចេកបំពងស្រួយ", flavor: "ឈីស ដោះគោ", price: 5000, size: "100g", img: "cheese100g.jpg" },
+      R2: { type: "ចេកបំពងស្រួយ", flavor: "ម្ទេសខ្ទឹម", price: 14000, size: "200g", img: "garlic200g.jpg" },
+      R3: { type: "ចេកបំពងស្រួយ", flavor: "ម្ទេសខ្ទឹម", price: 5000, size: "100g", img: "garlic100g.jpg" },
+      R4: { type: "ចេកបំពងស្រួយ", flavor: "រសជាតិបាប៊ីឃ្យូ BBQ", price: 10000, size: "200g", img: "bbq200g.jpg" }
+    };
 
     function renderVideoFeed(filter = 'all') {
       const feed = document.getElementById('video-feed');
       feed.innerHTML = '';
+      
       const filtered = filter === 'all' ? videoData : videoData.filter(v => v.cat === filter);
+      
       filtered.forEach(v => {
         feed.innerHTML += `
           <div class="video-card-thumb" onclick="openVideoPlayer('${v.id}')">
+            <video src="${v.src}#t=0.5" preload="metadata" muted></video>
             <div class="play-icon-center">▶️</div>
             <div class="video-card-title">${v.title}</div>
           </div>
@@ -409,66 +270,59 @@
       });
     }
 
-    function filterVideos(cat) {
+    function filterVideos(cat, event) {
       document.querySelectorAll('.video-tab-btn').forEach(b => b.classList.remove('active'));
-      event.target.classList.add('active');
+      if(event) event.target.classList.add('active');
       renderVideoFeed(cat);
     }
 
     function openVideoPlayer(videoId) {
       const v = videoData.find(item => item.id === videoId);
       if (!v) return;
+
       const player = document.getElementById('activeVideo');
       player.src = v.src;
       
+      // បង្ហាញ Related Videos នៅក្នុង Category ដូចគ្នា
       const relatedList = document.getElementById('related-list');
       relatedList.innerHTML = '';
-      videoData.filter(item => item.id !== videoId).forEach(rel => {
+      
+      videoData.filter(item => item.cat === v.cat && item.id !== videoId).forEach(rel => {
         relatedList.innerHTML += `
           <div class="related-item" onclick="openVideoPlayer('${rel.id}')">
-            <div style="position:absolute; top:35%; left:38%; font-size:1.2rem; color:#fff;">▶️</div>
+            <video src="${rel.src}#t=0.5" preload="metadata" muted></video>
             <div style="position:absolute; bottom:0; background:rgba(0,0,0,0.85); font-size:0.6rem; color:#fff; width:100%; text-align:center; padding:2px;">${rel.title}</div>
           </div>
         `;
       });
 
       document.getElementById('videoModal').style.display = 'flex';
-      player.play().catch(e => console.log("Missing video file"));
+      player.play().catch(e => console.log("មិនអាច Play វីដេអូបានទេ"));
     }
 
     function closeVideoModal() {
-      document.getElementById('activeVideo').pause();
+      const player = document.getElementById('activeVideo');
+      player.pause();
       document.getElementById('videoModal').style.display = 'none';
     }
 
-    function renderProductGrid(items, targetContainerId) {
-      const container = document.getElementById(targetContainerId);
+    function renderRetailProducts() {
+      const container = document.getElementById('retail-products');
       container.innerHTML = '';
-      
-      items.forEach(p => {
-        let optionsHtml = '';
-        p.packs.forEach((pack, idx) => {
-          optionsHtml += `<option value="${pack.price}">${pack.size} - ${pack.price.toLocaleString()} ៛</option>`;
-        });
-
+      for (let key in retailProducts) {
+        let p = retailProducts[key];
         container.innerHTML += `
           <div class="product-card">
-            <div class="media-box" onclick="showDetail('${p.id}', '${targetContainerId}')">
-              <span class="btn-detail-badge">ℹ️ មើលអត្ថប្រយោជន៍</span>
-              <img src="${p.img}" onerror="this.src='D_ORIG200.jpg'">
+            <div class="media-box">
+              <img src="${p.img}" onerror="this.src='https://via.placeholder.com/200x200/121212/f39c12?text=MoMore'">
             </div>
             <div class="product-info">
               <div class="row-1-type">${p.type}</div>
-              <div class="row-2-flavor">${p.name}</div>
-              
-              <select class="pack-select" id="select-${p.id}" onchange="updatePrice('${p.id}')">
-                ${optionsHtml}
-              </select>
-
+              <div class="row-2-flavor">${p.flavor}</div>
               <div class="row-3-price">
-                <span class="price-tag" id="price-disp-${p.id}">${p.packs[0].price.toLocaleString()} ៛</span>
+                <span class="price-tag">${p.price.toLocaleString()} ៛</span>
+                <span class="weight-tag">(${p.size})</span>
               </div>
-              
               <div class="quantity-control">
                 <button class="btn-qty">-</button>
                 <span style="font-weight:700;">0</span>
@@ -477,42 +331,12 @@
             </div>
           </div>
         `;
-      });
+      }
     }
 
-    function updatePrice(pId) {
-      const sel = document.getElementById(`select-${pId}`);
-      const priceDisp = document.getElementById(`price-disp-${pId}`);
-      const selectedPrice = parseInt(sel.value);
-      priceDisp.innerText = selectedPrice.toLocaleString() + ' ៛';
-    }
-
-    function showDetail(pId, category) {
-      const list = category === 'preserves-grid' ? preservesProducts : crispProducts;
-      const p = list.find(item => item.id === pId);
-      if (!p) return;
-
-      document.getElementById('modal-p-title').innerText = p.name;
-      document.getElementById('modal-p-benefit').innerText = p.benefit;
-      document.getElementById('modal-p-desc').innerText = p.desc;
-      document.getElementById('modal-p-flavor').innerText = p.flavor;
-
-      let packListHtml = '';
-      p.packs.forEach(pack => {
-        packListHtml += `<li><strong>${pack.size}:</strong> ${pack.price.toLocaleString()} ៛</li>`;
-      });
-      document.getElementById('modal-p-packs').innerHTML = packListHtml;
-
-      document.getElementById('detailModal').style.display = 'flex';
-    }
-
-    function closeDetailModal() {
-      document.getElementById('detailModal').style.display = 'none';
-    }
-
+    // Run Initial State
     renderVideoFeed();
-    renderProductGrid(preservesProducts, 'preserves-grid'); // ចំណុចទី ១
-    renderProductGrid(crispProducts, 'crisp-grid');       // ចំណុចទី ២
+    renderRetailProducts();
   </script>
 </body>
 </html>
