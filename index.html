@@ -8,165 +8,172 @@
   <!-- Google Fonts: Kantumruy Pro & Moul -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&family=Moul&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700;800&family=Moul&display=swap" rel="stylesheet">
   
   <style>
     :root {
       --primary: #f39c12;        /* Vibrant Orange */
       --primary-dark: #d35400;   /* Deep Orange */
       --dark-bg: #121212;
-      --light-bg: #f5f6fa;
+      --light-bg: #f8f9fa;
       --card-bg: #ffffff;
-      --text-dark: #1a1a1a;
-      --text-gray: #666666;
+      --text-dark: #111111;
+      --text-gray: #555555;
       --price-red: #e74c3c;     
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Kantumruy Pro', sans-serif; }
-    body { background-color: var(--light-bg); color: var(--text-dark); padding-bottom: 110px; }
+    body { background-color: var(--light-bg); color: var(--text-dark); padding-bottom: 120px; font-size: 15px; }
     
     /* Header */
     header { 
       background: linear-gradient(135deg, #121212 0%, #2c2c2c 100%); 
       color: var(--primary); 
-      padding: 14px; 
+      padding: 16px; 
       text-align: center; 
-      font-weight: 700; 
-      font-size: 1.2rem; 
+      font-weight: 800; 
+      font-size: 1.35rem; 
       position: sticky; 
       top: 0; 
       z-index: 100; 
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      border-bottom: 2px solid var(--primary);
+      border-bottom: 3px solid var(--primary);
     }
     
-    .container { max-width: 600px; margin: auto; padding: 10px; }
+    .container { max-width: 600px; margin: auto; padding: 12px; }
 
-    /* Hero Banner + Daily Check-in Integrated */
+    /* Hero Banner */
     .hero-banner {
       width: 100%;
-      background: linear-gradient(135deg, #1e1e1e 0%, #2d251e 100%);
-      border-radius: 16px;
-      padding: 18px 14px;
-      margin-bottom: 15px;
-      border: 1.5px solid var(--primary);
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d251e 100%);
+      border-radius: 18px;
+      padding: 20px 16px;
+      margin-bottom: 18px;
+      border: 2px solid var(--primary);
       color: #ffffff;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
     }
     .hero-banner h1 {
-      font-size: 1.25rem;
+      font-size: 1.45rem;
       color: var(--primary);
-      margin-bottom: 4px;
-      font-weight: 700;
+      margin-bottom: 6px;
+      font-weight: 800;
       text-align: center;
     }
     .hero-banner p {
-      font-size: 0.8rem;
-      color: #dddddd;
-      line-height: 1.4;
+      font-size: 0.92rem;
+      color: #eeeeee;
+      line-height: 1.5;
       text-align: center;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
+      font-weight: 500;
     }
 
     /* Check-in Inside Hero */
     .checkin-box {
-      background: rgba(0, 0, 0, 0.4);
-      border-radius: 12px;
-      padding: 12px;
-      border: 1px dashed var(--primary);
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 14px;
+      padding: 14px;
+      border: 1.5px dashed var(--primary);
     }
-    .reward-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-    .reward-title { font-weight: 700; font-size: 0.9rem; color: var(--primary); }
-    .coin-badge { background: var(--primary); color: #121212; padding: 3px 8px; border-radius: 20px; font-weight: 700; font-size: 0.8rem; }
+    .reward-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .reward-title { font-weight: 700; font-size: 1rem; color: var(--primary); }
+    .coin-badge { background: var(--primary); color: #121212; padding: 4px 12px; border-radius: 20px; font-weight: 800; font-size: 0.9rem; }
     
-    .checkin-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-top: 8px; text-align: center; }
-    .day-box { background: #2a2a2a; border-radius: 6px; padding: 5px 2px; border: 1px solid #444; font-size: 0.68rem; color: #ccc; }
-    .day-box.active { background: var(--primary); color: #121212; border-color: var(--primary); font-weight: 700; }
-    .day-box .pts { font-size: 0.6rem; color: #aaa; display: block; }
-    .day-box.active .pts { color: #121212; font-weight: 600; }
+    .checkin-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; margin-top: 10px; text-align: center; }
+    .day-box { background: #2a2a2a; border-radius: 8px; padding: 8px 2px; border: 1px solid #444; font-size: 0.75rem; color: #ccc; font-weight: 600; }
+    .day-box.active { background: var(--primary); color: #121212; border-color: var(--primary); font-weight: 800; }
+    .day-box .pts { font-size: 0.65rem; color: #aaa; display: block; margin-top: 2px; }
+    .day-box.active .pts { color: #121212; font-weight: 700; }
     
-    .btn-checkin { width: 100%; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; border: none; padding: 8px; border-radius: 8px; font-weight: 700; font-size: 0.85rem; margin-top: 10px; cursor: pointer; }
+    .btn-checkin { width: 100%; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; border: none; padding: 12px; border-radius: 10px; font-weight: 800; font-size: 0.95rem; margin-top: 12px; cursor: pointer; transition: 0.2s; }
     .btn-checkin:disabled { background: #444; color: #888; cursor: not-allowed; }
 
-    /* Video Feed Section (Middle Area) */
+    /* Video Feed Section (Large Thumbnails) */
     .video-gallery-section {
       background: #ffffff;
-      border-radius: 16px;
-      padding: 14px;
-      margin-bottom: 15px;
+      border-radius: 18px;
+      padding: 16px;
+      margin-bottom: 20px;
       border: 1px solid #e0e0e0;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
     }
-    .gallery-title { font-weight: 700; font-size: 0.95rem; color: #121212; margin-bottom: 10px; }
-    .filter-scroll { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 10px; scrollbar-width: none; }
+    .gallery-title { font-weight: 800; font-size: 1.1rem; color: #121212; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+    
+    .filter-scroll { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 12px; scrollbar-width: none; }
     .filter-scroll::-webkit-scrollbar { display: none; }
     
     .chip-btn {
-      background: #f1f2f6; border: 1px solid #ddd; border-radius: 20px; padding: 5px 12px; font-size: 0.75rem; font-weight: 600; white-space: nowrap; cursor: pointer; color: #444;
+      background: #f1f2f6; border: 1.5px solid #ddd; border-radius: 20px; padding: 7px 16px; font-size: 0.85rem; font-weight: 700; white-space: nowrap; cursor: pointer; color: #444; transition: 0.2s;
     }
-    .chip-btn.active { background: var(--primary); color: #121212; border-color: var(--primary); font-weight: 700; }
+    .chip-btn.active { background: var(--primary); color: #121212; border-color: var(--primary); font-weight: 800; }
 
-    .video-cards-scroll { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px; }
-    .video-card-item { flex: 0 0 130px; background: #121212; border-radius: 10px; overflow: hidden; position: relative; cursor: pointer; border: 1px solid #333; }
-    .video-card-thumb { width: 100%; height: 160px; object-fit: cover; display: block; }
-    .video-play-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 32px; height: 32px; background: rgba(243, 156, 18, 0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #121212; font-size: 0.8rem; font-weight: bold; }
-    .video-card-title { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); color: #fff; padding: 12px 4px 4px 4px; font-size: 0.7rem; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    /* Large Thumbnail Scroll Bar */
+    .video-cards-scroll { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 8px; scrollbar-width: thin; }
+    .video-card-item { flex: 0 0 165px; background: #121212; border-radius: 14px; overflow: hidden; position: relative; cursor: pointer; border: 1.5px solid #333; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
+    .video-card-thumb { width: 100%; height: 220px; object-fit: cover; display: block; }
+    .video-play-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 42px; height: 42px; background: rgba(243, 156, 18, 0.95); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #121212; font-size: 1.1rem; font-weight: bold; box-shadow: 0 2px 8px rgba(0,0,0,0.4); }
+    .video-card-title { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.95), transparent); color: #fff; padding: 16px 6px 6px 6px; font-size: 0.78rem; font-weight: 700; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
     /* Notice Box */
-    .notice-box { background: #fff8f0; border-left: 4px solid var(--primary); padding: 10px 12px; border-radius: 8px; margin-bottom: 15px; font-size: 0.8rem; line-height: 1.4; }
+    .notice-box { background: #fff8f0; border-left: 5px solid var(--primary); padding: 14px 16px; border-radius: 12px; margin-bottom: 20px; font-size: 0.88rem; line-height: 1.6; border: 1px solid #ffe8cc; }
 
-    /* Section Titles */
-    .section-title-box { margin: 18px 0 10px 0; padding: 8px 12px; background: linear-gradient(135deg, #121212 0%, #2a2a2a 100%); border-radius: 8px; border-left: 4px solid var(--primary); color: #ffffff; }
-    .sec-title-main { font-size: 1.05rem; font-weight: 700; color: var(--primary); }
-    .sec-title-sub { font-size: 0.75rem; color: #dddddd; }
+    /* Section Header Styles (ចំណុច ១, ២, ៣) */
+    .section-title-box { margin: 24px 0 14px 0; padding: 12px 16px; background: linear-gradient(135deg, #121212 0%, #2a2a2a 100%); border-radius: 12px; border-left: 6px solid var(--primary); color: #ffffff; box-shadow: 0 3px 8px rgba(0,0,0,0.1); }
+    .sec-title-main { font-size: 1.25rem; font-weight: 800; color: var(--primary); }
+    .sec-title-sub { font-size: 0.85rem; color: #dddddd; margin-top: 2px; font-weight: 500; }
 
     /* Grid & Product Card Layout */
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .product-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between; border: 1px solid #e0e0e0; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .product-card { background: var(--card-bg); border-radius: 14px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06); display: flex; flex-direction: column; justify-content: space-between; border: 1.5px solid #e2e8f0; }
 
     .media-box { width: 100%; height: 210px; background-color: #121212; position: relative; overflow: hidden; cursor: pointer; }
     .media-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
     
-    .play-video-badge { position: absolute; top: 6px; right: 6px; background: rgba(18, 18, 18, 0.85); color: #fff; padding: 3px 8px; border-radius: 12px; font-size: 0.68rem; font-weight: 700; border: 1px solid var(--primary); z-index: 2; }
+    .play-video-badge { position: absolute; top: 8px; right: 8px; background: rgba(18, 18, 18, 0.88); color: #fff; padding: 4px 10px; border-radius: 14px; font-size: 0.75rem; font-weight: 700; border: 1px solid var(--primary); z-index: 2; }
 
-    .product-info { padding: 8px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
-    .row-1-type { font-size: 0.78rem; color: var(--text-gray); font-weight: 600; }
-    .row-2-flavor { font-size: 0.98rem; font-weight: 700; color: #121212; margin: 2px 0 4px 0; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .row-3-price-weight { display: flex; align-items: baseline; gap: 4px; margin-bottom: 6px; }
-    .price-tag { font-size: 1.15rem; font-weight: 700; color: var(--price-red); }
-    .weight-tag { font-size: 0.78rem; font-weight: 600; color: #777; }
+    .product-info { padding: 10px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
+    .row-1-type { font-size: 0.82rem; color: var(--text-gray); font-weight: 600; }
+    .row-2-flavor { font-size: 1.05rem; font-weight: 800; color: #121212; margin: 2px 0 6px 0; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .row-3-price-weight { display: flex; align-items: baseline; gap: 4px; margin-bottom: 8px; }
+    .price-tag { font-size: 1.2rem; font-weight: 800; color: var(--price-red); }
+    .weight-tag { font-size: 0.82rem; font-weight: 600; color: #666; }
     
-    .quantity-control { display: flex; align-items: center; justify-content: space-between; background: #f1f2f6; border-radius: 6px; padding: 2px 4px; }
-    .btn-qty { width: 28px; height: 28px; background: white; border: 1px solid #ccc; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; color: var(--primary-dark); }
-    .qty-number { font-weight: 700; font-size: 0.9rem; color: #121212; }
+    .quantity-control { display: flex; align-items: center; justify-content: space-between; background: #f1f2f6; border-radius: 8px; padding: 4px 6px; }
+    .btn-qty { width: 32px; height: 32px; background: white; border: 1px solid #ccc; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; color: var(--primary-dark); }
+    .qty-number { font-weight: 800; font-size: 1rem; color: #121212; }
     
-    /* Order Form Section */
-    .form-section { background: #ffffff; padding: 12px; border-radius: 12px; margin-top: 10px; border: 1px solid #eaeaea; }
-    .form-group { margin-bottom: 10px; }
-    .form-group label { display: block; font-weight: 700; font-size: 0.82rem; margin-bottom: 4px; color: #121212; }
-    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 8px 10px; border: 1.5px solid #ccc; border-radius: 6px; font-size: 0.85rem; background: #fafafa; }
-    .required-tag { color: var(--price-red); }
+    /* Expanded Order Form Section (ច្បាស់ៗ ធំៗ) */
+    .form-section { background: #ffffff; padding: 18px; border-radius: 16px; margin-top: 12px; border: 1.5px solid #e0e0e0; box-shadow: 0 4px 14px rgba(0,0,0,0.05); }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-weight: 700; font-size: 0.98rem; margin-bottom: 6px; color: #121212; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 14px; border: 1.5px solid #bbb; border-radius: 10px; font-size: 0.95rem; background: #fafafa; font-weight: 500; }
+    .form-group input:focus, .form-group select:focus { border-color: var(--primary); outline: none; background: #fff; }
+    .required-tag { color: var(--price-red); font-weight: bold; }
+
+    /* Expanded KHQR Container */
+    .qr-container { text-align: center; margin-top: 14px; padding: 16px; background: #1a1a1a; border-radius: 14px; border: 2px dashed var(--primary); color: white; }
+    .qr-title { font-weight: 800; color: var(--primary); font-size: 1.15rem; margin-bottom: 4px; }
+    .qr-sub { font-size: 0.85rem; color: #ddd; margin-bottom: 10px; }
+    .qr-image { width: 210px; height: 210px; object-fit: contain; margin: 8px auto; display: block; border-radius: 10px; background: #fff; padding: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
 
     /* Fixed Bottom Cart Bar */
-    .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #121212; color: white; padding: 10px 14px; box-shadow: 0 -4px 20px rgba(0,0,0,0.25); display: flex; justify-content: space-between; align-items: center; max-width: 600px; margin: auto; border-top-left-radius: 14px; border-top-right-radius: 14px; border-top: 2px solid var(--primary); z-index: 999; }
-    .total-price { font-size: 1.2rem; font-weight: 700; color: var(--primary); }
-    .delivery-info { font-size: 0.7rem; color: #2ecc71; font-weight: 600; }
-    .btn-checkout { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 0.9rem; }
+    .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #121212; color: white; padding: 12px 16px; box-shadow: 0 -4px 20px rgba(0,0,0,0.3); display: flex; justify-content: space-between; align-items: center; max-width: 600px; margin: auto; border-top-left-radius: 16px; border-top-right-radius: 16px; border-top: 3px solid var(--primary); z-index: 999; }
+    .total-price { font-size: 1.35rem; font-weight: 800; color: var(--primary); }
+    .delivery-info { font-size: 0.78rem; color: #2ecc71; font-weight: 700; margin-top: 2px; }
+    .btn-checkout { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; border: none; padding: 10px 20px; border-radius: 10px; font-weight: 800; cursor: pointer; font-size: 0.98rem; }
     .btn-checkout:disabled { background: #555; color: #888; cursor: not-allowed; }
 
     /* Modal Styles */
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center; padding: 15px; }
-    .modal-content { width: 100%; max-width: 440px; background: #fff; border-radius: 14px; overflow: hidden; position: relative; max-height: 85vh; display: flex; flex-direction: column; }
-    .close-modal { position: absolute; top: 10px; right: 10px; color: white; font-size: 18px; font-weight: bold; cursor: pointer; z-index: 2001; background: rgba(0,0,0,0.7); width: 28px; height: 28px; border-radius: 50%; text-align: center; line-height: 26px; border: 1px solid var(--primary); }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.88); z-index: 2000; justify-content: center; align-items: center; padding: 15px; }
+    .modal-content { width: 100%; max-width: 460px; background: #fff; border-radius: 16px; overflow: hidden; position: relative; max-height: 88vh; display: flex; flex-direction: column; }
+    .close-modal { position: absolute; top: 12px; right: 12px; color: white; font-size: 20px; font-weight: bold; cursor: pointer; z-index: 2001; background: rgba(0,0,0,0.75); width: 32px; height: 32px; border-radius: 50%; text-align: center; line-height: 30px; border: 1px solid var(--primary); }
     
-    .detail-header-img { width: 100%; height: 220px; object-fit: cover; background: #121212; }
-    .detail-body { padding: 14px; overflow-y: auto; font-size: 0.82rem; line-height: 1.4; color: #333; }
-    .detail-title { font-size: 1.1rem; font-weight: 700; color: #121212; }
-    .detail-price { font-size: 1.15rem; font-weight: 700; color: var(--price-red); margin-bottom: 8px; }
-    .detail-sec-title { font-weight: 700; color: var(--primary-dark); margin-top: 8px; margin-bottom: 2px; }
-
-    .qr-container { text-align: center; margin-top: 10px; padding: 8px; background: #1e1e1e; border-radius: 8px; border: 1.5px dashed var(--primary); color: white; }
-    .qr-image { width: 170px; height: 170px; object-fit: contain; margin: 6px auto; display: block; border-radius: 6px; background: #fff; padding: 4px; }
+    .detail-header-img { width: 100%; height: 240px; object-fit: cover; background: #121212; }
+    .detail-body { padding: 16px; overflow-y: auto; font-size: 0.9rem; line-height: 1.5; color: #333; }
+    .detail-title { font-size: 1.2rem; font-weight: 800; color: #121212; }
+    .detail-price { font-size: 1.25rem; font-weight: 800; color: var(--price-red); margin-bottom: 10px; }
+    .detail-sec-title { font-weight: 800; color: var(--primary-dark); margin-top: 10px; margin-bottom: 3px; font-size: 0.95rem; }
   </style>
 </head>
 <body>
@@ -199,7 +206,7 @@
       </div>
     </div>
 
-    <!-- 2. VIDEO GALLERY / FEED SECTION (MIDDLE AREA) -->
+    <!-- 2. VIDEO GALLERY / FEED SECTION (គ្រប់ប្រភេទវីដេអូទាំងអស់) -->
     <div class="video-gallery-section">
       <div class="gallery-title">🎬 មើលវីដេអូស្ពត & Review (Video Feed)</div>
       
@@ -207,13 +214,14 @@
       <div class="filter-scroll">
         <button class="chip-btn active" onclick="filterVideos('ALL', this)">ទាំងអស់</button>
         <button class="chip-btn" onclick="filterVideos('B-TO-B', this)">🤝 B-TO-B / ដៃគូ</button>
-        <button class="chip-btn" onclick="filterVideos('MUKBANG', this)">😋 Mukbang</button>
+        <button class="chip-btn" onclick="filterVideos('EAT-MUKBANG', this)">😋 Mukbang</button>
+        <button class="chip-btn" onclick="filterVideos('PROC', this)">🏭 សង្វាក់ផលិតកម្ម</button>
         <button class="chip-btn" onclick="filterVideos('PROD', this)">🍌 ផលិតផល</button>
         <button class="chip-btn" onclick="filterVideos('PROMO', this)">🎁 ប្រូម៉ូសិន</button>
         <button class="chip-btn" onclick="filterVideos('REV-MARKET', this)">🏪 Review Market</button>
       </div>
 
-      <!-- Video Cards Track -->
+      <!-- Large Video Cards Track -->
       <div class="video-cards-scroll" id="video-feed-container"></div>
     </div>
 
@@ -274,14 +282,14 @@
         <input type="text" id="cust-branch" placeholder="ឧទាហរណ៍៖ សាខាខេត្តបាត់ដំបង ឬ ផ្ទះលេខ...">
       </div>
 
-      <!-- KHQR Section -->
+      <!-- Large KHQR Section -->
       <div class="qr-container">
-        <div style="font-weight:700; color:var(--primary); font-size: 0.95rem;">💳 ទូទាត់ប្រាក់តាម KHQR</div>
-        <div style="font-size:0.75rem; color:#ccc;">សូមស្កែនទូទាត់ប្រាក់សរុប រួច Upload វិក្កយបត្រ៖</div>
-        <img src="khqr.jpg" alt="KHQR Code" class="qr-image" onerror="this.src='https://via.placeholder.com/170x170?text=KHQR+Code'">
+        <div class="qr-title">💳 ទូទាត់ប្រាក់តាម KHQR</div>
+        <div class="qr-sub">សូមស្កែនទូទាត់ប្រាក់សរុប រួច Upload វិក្កយបត្រ៖</div>
+        <img src="khqr.jpg" alt="KHQR Code" class="qr-image" onerror="this.src='https://via.placeholder.com/210x210?text=KHQR+Code'">
       </div>
 
-      <div class="form-group" style="margin-top:10px;">
+      <div class="form-group" style="margin-top:16px;">
         <label>🧾 បង្ហោះរូបភាពវិក្កយបត្រ (Payment Slip) <span class="required-tag">*</span></label>
         <input type="file" id="slip-file" accept="image/*" required>
       </div>
@@ -293,7 +301,7 @@
   <div class="modal" id="videoModal">
     <div class="modal-content" style="background:#000;">
       <span class="close-modal" onclick="closeVideoModal()">&times;</span>
-      <video id="popupVideo" controls style="width:100%; max-height: 70vh; display:block;" autoplay></video>
+      <video id="popupVideo" controls style="width:100%; max-height: 75vh; display:block;" autoplay></video>
     </div>
   </div>
 
@@ -324,7 +332,7 @@
   <!-- Cart Fixed Bottom -->
   <div class="cart-bar">
     <div>
-      <div style="font-size:0.7rem; color:#aaa;">សរុបសាច់ប្រាក់:</div>
+      <div style="font-size:0.75rem; color:#aaa;">សរុបសាច់ប្រាក់:</div>
       <div class="total-price"><span id="total-val">0</span> ៛</div>
       <div class="delivery-info" id="delivery-info">🚚 ថ្លៃដឹកជញ្ជូន៖ 8,000 ៛</div>
     </div>
@@ -335,19 +343,43 @@
     const tg = window.Telegram.WebApp;
     tg.expand();
 
-    // បញ្ជី Video Feed
+    // បញ្ជី Video Feed គ្រប់ប្រភេទ (ស្រង់ចេញពី File ជាក់ស្តែងរបស់អ្នក)
     const videoList = [
-      { id: 'B-TO-B-001', name: 'B-TO-B-001', type: 'B-TO-B', file: 'B-TO-B-001.mp4' },
-      { id: 'B-TO-B-002', name: 'B-TO-B-002', type: 'B-TO-B', file: 'B-TO-B-002.mp4' },
-      { id: 'EAT-MUKBANG-001', name: 'Mukbang 001', type: 'MUKBANG', file: 'EAT-MUKBANG-001.mp4' },
-      { id: 'EAT-MUKBANG-002', name: 'Mukbang 002', type: 'MUKBANG', file: 'EAT-MUKBANG-002.mp4' },
-      { id: 'PROD-001', name: 'PROD-001', type: 'PROD', file: 'PROD-001.mp4' },
-      { id: 'PROD-002', name: 'PROD-002', type: 'PROD', file: 'PROD-002.mp4' },
-      { id: 'PROMO-001', name: 'PROMO-001', type: 'PROMO', file: 'PROMO-001.mp4' },
-      { id: 'REV-MARKET-001', name: 'Review Market 001', type: 'REV-MARKET', file: 'REV-MARKET-001.mp4' }
+      { id: 'B-TO-B-001', name: 'B-TO-B 001', type: 'B-TO-B', file: 'B-TO-B-001.mp4' },
+      { id: 'B-TO-B-002', name: 'B-TO-B 002', type: 'B-TO-B', file: 'B-TO-B-002.mp4' },
+      { id: 'B-TO-B-003', name: 'B-TO-B 003', type: 'B-TO-B', file: 'B-TO-B-003.mp4' },
+      { id: 'B-TO-B-004', name: 'B-TO-B 004', type: 'B-TO-B', file: 'B-TO-B-004.mp4' },
+      
+      { id: 'EAT-MUKBANG-001', name: 'Mukbang 001', type: 'EAT-MUKBANG', file: 'EAT-MUKBANG-001.mp4' },
+      { id: 'EAT-MUKBANG-002', name: 'Mukbang 002', type: 'EAT-MUKBANG', file: 'EAT-MUKBANG-002.mp4' },
+      { id: 'EAT-MUKBANG-003', name: 'Mukbang 003', type: 'EAT-MUKBANG', file: 'EAT-MUKBANG-003.mp4' },
+      { id: 'EAT-MUKBANG-004', name: 'Mukbang 004', type: 'EAT-MUKBANG', file: 'EAT-MUKBANG-004.mp4' },
+      { id: 'EAT-MUKBANG-005', name: 'Mukbang 005', type: 'EAT-MUKBANG', file: 'EAT-MUKBANG-005.mp4' },
+      
+      { id: 'PROC-001', name: 'សង្វាក់ផលិតកម្ម 001', type: 'PROC', file: 'PROC-001.mp4' },
+      
+      { id: 'PROD-001', name: 'ផលិតផល 001', type: 'PROD', file: 'PROD-001.mp4' },
+      { id: 'PROD-002', name: 'ផលិតផល 002', type: 'PROD', file: 'PROD-002.mp4' },
+      { id: 'PROD-003', name: 'ផលិតផល 003', type: 'PROD', file: 'PROD-003.mp4' },
+      { id: 'PROD-004', name: 'ផលិតផល 004', type: 'PROD', file: 'PROD-004.mp4' },
+      { id: 'PROD-005', name: 'ផលិតផល 005', type: 'PROD', file: 'PROD-005.mp4' },
+      
+      { id: 'PROMO-001', name: 'ប្រូម៉ូសិន 001', type: 'PROMO', file: 'PROMO-001.mp4' },
+      { id: 'PROMO-002', name: 'ប្រូម៉ូសិន 002', type: 'PROMO', file: 'PROMO-002.mp4' },
+      { id: 'PROMO-003', name: 'ប្រូម៉ូសិន 003', type: 'PROMO', file: 'PROMO-003.mp4' },
+      { id: 'PROMO-004', name: 'ប្រូម៉ូសិន 004', type: 'PROMO', file: 'PROMO-004.mp4' },
+      { id: 'PROMO-005', name: 'ប្រូម៉ូសិន 005', type: 'PROMO', file: 'PROMO-005.mp4' },
+      { id: 'PROMO-006', name: 'ប្រូម៉ូសិន 006', type: 'PROMO', file: 'PROMO-006.mp4' },
+      { id: 'PROMO-007', name: 'ប្រូម៉ូសិន 007', type: 'PROMO', file: 'PROMO-007.mp4' },
+      { id: 'PROMO-008', name: 'ប្រូម៉ូសិន 008', type: 'PROMO', file: 'PROMO-008.mp4' },
+      { id: 'PROMO-009', name: 'ប្រូម៉ូសិន 009', type: 'PROMO', file: 'PROMO-009.mp4' },
+      
+      { id: 'REV-MARKET-001', name: 'Review Market 001', type: 'REV-MARKET', file: 'REV-MARKET-001.mp4' },
+      { id: 'REV-MARKET-002', name: 'Review Market 002', type: 'REV-MARKET', file: 'REV-MARKET-002.mp4' },
+      { id: 'REV-MARKET-003', name: 'Review Market 003', type: 'REV-MARKET', file: 'REV-MARKET-003.mp4' }
     ];
 
-    // ផលិតផលទាំងអស់ (ជាង ១០ មុខ - មានព័ត៌មានអត្ថប្រយោជន៍ និងការរក្សាទុក)
+    // ផលិតផលទាំងអស់ (មានព័ត៌មានអត្ថប្រយោជន៍ និងការរក្សាទុក)
     const products = {
       D_ORIG200: { 
         type: "ដំណាប់ចេក", flavor: "រសជាតិដើម", price: 8000, qty: 0, size: '200g', id: 'D_ORIG200', 
@@ -441,7 +473,7 @@
         storage: "រក្សាទុកបានយូរក្នុងថង់បិទជិត"
       },
       C_SPIC200: { 
-        type: "ចេកបំពងស្រួយ", flavor: "ម្ទេសខ្ទឹម", price: 14000, qty: 0, size: '200g', id: 'C_SPIC200', 
+        type: "ចេកបំពងស្រួយ", flavor: "ម្ទេសខ្ទឹម", price: 10000, qty: 0, size: '200g', id: 'C_SPIC200', 
         benefits: "ខ្ទឹមសជួយពង្រឹងប្រព័ន្ធការពាររាងកាយ និងប្រឆាំងបាក់តេរី។",
         taste: "ហឹរតិចៗ ឈ្ងុយខ្ទឹមស ត្រូវម៉ែ",
         pack: "ប្រអប់បិទជិត", 
@@ -483,7 +515,7 @@
         div.className = 'video-card-item';
         div.onclick = () => playVideo(item.file);
         div.innerHTML = `
-          <img src="${item.id}.jpg" class="video-card-thumb" onerror="this.src='https://via.placeholder.com/130x160/121212/f39c12?text=MoMore'">
+          <img src="${item.id}.jpg" class="video-card-thumb" onerror="this.src='https://via.placeholder.com/165x220/121212/f39c12?text=MoMore+Video'">
           <div class="video-play-overlay">▶</div>
           <div class="video-card-title">${item.name}</div>
         `;
