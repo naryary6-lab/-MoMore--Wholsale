@@ -3,98 +3,218 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Momore Wholesale WebApp & Daily Check-in Rewards</title>
+  <title>Momore Wholesale WebApp - Modern Orange & Dark Theme</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <!-- Google Fonts: Kantumruy Pro (Modern Khmer) & Moul -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700&family=Moul&display=swap" rel="stylesheet">
+  
   <style>
     :root {
-      --primary: #f39c12;
-      --secondary: #d35400;
-      --bg: #f8f9fa;
+      --primary: #f39c12;        /* Vibrant Orange */
+      --primary-dark: #d35400;   /* Deep Orange */
+      --dark-bg: #121212;        /* Dark Theme Accent */
+      --dark-card: #1e1e1e;
+      --light-bg: #f5f6fa;
       --card-bg: #ffffff;
-      --text: #2c3e50;
-      --gray: #7f8c8d;
+      --text-dark: #1a1a1a;
+      --text-gray: #666666;
       --green: #27ae60;
       --red: #e74c3c;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Khmer OS Battambang', sans-serif, Arial; }
-    body { background-color: var(--bg); color: var(--text); padding-bottom: 140px; }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Kantumruy Pro', sans-serif; }
+    body { background-color: var(--light-bg); color: var(--text-dark); padding-bottom: 150px; }
     
-    header { background-color: var(--primary); color: white; padding: 15px; text-align: center; font-weight: bold; font-size: 1.3rem; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    /* Sticky Header */
+    header { 
+      background: linear-gradient(135deg, #121212 0%, #2c2c2c 100%); 
+      color: var(--primary); 
+      padding: 16px; 
+      text-align: center; 
+      font-weight: 700; 
+      font-size: 1.35rem; 
+      position: sticky; 
+      top: 0; 
+      z-index: 100; 
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid var(--primary);
+    }
     
-    .container { max-width: 600px; margin: auto; padding: 10px; }
+    .container { max-width: 600px; margin: auto; padding: 12px; }
     
-    /* Daily Check-in Banner */
+    /* Daily Check-in Banner (Orange-Dark Styling) */
     .reward-card {
-      background: linear-gradient(135deg, #fff3e0, #ffe0b2);
-      border: 1px solid #ffe0b2;
-      border-radius: 12px;
-      padding: 15px;
-      margin-bottom: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      background: linear-gradient(135deg, #1e1e1e 0%, #2d251e 100%);
+      border: 1.5px solid var(--primary);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 20px;
+      color: #ffffff;
+      box-shadow: 0 6px 16px rgba(243, 156, 18, 0.15);
     }
     .reward-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-    .reward-title { font-weight: bold; font-size: 1rem; color: var(--secondary); display: flex; align-items: center; gap: 5px; }
-    .coin-badge { background: #e67e22; color: white; padding: 4px 10px; border-radius: 15px; font-weight: bold; font-size: 0.85rem; }
+    .reward-title { font-weight: 700; font-size: 1.05rem; color: var(--primary); display: flex; align-items: center; gap: 6px; }
+    .coin-badge { background: var(--primary); color: #121212; padding: 5px 12px; border-radius: 20px; font-weight: 700; font-size: 0.88rem; }
     
-    .checkin-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; margin-top: 10px; text-align: center; }
-    .day-box { background: white; border-radius: 6px; padding: 8px 2px; border: 1px solid #e0e0e0; font-size: 0.7rem; }
-    .day-box.active { background: var(--primary); color: white; border-color: var(--primary); font-weight: bold; }
-    .day-box .pts { font-size: 0.65rem; color: #888; display: block; margin-top: 2px; }
-    .day-box.active .pts { color: #fff; }
+    .checkin-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-top: 12px; text-align: center; }
+    .day-box { background: #2a2a2a; border-radius: 8px; padding: 8px 2px; border: 1px solid #444; font-size: 0.72rem; color: #ccc; }
+    .day-box.active { background: var(--primary); color: #121212; border-color: var(--primary); font-weight: 700; }
+    .day-box .pts { font-size: 0.65rem; color: #aaa; display: block; margin-top: 2px; }
+    .day-box.active .pts { color: #121212; font-weight: 600; }
     
-    .btn-checkin { width: 100%; background: var(--secondary); color: white; border: none; padding: 10px; border-radius: 8px; font-weight: bold; font-size: 0.9rem; margin-top: 10px; cursor: pointer; }
-    .btn-checkin:disabled { background: #bdc3c7; cursor: not-allowed; }
+    .btn-checkin { width: 100%; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; border: none; padding: 12px; border-radius: 10px; font-weight: 700; font-size: 0.95rem; margin-top: 12px; cursor: pointer; transition: 0.2s; }
+    .btn-checkin:disabled { background: #444; color: #888; cursor: not-allowed; }
 
     /* Notice Box */
-    .notice-box { background: #eef9f1; border-left: 4px solid var(--green); padding: 10px 12px; border-radius: 6px; margin-bottom: 15px; font-size: 0.82rem; line-height: 1.5; }
+    .notice-box { background: #fff8f0; border-left: 5px solid var(--primary); padding: 12px 15px; border-radius: 10px; margin-bottom: 20px; font-size: 0.85rem; line-height: 1.6; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
 
-    /* Products Grid */
-    .section-title { font-size: 1.15rem; font-weight: bold; margin: 20px 0 10px 5px; color: var(--secondary); border-left: 5px solid var(--primary); padding-left: 8px; }
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .product-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.08); display: flex; flex-direction: column; justify-content: space-between; border: 1px solid #eee; }
+    /* Modern Section Titles */
+    .section-title-box {
+      margin: 25px 0 14px 0;
+      padding: 12px 15px;
+      background: linear-gradient(135deg, #121212 0%, #2a2a2a 100%);
+      border-radius: 12px;
+      border-left: 6px solid var(--primary);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+    .sec-title-main { font-size: 1.25rem; font-weight: 700; color: var(--primary); line-height: 1.3; }
+    .sec-title-sub { font-size: 0.85rem; color: #dddddd; margin-top: 4px; font-weight: 400; }
+
+    /* Product Grid & Cards */
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .product-card { 
+      background: var(--card-bg); 
+      border-radius: 16px; 
+      overflow: hidden; 
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06); 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: space-between; 
+      border: 1px solid #eaeaea;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .product-card:active { transform: scale(0.98); }
     
-    /* ពង្រីកទំហំរូបភាពឱ្យធំស្អាត */
-    .media-box { width: 100%; height: 280px; background-color: #fff; position: relative; overflow: hidden; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-    .media-box img { width: 100%; height: 100%; object-fit: contain; padding: 5px; }
+    /* រូបភាពពេញប្រអប់ ១០០% (Full Cover) */
+    .media-box { 
+      width: 100%; 
+      height: 220px; 
+      background-color: #121212; 
+      position: relative; 
+      overflow: hidden; 
+      cursor: pointer; 
+    }
+    .media-box img { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; /* ប្លង់រូបពេញប្រអប់ គ្មានសល់ជើង ឬកៀម */
+      display: block;
+    }
     
-    .play-video-badge { position: absolute; top: 8px; right: 8px; background: rgba(0, 0, 0, 0.75); color: #fff; padding: 5px 10px; border-radius: 14px; font-size: 0.75rem; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 3px; backdrop-filter: blur(2px); z-index: 2; }
+    .play-video-badge { 
+      position: absolute; 
+      top: 10px; 
+      right: 10px; 
+      background: rgba(18, 18, 18, 0.85); 
+      color: #fff; 
+      padding: 5px 12px; 
+      border-radius: 20px; 
+      font-size: 0.75rem; 
+      font-weight: 700; 
+      cursor: pointer; 
+      display: flex; 
+      align-items: center; 
+      gap: 4px; 
+      backdrop-filter: blur(4px); 
+      border: 1px solid var(--primary);
+      z-index: 2; 
+    }
 
     .product-info { padding: 12px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
-    .product-name { font-size: 1.05rem; font-weight: bold; margin-bottom: 4px; color: #1a252f; line-height: 1.3; cursor: pointer; }
-    .product-weight { font-size: 0.82rem; color: var(--gray); margin-bottom: 8px; font-weight: 500; }
-    .product-price { font-size: 1.25rem; font-weight: bold; color: var(--secondary); margin-bottom: 10px; }
     
-    .quantity-control { display: flex; align-items: center; justify-content: space-between; background: #f1f2f6; border-radius: 8px; padding: 4px; }
-    .btn-qty { width: 32px; height: 32px; background: white; border: 1px solid #ccc; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; color: var(--secondary); }
-    .qty-number { font-weight: bold; font-size: 1.05rem; }
+    /* ឈ្មោះផលិតផល (ជួរទី ១ និង ជួរទី ២) */
+    .type-label { font-size: 0.82rem; color: var(--text-gray); font-weight: 600; line-height: 1.2; }
+    .flavor-label { font-size: 1.05rem; font-weight: 700; color: #121212; margin-top: 2px; margin-bottom: 6px; line-height: 1.3; }
     
-    /* Form Styles */
-    .form-section { background: var(--card-bg); padding: 15px; border-radius: 12px; margin-top: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-    .form-group { margin-bottom: 12px; }
-    .form-group label { display: block; font-weight: bold; font-size: 0.88rem; margin-bottom: 5px; color: var(--secondary); }
-    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.9rem; }
-    .required-tag { color: red; }
+    .product-weight { font-size: 0.8rem; color: #777; margin-bottom: 8px; font-weight: 500; }
+    .product-price { font-size: 1.2rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 12px; }
+    
+    .quantity-control { display: flex; align-items: center; justify-content: space-between; background: #f1f2f6; border-radius: 10px; padding: 4px; }
+    .btn-qty { width: 34px; height: 34px; background: white; border: 1px solid #ddd; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; color: var(--primary-dark); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    .qty-number { font-weight: 700; font-size: 1.05rem; color: #121212; }
+    
+    /* Form Styles Section 3 (Modern Dark & Orange Accent) */
+    .form-section { background: #ffffff; padding: 18px; border-radius: 16px; margin-top: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #eaeaea; }
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: block; font-weight: 700; font-size: 0.92rem; margin-bottom: 6px; color: #121212; }
+    .form-group input, .form-group select, .form-group textarea { 
+      width: 100%; 
+      padding: 12px; 
+      border: 1.5px solid #ccc; 
+      border-radius: 10px; 
+      font-size: 0.95rem; 
+      background: #fafafa;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: #fff;
+    }
+    .required-tag { color: var(--red); }
 
-    /* Cart Bar Fixed */
-    .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: white; padding: 12px 18px; box-shadow: 0 -3px 12px rgba(0,0,0,0.12); display: flex; justify-content: space-between; align-items: center; max-width: 600px; margin: auto; border-top-left-radius: 18px; border-top-right-radius: 18px; z-index: 999; }
-    .total-price { font-size: 1.25rem; font-weight: bold; color: var(--secondary); }
-    .delivery-info { font-size: 0.78rem; color: var(--green); margin-top: 3px; font-weight: 600; }
-    .btn-checkout { background: var(--primary); color: white; border: none; padding: 12px 18px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 0.95rem; }
-    .btn-checkout:disabled { background: #95a5a6; cursor: not-allowed; }
+    /* Cart Bar Fixed Bottom */
+    .cart-bar { 
+      position: fixed; 
+      bottom: 0; 
+      left: 0; 
+      right: 0; 
+      background: #121212; 
+      color: white;
+      padding: 14px 20px; 
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.25); 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      max-width: 600px; 
+      margin: auto; 
+      border-top-left-radius: 20px; 
+      border-top-right-radius: 20px; 
+      border-top: 2px solid var(--primary);
+      z-index: 999; 
+    }
+    .total-price { font-size: 1.35rem; font-weight: 700; color: var(--primary); }
+    .delivery-info { font-size: 0.78rem; color: #2ecc71; margin-top: 2px; font-weight: 600; }
+    .btn-checkout { 
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark)); 
+      color: white; 
+      border: none; 
+      padding: 12px 22px; 
+      border-radius: 12px; 
+      font-weight: 700; 
+      cursor: pointer; 
+      font-size: 1rem; 
+      box-shadow: 0 4px 10px rgba(243, 156, 18, 0.3);
+    }
+    .btn-checkout:disabled { background: #555; color: #888; box-shadow: none; cursor: not-allowed; }
 
     /* Modals General */
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; padding: 15px; }
-    .modal-content { width: 100%; max-width: 420px; background: #fff; border-radius: 15px; overflow: hidden; position: relative; max-height: 85vh; display: flex; flex-direction: column; }
-    .close-modal { position: absolute; top: 10px; right: 12px; color: white; font-size: 22px; font-weight: bold; cursor: pointer; z-index: 2001; background: rgba(0,0,0,0.6); width: 32px; height: 32px; border-radius: 50%; text-align: center; line-height: 30px; }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center; padding: 15px; }
+    .modal-content { width: 100%; max-width: 440px; background: #fff; border-radius: 20px; overflow: hidden; position: relative; max-height: 88vh; display: flex; flex-direction: column; }
+    .close-modal { position: absolute; top: 12px; right: 14px; color: white; font-size: 22px; font-weight: bold; cursor: pointer; z-index: 2001; background: rgba(0,0,0,0.7); width: 34px; height: 34px; border-radius: 50%; text-align: center; line-height: 32px; border: 1px solid var(--primary); }
     
-    .detail-header-img { width: 100%; height: 260px; object-fit: contain; background: #fff; padding: 10px; }
-    .detail-body { padding: 18px; overflow-y: auto; font-size: 0.9rem; line-height: 1.6; color: #333; }
-    .detail-title { font-size: 1.2rem; font-weight: bold; color: var(--secondary); margin-bottom: 6px; }
-    .detail-price { font-size: 1.3rem; font-weight: bold; color: var(--secondary); margin-bottom: 12px; }
-    .detail-sec-title { font-weight: bold; color: var(--primary); margin-top: 12px; margin-bottom: 4px; display: flex; align-items: center; gap: 5px; }
+    .detail-header-img { width: 100%; height: 280px; object-fit: cover; background: #121212; }
+    .detail-body { padding: 20px; overflow-y: auto; font-size: 0.92rem; line-height: 1.6; color: #333; }
+    .detail-title { font-size: 1.3rem; font-weight: 700; color: #121212; margin-bottom: 4px; }
+    .detail-price { font-size: 1.35rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 15px; }
+    .detail-sec-title { font-weight: 700; color: var(--primary-dark); margin-top: 14px; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
 
-    .qr-container { text-align: center; margin-top: 10px; padding: 10px; background: #fff8f0; border-radius: 8px; border: 1px dashed var(--primary); }
-    .qr-image { width: 200px; height: 200px; object-fit: contain; margin: 10px auto; display: block; border-radius: 8px; }
+    .qr-container { text-align: center; margin-top: 15px; padding: 12px; background: #1e1e1e; border-radius: 12px; border: 1.5px dashed var(--primary); color: white; }
+    .qr-image { width: 210px; height: 210px; object-fit: contain; margin: 10px auto; display: block; border-radius: 10px; background: #fff; padding: 5px; }
   </style>
 </head>
 <body>
@@ -109,7 +229,7 @@
         <div class="reward-title">🎁 Check-in សន្សំកាក់ (Daily Points)</div>
         <div class="coin-badge">💰 កាក់សរុប: <span id="user-coins">0</span></div>
       </div>
-      <div style="font-size:0.75rem; color:#555;">Check-in រាល់ថ្ងៃដើម្បីបាន ១០០ កាក់/ថ្ងៃ ដូរយកកាដូ និងបញ្ចុះតម្លៃពិសេស!</div>
+      <div style="font-size:0.78rem; color:#ccc;">Check-in រាល់ថ្ងៃដើម្បីបាន ១០០ កាក់/ថ្ងៃ ដូរយកកាដូ និងបញ្ចុះតម្លៃពិសេស!</div>
       
       <div class="checkin-days">
         <div class="day-box active">ថ្ងៃ 1<span class="pts">+100</span></div>
@@ -135,16 +255,26 @@
       • លាយចម្រុះ (200g=15ប្រអប់ + 100g=30កញ្ចប់) ➔ ហ្វ្រីដឹក + ថែម 200g មួយប្រអប់
     </div>
 
-    <!-- ផលិតផល ដំណាប់ចេក -->
-    <div class="section-title">🍌 ផ្នែកទី ១៖ ដំណាប់ចេក (សាច់ទន់ស្វិត បន្ទះស្តើង សម្ងួតក្នុងទូអនាម័យ)</div>
+    <!-- ផ្នែកទី ១៖ ដំណាប់ចេក -->
+    <div class="section-title-box">
+      <div class="sec-title-main">1. ដំណាប់ចេកណាំវ៉ាខ្មែរ</div>
+      <div class="sec-title-sub">សាច់ទន់ស្វិតបន្ទះស្ដើង សម្ងួត ក្នុងទូ សម្ងួត អនាម័យ</div>
+    </div>
     <div class="grid" id="domnap-container"></div>
 
-    <!-- ផលិតផល ចេកបំពង -->
-    <div class="section-title">🍿 ផ្នែកទី ២៖ ចេកបំពងស្រួយ</div>
+    <!-- ផ្នែកទី ២៖ ចេកបំពងស្រួយ -->
+    <div class="section-title-box">
+      <div class="sec-title-main">2. ចេកបំពងស្រួយ ម៉ូម័រ MoMore</div>
+      <div class="sec-title-sub">ស្រួយស្រែស ឈ្ងុយឆ្ងាញ់ គ្រប់រសជាតិ</div>
+    </div>
     <div class="grid" id="crispy-container"></div>
 
-    <!-- ផ្នែកព័ត៌មានដឹកជញ្ជូន និងបង់ប្រាក់ -->
-    <div class="section-title">🚚 ផ្នែកទី ៣៖ ព័ត៌មានដឹកជញ្ជូន & ទូទាត់ប្រាក់ KHQR</div>
+    <!-- ផ្នែកទី ៣៖ ព័ត៌មានដឹកជញ្ជូន និងបង់ប្រាក់ -->
+    <div class="section-title-box">
+      <div class="sec-title-main">3. ព័ត៌មានដឹកជញ្ជូន & ទូទាត់ប្រាក់ KHQR</div>
+      <div class="sec-title-sub">បំពេញព័ត៌មាន និង Upload Payment Slip ដើម្បីបញ្ជាក់ការកុម្ម៉ង់</div>
+    </div>
+
     <div class="form-section">
       <div class="form-group">
         <label>📞 លេខទូរស័ព្ទទទួលទំនិញ <span class="required-tag">*</span></label>
@@ -185,9 +315,9 @@
 
       <!-- KHQR Section -->
       <div class="qr-container">
-        <div style="font-weight:bold; color:var(--secondary);">💳 ទូទាត់ប្រាក់តាម KHQR</div>
-        <div style="font-size:0.8rem; color:#666;">សូមស្កែនទូទាត់ប្រាក់សរុប រួច Upload រូបភាពវិក្កយបត្រខាងក្រោមដើម្បីបញ្ជាក់៖</div>
-        <img src="khqr.jpg" alt="KHQR Code" class="qr-image" onerror="this.src='https://via.placeholder.com/200x200?text=KHQR+Code'">
+        <div style="font-weight:700; color:var(--primary); font-size: 1.05rem;">💳 ទូទាត់ប្រាក់តាម KHQR</div>
+        <div style="font-size:0.82rem; color:#ccc; margin-top: 4px;">សូមស្កែនទូទាត់ប្រាក់សរុប រួច Upload រូបភាពវិក្កយបត្រខាងក្រោមដើម្បីបញ្ជាក់៖</div>
+        <img src="khqr.jpg" alt="KHQR Code" class="qr-image" onerror="this.src='https://via.placeholder.com/210x210?text=KHQR+Code'">
       </div>
 
       <div class="form-group" style="margin-top:15px;">
@@ -230,7 +360,7 @@
   <!-- Cart Fixed Bottom -->
   <div class="cart-bar">
     <div>
-      <div style="font-size:0.8rem; color:var(--gray);">សរុបសាច់ប្រាក់:</div>
+      <div style="font-size:0.78rem; color:#aaa;">សរុបសាច់ប្រាក់:</div>
       <div class="total-price"><span id="total-val">0</span> ៛</div>
       <div class="delivery-info" id="delivery-info">🚚 ថ្លៃដឹកជញ្ជូន៖ 8,000 ៛</div>
     </div>
@@ -241,183 +371,148 @@
     const tg = window.Telegram.WebApp;
     tg.expand();
 
+    // រក្សាទិន្នន័យផលិតផលដដែល ប៉ុន្តែបំបែកប្រភេទ និង រសជាតិ
     const products = {
       D_ORIG200: { 
-        name: "ដំណាប់ចេក រសជាតិដើម", 
-        price: 8000, 
-        qty: 0, 
-        size: '200g', 
-        id: 'D_ORIG200', 
+        type: "ដំណាប់ចេក",
+        flavor: "រសជាតិដើម", 
+        price: 8000, qty: 0, size: '200g', id: 'D_ORIG200', 
         pack: "ចិតបន្ទះស្តើង សម្ងួតក្នុងទូអនាម័យ វេចខ្ចប់ក្នុងប្រអប់បិទជិតការពារខ្យល់ និងសំណើម", 
         storage: "រក្សាទុកក្នុងសីតុណ្ហភាពធម្មតា កន្លែងស្ងួតត្រជាក់ បានរហូតដល់ ៦ ខែ",
         taste: "សាច់ដំណាប់ទន់ស្វិត ផ្អែមឆ្ងាញ់បែបធម្មជាតិ ជូរអែម"
       },
       D_SESM200: { 
-        name: "ដំណាប់ចេក រោយល្ង ស/ខ្មៅ", 
-        price: 8000, 
-        qty: 0, 
-        size: '200g', 
-        id: 'D_SESM200', 
+        type: "ដំណាប់ចេក",
+        flavor: "រោយល្ង ស/ខ្មៅ", 
+        price: 8000, qty: 0, size: '200g', id: 'D_SESM200', 
         pack: "សម្ងួតស្អាត រោយល្ងស្មើល្អ វេចខ្ចប់ក្នុងប្រអប់អនាម័យត្រឹមត្រូវ", 
         storage: "រក្សាទុកក្នុងប្រអប់បិទជិត បានរហូតដល់ ៦ ខែ",
         taste: "សាច់ចេកទន់ស្វិតផ្អែមល្មម លាយក្លិនឈ្ងុយល្ងរលីង"
       },
       D_ALMD200: { 
-        name: "ដំណាប់ចេក រោយអាល់ម៉ុន", 
-        price: 10000, 
-        qty: 0, 
-        size: '200g', 
-        id: 'D_ALMD200', 
+        type: "ដំណាប់ចេក",
+        flavor: "រោយអាល់ម៉ុន", 
+        price: 10000, qty: 0, size: '200g', id: 'D_ALMD200', 
         pack: "វេចខ្ចប់ក្នុងប្រអប់ការពារជម្រាបខ្យល់យ៉ាងល្អ", 
         storage: "រក្សាទុកបាន ៦ ខែ ក្នុងកន្លែងស្ងួត",
         taste: "រសជាតិប្លែកអារម្មណ៍ ឈ្ងុយខ្ទិះ និងភាពស្រួយនៃអាល់ម៉ុន"
       },
       D_MIXG200: { 
-        name: "ដំណាប់ចេក រោយធញ្ញជាតិ", 
-        price: 10000, 
-        qty: 0, 
-        size: '200g', 
-        id: 'D_MIXG200', 
+        type: "ដំណាប់ចេក",
+        flavor: "រោយធញ្ញជាតិគ្រប់មុខ", 
+        price: 10000, qty: 0, size: '200g', id: 'D_MIXG200', 
         pack: "ប្រអប់ស្តង់ដារអនាម័យ បិទជិតយ៉ាងប្រុងប្រយ័ត្ន", 
         storage: "បិទមាត់ថង់/ប្រអប់ឱ្យជិត ទុកបាន ៦ ខែ",
         taste: "ទន់ស្វិត ផ្តល់អាហាររូបត្ថម្ភខ្ពស់ពីធញ្ញជាតិ"
       },
       D_COCO200: { 
-        name: "ដំណាប់ចេក រោយដូង", 
-        price: 10000, 
-        qty: 0, 
-        size: '200g', 
-        id: 'D_COCO200', 
+        type: "ដំណាប់ចេក",
+        flavor: "រោយដូង", 
+        price: 10000, qty: 0, size: '200g', id: 'D_COCO200', 
         pack: "ប្រអប់អនាម័យបិទជិត", 
         storage: "រក្សាទុកសីតុណ្ហភាពធម្មតាបាន ៦ ខែ",
         taste: "ក្លិនដូងឈ្ងុយឆ្ងាញ់ ត្រូវជាមួយសាច់ចេកទន់ផ្អែម"
       },
       D_BALL200: { 
-        name: "ដំណាប់ចេកមូល", 
-        price: 10000, 
-        qty: 0, 
-        size: '200g', 
-        id: 'D_BALL200', 
+        type: "ដំណាប់ចេក",
+        flavor: "ដំណាប់ចេកមូល", 
+        price: 10000, qty: 0, size: '200g', id: 'D_BALL200', 
         pack: "ប្រអប់ការពារសំណើមត្រឹមត្រូវ", 
         storage: "រក្សាទុកបាន រហូត ៦ ខែ",
         taste: "ទន់ស្វិតល្មើយ ងាយស្រួលទំពា និងកាន់ញ៉ាំ"
       },
       D_RCHCS300: { 
-        name: "ដំណាប់ចេក ស្នូលសូកូឡាដូង លាយល្ង", 
-        price: 17000, 
-        qty: 0, 
-        size: '300g', 
-        id: 'D_RCHCS300', 
+        type: "ដំណាប់ចេក",
+        flavor: "ស្នូលសូកូឡាដូងល្ងរ", 
+        price: 17000, qty: 0, size: '300g', id: 'D_RCHCS300', 
         pack: "ប្រអប់ 300g ស្អាតសប្រណីត", 
         storage: "រក្សាទុកបាន ៣-៦ ខែ",
         taste: "រសជាតិខ្ទិះដូងលាយសូកូឡា និងល្ង ឆ្ងាញ់ប្លែកមាត់"
       },
       D_RCHCC300: { 
-        name: "ដំណាប់ចេក ស្នូលសូកូឡាចន្ទី", 
-        price: 17000, 
-        qty: 0, 
-        size: '300g', 
-        id: 'D_RCHCC300', 
+        type: "ដំណាប់ចេក",
+        flavor: "ស្នូលសូកូឡាចន្ទី", 
+        price: 17000, qty: 0, size: '300g', id: 'D_RCHCC300', 
         pack: "ប្រអប់ស្តង់ដារអនាម័យ", 
         storage: "រក្សាទុកបាន ៣-៦ ខែ",
         taste: "ឈ្ងុយគ្រាប់ចន្ទី លាយភាពផ្អែមស្រទន់នៃសូកូឡា"
       },
       D_RCHCD300: { 
-        name: "ដំណាប់ចេក សូកូឡាស្នូលដូង", 
-        price: 17000, 
-        qty: 0, 
-        size: '300g', 
-        id: 'D_RCHCD300', 
+        type: "ដំណាប់ចេក",
+        flavor: "ស្នូលសូកូឡាដូង", 
+        price: 17000, qty: 0, size: '300g', id: 'D_RCHCD300', 
         pack: "ប្រអប់បិទជិតការពារខ្យល់", 
         storage: "រក្សាទុកបាន ៣-៦ ខែ",
         taste: "ផ្អែមល្មម ឈ្ងុយដូង និងសូកូឡា ព្រីមៀម"
       },
       C_ORIG500: { 
-        name: "ចេកបំពងស្រួយ រសជាតិដើមសាប", 
-        price: 10000, 
-        qty: 0, 
-        size: '500g', 
-        id: 'C_ORIG500', 
+        type: "ចេកបំពងស្រួយ",
+        flavor: "រសជាតិដើមសាប", 
+        price: 10000, qty: 0, size: '500g', id: 'C_ORIG500', 
         pack: "ថង់ហ្ស៊ីបបិទជិតការពារខ្យល់ចូល", 
         storage: "រក្សាទុកក្នុងថង់បិទជិតបាន ៦ ខែ",
         taste: "ស្រួយស្រែស មិនជាប់ខ្លាញ់ រសជាតិដើមសាប"
       },
       C_CHOC200: { 
-        name: "ចេកបំពងស្រួយ សូកូឡាដោះគោ", 
-        price: 10000, 
-        qty: 0, 
-        size: '200g', 
-        id: 'C_CHOC200', 
+        type: "ចេកបំពងស្រួយ",
+        flavor: "សូកូឡាដោះគោ", 
+        price: 10000, qty: 0, size: '200g', id: 'C_CHOC200', 
         pack: "ប្រអប់អនាម័យបិទជិត", 
         storage: "រក្សាទុកក្នុងសីតុណ្ហភាពត្រជាក់",
         taste: "ស្រួយផ្អែមឈ្ងុយ សូកូឡាដោះគោ (សុទ្ធ ១០០%)"
       },
       C_CHOC100: { 
-        name: "ចេកបំពងស្រួយ សូកូឡាដោះគោ", 
-        price: 5000, 
-        qty: 0, 
-        size: '100g', 
-        id: 'C_CHOC100', 
+        type: "ចេកបំពងស្រួយ",
+        flavor: "សូកូឡាដោះគោ", 
+        price: 5000, qty: 0, size: '100g', id: 'C_CHOC100', 
         pack: "កញ្ចប់តូចច្រឡឹង បិទជិត", 
         storage: "រក្សាទុកក្នុងកន្លែងស្ងួតត្រជាក់",
         taste: "ស្រួយផ្អែមឈ្ងុយ សូកូឡាដោះគោ"
       },
       C_CHES200: { 
-        name: "ចេកបំពងស្រួយ ឈីស ដោះគោ", 
-        price: 10000, 
-        qty: 0, 
-        size: '200g', 
-        id: 'C_CHES200', 
+        type: "ចេកបំពងស្រួយ",
+        flavor: "ឈីស ដោះគោ", 
+        price: 10000, qty: 0, size: '200g', id: 'C_CHES200', 
         pack: "ប្រអប់បិទជិតអនាម័យ", 
         storage: "បិទមាត់ថង់/ប្រអប់ឱ្យជិតជានិច្ច",
         taste: "ប្រៃផ្អែម ឈ្ងុយឈីសខ្លាំង ញ៉ាំជក់មាត់"
       },
       C_CHES100: { 
-        name: "ចេកបំពងស្រួយ ឈីស ដោះគោ", 
-        price: 5000, 
-        qty: 0, 
-        size: '100g', 
-        id: 'C_CHES100', 
+        type: "ចេកបំពងស្រួយ",
+        flavor: "ឈីស ដោះគោ", 
+        price: 5000, qty: 0, size: '100g', id: 'C_CHES100', 
         pack: "កញ្ចប់តូចច្រឡឹង", 
         storage: "រក្សាទុកបានយូរក្នុងថង់បិទជិត",
         taste: "ប្រៃផ្អែម ឈ្ងុយឈីស ញ៉ាំកម្សាន្ត"
       },
       C_SPIC200: { 
-        name: "ចេកបំពងស្រួយ ម្ទេសខ្ទឹម", 
-        price: 14000, 
-        qty: 0, 
-        size: '200g', 
-        id: 'C_SPIC200', 
+        type: "ចេកបំពងស្រួយ",
+        flavor: "ម្ទេសខ្ទឹម", 
+        price: 14000, qty: 0, size: '200g', id: 'C_SPIC200', 
         pack: "ប្រអប់បិទជិត", 
         storage: "រក្សាទុកក្នុងកន្លែងស្ងួត",
         taste: "ហឹរតិចៗ ឈ្ងុយខ្ទឹមស ត្រូវម៉ែ"
       },
       C_SPIC100: { 
-        name: "ចេកបំពងស្រួយ ម្ទេសខ្ទឹម", 
-        price: 5000, 
-        qty: 0, 
-        size: '100g', 
-        id: 'C_SPIC100', 
+        type: "ចេកបំពងស្រួយ",
+        flavor: "ម្ទេសខ្ទឹម", 
+        price: 5000, qty: 0, size: '100g', id: 'C_SPIC100', 
         pack: "កញ្ចប់តូច បិទជិត", 
         storage: "រក្សាទុកក្នុងកន្លែងស្ងួត",
         taste: "ហឹរតិចៗ ប្រៃផ្អែមខ្ទិះ ឈ្ងុយខ្ទឹម"
       },
       C_BBQ200: { 
-        name: "ចេកបំពងស្រួយ រសជាតិបាប៊ីឃ្យូ BBQ", 
-        price: 10000, 
-        qty: 0, 
-        size: '200g', 
-        id: 'C_BBQ200', 
+        type: "ចេកបំពងស្រួយ",
+        flavor: "រសជាតិបាប៊ីឃ្យូ BBQ", 
+        price: 10000, qty: 0, size: '200g', id: 'C_BBQ200', 
         pack: "ប្រអប់បិទជិត", 
         storage: "រក្សាទុកបានយូរក្នុងថង់/ប្រអប់បិទជិត",
         taste: "រសជាតិបាប៊ីឃ្យូ ឈ្ងុយឆ្ងាញ់"
       },
       C_BBQ100: { 
-        name: "ចេកបំពងស្រួយ រសជាតិបាប៊ីឃ្យូ BBQ", 
-        price: 5000, 
-        qty: 0, 
-        size: '100g', 
-        id: 'C_BBQ100', 
+        type: "ចេកបំពងស្រួយ",
+        flavor: "រសជាតិបាប៊ីឃ្យូ BBQ", 
+        price: 5000, qty: 0, size: '100g', id: 'C_BBQ100', 
         pack: "កញ្ចប់តូច បិទជិត", 
         storage: "រក្សាទុកក្នុងថង់បិទជិត",
         taste: "រសជាតិបាប៊ីឃ្យូ BBQ"
@@ -463,18 +558,19 @@
         let p = products[key];
         const isDomnap = key.startsWith('D_');
 
-        // Layout ស្អាតទូលាយ រូបភាពធំ ចុចលើរូប/ឈ្មោះទើបលោត Pop-up
+        // Layout: ជួរទី១ អក្សរប្រភេទ, ជួរទី២ ឈ្មោះរសជាតិធំៗ ខ្មែរយូនីកូដស្អាត
         const cardHtml = `
           <div class="product-card">
             <div class="media-box" onclick="openProductDetail('${key}')">
-              <img src="${p.id}.jpg" alt="${p.name}" onerror="this.src='https://via.placeholder.com/280x280?text=Momore+Wholesale'">
+              <img src="${p.id}.jpg" alt="${p.type} ${p.flavor}" onerror="this.src='https://via.placeholder.com/300x300/121212/f39c12?text=MoMore+Wholesale'">
               <div class="play-video-badge" onclick="event.stopPropagation(); playVideo('${p.id}.mp4');">
                 ▶️ វីដេអូ
               </div>
             </div>
             <div class="product-info">
               <div>
-                <div class="product-name" onclick="openProductDetail('${key}')">${p.name}</div>
+                <div class="type-label" onclick="openProductDetail('${key}')">${p.type}</div>
+                <div class="flavor-label" onclick="openProductDetail('${key}')">${p.flavor}</div>
                 <div class="product-weight">ទំហំ: ${p.size}</div>
                 <div class="product-price">${p.price.toLocaleString()} ៛</div>
               </div>
@@ -498,7 +594,7 @@
     function openProductDetail(key) {
       const p = products[key];
       document.getElementById('detail-img').src = `${p.id}.jpg`;
-      document.getElementById('detail-name').innerText = p.name;
+      document.getElementById('detail-name').innerText = `${p.type} ${p.flavor}`;
       document.getElementById('detail-price').innerText = `${p.price.toLocaleString()} ៛ (ទំហំ ${p.size})`;
       document.getElementById('detail-pack').innerText = p.pack;
       document.getElementById('detail-storage').innerText = p.storage;
@@ -555,7 +651,7 @@
         deliveryFee = 0;
         btnSubmit.disabled = false;
         btnSubmit.innerText = "ផ្ញើការកុម្ម៉ង់";
-        btnSubmit.style.background = "var(--primary)";
+        btnSubmit.style.background = "linear-gradient(135deg, var(--primary), var(--primary-dark))";
       } else {
         if (total200gQty > 0 && total200gQty < 10) {
           minQtyMet = false;
@@ -573,7 +669,7 @@
         } else {
           btnSubmit.disabled = false;
           btnSubmit.innerText = "ផ្ញើការកុម្ម៉ង់";
-          btnSubmit.style.background = "var(--primary)";
+          btnSubmit.style.background = "linear-gradient(135deg, var(--primary), var(--primary-dark))";
         }
 
         if (total200gQty >= 15 && total100gQty >= 30) {
@@ -616,7 +712,6 @@
         return;
       }
 
-      // Read form data
       const phone = document.getElementById('cust-phone').value.trim();
       const province = document.getElementById('cust-province').value.trim();
       const courier = document.getElementById('courier-select').value;
@@ -647,7 +742,7 @@
       for (let key in products) {
         let p = products[key];
         if (p.qty > 0) {
-          orderText += `• ${p.name} (${p.size}): ${p.qty} ប្រអប់ = ${(p.qty * p.price).toLocaleString()} ៛\n`;
+          orderText += `• ${p.type} ${p.flavor} (${p.size}): ${p.qty} ប្រអប់ = ${(p.qty * p.price).toLocaleString()} ៛\n`;
         }
       }
 
