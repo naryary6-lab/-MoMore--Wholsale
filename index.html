@@ -90,6 +90,58 @@
       font-weight: 400;
     }
 
+    /* 🎁 Combo Thumbnail 16:9 (យកតែ 3 ប្រអប់, Padding អក្សរក្រូចលាយក្រហម) */
+    .combo-section-wrap {
+      margin-bottom: 18px;
+    }
+    .combo-grid-3 {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .combo-card-169 {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #1a1a1a;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid #e74c3c;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .combo-card-169:hover { transform: scale(1.01); }
+    .combo-card-169 img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .combo-thumbnail-padding {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(135deg, rgba(231, 76, 60, 0.92) 0%, rgba(243, 156, 18, 0.92) 100%);
+      padding: 10px 14px;
+      color: #ffffff;
+    }
+    .combo-title-text {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .combo-desc-text {
+      font-size: 0.75rem;
+      color: #fff;
+      opacity: 0.95;
+      font-weight: 400;
+    }
+
     .video-gallery-section {
       background: #ffffff;
       border-radius: 14px;
@@ -123,14 +175,12 @@
     .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; }
     .product-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between; border: 1.5px solid #e2e8f0; }
 
-    /* Thumbnail ពេញ ទម្រង់ខ្ពស់ (Portrait) មិនយកការ៉េ មិនសល់ Space */
     .media-box { width: 100%; height: 260px; background-color: #121212; position: relative; overflow: hidden; cursor: pointer; }
     .media-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
     
     .play-video-badge { position: absolute; top: 6px; right: 6px; background: rgba(18, 18, 18, 0.88); color: #fff; padding: 3px 7px; border-radius: 12px; font-size: 0.66rem; font-weight: 600; border: 1px solid var(--primary); z-index: 2; }
 
     .product-info { padding: 8px 8px 6px 8px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
-    /* Padding កន្លែងរសជាតិបង្រួមចុះក្រោមបន្តិច */
     .flavor-section-wrap { padding-bottom: 2px; }
     .row-1-type { font-size: 0.74rem; color: var(--text-gray); font-weight: 600; }
     .row-2-flavor { font-size: 0.9rem; font-weight: 700; color: #121212; margin: 1px 0 4px 0; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -178,13 +228,12 @@
     .detail-price { font-size: 1.05rem; font-weight: 700; color: var(--price-red); margin-bottom: 8px; }
     .detail-sec-title { font-weight: 700; color: var(--primary-dark); margin-top: 8px; margin-bottom: 2px; font-size: 0.85rem; }
 
-    /* Checkout Popup Form Styling - កែសម្រួលបញ្ជីទំនិញ Lock មិនអាចកែ និងអក្សរខ្មែរធំៗស្អាត */
+    /* Checkout Popup Form Styling */
     .checkout-body { padding: 18px 16px; overflow-y: auto; background: #fafafa; font-family: 'Suwannaphum', 'Kantumruy Pro', sans-serif; }
     .checkout-title { font-size: 1.05rem; font-weight: 700; color: #121212; margin-bottom: 12px; border-bottom: 2px solid var(--primary); padding-bottom: 6px; }
     
     .summary-box { background: #fff8f0; border: 1.5px solid #ffe8cc; border-radius: 10px; padding: 12px; margin-bottom: 14px; font-size: 0.82rem; }
     
-    /* ស្ទីលសម្រាប់បញ្ជីទំនិញក្នុង Slip (តម្លៃនៅមុខ ចំនួននៅក្រោយ Lock មិនឱ្យកែ) */
     .locked-items-list { margin-bottom: 10px; }
     .item-row-locked {
       display: flex;
@@ -194,66 +243,65 @@
       font-size: 15px;
       border-bottom: 1px dashed #e0e0e0;
     }
-    .item-name-qty {
-      font-weight: 700;
-      color: #34495e;
-      font-size: 0.92rem;
-    }
-    .item-price-lead {
-      font-weight: 700;
-      color: #e67e22;
-      font-size: 0.95rem;
-    }
+    .item-name-qty { font-weight: 700; color: #34495e; font-size: 0.92rem; }
+    .item-price-lead { font-weight: 700; color: #e67e22; font-size: 0.95rem; }
 
     .summary-total { font-weight: 700; color: var(--price-red); font-size: 1rem; border-top: 2px dashed #f39c12; padding-top: 8px; margin-top: 8px; display: flex; justify-content: space-between; }
     
-    /* 🎁 ប្រអប់ Combo Team SET (Gift) - ពណ៌ និងទម្រង់ខុសពីប្រអប់ផលិតផលធម្មតា */
-    .combo-gift-container { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
-    .combo-gift-box {
-      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-      color: #fff;
-      border-radius: 10px;
-      padding: 12px 14px;
-      box-shadow: 0 4px 10px rgba(37, 117, 252, 0.3);
-      border: 2px dashed #ffeb3b;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-    .combo-gift-box:hover { transform: scale(1.01); }
-    .combo-title {
-      font-size: 0.95rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 4px;
-      color: #ffeb3b;
-    }
-    .combo-desc {
-      font-size: 0.78rem;
-      opacity: 0.95;
-      line-height: 1.4;
-    }
-    .limit-badge {
-      background: #ff5722;
-      color: white;
-      font-size: 0.68rem;
-      padding: 2px 8px;
-      border-radius: 20px;
-      display: inline-block;
-      margin-top: 6px;
-      font-weight: 700;
-    }
-
     .form-group { margin-bottom: 12px; }
     .form-group label { display: block; font-weight: 700; font-size: 0.84rem; margin-bottom: 4px; color: #121212; }
     .form-group input, .form-group select { width: 100%; padding: 10px 12px; border: 1.5px solid #bbb; border-radius: 8px; font-size: 0.86rem; background: #fff; font-weight: 400; }
     .required-tag { color: var(--price-red); font-weight: bold; }
 
-    .qr-container { text-align: center; margin-top: 10px; padding: 12px; background: #1a1a1a; border-radius: 10px; border: 2px dashed var(--primary); color: white; }
-    .qr-title { font-weight: 700; color: var(--primary); font-size: 0.95rem; margin-bottom: 2px; }
-    .qr-sub { font-size: 0.72rem; color: #ddd; margin-bottom: 6px; }
-    .qr-image { width: 150px; height: 150px; object-fit: contain; margin: 4px auto; display: block; border-radius: 6px; background: #fff; padding: 4px; }
+    /* BANK / TRANSFER ACCOUNT INFO BOX (ជំនួស KHQR) */
+    .bank-account-box { 
+      background: #1a1a1a; 
+      border-radius: 10px; 
+      border: 2px dashed var(--primary); 
+      color: white; 
+      padding: 14px; 
+      margin-top: 10px; 
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .bank-info-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .thank-you-sticker {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      background: #fff;
+      border-radius: 50%;
+      padding: 4px;
+      border: 2px solid var(--primary);
+      flex-shrink: 0;
+    }
+    .bank-title-area {
+      flex-grow: 1;
+    }
+    .bank-title { font-weight: 700; color: var(--primary); font-size: 0.95rem; }
+    .bank-sub { font-size: 0.72rem; color: #ddd; }
+    
+    .bank-details-content {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+    .bank-row {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px dotted rgba(255,255,255,0.2);
+      padding: 4px 0;
+    }
+    .bank-row:last-child { border-bottom: none; }
+    .bank-label { color: #aaa; }
+    .bank-val { font-weight: 700; color: #fff; }
   </style>
 </head>
 <body>
@@ -268,6 +316,18 @@
       <div class="hero-banner-content">
         <h1>MoMore Wholesale (តម្លៃបោះដុំ)</h1>
         <p>ប្រព័ន្ធបញ្ជាទិញបោះដុំផ្ទាល់ពីរោងចក្រ គុណភាពខ្ពស់ និងអនាម័យស្តង់ដារសម្រាប់ដៃគូអាជីវកម្ម!</p>
+      </div>
+    </div>
+
+    <!-- 🎁 ផ្នែក COMBO SET ដាក់នៅខាងមុខ (យកតែ 3 ប្រអប់, ខ្នាត 16:9, Padding អក្សរក្រហមលាយទឹកក្រូច) -->
+    <div class="section-title-box">
+      <div class="sec-title-main">🎁 ឈុតពិសេស Combo Team SET</div>
+      <div class="sec-title-sub">កញ្ចប់កាដូ និងរសជាតិពិសេសប្រចាំហាង (ទិញបានត្រឹម ១ ឈុត/នាក់)</div>
+    </div>
+    
+    <div class="combo-section-wrap">
+      <div class="combo-grid-3" id="combo-sets-container">
+        <!-- Render 3 Combo Cards dynamically via JS -->
       </div>
     </div>
 
@@ -324,7 +384,7 @@
     </div>
   </div>
 
-  <!-- Modal Detail -->
+  <!-- Modal Detail (សម្រាប់ផលិតផល និង Combo 16:9) -->
   <div class="modal" id="detailModal">
     <div class="modal-content">
       <span class="close-modal" onclick="closeDetailModal()">&times;</span>
@@ -350,23 +410,18 @@
     </div>
   </div>
 
-  <!-- Checkout Modal (Popup វិក្កយបត្រ និងទូទាត់ - កែសម្រួលតាមសំណើ) -->
+  <!-- Checkout Modal (Popup វិក្កយបត្រ និងទូទាត់ - ដក KHQR ចេញ ជំនួសដោយលេខគណនេយ្យ/វេរលុយ និង Sticker អរគុណ) -->
   <div class="modal" id="checkoutModal">
     <div class="modal-content">
       <span class="close-modal" onclick="closeCheckoutModal()">&times;</span>
       <div class="checkout-body">
         <div class="checkout-title">📝 បញ្ជាក់ការកុម្ម៉ង់ និងទូទាត់ប្រាក់</div>
         
-        <!-- Summary Box ជាមួយបញ្ជីទំនិញ Lock មិនអាចកែ និងអក្សរធំៗច្បាស់ស្អាត -->
+        <!-- Summary Box ជាមួយបញ្ជីទំនិញ Lock -->
         <div class="summary-box">
           <div style="font-weight: 700; margin-bottom: 6px; font-size: 0.9rem; color: #333;">🛍️ បញ្ជីទំនិញដែលបានជ្រើសរើស (Lock):</div>
           <div class="locked-items-list" id="popup-locked-items">
             <!-- Dynamic Injected Locked Items -->
-          </div>
-
-          <!-- 🎁 ប្រអប់ Combo Team SET ចម្រុះ (5 ប្រអប់បន្ថែម - តម្លៃពិសេស សម្រាប់សមាជិកក្រុម 1 ឈុត/នាក់) -->
-          <div class="combo-gift-container" id="combo-sets-container">
-            <!-- Render 5 Combo Sets dynamically or statically -->
           </div>
 
           <div class="summary-row" style="display:flex; justify-content:space-between; margin-top:8px; font-size:0.86rem;">
@@ -409,11 +464,29 @@
           <input type="text" id="cust-note" placeholder="កំណត់ចំណាំបន្ថែមដល់អ្នកដឹកជញ្ជូន...">
         </div>
 
-        <!-- KHQR Section -->
-        <div class="qr-container">
-          <div class="qr-title">💳 ស្កែនទូទាត់ប្រាក់តាម KHQR</div>
-          <div class="qr-sub">សូមស្កែនទឹកប្រាក់សរុបខាងលើ រួច Upload វិក្កយបត្រ៖</div>
-          <img src="khqr.jpg" alt="KHQR Code" class="qr-image" onerror="this.src='https://via.placeholder.com/210x210?text=KHQR+Code'">
+        <!-- 💳 លេខគណនេយ្យ និងលេខវេរលុយ (ជំនួស KHQR) + Sticker អរគុណ -->
+        <div class="bank-account-box">
+          <div class="bank-info-header">
+            <img src="https://api.iconify.design/fluent-emoji:folded-hands.svg" alt="Thank You Sticker" class="thank-you-sticker" onerror="this.src='https://via.placeholder.com/50x50?text=🙏'">
+            <div class="bank-title-area">
+              <div class="bank-title">💳 ព័ត៌មានទូទាត់ប្រាក់ (Account & Transfer)</div>
+              <div class="bank-sub">សូមអរគុណអតិថិជនដែលបានគាំទ្រហាងយើងខ្ញុំ!</div>
+            </div>
+          </div>
+          <div class="bank-details-content">
+            <div class="bank-row">
+              <span class="bank-label">ឈ្មោះគណនេយ្យ:</span>
+              <span class="bank-val">SORM SOURPUNNARY (សោមសួគ៌ុបុណ្ណារី)</span>
+            </div>
+            <div class="bank-row">
+              <span class="bank-label">Merchant ID:</span>
+              <span class="bank-val">15198798</span>
+            </div>
+            <div class="bank-row">
+              <span class="bank-label">លេខវេរលុយ (Phone):</span>
+              <span class="bank-val">066 895 789</span>
+            </div>
+          </div>
         </div>
 
         <div class="form-group" style="margin-top:10px;">
@@ -473,6 +546,12 @@
       { id: 'REV-MARKET-001', name: 'Review Market 001', type: 'REV-MARKET', file: 'REV-MARKET-001.mp4' },
       { id: 'REV-MARKET-002', name: 'Review Market 002', type: 'REV-MARKET', file: 'REV-MARKET-002.mp4' },
       { id: 'REV-MARKET-003', name: 'Review Market 003', type: 'REV-MARKET', file: 'REV-MARKET-003.mp4' }
+    ];
+
+    const comboSetsData = [
+      { id: 'COMBO_1', name: 'Combo Team SET #1', price: 25000, size: 'Combo Set', image: 'combo-1.jpg', benefits: 'ឈុតកាដូពិសេសរួមបញ្ចូលដំណាប់ចេក និងចេកស្រួយចម្រុះរសជាតិ។', taste: 'ផ្អែមឆ្ងាញ់ ស្រួយស្រែស ឈ្ងុយឆ្ងាញ់ពេញចិត្ត', pack: 'ប្រអប់កាដូស្ដង់ដារអនាម័យស្រស់ស្អាត', storage: 'រក្សាទុកក្នុងកន្លែងស្ងួតត្រជាក់បាន ៦ ខែ' },
+      { id: 'COMBO_2', name: 'Combo Team SET #2', price: 35000, size: 'Combo Set', image: 'combo-2.jpg', benefits: 'ឈុតធំសម្រាប់ក្រុមគ្រួសារ ចែករំលែកភាពសប្បាយរីករាយ។', taste: 'ចម្រុះរសជាតិពេញនិយម ឆ្ងាញ់ញ៉ាំជក់មាត់', pack: 'ប្រអប់កាដូធំទូលាយ រៀបចំយ៉ាងល្អ', storage: 'រក្សាទុកក្នុងកន្លែងស្ងួតត្រជាក់បាន ៦ ខែ' },
+      { id: 'COMBO_3', name: 'Combo Team SET #3', price: 45000, size: 'Combo Set', image: 'combo-3.jpg', benefits: 'ឈុតពិសេសប្រណីត សម្រាប់ជូនជាកាដូដៃគូអាជីវកម្ម។', taste: 'រសជាតិពិសេសគុណភាពខ្ពស់ ផ្អែមស្រទន់', pack: 'ប្រអប់កាដូប្រណីត ធន់នឹងការដឹកជញ្ជូន', storage: 'រក្សាទុកក្នុងកន្លែងស្ងួតត្រជាក់បាន ៦ ខែ' }
     ];
 
     const products = {
@@ -596,6 +675,40 @@
         storage: "រក្សាទុកក្នុងថង់បិទជិត"
       }
     };
+
+    function renderComboSets() {
+      const container = document.getElementById('combo-sets-container');
+      container.innerHTML = '';
+      
+      comboSetsData.forEach((combo, index) => {
+        const num = index + 1;
+        const card = document.createElement('div');
+        card.className = 'combo-card-169';
+        card.onclick = () => openComboDetail(combo);
+        card.innerHTML = `
+          <img src="${combo.image}" alt="${combo.name}" onerror="this.src='https://via.placeholder.com/800x450/1a1a1a/e74c3c?text=Combo+Team+SET+${num}+16:9'">
+          <div class="combo-thumbnail-padding">
+            <div class="combo-title-text">
+              <span>🎁 ${combo.name}</span>
+              <span style="font-size: 0.85rem; color: #fff;">${combo.price.toLocaleString()} ៛</span>
+            </div>
+            <div class="combo-desc-text">ចុចទីនេះដើម្បីមើលព័ត៌មានលម្អិត និងអត្ថប្រយោជន៍នៃឈុតនេះ!</div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function openComboDetail(combo) {
+      document.getElementById('detail-img').src = combo.image;
+      document.getElementById('detail-name').innerText = combo.name;
+      document.getElementById('detail-price').innerText = `${combo.price.toLocaleString()} ៛ (${combo.size})`;
+      document.getElementById('detail-benefits').innerText = combo.benefits;
+      document.getElementById('detail-taste').innerText = combo.taste;
+      document.getElementById('detail-pack').innerText = combo.pack;
+      document.getElementById('detail-storage').innerText = combo.storage;
+      document.getElementById('detailModal').style.display = 'flex';
+    }
 
     function renderVideoGallery(filterType = 'ALL') {
       const container = document.getElementById('video-feed-container');
@@ -752,50 +865,11 @@
       return { grandTotal, totalItemPrice, deliveryFee, promoFreeMsg, minQtyMet, totalBoxes };
     }
 
-    // Render Combo Team SET 5 Boxes with expandable details
-    function renderComboSets() {
-      const container = document.getElementById('combo-sets-container');
-      container.innerHTML = '';
-      for (let i = 1; i <= 5; i++) {
-        const comboDiv = document.createElement('div');
-        comboDiv.className = 'combo-gift-box';
-        comboDiv.id = `combo-box-${i}`;
-        comboDiv.onclick = () => toggleComboDetail(i);
-        comboDiv.innerHTML = `
-          <div class="combo-title">
-            <span>🎁 Combo Team SET ចម្រុះ #${i}</span>
-            <span id="combo-arrow-${i}">▼</span>
-          </div>
-          <div class="combo-desc" id="combo-desc-${i}">
-            ចុចទីនេះដើម្បីមើលព័ត៌មានលម្អិតនៃផលិតផលក្នុងឈុតកាដូនេះ!
-          </div>
-          <div class="limit-badge">តម្លៃពិសេស | ធូរថ្លៃសម្រាប់សមាជិកក្រុម (ទិញបានត្រឹម ១ ឈុត/នាក់)</div>
-        `;
-        container.appendChild(comboDiv);
-      }
-    }
-
-    function toggleComboDetail(index) {
-      const descElem = document.getElementById(`combo-desc-${index}`);
-      const arrowElem = document.getElementById(`combo-arrow-${index}`);
-      if (descElem.innerHTML.includes('ចុចទីនេះ')) {
-        descElem.innerHTML = `<strong>លម្អិតផលិតផលក្នុង Combo Team SET #${index}:</strong><br>
-        - រួមមានរសជាតិចេកស្អិត និងចេកស្រួយចម្រុះពេញនិយមយ៉ាងសម្បូរបែប<br>
-        - រៀបចំយ៉ាងពិសេសសម្រាប់ចែករំលែកញ៉ាំក្នុងក្រុម ឬគ្រួសារធំ<br>
-        - តម្លៃពិសេសសន្សំសំចៃខ្លាំង (จำกัด 1 ឈុតគត់ក្នុងម្នាក់)`;
-        arrowElem.innerText = '▲';
-      } else {
-        descElem.innerHTML = `ចុចទីនេះដើម្បីមើលព័ត៌មានលម្អិតនៃផលិតផលក្នុងឈុតកាដូនេះ!`;
-        arrowElem.innerText = '▼';
-      }
-    }
-
     function openCheckoutModal() {
       let calc = calculateTotal();
       if (calc.totalItemPrice === 0) { alert("សូមជ្រើសរើសចំនួនទំនិញយ៉ាងហោចណាស់ ១ ជាមុនសិន!"); return; }
       if (!calc.minQtyMet) { alert("សូមពិនិត្យចំនួនកុម្ម៉ង់អប្បបរមា!"); return; }
 
-      // Populate Locked Items List inside Checkout Popup Slip
       const lockedContainer = document.getElementById('popup-locked-items');
       lockedContainer.innerHTML = '';
       
@@ -812,10 +886,6 @@
         }
       }
 
-      // Render 5 Combo Sets
-      renderComboSets();
-
-      // Update Fees & Totals
       const feeText = calc.deliveryFee === 0 ? "FREE (ឥតគិតថ្លៃ)" : `${calc.deliveryFee.toLocaleString()} ៛`;
       document.getElementById('popup-delivery-fee').innerText = feeText;
       document.getElementById('popup-grand-total').innerText = `${calc.grandTotal.toLocaleString()} ៛`;
@@ -861,7 +931,6 @@
           orderDetails += `   👉 តម្លៃ: ${(p.qty * p.price).toLocaleString()} ៛ | ចំនួន: ${p.qty}\n`;
         }
       }
-      orderDetails += `\n🎁 **រួមបញ្ចូល Combo Team SET (5 ឈុតតម្លៃពិសេស)**\n`;
       orderDetails += `\n💰 **សរុបទឹកប្រាក់ត្រូវបង់:** ${calc.grandTotal.toLocaleString()} ៛\n`;
       orderDetails += "──────────────────────\n";
       orderDetails += "👤 **ព័ត៌មានអតិថិជន៖**\n";
@@ -883,6 +952,7 @@
       alert("✅ ទិន្នន័យការកុម្ម៉ង់ត្រូវបានរៀបចំរួចរាល់! សូមចុចបញ្ជូនក្នុង Telegram ឆាតផ្ទាល់ជាមួយ Admin។");
     }
 
+    renderComboSets();
     renderVideoGallery();
     renderProducts();
   </script>
