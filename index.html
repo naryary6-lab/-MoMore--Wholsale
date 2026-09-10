@@ -24,15 +24,13 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Kantumruy Pro', sans-serif; }
     
-    /* ទុកចន្លោះបាតទូរសព្ទការពារការបាំង Touch Screen ផ្នែកខាងក្រោម */
     body { 
       background-color: var(--light-bg); 
       color: var(--text-dark); 
-      padding-bottom: 160px; 
+      padding-bottom: 140px; 
       font-size: 15px; 
     }
     
-    /* Header - រៀបចំការពារបាំងផ្នែកខាងលើទូរសព្ទ និងទម្លាក់ឱ្យចុះក្រោមបន្តិច */
     header { 
       background: linear-gradient(135deg, #121212 0%, #2c2c2c 100%); 
       color: var(--primary); 
@@ -50,13 +48,12 @@
     .container { 
       max-width: 600px; 
       margin: auto; 
-      padding: 16px 10px 10px 10px; /* បន្ថែម padding ផ្នែកខាងលើ ដើម្បីការពារការបាំងសេវា/ម៉ោង */
+      padding: 16px 10px 10px 10px; 
     }
 
-    /* True Hero Banner (ខ្នាត 16:9 អាចដាក់រូបភាពស្អាតបាន) */
     .hero-banner {
       width: 100%;
-      aspect-ratio: 16 / 9; /* រក្សាចន្លោះខ្នាត 16:9 យ៉ាងជាក់លាក់ */
+      aspect-ratio: 16 / 9;
       background: #1a1a1a;
       border-radius: 14px;
       overflow: hidden;
@@ -71,7 +68,6 @@
       object-fit: cover;
       display: block;
     }
-    /* ករណីចង់បង្ហាញអក្សរពីលើរូបភាពបន្តិចបន្តួច */
     .hero-banner-content {
       position: absolute;
       bottom: 0;
@@ -94,7 +90,6 @@
       font-weight: 500;
     }
 
-    /* Video Feed Section */
     .video-gallery-section {
       background: #ffffff;
       border-radius: 14px;
@@ -113,22 +108,18 @@
     }
     .chip-btn.active { background: var(--primary); color: #121212; border-color: var(--primary); font-weight: 800; }
 
-    /* Video Cards Scroll */
     .video-cards-scroll { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: thin; }
     .video-card-item { flex: 0 0 150px; background: #121212; border-radius: 12px; overflow: hidden; position: relative; cursor: pointer; border: 1.5px solid #333; }
     .video-card-thumb { width: 100%; height: 200px; object-fit: cover; display: block; }
     .video-play-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 38px; height: 38px; background: rgba(243, 156, 18, 0.95); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #121212; font-size: 1rem; font-weight: bold; }
     .video-card-title { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.95), transparent); color: #fff; padding: 14px 4px 4px 4px; font-size: 0.75rem; font-weight: 700; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-    /* Notice Box */
     .notice-box { background: #fff8f0; border-left: 4px solid var(--primary); padding: 12px 14px; border-radius: 10px; margin-bottom: 16px; font-size: 0.85rem; line-height: 1.5; border: 1px solid #ffe8cc; }
 
-    /* Section Header Styles */
     .section-title-box { margin: 18px 0 10px 0; padding: 10px 14px; background: linear-gradient(135deg, #121212 0%, #2a2a2a 100%); border-radius: 10px; border-left: 5px solid var(--primary); color: #ffffff; }
     .sec-title-main { font-size: 1.15rem; font-weight: 800; color: var(--primary); }
     .sec-title-sub { font-size: 0.8rem; color: #dddddd; margin-top: 2px; font-weight: 500; }
 
-    /* Grid & Product Card Layout */
     .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; }
     .product-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between; border: 1.5px solid #e2e8f0; }
 
@@ -147,20 +138,6 @@
     .quantity-control { display: flex; align-items: center; justify-content: space-between; background: #f1f2f6; border-radius: 6px; padding: 3px 6px; }
     .btn-qty { width: 30px; height: 30px; background: white; border: 1px solid #ccc; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; color: var(--primary-dark); }
     .qty-number { font-weight: 800; font-size: 0.95rem; color: #121212; }
-    
-    /* Form Section */
-    .form-section { background: #ffffff; padding: 14px; border-radius: 14px; margin-top: 10px; border: 1.5px solid #e0e0e0; }
-    .form-group { margin-bottom: 12px; }
-    .form-group label { display: block; font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; color: #121212; }
-    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px 12px; border: 1.5px solid #bbb; border-radius: 8px; font-size: 0.9rem; background: #fafafa; font-weight: 500; }
-    .form-group input:focus, .form-group select:focus { border-color: var(--primary); outline: none; background: #fff; }
-    .required-tag { color: var(--price-red); font-weight: bold; }
-
-    /* KHQR Container */
-    .qr-container { text-align: center; margin-top: 10px; padding: 12px; background: #1a1a1a; border-radius: 10px; border: 2px dashed var(--primary); color: white; }
-    .qr-title { font-weight: 800; color: var(--primary); font-size: 1.05rem; margin-bottom: 2px; }
-    .qr-sub { font-size: 0.8rem; color: #ddd; margin-bottom: 8px; }
-    .qr-image { width: 190px; height: 190px; object-fit: contain; margin: 6px auto; display: block; border-radius: 8px; background: #fff; padding: 4px; }
 
     /* Fixed Bottom Cart Bar */
     .cart-bar { 
@@ -188,7 +165,7 @@
 
     /* Modal Styles */
     .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.88); z-index: 2000; justify-content: center; align-items: center; padding: 12px; }
-    .modal-content { width: 100%; max-width: 440px; background: #fff; border-radius: 14px; overflow: hidden; position: relative; max-height: 85vh; display: flex; flex-direction: column; }
+    .modal-content { width: 100%; max-width: 440px; background: #fff; border-radius: 14px; overflow: hidden; position: relative; max-height: 90vh; display: flex; flex-direction: column; }
     .close-modal { position: absolute; top: 10px; right: 10px; color: white; font-size: 18px; font-weight: bold; cursor: pointer; z-index: 2001; background: rgba(0,0,0,0.75); width: 30px; height: 30px; border-radius: 50%; text-align: center; line-height: 28px; border: 1px solid var(--primary); }
     
     .detail-header-media { width: 100%; height: 260px; background: #121212; position: relative; }
@@ -197,6 +174,23 @@
     .detail-title { font-size: 1.15rem; font-weight: 800; color: #121212; }
     .detail-price { font-size: 1.15rem; font-weight: 800; color: var(--price-red); margin-bottom: 8px; }
     .detail-sec-title { font-weight: 800; color: var(--primary-dark); margin-top: 8px; margin-bottom: 2px; font-size: 0.9rem; }
+
+    /* Checkout Popup Form Styling */
+    .checkout-body { padding: 16px; overflow-y: auto; background: #fafafa; }
+    .checkout-title { font-size: 1.1rem; font-weight: 800; color: #121212; margin-bottom: 12px; border-bottom: 2px solid var(--primary); padding-bottom: 6px; }
+    .summary-box { background: #fff8f0; border: 1.5px solid #ffe8cc; border-radius: 8px; padding: 10px; margin-bottom: 14px; font-size: 0.85rem; }
+    .summary-row { display: flex; justify-content: space-between; margin-bottom: 4px; }
+    .summary-total { font-weight: 800; color: var(--price-red); font-size: 1rem; border-top: 1px dashed #ccc; padding-top: 4px; margin-top: 4px; }
+    
+    .form-group { margin-bottom: 12px; }
+    .form-group label { display: block; font-weight: 700; font-size: 0.85rem; margin-bottom: 4px; color: #121212; }
+    .form-group input, .form-group select { width: 100%; padding: 10px 12px; border: 1.5px solid #bbb; border-radius: 8px; font-size: 0.9rem; background: #fff; font-weight: 500; }
+    .required-tag { color: var(--price-red); font-weight: bold; }
+
+    .qr-container { text-align: center; margin-top: 10px; padding: 10px; background: #1a1a1a; border-radius: 10px; border: 2px dashed var(--primary); color: white; }
+    .qr-title { font-weight: 800; color: var(--primary); font-size: 1rem; margin-bottom: 2px; }
+    .qr-sub { font-size: 0.75rem; color: #ddd; margin-bottom: 6px; }
+    .qr-image { width: 160px; height: 160px; object-fit: contain; margin: 4px auto; display: block; border-radius: 6px; background: #fff; padding: 4px; }
   </style>
 </head>
 <body>
@@ -205,7 +199,7 @@
 
   <div class="container">
 
-    <!-- 1. TRUE HERO BANNER (ខ្នាត 16:9 សម្រាប់ដាក់រូបភាពស្អាត) -->
+    <!-- 1. TRUE HERO BANNER -->
     <div class="hero-banner">
       <img src="hero-banner.jpg" alt="MoMore Wholesale Banner" onerror="this.src='https://via.placeholder.com/800x450/1a1a1a/f39c12?text=MoMore+Wholesale+16:9+Banner'">
       <div class="hero-banner-content">
@@ -257,52 +251,6 @@
     </div>
     <div class="grid" id="crispy-container"></div>
 
-    <!-- ផ្នែកទី ៣៖ ព័ត៌មានដឹកជញ្ជូន និងបង់ប្រាក់ -->
-    <div class="section-title-box">
-      <div class="sec-title-main">3. ព័ត៌មានដឹកជញ្ជូន & ទូទាត់ប្រាក់ KHQR</div>
-      <div class="sec-title-sub">បំពេញព័ត៌មាន និង Upload Payment Slip ដើម្បីបញ្ជាក់ការកុម្ម៉ង់</div>
-    </div>
-
-    <div class="form-section">
-      <div class="form-group">
-        <label>📞 លេខទូរស័ព្ទទទួលទំនិញ <span class="required-tag">*</span></label>
-        <input type="tel" id="cust-phone" placeholder="ឧទាហរណ៍៖ 012 345 678" required>
-      </div>
-
-      <div class="form-group">
-        <label>📍 រាជធានី / ខេត្ត <span class="required-tag">*</span></label>
-        <input type="text" id="cust-province" placeholder="ឧទាហរណ៍៖ បាត់ដំបង, ភ្នំពេញ" required>
-      </div>
-
-      <div class="form-group">
-        <label>🚚 ក្រុមហ៊ុនដឹកជញ្ជូន <span class="required-tag">*</span></label>
-        <select id="courier-select">
-          <option value="វីរៈ ប៊ុនថាំ (Virak Buntham)">វីរៈ ប៊ុនថាំ (Virak Buntham)</option>
-          <option value="J&T Express">J&T Express</option>
-          <option value="Flash Express">Flash Express</option>
-          <option value="VET Express (កាពីតូល)">VET Express (កាពីតូល)</option>
-          <option value="ដឹកជញ្ជូនរហ័ស (ក្នុងភ្នំពេញ)">ដឹកជញ្ជូនរហ័ស Express (ក្នុងភ្នំពេញ)</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label>🏢 សាខាដឹកជញ្ជូន / អាសយដ្ឋាន</label>
-        <input type="text" id="cust-branch" placeholder="ឧទាហរណ៍៖ សាខាខេត្តបាត់ដំបង ឬ ផ្ទះលេខ...">
-      </div>
-
-      <!-- KHQR Section -->
-      <div class="qr-container">
-        <div class="qr-title">💳 ទូទាត់ប្រាក់តាម KHQR</div>
-        <div class="qr-sub">សូមស្កែនទូទាត់ប្រាក់សរុប រួច Upload វិក្កយបត្រ៖</div>
-        <img src="khqr.jpg" alt="KHQR Code" class="qr-image" onerror="this.src='https://via.placeholder.com/210x210?text=KHQR+Code'">
-      </div>
-
-      <div class="form-group" style="margin-top:12px;">
-        <label>🧾 បង្ហោះរូបភាពវិក្កយបត្រ (Payment Slip) <span class="required-tag">*</span></label>
-        <input type="file" id="slip-file" accept="image/*" required>
-      </div>
-    </div>
-
   </div>
 
   <!-- Modal វីដេអូ -->
@@ -339,6 +287,75 @@
     </div>
   </div>
 
+  <!-- Checkout Modal (Popup សម្រាប់បំពេញព័ត៌មាន និងទូទាត់) -->
+  <div class="modal" id="checkoutModal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeCheckoutModal()">&times;</span>
+      <div class="checkout-body">
+        <div class="checkout-title">📝 បញ្ជាក់ការកុម្ម៉ង់ និងទូទាត់ប្រាក់</div>
+        
+        <!-- Summary Box -->
+        <div class="summary-box">
+          <div class="summary-row">
+            <span>ចំនួនទំនិញសរុប:</span>
+            <span id="popup-total-qty" style="font-weight:700;">0 ប្រអប់</span>
+          </div>
+          <div class="summary-row">
+            <span>តម្លៃទំនិញ:</span>
+            <span id="popup-items-price" style="font-weight:700;">0 ៛</span>
+          </div>
+          <div class="summary-row">
+            <span>សេវាដឹកជញ្ជូន:</span>
+            <span id="popup-delivery-fee" style="font-weight:700; color:#2ecc71;">8,000 ៛</span>
+          </div>
+          <div class="summary-row summary-total">
+            <span>សរុបទឹកប្រាក់ត្រូវបង់:</span>
+            <span id="popup-grand-total">0 ៛</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>📍 ទីតាំងទទួលទំនិញ <span class="required-tag">*</span></label>
+          <select id="location-type" onchange="toggleLocationFields()">
+            <option value="phnompenh">ភ្នំពេញ (Phnom Penh)</option>
+            <option value="province">ខេត្តផ្សេងៗ (Provinces)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>📞 លេខទូរស័ព្ទទំនាក់ទំនង <span class="required-tag">*</span></label>
+          <input type="tel" id="cust-phone" placeholder="ឧទាហរណ៍៖ 012 345 678" required>
+        </div>
+
+        <!-- សម្រាប់ភ្នំពេញ -->
+        <div class="form-group" id="phnompenh-fields">
+          <label>🏠 លេខផ្ទះ / លេខផ្លូវ / ទីតាំងលម្អិត <span class="required-tag">*</span></label>
+          <input type="text" id="cust-address" placeholder="ឧទាហរណ៍៖ ផ្ទះលេខ 12, ផ្លូវ 310, បឹងកេងកង">
+        </div>
+
+        <!-- សម្រាប់ខេត្ត -->
+        <div class="form-group" id="province-fields" style="display:none;">
+          <label>🏢 សាខាក្រុមហ៊ុនដឹកជញ្ជូននៅខេត្ត <span class="required-tag">*</span></label>
+          <input type="text" id="cust-branch" placeholder="ឧទាហរណ៍៖ វីរៈប៊ុនថាំ សាខាខេត្តសៀមរាប">
+        </div>
+
+        <!-- KHQR Section -->
+        <div class="qr-container">
+          <div class="qr-title">💳 ស្កែនទូទាត់ប្រាក់តាម KHQR</div>
+          <div class="qr-sub">សូមស្កែនទឹកប្រាក់សរុបខាងលើ រួច Upload វិក្កយបត្រ៖</div>
+          <img src="khqr.jpg" alt="KHQR Code" class="qr-image" onerror="this.src='https://via.placeholder.com/210x210?text=KHQR+Code'">
+        </div>
+
+        <div class="form-group" style="margin-top:12px;">
+          <label>🧾 បង្ហោះរូបភាពវិក្កយបត្រ (Payment Slip) <span class="required-tag">*</span></label>
+          <input type="file" id="slip-file" accept="image/*" required>
+        </div>
+
+        <button class="btn-checkout" style="width:100%; margin-top:8px; padding:12px;" onclick="submitOrder()">🚀 បញ្ជូនការកុម្ម៉ង់ទៅ Telegram Admin</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Cart Fixed Bottom -->
   <div class="cart-bar">
     <div>
@@ -346,7 +363,7 @@
       <div class="total-price"><span id="total-val">0</span> ៛</div>
       <div class="delivery-info" id="delivery-info">🚚 ថ្លៃដឹកជញ្ជូន៖ 8,000 ៛</div>
     </div>
-    <button class="btn-checkout" id="submit-btn" onclick="submitOrder()">ផ្ញើការកុម្ម៉ង់</button>
+    <button class="btn-checkout" id="submit-btn" onclick="openCheckoutModal()">បន្តការកុម្ម៉ង់</button>
   </div>
 
   <script>
@@ -617,10 +634,12 @@
       let totalItemPrice = 0;
       let total200gQty = 0;
       let total100gQty = 0;
+      let totalBoxes = 0;
 
       for (let key in products) {
         let p = products[key];
         totalItemPrice += p.qty * p.price;
+        totalBoxes += p.qty;
         if (p.size === '100g') total100gQty += p.qty;
         else total200gQty += p.qty;
       }
@@ -635,7 +654,7 @@
       if (totalItemPrice === 0) {
         deliveryFee = 0;
         btnSubmit.disabled = false;
-        btnSubmit.innerText = "ផ្ញើការកុម្ម៉ង់";
+        btnSubmit.innerText = "បន្តការកុម្ម៉ង់";
       } else {
         if (total200gQty > 0 && total200gQty < 10) { minQtyMet = false; qtyStatusMsg = ` (200g ខ្វះ ${10 - total200gQty} ទៀត)`; }
         if (total100gQty > 0 && total100gQty < 20) { minQtyMet = false; qtyStatusMsg += ` (100g ខ្វះ ${20 - total100gQty} ទៀត)`; }
@@ -645,7 +664,7 @@
           btnSubmit.innerText = "កុម្ម៉ង់មិនទាន់គ្រប់ចំនួន" + qtyStatusMsg;
         } else {
           btnSubmit.disabled = false;
-          btnSubmit.innerText = "ផ្ញើការកុម្ម៉ង់";
+          btnSubmit.innerText = "បន្តការកុម្ម៉ង់";
         }
 
         if (total200gQty >= 30) { deliveryFee = 0; promoFreeMsg = " [FREE ដឹក + ថែម 200g មួយប្រអប់]"; }
@@ -660,53 +679,79 @@
       else if (deliveryFee === 0) delBox.innerText = `🚚 ថ្លៃដឹកជញ្ជូន៖ FREE ឥតគិតថ្លៃ! ${promoFreeMsg}`;
       else delBox.innerText = `🚚 ថ្លៃដឹកជញ្ជូន៖ ${deliveryFee.toLocaleString()} ៛`;
 
-      return { grandTotal, totalItemPrice, deliveryFee, promoFreeMsg, minQtyMet };
+      return { grandTotal, totalItemPrice, deliveryFee, promoFreeMsg, minQtyMet, totalBoxes };
+    }
+
+    function openCheckoutModal() {
+      let calc = calculateTotal();
+      if (calc.totalItemPrice === 0) { alert("សូមជ្រើសរើសចំនួនទំនិញយ៉ាងហោចណាស់ ១ ជាមុនសិន!"); return; }
+      if (!calc.minQtyMet) { alert("សូមពិនិត្យចំនួនកុម្ម៉ង់អប្បបរមា!"); return; }
+
+      // Update Checkout Popup Summary UI
+      document.getElementById('popup-total-qty').innerText = `${calc.totalBoxes} ប្រអប់`;
+      document.getElementById('popup-items-price').innerText = `${calc.totalItemPrice.toLocaleString()} ៛`;
+      
+      const feeText = calc.deliveryFee === 0 ? "FREE (ឥតគិតថ្លៃ)" : `${calc.deliveryFee.toLocaleString()} ៛`;
+      document.getElementById('popup-delivery-fee').innerText = feeText;
+      document.getElementById('popup-grand-total').innerText = `${calc.grandTotal.toLocaleString()} ៛`;
+
+      document.getElementById('checkoutModal').style.display = 'flex';
+    }
+
+    function closeCheckoutModal() {
+      document.getElementById('checkoutModal').style.display = 'none';
+    }
+
+    function toggleLocationFields() {
+      const type = document.getElementById('location-type').value;
+      if (type === 'phnompenh') {
+        document.getElementById('phnompenh-fields').style.display = 'block';
+        document.getElementById('province-fields').style.display = 'none';
+      } else {
+        document.getElementById('phnompenh-fields').style.display = 'none';
+        document.getElementById('province-fields').style.display = 'block';
+      }
     }
 
     async function submitOrder() {
-  let calc = calculateTotal();
-  if (calc.totalItemPrice === 0) { alert("សូមជ្រើសរើសចំនួនទំនិញយ៉ាងហោចណាស់ ១ ជាមុនសិន!"); return; }
-  if (!calc.minQtyMet) { alert("សូមពិនិត្យចំនួនកុម្ម៉ង់អប្បបរមា!"); return; }
+      let calc = calculateTotal();
+      const phone = document.getElementById('cust-phone').value.trim();
+      const locType = document.getElementById('location-type').value;
+      const address = document.getElementById('cust-address').value.trim();
+      const branch = document.getElementById('cust-branch').value.trim();
 
-  const phone = document.getElementById('cust-phone').value.trim();
-  const province = document.getElementById('cust-province').value.trim();
-  const courier = document.getElementById('courier-select').value;
-  const branch = document.getElementById('cust-branch').value.trim();
+      if (!phone) { alert("សូមបំពេញលេខទូរស័ព្ទទំនាក់ទំនង!"); return; }
+      if (locType === 'phnompenh' && !address) { alert("សូមបំពេញលេខផ្ទះ/ផ្លូវ/ទីតាំងលម្អិតនៅភ្នំពេញ!"); return; }
+      if (locType === 'province' && !branch) { alert("សូមបំពេញសាខាដឹកជញ្ជូននៅខេត្ត!"); return; }
 
-  if (!phone || !province) { alert("សូមបំពេញលេខទូរស័ព្ទ និង ខេត្ត/ក្រុង!"); return; }
+      let orderDetails = "🛍️ ══════════════════ 🛍️\n";
+      orderDetails += "          📥 **សំណើកុម្ម៉ង់ទំនិញថ្មី**\n";
+      orderDetails += "🛍️ ══════════════════ 🛍️\n\n";
+      orderDetails += "📋 **បញ្ជីទំនិញដែលបានជ្រើសរើស៖**\n";
+      for (let key in products) {
+        if (products[key].qty > 0) {
+          let p = products[key];
+          orderDetails += `▪️ ${p.type} (${p.flavor} - ${p.size})\n`;
+          orderDetails += `   👉 ចំនួន: ${p.qty} ប្រអប់ | ទឹកប្រាក់: ${(p.qty * p.price).toLocaleString()} ៛\n`;
+        }
+      }
+      orderDetails += `\n💰 **សរុបទឹកប្រាក់ត្រូវបង់:** ${calc.grandTotal.toLocaleString()} ៛\n`;
+      orderDetails += "──────────────────────\n";
+      orderDetails += "👤 **ព័ត៌មានអតិថិជន៖**\n";
+      orderDetails += `📞 លេខទូរស័ព្ទ: ${phone}\n`;
+      if (locType === 'phnompenh') {
+        orderDetails += `📍 ទីតាំង (ភ្នំពេញ): ${address}\n`;
+      } else {
+        orderDetails += `📍 ទីតាំង (ខេត្ត): សាខា ${branch}\n`;
+      }
+      orderDetails += "──────────────────────\n";
+      orderDetails += "⚠️ *សម្គាល់៖ អតិថិជនបានផ្ញើរូបភាពវិក្កយបត្រទូទាត់ប្រាក់ (Payment Slip) រួចរាល់។*";
 
-  // 1. ទម្រង់សារបញ្ជីទំនិញដែលបានឌីសាញរួច (មានរបៀបរៀបរយ និងទំនង)
-  let orderDetails = "🛍️ ══════════════════ 🛍️\n";
-  orderDetails += "          📥 **សំណើកុម្ម៉ង់ទំនិញថ្មី**\n";
-  orderDetails += "🛍️ ══════════════════ 🛍️\n\n";
-
-  orderDetails += "📋 **បញ្ជីទំនិញដែលបានជ្រើសរើស៖**\n";
-  for (let key in products) {
-    if (products[key].qty > 0) {
-      let p = products[key];
-      orderDetails += `▪️ ${p.type} (${p.flavor} - ${p.size})\n`;
-      orderDetails += `   👉 ចំនួន: ${p.qty} ប្រអប់ | ទឹកប្រាក់: ${(p.qty * p.price).toLocaleString()} ៛\n`;
+      const encodedText = encodeURIComponent(orderDetails);
+      const adminUsername = "MoMore_collection"; 
+      window.open(`https://t.me/${adminUsername}?text=${encodedText}`, '_blank');
+      alert("✅ ទិន្នន័យការកុម្ម៉ង់ត្រូវបានរៀបចំរួចរាល់! សូមចុចបញ្ជូនក្នុង Telegram ឆាតផ្ទាល់ជាមួយ Admin។");
     }
-  }
-
-  orderDetails += `\n💰 **សរុបទឹកប្រាក់ត្រូវបង់:** ${calc.grandTotal.toLocaleString()} ៛\n`;
-  orderDetails += "──────────────────────\n";
-  orderDetails += "👤 **ព័ត៌មានអតិថិជន៖**\n";
-  orderDetails += `📞 លេខទូរស័ព្ទ: ${phone}\n`;
-  orderDetails += `📍 ខេត្ត/ក្រុង: ${province}\n`;
-  orderDetails += `🏢 សាខា/ទីតាំង: ${branch || 'អត់មានបញ្ជាក់'}\n`;
-  orderDetails += `🚚 ក្រុមហ៊ុនដឹកជញ្ជូន: ${courier}\n`;
-  orderDetails += "──────────────────────\n";
-  orderDetails += "⚠️ *សម្គាល់៖ អតិថិជនតាមខេត្តសូមរង់ចាំ Admin ផ្ញើ QR Code / លេខកុង ដើម្បីធ្វើការវេរប្រាក់ និងផ្ញើ Slip បញ្ជាក់។*";
-
-  const encodedText = encodeURIComponent(orderDetails);
-  
-  // 2. តភ្ជាប់ផ្ទាល់ទៅកាន់ Telegram Username របស់បង (@MoMore_collection)
-  const adminUsername = "MoMore_collection"; 
-  window.open(`https://t.me/${adminUsername}?text=${encodedText}`, '_blank');
-
-  alert("✅ ទិន្នន័យការកុម្ម៉ង់ត្រូវបានរៀបចំរួចរាល់! សូមចុចបញ្ជូនក្នុង Telegram ឆាតផ្ទាល់ជាមួយ Admin។");
-}
 
     renderVideoGallery();
     renderProducts();
