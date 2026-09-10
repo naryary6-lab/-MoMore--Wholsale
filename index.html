@@ -1,316 +1,53 @@
-<!DOCTYPE html>
-<html lang="km">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MoMore Wholesale WebApp</title>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <!-- Google Fonts: Kantumruy Pro & Moul -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700;800&family=Moul&display=stylesheet">
-  
-  <style>
-    :root {
-      --primary: #f39c12;        /* Vibrant Orange */
-      --primary-dark: #d35400;   /* Deep Orange */
-      --dark-bg: #121212;
-      --light-bg: #f8f9fa;
-      --card-bg: #ffffff;
-      --text-dark: #111111;
-      --text-gray: #555555;
-      --price-red: #e74c3c;     
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Kantumruy Pro', sans-serif; }
-    
-    /* ទុកចន្លោះបាតទូរសព្ទការពារការបាំង Touch Screen ផ្នែកខាងក្រោម */
-    body { 
-      background-color: var(--light-bg); 
-      color: var(--text-dark); 
-      padding-bottom: 160px; 
-      font-size: 15px; 
-    }
-    
-    /* Header - រៀបចំការពារបាំងផ្នែកខាងលើទូរសព្ទ និងទម្លាក់ឱ្យចុះក្រោមបន្តិច */
-    header { 
-      background: linear-gradient(135deg, #121212 0%, #2c2c2c 100%); 
-      color: var(--primary); 
-      padding: 16px; 
-      text-align: center; 
-      font-weight: 800; 
-      font-size: 1.25rem; 
-      position: sticky; 
-      top: 0; 
-      z-index: 100; 
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      border-bottom: 3px solid var(--primary);
-    }
-    
-    .container { 
-      max-width: 600px; 
-      margin: auto; 
-      padding: 16px 10px 10px 10px; /* បន្ថែម padding ផ្នែកខាងលើ ដើម្បីការពារការបាំងសេវា/ម៉ោង */
-    }
-    /* True Hero Banner (ខ្នាត 16:9 អាចដាក់រូបភាពស្អាតបាន) */
-    .hero-banner {
-      width: 100%;
-      aspect-ratio: 16 / 9; /* រក្សាចន្លោះខ្នាត 16:9 យ៉ាងជាក់លាក់ */
-      background: #1a1a1a;
-      border-radius: 14px;
-      overflow: hidden;
-      margin-bottom: 14px;
-      border: 2px solid var(--primary);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      position: relative;
-    }
-    .hero-banner img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    /* ករណីចង់បង្ហាញអក្សរពីលើរូបភាពបន្តិចបន្តួច */
-    .hero-banner-content {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
-      padding: 16px 12px 10px 12px;
-      color: #ffffff;
-      text-align: center;
-    }
-    .hero-banner-content h1 {
-      font-size: 1.15rem;
-      color: var(--primary);
-      margin-bottom: 2px;
-      font-weight: 800;
-    }
-    .hero-banner-content p {
-      font-size: 0.78rem;
-      color: #eeeeee;
-      font-weight: 500;
-    }
-    /* Video Feed Section */
-    .video-gallery-section {
-      background: #ffffff;
-      border-radius: 14px;
-      padding: 12px;
-      margin-bottom: 16px;
-      border: 1px solid #e0e0e0;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
-    }
-    .gallery-title { font-weight: 800; font-size: 1rem; color: #121212; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
-    
-    .filter-scroll { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 10px; scrollbar-width: none; }
-    .filter-scroll::-webkit-scrollbar { display: none; }
-    
-    .chip-btn {
-      background: #f1f2f6; border: 1.5px solid #ddd; border-radius: 20px; padding: 6px 14px; font-size: 0.8rem; font-weight: 700; white-space: nowrap; cursor: pointer; color: #444;
-    }
-    .chip-btn.active { background: var(--primary); color: #121212; border-color: var(--primary); font-weight: 800; }
-    /* Video Cards Scroll */
-    .video-cards-scroll { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: thin; }
-    .video-card-item { flex: 0 0 150px; background: #121212; border-radius: 12px; overflow: hidden; position: relative; cursor: pointer; border: 1.5px solid #333; }
-    .video-card-thumb { width: 100%; height: 200px; object-fit: cover; display: block; }
-    .video-play-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 38px; height: 38px; background: rgba(243, 156, 18, 0.95); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #121212; font-size: 1rem; font-weight: bold; }
-    .video-card-title { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.95), transparent); color: #fff; padding: 14px 4px 4px 4px; font-size: 0.75rem; font-weight: 700; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    /* Notice Box */
-    .notice-box { background: #fff8f0; border-left: 4px solid var(--primary); padding: 12px 14px; border-radius: 10px; margin-bottom: 16px; font-size: 0.85rem; line-height: 1.5; border: 1px solid #ffe8cc; }
-    /* Section Header Styles */
-    .section-title-box { margin: 18px 0 10px 0; padding: 10px 14px; background: linear-gradient(135deg, #121212 0%, #2a2a2a 100%); border-radius: 10px; border-left: 5px solid var(--primary); color: #ffffff; }
-    .sec-title-main { font-size: 1.15rem; font-weight: 800; color: var(--primary); }
-    .sec-title-sub { font-size: 0.8rem; color: #dddddd; margin-top: 2px; font-weight: 500; }
-    /* Grid & Product Card Layout */
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; }
-    .product-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between; border: 1.5px solid #e2e8f0; }
-    .media-box { width: 100%; height: 220px; background-color: #121212; position: relative; overflow: hidden; cursor: pointer; }
-    .media-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    
-    .play-video-badge { position: absolute; top: 6px; right: 6px; background: rgba(18, 18, 18, 0.88); color: #fff; padding: 3px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 700; border: 1px solid var(--primary); z-index: 2; }
-    .product-info { padding: 8px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
-    .row-1-type { font-size: 0.78rem; color: var(--text-gray); font-weight: 600; }
-    .row-2-flavor { font-size: 0.98rem; font-weight: 800; color: #121212; margin: 1px 0 4px 0; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .row-3-price-weight { display: flex; align-items: baseline; gap: 4px; margin-bottom: 6px; }
-    .price-tag { font-size: 1.1rem; font-weight: 800; color: var(--price-red); }
-    .weight-tag { font-size: 0.78rem; font-weight: 600; color: #666; }
-    
-    .quantity-control { display: flex; align-items: center; justify-content: space-between; background: #f1f2f6; border-radius: 6px; padding: 3px 6px; }
-    .btn-qty { width: 30px; height: 30px; background: white; border: 1px solid #ccc; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; color: var(--primary-dark); }
-    .qty-number { font-weight: 800; font-size: 0.95rem; color: #121212; }
-    
-    /* Form Section */
-    .form-section { background: #ffffff; padding: 14px; border-radius: 14px; margin-top: 10px; border: 1.5px solid #e0e0e0; }
-    .form-group { margin-bottom: 12px; }
-    .form-group label { display: block; font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; color: #121212; }
-    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px 12px; border: 1.5px solid #bbb; border-radius: 8px; font-size: 0.9rem; background: #fafafa; font-weight: 500; }
-    .form-group input:focus, .form-group select:focus { border-color: var(--primary); outline: none; background: #fff; }
-    .required-tag { color: var(--price-red); font-weight: bold; }
-    /* KHQR Container */
-    .qr-container { text-align: center; margin-top: 10px; padding: 12px; background: #1a1a1a; border-radius: 10px; border: 2px dashed var(--primary); color: white; }
-    .qr-title { font-weight: 800; color: var(--primary); font-size: 1.05rem; margin-bottom: 2px; }
-    .qr-sub { font-size: 0.8rem; color: #ddd; margin-bottom: 8px; }
-    .qr-image { width: 190px; height: 190px; object-fit: contain; margin: 6px auto; display: block; border-radius: 8px; background: #fff; padding: 4px; }
-    /* Fixed Bottom Cart Bar */
-    .cart-bar { 
-      position: fixed; 
-      bottom: 22px; 
-      left: 12px; 
-      right: 12px; 
-      background: #121212; 
-      color: white; 
-      padding: 12px 16px; 
-      box-shadow: 0 -6px 25px rgba(0,0,0,0.5); 
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center; 
-      max-width: 580px; 
-      margin: auto; 
-      border-radius: 14px; 
-      border: 2px solid var(--primary); 
-      z-index: 999; 
-    }
-    .total-price { font-size: 1.25rem; font-weight: 800; color: var(--primary); }
-    .delivery-info { font-size: 0.75rem; color: #2ecc71; font-weight: 700; margin-top: 1px; }
-    .btn-checkout { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; border: none; padding: 10px 16px; border-radius: 8px; font-weight: 800; cursor: pointer; font-size: 0.95rem; }
-    .btn-checkout:disabled { background: #555; color: #888; cursor: not-allowed; }
-    /* Modal Styles */
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.88); z-index: 2000; justify-content: center; align-items: center; padding: 12px; }
-    .modal-content { width: 100%; max-width: 440px; background: #fff; border-radius: 14px; overflow: hidden; position: relative; max-height: 85vh; display: flex; flex-direction: column; }
-    .close-modal { position: absolute; top: 10px; right: 10px; color: white; font-size: 18px; font-weight: bold; cursor: pointer; z-index: 2001; background: rgba(0,0,0,0.75); width: 30px; height: 30px; border-radius: 50%; text-align: center; line-height: 28px; border: 1px solid var(--primary); }
-    
-    .detail-header-media { width: 100%; height: 260px; background: #121212; position: relative; }
-    .detail-header-media img, .detail-header-media video { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .detail-body { padding: 14px; overflow-y: auto; font-size: 0.88rem; line-height: 1.45; color: #333; }
-    .detail-title { font-size: 1.15rem; font-weight: 800; color: #121212; }
-    .detail-price { font-size: 1.15rem; font-weight: 800; color: var(--price-red); margin-bottom: 8px; }
-    .detail-sec-title { font-weight: 800; color: var(--primary-dark); margin-top: 8px; margin-bottom: 2px; font-size: 0.9rem; }
-  </style>
-</head>
-<body>
-  <header>🍌 MOMORE - កម្មង់ទំនិញបោះដុំ🍌</header>
-  
-  <div class="container">
-    <!-- 1. TRUE HERO BANNER (ខ្នាត 16:9 សម្រាប់ដាក់រូបភាពស្អាត) -->
-    <div class="hero-banner">
-      <img src="hero-banner.jpg" alt="MoMore Wholesale Banner" onerror="this.src='https://via.placeholder.com/800x450/1a1a1a/f39c12?text=MoMore+Wholesale+16:9+Banner'">
-      <div class="hero-banner-content">
-        <h1>MoMore Wholesale (តម្លៃបោះដុំ)</h1>
-        <p>ប្រព័ន្ធបញ្ជាទិញបោះដុំផ្ទាល់ គុណភាពខ្ពស់ និងអនាម័យស្តង់ដារសម្រាប់ដៃគូអាជីវកម្ម!</p>
-      </div>
-    </div>
-    <!-- 2. VIDEO GALLERY / FEED SECTION -->
-    <div class="video-gallery-section">
-      <div class="gallery-title">🎬 មើលវីដេអូស្ពត & Review (Video Feed)</div>
-      
-      <!-- Filter Chips -->
-      <div class="filter-scroll">
-        <button class="chip-btn active" onclick="filterVideos('ALL', this)">ទាំងអស់</button>
-        <button class="chip-btn" onclick="filterVideos('B-TO-B', this)">🤝 B-TO-B / ដៃគូ</button>
-        <button class="chip-btn" onclick="filterVideos('EAT-MUKBANG', this)">😋 Mukbang</button>
-        <button class="chip-btn" onclick="filterVideos('PROC', this)">🏭 សង្វាក់ផលិតកម្ម</button>
-        <button class="chip-btn" onclick="filterVideos('PROD', this)">🍌 ផលិតផល</button>
-        <button class="chip-btn" onclick="filterVideos('PROMO', this)">🎁 ប្រូម៉ូសិន</button>
-        <button class="chip-btn" onclick="filterVideos('REV-MARKET', this)">🏪 Review Market</button>
-      </div>
-      <!-- Video Cards Track -->
-      <div class="video-cards-scroll" id="video-feed-container"></div>
-    </div>
-    <!-- Notice Box -->
-    <div class="notice-box">
-      <strong>📌 លក្ខខណ្ឌកុម្ម៉ង់តម្លៃបោះដុំ៖</strong><br>
-      • កញ្ចប់ <strong>200g / 300g / 500g</strong>: ទិញចាប់ពី <strong>10 ប្រអប់ឡើងទៅ</strong><br>
-      • កញ្ចប់ <strong>100g</strong>: ទិញចាប់ពី <strong>20 ប្រអប់ឡើងទៅ</strong><br>
-      🎁 <strong>ប្រូម៉ូសិនហ្វ្រីសេវាដឹក & ថែមជូន៖</strong><br>
-      • 200g ចាប់ពី 30 ប្រអប់ ➔ ហ្វ្រីដឹក + ថែម 200g មួយប្រអប់<br>
-      • 100g ចាប់ពី 60 ប្រអប់ ➔ ហ្វ្រីដឹក + ថែម 100g ពីរប្រអប់
-    </div>
-    <!-- ផ្នែកទី ១៖ ដំណាប់ចេកណាំវ៉ា -->
-    <div class="section-title-box">
-      <div class="sec-title-main">1. ដំណាប់ចេកណាំវ៉ាខ្មែរ</div>
-      <div class="sec-title-sub">សាច់ទន់ស្វិតបន្ទះស្ដើង សម្ងួតអនាម័យ</div>
-    </div>
-    <div class="grid" id="domnap-container"></div>
-    <!-- ផ្នែកទី ២៖ ចេកបំពងស្រួយ Banana Chips crispy-->
-    <div class="section-title-box">
-      <div class="sec-title-main">2. ចេកបំពងស្រួយ ម៉ូម័រ MoMore</div>
-      <div class="sec-title-sub">ស្រួយស្រែស ឈ្ងុយឆ្ងាញ់ គ្រប់រសជាតិ</div>
-    </div>
-    <div class="grid" id="crispy-container"></div>
-    <!-- ផ្នែកទី ៣៖ ព័ត៌មានដឹកជញ្ជូន និងបង់ប្រាក់ -->
-    <div class="section-title-box">
-      <div class="sec-title-main">3. ព័ត៌មានដឹកជញ្ជូន & ទូទាត់ប្រាក់ KHQR</div>
-      <div class="sec-title-sub">បំពេញព័ត៌មាន និង Upload Payment Slip ដើម្បីបញ្ជាក់ការកុម្ម៉ង់</div>
-    </div>
-    <div class="form-section">
-      <div class="form-group">
-        <label>📞 លេខទូរស័ព្ទទទួលទំនិញ <span class="required-tag">*</span></label>
-        <input type="tel" id="cust-phone" placeholder="ឧទាហរណ៍៖ 012 345 678" required>
-      </div>
-      <div class="form-group">
-        <label>📍 រាជធានី / ខេត្ត <span class="required-tag">*</span></label>
-        <input type="text" id="cust-province" placeholder="ឧទាហរណ៍៖ បាត់ដំបង, ភ្នំពេញ" required>
-      </div>
-      <div class="form-group">
-        <label>🚚 ក្រុមហ៊ុនដឹកជញ្ជូន <span class="required-tag">*</span></label>
-        <select id="courier-select">
-          <option value="វីរៈ ប៊ុនថាំ (Virak Buntham)">វីរៈ ប៊ុនថាំ (Virak Buntham)</option>
-          <option value="J&T Express">J&T Express</option>
-          <option value="Flash Express">Flash Express</option>
-          <option value="VET Express (កាពីតូល)">VET Express (កាពីតូល)</option>
-          <option value="ដឹកជញ្ជូនរហ័ស (ក្នុងភ្នំពេញ)">ដឹកជញ្ជូនរហ័ស Express (ក្នុងភ្នំពេញ)</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>🏢 សាខាដឹកជញ្ជូន / អាសយដ្ឋាន</label>
-        <input type="text" id="cust-branch" placeholder="ឧទាហរណ៍៖ សាខាខេត្តបាត់ដំបង ឬ ផ្ទះលេខ...">
-      </div>
-      <!-- KHQR Section -->
-      <div class="qr-container">
-        <div class="qr-title">💳 ទូទាត់ប្រាក់តាម KHQR</div>
-        <div class="qr-sub">សូមស្កែនទូទាត់ប្រាក់សរុប រួច Upload វិក្កយបត្រ៖</div>
-        <img src="khqr.jpg" alt="KHQR Code" class="qr-image" onerror="this.src='https://via.placeholder.com/210x210?text=KHQR+Code'">
-      </div>
-      <div class="form-group" style="margin-top:12px;">
-        <label>🧾 បង្ហោះរូបភាពវិក្កយបត្រ (Payment Slip) <span class="required-tag">*</span></label>
-        <input type="file" id="slip-file" accept="image/*" required>
-      </div>
-    </div>
-  </div>
-  <!-- Modal វីដេអូ -->
-  <div class="modal" id="videoModal">
-    <div class="modal-content" style="background:#000; max-width: 360px;">
-      <span class="close-modal" onclick="closeVideoModal()">&times;</span>
-      <video id="popupVideo" controls style="width:100%; max-height: 80vh; aspect-ratio: 9/16; display:block;" autoplay playsinline></video>
-    </div>
-  </div>
-  <!-- Modal Detail -->
-  <div class="modal" id="detailModal">
-    <div class="modal-content">
-      <span class="close-modal" onclick="closeDetailModal()">&times;</span>
-      <div class="detail-header-media">
-        <img id="detail-img" src="" alt="" style="width:100%; height:100%; object-fit:cover;">
-      </div>
-      <div class="detail-body">
-        <div id="detail-name" class="detail-title"></div>
-        <div id="detail-price" class="detail-price"></div>
-        
-        <div class="detail-sec-title">🌟 អត្ថប្រយោជន៍ និងគុណសម្បត្តិ</div>
-        <p id="detail-benefits"></p>
-        <div class="detail-sec-title">✨ រសជាតិ & គុណភាព</div>
-        <p id="detail-taste"></p>
-        <div class="detail-sec-title">📦 ការវេចខ្ចប់</div>
-        <p id="detail-pack"></p>
-        <div class="detail-sec-title">🛡️ ការរក្សាទុក និងគុណប្រយោជន៍</div>
-        <p id="detail-storage"></p>
-      </div>
-    </div>
-  </div>
-  <!-- Cart Fixed Bottom -->
-  <div class="cart-bar">
-    <div>
-      <div style="font-size:0.7rem; color:#aaa;">សរុបសាច់ប្រាក់:</div>
-      <div class="total-price"><span id="total-val">0</span> ៛</div>
-      <div class="delivery-info" id="delivery-info">🚚 ថ្លៃដឹកជញ្ជូន៖ 8,000 ៛</div>
-    </div>
-    <button class="btn-checkout" id="submit-btn" onclick="submitOrder()">ផ្ញើការកុម្ម៉ង់</button>
+  const province = document.getElementById('cust-province').value.trim();
+  const courier = document.getElementById('courier-select').value;
+  const branch = document.getElementById('cust-branch').value.trim();
+  const slipFile = document.getElementById('slip-file').files[0];
+
+  if (!phone || !province) { alert("សូមបំពេញលេខទូរស័ព្ទ និង ខេត្ត/ក្រុង!"); return; }
+  if (!slipFile) { alert("⚠️ សូម Upload រូបភាពវិក្កយបត្រ (Payment Slip) ជាមុនសិន!"); return; }
+
+  let orderDetails = "🛒 *ការកុម្ម៉ង់ទំនិញថ្មីពី MoMore* 🛒\n\n";
+  // 1. ទម្រង់សារបញ្ជីទំនិញដែលបានឌីសាញរួច (មានរបៀបរៀបរយ និងទំនង)
+  let orderDetails = "🛍️ ══════════════════ 🛍️\n";
+  orderDetails += "          📥 **សំណើកុម្ម៉ង់ទំនិញថ្មី**\n";
+  orderDetails += "🛍️ ══════════════════ 🛍️\n\n";
+  orderDetails += "📋 **បញ្ជីទំនិញដែលបានជ្រើសរើស៖**\n";
+  for (let key in products) {
+    if (products[key].qty > 0) {
+      let p = products[key];
+      orderDetails += `- ${p.type} (${p.flavor} - ${p.size}): ${p.qty} ប្រអប់ (${(p.qty * p.price).toLocaleString()} ៛)\n`;
+      orderDetails += `▪️ ${p.type} (${p.flavor} - ${p.size})\n`;
+      orderDetails += `   👉 ចំនួន: ${p.qty} ប្រអប់ | ទឹកប្រាក់: ${(p.qty * p.price).toLocaleString()} ៛\n`;
+    }
+  }
+  orderDetails += `\n💰 *សរុបទឹកប្រាក់:* ${calc.grandTotal.toLocaleString()} ៛`;
+  orderDetails += `\n📞 *ទូរស័ព្ទអតិថិជន:* ${phone}`;
+  orderDetails += `\n📍 *ខេត្ត/ក្រុង:* ${province}`;
+  orderDetails += `\n🏢 *សាខា/ទីតាំង:* ${branch || 'អត់មានបញ្ជាក់'}`;
+  orderDetails += `\n🚚 *ក្រុមហ៊ុនដឹក:* ${courier}`;
+  orderDetails += `\n💰 **សរុបទឹកប្រាក់ត្រូវបង់:** ${calc.grandTotal.toLocaleString()} ៛\n`;
+  orderDetails += "──────────────────────\n";
+  orderDetails += "👤 **ព័ត៌មានអតិថិជន៖**\n";
+  orderDetails += `📞 លេខទូរស័ព្ទ: ${phone}\n`;
+  orderDetails += `📍 ខេត្ត/ក្រុង: ${province}\n`;
+  orderDetails += `🏢 សាខា/ទីតាំង: ${branch || 'អត់មានបញ្ជាក់'}\n`;
+  orderDetails += `🚚 ក្រុមហ៊ុនដឹកជញ្ជូន: ${courier}\n`;
+  orderDetails += "──────────────────────\n";
+  orderDetails += "⚠️ *សម្គាល់៖ អតិថិជនតាមខេត្តសូមរង់ចាំ Admin ផ្ញើ QR Code / លេខកុង ដើម្បីធ្វើការវេរប្រាក់ និងផ្ញើ Slip បញ្ជាក់។*";
+
+  const encodedText = encodeURIComponent(orderDetails);
+  window.open(`https://t.me/share/url?url=${encodedText}`, '_blank');
+  
+  // 2. តភ្ជាប់ផ្ទាល់ទៅកាន់ Telegram Username របស់បង (@MoMore_collection)
+  const adminUsername = "MoMore_collection"; 
+  window.open(`https://t.me/${adminUsername}?text=${encodedText}`, '_blank');
+
+  alert("✅ ទិន្នន័យការកុម្ម៉ង់ត្រូវបានត្រៀមរួចរាល់ សូមចុចបញ្ជូនក្នុង Telegram!");
+  alert("✅ ទិន្នន័យការកុម្ម៉ង់ត្រូវបានរៀបចំរួចរាល់! សូមចុចបញ្ជូនក្នុង Telegram ឆាតផ្ទាល់ជាមួយ Admin។");
+}
+
+    renderVideoGallery();
+    renderProducts();
+  </script>
+</body>
+</html>
