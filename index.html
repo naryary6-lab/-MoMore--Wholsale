@@ -664,22 +664,49 @@
     }
 
     async function submitOrder() {
-      let calc = calculateTotal();
-      if (calc.totalItemPrice === 0) { alert("សូមជ្រើសរើសចំនួនទំនិញយ៉ាងហោចណាស់ ១ ជាមុនសិន!"); return; }
-      if (!calc.minQtyMet) { alert("សូមពិនិត្យចំនួនកុម្ម៉ង់អប្បបរមា!"); return; }
+  let calc = calculateTotal();
+  if (calc.totalItemPrice === 0) { alert("សូមជ្រើសរើសចំនួនទំនិញយ៉ាងហោចណាស់ ១ ជាមុនសិន!"); return; }
+  if (!calc.minQtyMet) { alert("សូមពិនិត្យចំនួនកុម្ម៉ង់អប្បបរមា!"); return; }
 
-      const phone = document.getElementById('cust-phone').value.trim();
-      const province = document.getElementById('cust-province').value.trim();
-      const courier = document.getElementById('courier-select').value;
-      const branch = document.getElementById('cust-branch').value.trim();
-      const slipFile = document.getElementById('slip-file').files[0];
+  const phone = document.getElementById('cust-phone').value.trim();
+  const province = document.getElementById('cust-province').value.trim();
+  const courier = document.getElementById('courier-select').value;
+  const branch = document.getElementById('cust-branch').value.trim();
 
-      if (!phone || !province) { alert("សូមបំពេញលេខទូរស័ព្ទ និង ខេត្ត/ក្រុង!"); return; }
-      if (!slipFile) { alert("⚠️ សូម Upload រូបភាពវិក្កយបត្រ (Payment Slip) ជាមុនសិន!"); return; }
+  if (!phone || !province) { alert("សូមបំពេញលេខទូរស័ព្ទ និង ខេត្ត/ក្រុង!"); return; }
 
-      alert("✅ ការកុម្ម៉ង់ត្រូវបានផ្ញើជោគជ័យ! Admin នឹងពិនិត្យ និងរៀបចំផ្ញើទំនិញជូនឆាប់ៗនេះ!");
-      tg.close();
+  // 1. ទម្រង់សារបញ្ជីទំនិញដែលបានឌីសាញរួច (មានរបៀបរៀបរយ និងទំនង)
+  let orderDetails = "🛍️ ══════════════════ 🛍️\n";
+  orderDetails += "          📥 **សំណើកុម្ម៉ង់ទំនិញថ្មី**\n";
+  orderDetails += "🛍️ ══════════════════ 🛍️\n\n";
+
+  orderDetails += "📋 **បញ្ជីទំនិញដែលបានជ្រើសរើស៖**\n";
+  for (let key in products) {
+    if (products[key].qty > 0) {
+      let p = products[key];
+      orderDetails += `▪️ ${p.type} (${p.flavor} - ${p.size})\n`;
+      orderDetails += `   👉 ចំនួន: ${p.qty} ប្រអប់ | ទឹកប្រាក់: ${(p.qty * p.price).toLocaleString()} ៛\n`;
     }
+  }
+
+  orderDetails += `\n💰 **សរុបទឹកប្រាក់ត្រូវបង់:** ${calc.grandTotal.toLocaleString()} ៛\n`;
+  orderDetails += "──────────────────────\n";
+  orderDetails += "👤 **ព័ត៌មានអតិថិជន៖**\n";
+  orderDetails += `📞 លេខទូរស័ព្ទ: ${phone}\n`;
+  orderDetails += `📍 ខេត្ត/ក្រុង: ${province}\n`;
+  orderDetails += `🏢 សាខា/ទីតាំង: ${branch || 'អត់មានបញ្ជាក់'}\n`;
+  orderDetails += `🚚 ក្រុមហ៊ុនដឹកជញ្ជូន: ${courier}\n`;
+  orderDetails += "──────────────────────\n";
+  orderDetails += "⚠️ *សម្គាល់៖ អតិថិជនតាមខេត្តសូមរង់ចាំ Admin ផ្ញើ QR Code / លេខកុង ដើម្បីធ្វើការវេរប្រាក់ និងផ្ញើ Slip បញ្ជាក់។*";
+
+  const encodedText = encodeURIComponent(orderDetails);
+  
+  // 2. តភ្ជាប់ផ្ទាល់ទៅកាន់ Telegram Username របស់បង (@MoMore_collection)
+  const adminUsername = "MoMore_collection"; 
+  window.open(`https://t.me/${adminUsername}?text=${encodedText}`, '_blank');
+
+  alert("✅ ទិន្នន័យការកុម្ម៉ង់ត្រូវបានរៀបចំរួចរាល់! សូមចុចបញ្ជូនក្នុង Telegram ឆាតផ្ទាល់ជាមួយ Admin។");
+}
 
     renderVideoGallery();
     renderProducts();
