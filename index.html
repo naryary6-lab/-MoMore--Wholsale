@@ -1036,24 +1036,14 @@
       document.getElementById('receiptModal').style.display = 'none';
     }
 
-    /* 🤖 AI CHAT JAVASCRIPT FUNCTIONS */
-    function toggleAIChat() {
-      const win = document.getElementById('aiChatWindow');
-      win.style.display = (win.style.display === 'flex') ? 'none' : 'flex';
-    }
-
-    function handleAIPress(e) {
-      if (e.key === 'Enter') sendAIMessage();
-    }
-
-    async function sendAIMessage() {
+        async function sendAIMessage() {
       const input = document.getElementById('aiInput');
       const text = input.value.trim();
       if (!text) return;
 
       const msgBox = document.getElementById('aiMessages');
 
-      // 1. បង្ហាញសាររបស់អ្នកប្រើ
+      // 1. បង្ហាញសាររបស់អតិថិជន
       const userDiv = document.createElement('div');
       userDiv.className = 'ai-msg user';
       userDiv.innerText = text;
@@ -1061,27 +1051,25 @@
       input.value = '';
       msgBox.scrollTop = msgBox.scrollHeight;
 
-      // 2. បង្ហាញ Loading Message
+      // 2. បង្ហាញសារឆ្លើយតបភ្លាមៗ (កាត់ Replit ចោល)
       const botDiv = document.createElement('div');
       botDiv.className = 'ai-msg bot';
-      botDiv.innerText = "⏳ កំពុងគិត...";
-      msgBox.appendChild(botDiv);
-      msgBox.scrollTop = msgBox.scrollHeight;
+      
+      const q = text.toLowerCase();
+      let reply = "";
 
-      try {
-        // 3. ផ្ញើទៅកាន់ Replit Webhook API
-        const response = await fetch('https://f44db7d9-89c1-4541-8ae1-6e5ac4259776-00-2ifwvxie3alo4.riker.replit.dev/api/chat', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: text })
-        });
-
-        const data = await response.json();
-        botDiv.innerText = data.reply || data.message || "សុំទោស ខ្ញុំមិនទាន់យល់សំណួរនេះទេ។";
-      } catch (err) {
-        console.error(err);
-        botDiv.innerText = "សុំទោស មានបញ្ហាក្នុងការភ្ជាប់ទៅកាន់ AI Server។";
+      if (q.includes("ទីតាំង") || q.includes("នៅឯណា") || q.includes("ហាង") || q.includes("កន្លែង")) {
+        reply = "📍 ហាង MoMore មានទីតាំងនៅរាជធានីភ្នំពេញ! យើងខ្ញុំមានសេវាដឹកជញ្ជូនរហ័ស ២៥ ខេត្ត/ក្រុង តាមក្រុមហ៊ុនដឹកជញ្ជូន វីរៈប៊ុនថាំ និងក្រុមហ៊ុនផ្សេងៗបង! 🚚";
+      } else if (q.includes("តម្លៃ") || q.includes("ថ្លៃ") || q.includes("លុយ") || q.includes("ប៉ុន្មាន")) {
+        reply = "🍌 ដំណាប់ចេក និងចេកបំពងស្រួយ មានតម្លៃ និងទំហំផ្សេងៗគ្នា! បងអាចមើល និងជ្រើសរើសទំនិញនៅលើបញ្ជីខាងលើបានណា! 📦";
+      } else if (q.includes("ដឹក") || q.includes("សេវា") || q.includes("ថ្លៃដឹក")) {
+        reply = "🚚 ថ្លៃដឹកជញ្ជូនទូទៅ ៨,០០០ ៛! ប្រសិនបើសាកសួរព័ត៌មានប្រូម៉ូសិនដឹក Free បងអាចចុចប៊ូតុងឆាតទៅ Admin ផ្ទាល់បានបង! 🎁";
+      } else {
+        reply = "ចាសបង! សម្រាប់សំណួរលម្អិតបន្ថែម បងអាចចុចឆាតទៅកាន់ Admin ផ្ទាល់តាមប៊ូតុងខាងក្រោមបានណា! 🙏";
       }
+
+      botDiv.innerText = reply;
+      msgBox.appendChild(botDiv);
       msgBox.scrollTop = msgBox.scrollHeight;
     }
 
