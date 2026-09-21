@@ -90,15 +90,9 @@
       font-weight: 400;
     }
 
-    /* 🎁 Combo Thumbnail 16:9 (យកតែ 3 ប្រអប់, Padding អក្សរក្រូចលាយក្រហម) */
-    .combo-section-wrap {
-      margin-bottom: 18px;
-    }
-    .combo-grid-3 {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
+    /* Combo Section */
+    .combo-section-wrap { margin-bottom: 18px; }
+    .combo-grid-3 { display: flex; flex-direction: column; gap: 12px; }
     .combo-card-169 {
       width: 100%;
       aspect-ratio: 16 / 9;
@@ -112,17 +106,10 @@
       transition: transform 0.2s;
     }
     .combo-card-169:hover { transform: scale(1.01); }
-    .combo-card-169 img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+    .combo-card-169 img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .combo-thumbnail-padding {
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      bottom: 0; left: 0; right: 0;
       background: linear-gradient(135deg, rgba(231, 76, 60, 0.92) 0%, rgba(243, 156, 18, 0.92) 100%);
       padding: 10px 14px;
       color: #ffffff;
@@ -135,12 +122,7 @@
       justify-content: space-between;
       align-items: center;
     }
-    .combo-desc-text {
-      font-size: 0.75rem;
-      color: #fff;
-      opacity: 0.95;
-      font-weight: 400;
-    }
+    .combo-desc-text { font-size: 0.75rem; color: #fff; opacity: 0.95; font-weight: 400; }
 
     .video-gallery-section {
       background: #ffffff;
@@ -173,7 +155,22 @@
     .sec-title-sub { font-size: 0.76rem; color: #dddddd; margin-top: 2px; font-weight: 400; }
 
     .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; }
-    .product-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between; border: 1.5px solid #e2e8f0; }
+    .product-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between; border: 1.5px solid #e2e8f0; position: relative; }
+
+    /* Coming Soon Card Style */
+    .product-card.coming-soon { opacity: 0.75; border: 1.5px dashed #f39c12; }
+    .coming-soon-badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: var(--price-red);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      z-index: 3;
+    }
 
     .media-box { width: 100%; height: 260px; background-color: #121212; position: relative; overflow: hidden; cursor: pointer; }
     .media-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -240,20 +237,20 @@
       justify-content: space-between;
       align-items: center;
       padding: 8px 0;
-      font-size: 15px;
       border-bottom: 1px dashed #e0e0e0;
     }
-    .item-name-qty { font-weight: 700; color: #34495e; font-size: 0.92rem; }
-    .item-price-lead { font-weight: 700; color: #e67e22; font-size: 0.95rem; }
+    /* 🌟 កែសម្រួល Title និង Price ឱ្យធំនិងដិតច្បាស់ល្អ */
+    .item-name-qty { font-weight: 800; color: #111111; font-size: 0.98rem; }
+    .item-price-lead { font-weight: 800; color: #e74c3c; font-size: 1.02rem; }
 
-    .summary-total { font-weight: 700; color: var(--price-red); font-size: 1rem; border-top: 2px dashed #f39c12; padding-top: 8px; margin-top: 8px; display: flex; justify-content: space-between; }
+    .summary-total { font-weight: 700; color: var(--price-red); font-size: 1.05rem; border-top: 2px dashed #f39c12; padding-top: 8px; margin-top: 8px; display: flex; justify-content: space-between; }
     
     .form-group { margin-bottom: 12px; }
     .form-group label { display: block; font-weight: 700; font-size: 0.84rem; margin-bottom: 4px; color: #121212; }
     .form-group input, .form-group select { width: 100%; padding: 10px 12px; border: 1.5px solid #bbb; border-radius: 8px; font-size: 0.86rem; background: #fff; font-weight: 400; }
     .required-tag { color: var(--price-red); font-weight: bold; }
 
-    /* BANK / TRANSFER ACCOUNT INFO BOX (ជំនួស KHQR) */
+    /* BANK / TRANSFER ACCOUNT INFO BOX & QR CODE */
     .bank-account-box { 
       background: #1a1a1a; 
       border-radius: 10px; 
@@ -280,9 +277,7 @@
       border: 2px solid var(--primary);
       flex-shrink: 0;
     }
-    .bank-title-area {
-      flex-grow: 1;
-    }
+    .bank-title-area { flex-grow: 1; }
     .bank-title { font-weight: 700; color: var(--primary); font-size: 0.95rem; }
     .bank-sub { font-size: 0.72rem; color: #ddd; }
     
@@ -302,6 +297,29 @@
     .bank-row:last-child { border-bottom: none; }
     .bank-label { color: #aaa; }
     .bank-val { font-weight: 700; color: #fff; }
+
+    /* QR Code & Link Section inside Checkout */
+    .qr-container {
+      text-align: center;
+      background: #ffffff;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 8px;
+    }
+    .qr-container img {
+      width: 130px;
+      height: 130px;
+      object-fit: contain;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      margin-bottom: 6px;
+    }
+    .qr-link-text {
+      font-size: 0.78rem;
+      color: #2980b9;
+      word-break: break-all;
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -319,23 +337,19 @@
       </div>
     </div>
 
-    <!-- 🎁 ផ្នែក COMBO SET ដាក់នៅខាងមុខ (យកតែ 3 ប្រអប់, ខ្នាត 16:9, Padding អក្សរក្រហមលាយទឹកក្រូច) -->
+    <!-- 🎁 COMBO SET -->
     <div class="section-title-box">
       <div class="sec-title-main">🎁 ឈុតពិសេស Combo Team SET</div>
       <div class="sec-title-sub">កញ្ចប់កាដូ និងរសជាតិពិសេសប្រចាំហាង (ទិញបានត្រឹម ១ ឈុត/នាក់)</div>
     </div>
     
     <div class="combo-section-wrap">
-      <div class="combo-grid-3" id="combo-sets-container">
-        <!-- Render 3 Combo Cards dynamically via JS -->
-      </div>
+      <div class="combo-grid-3" id="combo-sets-container"></div>
     </div>
 
-    <!-- 2. VIDEO GALLERY / FEED SECTION -->
+    <!-- 2. VIDEO GALLERY -->
     <div class="video-gallery-section">
       <div class="gallery-title">🎬 មើលវីដេអូស្ពត & Review (Video Feed)</div>
-      
-      <!-- Filter Chips -->
       <div class="filter-scroll">
         <button class="chip-btn active" onclick="filterVideos('ALL', this)">ទាំងអស់</button>
         <button class="chip-btn" onclick="filterVideos('B-TO-B', this)">🤝 B-TO-B / ដៃគូ</button>
@@ -345,8 +359,6 @@
         <button class="chip-btn" onclick="filterVideos('PROMO', this)">🎁 ប្រូម៉ូសិន</button>
         <button class="chip-btn" onclick="filterVideos('REV-MARKET', this)">🏪 Review Market</button>
       </div>
-
-      <!-- Video Cards Track -->
       <div class="video-cards-scroll" id="video-feed-container"></div>
     </div>
 
@@ -367,12 +379,90 @@
     </div>
     <div class="grid" id="domnap-container"></div>
 
+    <!-- ➕ បន្ថែម Coming Soon ផ្នែកទី ១ (ខាងលើ ២ ប្រភេទ៖ ដំណាប់ចេកថ្មី) -->
+    <div style="margin-top: 10px;"></div>
+    <div class="grid" id="domnap-coming-soon">
+      <div class="product-card coming-soon">
+        <span class="coming-soon-badge">Coming Soon</span>
+        <div class="media-box">
+          <img src="coming-soon-d1.jpg" alt="Coming Soon" onerror="this.src='https://via.placeholder.com/250x320/222/f39c12?text=Coming+Soon+-+Banana+Dried'">
+        </div>
+        <div class="product-info">
+          <div class="flavor-section-wrap">
+            <div class="row-1-type">ដំណាប់ចេកពិសេស</div>
+            <div class="row-2-flavor">រសជាតិថ្មី (ត្រៀមចេញលក់)</div>
+            <div class="row-3-price-weight">
+              <span class="price-tag">-- ៛</span>
+              <span class="weight-tag">(200g)</span>
+            </div>
+          </div>
+          <div style="text-align: center; font-size: 0.75rem; color: #888; padding: 6px 0; font-weight: bold;">រង់ចាំការមកដល់ឆាប់ៗនេះ</div>
+        </div>
+      </div>
+      <div class="product-card coming-soon">
+        <span class="coming-soon-badge">Coming Soon</span>
+        <div class="media-box">
+          <img src="coming-soon-d2.jpg" alt="Coming Soon" onerror="this.src='https://via.placeholder.com/250x320/222/f39c12?text=Coming+Soon+-+Special'">
+        </div>
+        <div class="product-info">
+          <div class="flavor-section-wrap">
+            <div class="row-1-type">ដំណាប់ចេកពិសេស</div>
+            <div class="row-2-flavor">រសជាតិពិសេសថ្មី</div>
+            <div class="row-3-price-weight">
+              <span class="price-tag">-- ៛</span>
+              <span class="weight-tag">(300g)</span>
+            </div>
+          </div>
+          <div style="text-align: center; font-size: 0.75rem; color: #888; padding: 6px 0; font-weight: bold;">រង់ចាំការមកដល់ឆាប់ៗនេះ</div>
+        </div>
+      </div>
+    </div>
+
     <!-- ផ្នែកទី ២៖ ចេកបំពងស្រួយ -->
     <div class="section-title-box">
       <div class="sec-title-main">2. ចេកបំពងស្រួយ ម៉ូម័រ MoMore</div>
       <div class="sec-title-sub">ស្រួយស្រែស ឈ្ងុយឆ្ងាញ់ គ្រប់រសជាតិ</div>
     </div>
     <div class="grid" id="crispy-container"></div>
+
+    <!-- ➕ បន្ថែម Coming Soon ផ្នែកទី ២ (ខាងក្រោម ៣ ប្រភេទ៖ ចេកបំពងស្រួយថ្មី) -->
+    <div style="margin-top: 10px;"></div>
+    <div class="grid" id="crispy-coming-soon">
+      <div class="product-card coming-soon">
+        <span class="coming-soon-badge">Coming Soon</span>
+        <div class="media-box">
+          <img src="coming-soon-c1.jpg" alt="Coming Soon" onerror="this.src='https://via.placeholder.com/250x320/222/e74c3c?text=Coming+Soon+-+Crispy+1'">
+        </div>
+        <div class="product-info">
+          <div class="flavor-section-wrap">
+            <div class="row-1-type">ចេកបំពងស្រួយ</div>
+            <div class="row-2-flavor">រសជាតិថ្មីទី ១</div>
+            <div class="row-3-price-weight">
+              <span class="price-tag">-- ៛</span>
+              <span class="weight-tag">(200g)</span>
+            </div>
+          </div>
+          <div style="text-align: center; font-size: 0.75rem; color: #888; padding: 6px 0; font-weight: bold;">រង់ចាំការមកដល់ឆាប់ៗនេះ</div>
+        </div>
+      </div>
+      <div class="product-card coming-soon">
+        <span class="coming-soon-badge">Coming Soon</span>
+        <div class="media-box">
+          <img src="coming-soon-c2.jpg" alt="Coming Soon" onerror="this.src='https://via.placeholder.com/250x320/222/e74c3c?text=Coming+Soon+-+Crispy+2'">
+        </div>
+        <div class="product-info">
+          <div class="flavor-section-wrap">
+            <div class="row-1-type">ចេកបំពងស្រួយ</div>
+            <div class="row-2-flavor">រសជាតិថ្មីទី ២</div>
+            <div class="row-3-price-weight">
+              <span class="price-tag">-- ៛</span>
+              <span class="weight-tag">(200g)</span>
+            </div>
+          </div>
+          <div style="text-align: center; font-size: 0.75rem; color: #888; padding: 6px 0; font-weight: bold;">រង់ចាំការមកដល់ឆាប់ៗនេះ</div>
+        </div>
+      </div>
+    </div>
 
   </div>
 
@@ -384,7 +474,7 @@
     </div>
   </div>
 
-  <!-- Modal Detail (សម្រាប់ផលិតផល និង Combo 16:9) -->
+  <!-- Modal Detail -->
   <div class="modal" id="detailModal">
     <div class="modal-content">
       <span class="close-modal" onclick="closeDetailModal()">&times;</span>
@@ -394,35 +484,28 @@
       <div class="detail-body">
         <div id="detail-name" class="detail-title"></div>
         <div id="detail-price" class="detail-price"></div>
-        
         <div class="detail-sec-title">🌟 អត្ថប្រយោជន៍ និងគុណសម្បត្តិ</div>
         <p id="detail-benefits"></p>
-
         <div class="detail-sec-title">✨ រសជាតិ & គុណភាព</div>
         <p id="detail-taste"></p>
-
         <div class="detail-sec-title">📦 ការវេចខ្ចប់</div>
         <p id="detail-pack"></p>
-
         <div class="detail-sec-title">🛡️ ការរក្សាទុក និងគុណប្រយោជន៍</div>
         <p id="detail-storage"></p>
       </div>
     </div>
   </div>
 
-  <!-- Checkout Modal (Popup វិក្កយបត្រ និងទូទាត់ - ដក KHQR ចេញ ជំនួសដោយលេខគណនេយ្យ/វេរលុយ និង Sticker អរគុណ) -->
+  <!-- Checkout Modal -->
   <div class="modal" id="checkoutModal">
     <div class="modal-content">
       <span class="close-modal" onclick="closeCheckoutModal()">&times;</span>
       <div class="checkout-body">
         <div class="checkout-title">📝 បញ្ជាក់ការកុម្ម៉ង់ និងទូទាត់ប្រាក់</div>
         
-        <!-- Summary Box ជាមួយបញ្ជីទំនិញ Lock -->
         <div class="summary-box">
           <div style="font-weight: 700; margin-bottom: 6px; font-size: 0.9rem; color: #333;">🛍️ បញ្ជីទំនិញដែលបានជ្រើសរើស (Lock):</div>
-          <div class="locked-items-list" id="popup-locked-items">
-            <!-- Dynamic Injected Locked Items -->
-          </div>
+          <div class="locked-items-list" id="popup-locked-items"></div>
 
           <div class="summary-row" style="display:flex; justify-content:space-between; margin-top:8px; font-size:0.86rem;">
             <span>សេវាដឹកជញ្ជូន:</span>
@@ -447,13 +530,11 @@
           <input type="tel" id="cust-phone" placeholder="ឧទាហរណ៍៖ 012 345 678" required>
         </div>
 
-        <!-- សម្រាប់ភ្នំពេញ -->
         <div class="form-group" id="phnompenh-fields">
           <label>🏠 លេខផ្ទះ / លេខផ្លូវ / ទីតាំងលម្អិត <span class="required-tag">*</span></label>
           <input type="text" id="cust-address" placeholder="ឧទាហរណ៍៖ ផ្ទះលេខ 12, ផ្លូវ 310, បឹងកេងកង">
         </div>
 
-        <!-- សម្រាប់ខេត្ត -->
         <div class="form-group" id="province-fields" style="display:none;">
           <label>🏢 សាខាក្រុមហ៊ុនដឹកជញ្ជូននៅខេត្ត <span class="required-tag">*</span></label>
           <input type="text" id="cust-branch" placeholder="ឧទាហរណ៍៖ វីរៈប៊ុនថាំ សាខាខេត្តសៀមរាប">
@@ -464,12 +545,12 @@
           <input type="text" id="cust-note" placeholder="កំណត់ចំណាំបន្ថែមដល់អ្នកដឹកជញ្ជូន...">
         </div>
 
-        <!-- 💳 លេខគណនេយ្យ និងលេខវេរលុយ (ជំនួស KHQR) + Sticker អរគុណ -->
+        <!-- 💳 BANK INFO & QR CODE WITH LINK -->
         <div class="bank-account-box">
           <div class="bank-info-header">
             <img src="https://api.iconify.design/fluent-emoji:folded-hands.svg" alt="Thank You Sticker" class="thank-you-sticker" onerror="this.src='https://via.placeholder.com/50x50?text=🙏'">
             <div class="bank-title-area">
-              <div class="bank-title">💳 ព័ត៌មានទូទាត់ប្រាក់ (Account & Transfer)</div>
+              <div class="bank-title">💳 ព័ត៌មានទូទាត់ប្រាក់ & QR Code</div>
               <div class="bank-sub">សូមអរគុណអតិថិជនដែលបានគាំទ្រហាងយើងខ្ញុំ!</div>
             </div>
           </div>
@@ -485,6 +566,13 @@
             <div class="bank-row">
               <span class="bank-label">លេខវេរលុយ (Phone):</span>
               <span class="bank-val">066 895 789</span>
+            </div>
+          </div>
+          <!-- QR Code Image & Link Box -->
+          <div class="qr-container">
+            <img src="khqr-pay.jpg" alt="KHQR Payment" onerror="this.src='https://via.placeholder.com/130x130/eee/333?text=KHQR+Code'">
+            <div>
+              <a href="https://t.me/MoMore_Colection" target="_blank" class="qr-link-text">🔗 ឆាតបញ្ជាក់ការបង់ប្រាក់ជាមួយ Admin</a>
             </div>
           </div>
         </div>
@@ -518,34 +606,13 @@
       { id: 'B-TO-B-002', name: 'B-TO-B 002', type: 'B-TO-B', file: 'B-TO-B-002.mp4' },
       { id: 'B-TO-B-003', name: 'B-TO-B 003', type: 'B-TO-B', file: 'B-TO-B-003.mp4' },
       { id: 'B-TO-B-004', name: 'B-TO-B 004', type: 'B-TO-B', file: 'B-TO-B-004.mp4' },
-      
       { id: 'EAT-MUKBANG-001', name: 'Mukbang 001', type: 'EAT-MUKBANG', file: 'EAT-MUKBANG-001.mp4' },
       { id: 'EAT-MUKBANG-002', name: 'Mukbang 002', type: 'EAT-MUKBANG', file: 'EAT-MUKBANG-002.mp4' },
       { id: 'EAT-MUKBANG-003', name: 'Mukbang 003', type: 'EAT-MUKBANG', file: 'EAT-MUKBANG-003.mp4' },
-      { id: 'EAT-MUKBANG-004', name: 'Mukbang 004', type: 'EAT-MUKBANG', file: 'EAT-MUKBANG-004.mp4' },
-      { id: 'EAT-MUKBANG-005', name: 'Mukbang 005', type: 'EAT-MUKBANG', file: 'EAT-MUKBANG-005.mp4' },
-      
       { id: 'PROC-001', name: 'សង្វាក់ផលិតកម្ម 001', type: 'PROC', file: 'PROC-001.mp4' },
-      
       { id: 'PROD-001', name: 'ផលិតផល 001', type: 'PROD', file: 'PROD-001.mp4' },
-      { id: 'PROD-002', name: 'ផលិតផល 002', type: 'PROD', file: 'PROD-002.mp4' },
-      { id: 'PROD-003', name: 'ផលិតផល 003', type: 'PROD', file: 'PROD-003.mp4' },
-      { id: 'PROD-004', name: 'ផលិតផល 004', type: 'PROD', file: 'PROD-004.mp4' },
-      { id: 'PROD-005', name: 'ផលិតផល 005', type: 'PROD', file: 'PROD-005.mp4' },
-      
       { id: 'PROMO-001', name: 'ប្រូម៉ូសិន 001', type: 'PROMO', file: 'PROMO-001.mp4' },
-      { id: 'PROMO-002', name: 'ប្រូម៉ូសិន 002', type: 'PROMO', file: 'PROMO-002.mp4' },
-      { id: 'PROMO-003', name: 'ប្រូម៉ូសិន 003', type: 'PROMO', file: 'PROMO-003.mp4' },
-      { id: 'PROMO-004', name: 'ប្រូម៉ូសិន 004', type: 'PROMO', file: 'PROMO-004.mp4' },
-      { id: 'PROMO-005', name: 'ប្រូម៉ូសិន 005', type: 'PROMO', file: 'PROMO-005.mp4' },
-      { id: 'PROMO-006', name: 'ប្រូម៉ូសិន 006', type: 'PROMO', file: 'PROMO-006.mp4' },
-      { id: 'PROMO-007', name: 'ប្រូម៉ូសិន 007', type: 'PROMO', file: 'PROMO-007.mp4' },
-      { id: 'PROMO-008', name: 'ប្រូម៉ូសិន 008', type: 'PROMO', file: 'PROMO-008.mp4' },
-      { id: 'PROMO-009', name: 'ប្រូម៉ូសិន 009', type: 'PROMO', file: 'PROMO-009.mp4' },
-      
-      { id: 'REV-MARKET-001', name: 'Review Market 001', type: 'REV-MARKET', file: 'REV-MARKET-001.mp4' },
-      { id: 'REV-MARKET-002', name: 'Review Market 002', type: 'REV-MARKET', file: 'REV-MARKET-002.mp4' },
-      { id: 'REV-MARKET-003', name: 'Review Market 003', type: 'REV-MARKET', file: 'REV-MARKET-003.mp4' }
+      { id: 'REV-MARKET-001', name: 'Review Market 001', type: 'REV-MARKET', file: 'REV-MARKET-001.mp4' }
     ];
 
     const comboSetsData = [
@@ -625,26 +692,12 @@
         pack: "ប្រអប់អនាម័យបិទជិត", 
         storage: "រក្សាទុកក្នុងសីតុណ្ហភាពត្រជាក់"
       },
-      C_CHOC100: { 
-        type: "ចេកបំពងស្រួយ", flavor: "សូកូឡាដោះគោ", price: 5000, qty: 0, size: '100g', id: 'C_CHOC100', 
-        benefits: "កញ្ចប់តូចងាយស្រួលតាមខ្លួន ផ្តល់ថាមពលសម្រន់ពេលល្ងាច។",
-        taste: "ស្រួយផ្អែមឈ្ងុយ សូកូឡាដោះគោ",
-        pack: "កញ្ចប់តូចច្រឡឹង បិទជិត", 
-        storage: "រក្សាទុកក្នុងកន្លែងស្ងួតត្រជាក់"
-      },
       C_CHES200: { 
         type: "ចេកបំពងស្រួយ", flavor: "ឈីស ដោះគោ", price: 10000, qty: 0, size: '200g', id: 'C_CHES200', 
         benefits: "រសជាតិប្រៃផ្អែមប្លែកមាត់ ជួយបង្កើនអារម្មណ៍ស្រស់ស្រាយ។",
         taste: "ប្រៃផ្អែម ឈ្ងុយឈីសខ្លាំង ញ៉ាំជក់មាត់",
         pack: "ប្រអប់បិទជិតអនាម័យ", 
         storage: "បិទមាត់ប្រអប់ឱ្យជិតជានិច្ច"
-      },
-      C_CHES100: { 
-        type: "ចេកបំពងស្រួយ", flavor: "ឈីស ដោះគោ", price: 5000, qty: 0, size: '100g', id: 'C_CHES100', 
-        benefits: "សម្រន់ឈីសស្រួយ ងាយស្រួលញ៉ាំកម្សាន្តគ្រប់ទីកន្លែង។",
-        taste: "ប្រៃផ្អែម ឈ្ងុយឈីស ញ៉ាំកម្សាន្ត",
-        pack: "កញ្ចប់តូចច្រឡឹង", 
-        storage: "រក្សាទុកបានយូរក្នុងថង់បិទជិត"
       },
       C_SPIC200: { 
         type: "ចេកបំពងស្រួយ", flavor: "ម្ទេសខ្ទឹម", price: 14000, qty: 0, size: '200g', id: 'C_SPIC200', 
@@ -653,33 +706,18 @@
         pack: "ប្រអប់បិទជិត", 
         storage: "រក្សាទុកក្នុងកន្លែងស្ងួត"
       },
-      C_SPIC100: { 
-        type: "ចេកបំពងស្រួយ", flavor: "ម្ទេសខ្ទឹម", price: 5000, qty: 0, size: '100g', id: 'C_SPIC100', 
-        benefits: "រសជាតិហឹរអែម បើកភ្នែក និងជួយឱ្យបាត់ងងុយគេង។",
-        taste: "ហឹរតិចៗ ប្រៃផ្អែមខ្ទិះ ឈ្ងុយខ្ទឹម",
-        pack: "កញ្ចប់តូច បិទជិត", 
-        storage: "រក្សាទុកក្នុងកន្លែងស្ងួត"
-      },
       C_BBQ200: { 
         type: "ចេកបំពងស្រួយ", flavor: "រសជាតិបាប៊ីឃ្យូ BBQ", price: 10000, qty: 0, size: '200g', id: 'C_BBQ200', 
         benefits: "រសជាតិ BBQ ប្លែក ញ៉ាំជុំគ្នាយ៉ាងសប្បាយរីករាយ។",
         taste: "រសជាតិបាប៊ីឃ្យូ ឈ្ងុយឆ្ងាញ់",
         pack: "ប្រអប់បិទជិត", 
         storage: "រក្សាទុកได้យូរក្នុងប្រអប់បិទជិត"
-      },
-      C_BBQ100: { 
-        type: "ចេកបំពងស្រួយ", flavor: "រសជាតិបាប៊ីឃ្យូ BBQ", price: 5000, qty: 0, size: '100g', id: 'C_BBQ100', 
-        benefits: "កញ្ចប់ល្មមញ៉ាំ ឈ្ងុយគ្រឿងបាប៊ីឃ្យូស្តង់ដារ។",
-        taste: "រសជាតិបាប៊ីឃ្យូ BBQ",
-        pack: "កញ្ចប់តូច បិទជិត", 
-        storage: "រក្សាទុកក្នុងថង់បិទជិត"
       }
     };
 
     function renderComboSets() {
       const container = document.getElementById('combo-sets-container');
       container.innerHTML = '';
-      
       comboSetsData.forEach((combo, index) => {
         const num = index + 1;
         const card = document.createElement('div');
@@ -714,7 +752,6 @@
       const container = document.getElementById('video-feed-container');
       container.innerHTML = '';
       const filtered = filterType === 'ALL' ? videoList : videoList.filter(v => v.type === filterType);
-
       filtered.forEach(item => {
         const div = document.createElement('div');
         div.className = 'video-card-item';
@@ -817,12 +854,10 @@
       let totalItemPrice = 0;
       let total200gQty = 0;
       let total100gQty = 0;
-      let totalBoxes = 0;
 
       for (let key in products) {
         let p = products[key];
         totalItemPrice += p.qty * p.price;
-        totalBoxes += p.qty;
         if (p.size === '100g') total100gQty += p.qty;
         else total200gQty += p.qty;
       }
@@ -831,7 +866,6 @@
       let promoFreeMsg = "";
       let minQtyMet = true;
       let qtyStatusMsg = "";
-
       const btnSubmit = document.getElementById('submit-btn');
 
       if (totalItemPrice === 0) {
@@ -862,7 +896,7 @@
       else if (deliveryFee === 0) delBox.innerText = `🚚 ថ្លៃដឹកជញ្ជូន៖ FREE ឥតគិតថ្លៃ! ${promoFreeMsg}`;
       else delBox.innerText = `🚚 ថ្លៃដឹកជញ្ជូន៖ ${deliveryFee.toLocaleString()} ៛`;
 
-      return { grandTotal, totalItemPrice, deliveryFee, promoFreeMsg, minQtyMet, totalBoxes };
+      return { grandTotal, totalItemPrice, deliveryFee, promoFreeMsg, minQtyMet };
     }
 
     function openCheckoutModal() {
@@ -889,13 +923,10 @@
       const feeText = calc.deliveryFee === 0 ? "FREE (ឥតគិតថ្លៃ)" : `${calc.deliveryFee.toLocaleString()} ៛`;
       document.getElementById('popup-delivery-fee').innerText = feeText;
       document.getElementById('popup-grand-total').innerText = `${calc.grandTotal.toLocaleString()} ៛`;
-
       document.getElementById('checkoutModal').style.display = 'flex';
     }
 
-    function closeCheckoutModal() {
-      document.getElementById('checkoutModal').style.display = 'none';
-    }
+    function closeCheckoutModal() { document.getElementById('checkoutModal').style.display = 'none'; }
 
     function toggleLocationFields() {
       const type = document.getElementById('location-type').value;
@@ -908,7 +939,7 @@
       }
     }
 
-    async function submitOrder() {
+    function submitOrder() {
       let calc = calculateTotal();
       const phone = document.getElementById('cust-phone').value.trim();
       const locType = document.getElementById('location-type').value;
@@ -940,15 +971,13 @@
       } else {
         orderDetails += `📍 ទីតាំង (ខេត្ត): សាខា ${branch}\n`;
       }
-      if (note) {
-        orderDetails += `📝 ចំណាំ: ${note}\n`;
-      }
+      if (note) { orderDetails += `📝 ចំណាំ: ${note}\n`; }
       orderDetails += "──────────────────────\n";
       orderDetails += "⚠️ *សម្គាល់៖ អតិថិជនបានផ្ញើរូបភាពវិក្កយបត្រទូទាត់ប្រាក់ (Payment Slip) រួចរាល់។*";
 
       const encodedText = encodeURIComponent(orderDetails);
       const adminUsername = "MoMore_Colection"; 
-      window.open(`http://t.me/MoMore_Colection}`, '_blank');
+      window.open(`https://t.me/${adminUsername}?text=${encodedText}`, '_blank');
       alert("✅ ទិន្នន័យការកុម្ម៉ង់ត្រូវបានរៀបចំរួចរាល់! សូមចុចបញ្ជូនក្នុង Telegram ឆាតផ្ទាល់ជាមួយ Admin។");
     }
 
