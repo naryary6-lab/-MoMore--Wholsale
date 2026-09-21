@@ -545,15 +545,16 @@
           <input type="text" id="cust-note" placeholder="កំណត់ចំណាំបន្ថែមដល់អ្នកដឹកជញ្ជូន...">
         </div>
 
-        <!-- 💳 BANK INFO & QR CODE WITH LINK -->
+                <!-- 💳 BANK INFO, KHQR CODE WITH LINK & TELEGRAM ADMIN LINK -->
         <div class="bank-account-box">
           <div class="bank-info-header">
             <img src="https://api.iconify.design/fluent-emoji:folded-hands.svg" alt="Thank You Sticker" class="thank-you-sticker" onerror="this.src='https://via.placeholder.com/50x50?text=🙏'">
             <div class="bank-title-area">
-              <div class="bank-title">💳 ព័ត៌មានទូទាត់ប្រាក់ & QR Code</div>
+              <div class="bank-title">💳 ព័ត៌មានទូទាត់ប្រាក់ & KHQR Code</div>
               <div class="bank-sub">សូមអរគុណអតិថិជនដែលបានគាំទ្រហាងយើងខ្ញុំ!</div>
             </div>
           </div>
+          
           <div class="bank-details-content">
             <div class="bank-row">
               <span class="bank-label">ឈ្មោះគណនេយ្យ:</span>
@@ -568,24 +569,19 @@
               <span class="bank-val">066 895 789</span>
             </div>
           </div>
-          <!-- QR Code Image & Link Box -->
+
+          <!-- 🖼️ ផ្នែក KHQR Code Image និង Link បង់ប្រាក់ -->
           <div class="qr-container">
-            <img src="khqr-pay.jpg" alt="KHQR Payment" onerror="this.src='https://via.placeholder.com/130x130/eee/333?text=KHQR+Code'">
-            <div>
-              <a href="https://t.me/MoMore_Colection" target="_blank" class="qr-link-text">🔗 ឆាតបញ្ជាក់ការបង់ប្រាក់ជាមួយ Admin</a>
+            <div style="font-weight: bold; color: #333; font-size: 0.85rem; margin-bottom: 6px;">ស្កែន KHQR ខាងក្រោមដើម្បីទូទាត់ប្រាក់៖</div>
+            <img src="khqr.jpeg" alt="MoMore KHQR Code" style="width: 160px; height: 160px; object-fit: contain; border: 2px solid var(--primary); border-radius: 8px;" onerror="this.src='https://via.placeholder.com/160x160/eee/333?text=MoMore+KHQR'">
+            
+            <div style="margin-top: 8px;">
+              <a href="https://t.me/MoMore_Colection" target="_blank" style="display: inline-block; background: #0088cc; color: #fff; padding: 6px 12px; border-radius: 6px; text-decoration: none; font-size: 0.8rem; font-weight: bold;">
+                🔗 ចុចត្រង់នេះដើម្បីផ្ញើ Slip បង់ប្រាក់ទៅ Admin
+              </a>
             </div>
           </div>
         </div>
-
-        <div class="form-group" style="margin-top:10px;">
-          <label>🧾 បង្ហោះរូបភាពវិក្កយបត្រ (Payment Slip) <span class="required-tag">*</span></label>
-          <input type="file" id="slip-file" accept="image/*" required>
-        </div>
-
-        <button class="btn-checkout" style="width:100%; margin-top:8px; padding:11px;" onclick="submitOrder()">🚀 បញ្ជូនការកុម្ម៉ង់ទៅ Telegram Admin</button>
-      </div>
-    </div>
-  </div>
 
   <!-- Cart Fixed Bottom -->
   <div class="cart-bar">
