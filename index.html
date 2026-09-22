@@ -253,59 +253,7 @@
     .form-group input, .form-group select { width: 100%; padding: 10px 12px; border: 1.5px solid #bbb; border-radius: 8px; font-size: 0.86rem; background: #fff; font-weight: 400; }
     .required-tag { color: var(--price-red); font-weight: bold; }
 
-    /* BANK / TRANSFER ACCOUNT INFO BOX (ជំនួស KHQR) */
-    .bank-account-box { 
-      background: #1a1a1a; 
-      border-radius: 10px; 
-      border: 2px dashed var(--primary); 
-      color: white; 
-      padding: 14px; 
-      margin-top: 10px; 
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .bank-info-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .thank-you-sticker {
-      width: 50px;
-      height: 50px;
-      object-fit: contain;
-      background: #fff;
-      border-radius: 50%;
-      padding: 4px;
-      border: 2px solid var(--primary);
-      flex-shrink: 0;
-    }
-    .bank-title-area {
-      flex-grow: 1;
-    }
-    .bank-title { font-weight: 700; color: var(--primary); font-size: 0.95rem; }
-    .bank-sub { font-size: 0.72rem; color: #ddd; }
     
-    .bank-details-content {
-      background: rgba(255, 255, 255, 0.08);
-      padding: 10px;
-      border-radius: 8px;
-      font-size: 0.82rem;
-      line-height: 1.5;
-    }
-    .bank-row {
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 1px dotted rgba(255,255,255,0.2);
-      padding: 4px 0;
-    }
-    .bank-row:last-child { border-bottom: none; }
-    .bank-label { color: #aaa; }
-    .bank-val { font-weight: 700; color: #fff; }
-  </style>
-</head>
-<body>
-
   <header>🍌 MOMORE - កម្មង់ទំនិញបោះដុំ</header>
 
   <div class="container">
@@ -484,30 +432,7 @@
             </div>
             <div class="bank-row">
               <span class="bank-label">លេខវេរលុយ (Phone):</span>
-              <span class="bank-val">066 895 789</span>
-            </div>
-          </div>
-        </div>
 
-        <div class="form-group" style="margin-top:10px;">
-          <label>🧾 បង្ហោះរូបភាពវិក្កយបត្រ (Payment Slip) <span class="required-tag">*</span></label>
-          <input type="file" id="slip-file" accept="image/*" required>
-        </div>
-
-        <button class="btn-checkout" style="width:100%; margin-top:8px; padding:11px;" onclick="submitOrder()">🚀 បញ្ជូនការកុម្ម៉ង់ទៅ Telegram Admin</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Cart Fixed Bottom -->
-  <div class="cart-bar">
-    <div>
-      <div style="font-size:0.68rem; color:#aaa;">សរុបសាច់ប្រាក់:</div>
-      <div class="total-price"><span id="total-val">0</span> ៛</div>
-      <div class="delivery-info" id="delivery-info">🚚 ថ្លៃដឹកជញ្ជូន៖ 8,000 ៛</div>
-    </div>
-    <button class="btn-checkout" id="submit-btn" onclick="openCheckoutModal()">បន្តការកុម្ម៉ង់</button>
-  </div>
 
   <script>
     const tg = window.Telegram.WebApp;
@@ -908,57 +833,7 @@
       }
     }
 
-    async function submitOrder() {
-      let calc = calculateTotal();
-      const phone = document.getElementById('cust-phone').value.trim();
-      const locType = document.getElementById('location-type').value;
-      const address = document.getElementById('cust-address').value.trim();
-      const branch = document.getElementById('cust-branch').value.trim();
-      const note = document.getElementById('cust-note').value.trim();
-
-      if (!phone) { alert("សូមបំពេញលេខទូរស័ព្ទទំនាក់ទំនង!"); return; }
-      if (locType === 'phnompenh' && !address) { alert("សូមបំពេញលេខផ្ទះ/ផ្លូវ/ទីតាំងលម្អិតនៅភ្នំពេញ!"); return; }
-      if (locType === 'province' && !branch) { alert("សូមបំពេញសាខាដឹកជញ្ជូននៅខេត្ត!"); return; }
-
-      let orderDetails = "🛍️ ══════════════════ 🛍️\n";
-      orderDetails += "          📥 **សំណើកុម្ម៉ង់ទំនិញថ្មី**\n";
-      orderDetails += "🛍️ ══════════════════ 🛍️\n\n";
-      orderDetails += "📋 **បញ្ជីទំនិញដែលបានជ្រើសរើស (Lock):**\n";
-      for (let key in products) {
-        if (products[key].qty > 0) {
-          let p = products[key];
-          orderDetails += `▪️ ${p.type} (${p.flavor} - ${p.size})\n`;
-          orderDetails += `   👉 តម្លៃ: ${(p.qty * p.price).toLocaleString()} ៛ | ចំនួន: ${p.qty}\n`;
-        }
-      }
-      orderDetails += `\n💰 **សរុបទឹកប្រាក់ត្រូវបង់:** ${calc.grandTotal.toLocaleString()} ៛\n`;
-      orderDetails += "──────────────────────\n";
-      orderDetails += "👤 **ព័ត៌មានអតិថិជន៖**\n";
-      orderDetails += `📞 លេខទូរស័ព្ទ: ${phone}\n`;
-      if (locType === 'phnompenh') {
-        orderDetails += `📍 ទីតាំង (ភ្នំពេញ): ${address}\n`;
-      } else {
-        orderDetails += `📍 ទីតាំង (ខេត្ត): សាខា ${branch}\n`;
-      }
-      if (note) {
-        orderDetails += `📝 ចំណាំ: ${note}\n`;
-      }
-      orderDetails += "──────────────────────\n";
-      orderDetails += "⚠️ *សម្គាល់៖ អតិថិជនបានផ្ញើរូបភាពវិក្កយបត្រទូទាត់ប្រាក់ (Payment Slip) រួចរាល់។*";
-
-      const encodedText = encodeURIComponent(orderDetails);
-      const adminUsername = "MoMore_collection"; 
-      window.open(`https://t.me/${adminUsername}?text=${encodedText}`, '_blank');
-      alert("✅ ទិន្នន័យការកុម្ម៉ង់ត្រូវបានរៀបចំរួចរាល់! សូមចុចបញ្ជូនក្នុង Telegram ឆាតផ្ទាល់ជាមួយ Admin។");
-    }
-
-    renderComboSets();
-    renderVideoGallery();
-    renderProducts();
-  </script>
-</body>
-</html>
-  
+    
     
     
     
@@ -1038,147 +913,9 @@
 </head>
 <body>
 
-  <header>🍌 MOMORE - កម្មង់ទំនិញបោះដុំ</header>
 
-  <div class="container">
 
-    <!-- 1. TRUE HERO BANNER -->
-    <div class="hero-banner">
-      <img src="hero-banner.jpg" alt="MoMore Wholesale Banner" onerror="this.src='https://via.placeholder.com/800x450/1a1a1a/f39c12?text=MoMore+Wholesale+16:9+Banner'">
-      <div class="hero-banner-content">
-        <h1>MoMore Wholesale (តម្លៃបោះដុំ)</h1>
-        <p>ប្រព័ន្ធបញ្ជាទិញបោះដុំផ្ទាល់ពីរោងចក្រ គុណភាពខ្ពស់ និងអនាម័យស្តង់ដារសម្រាប់ដៃគូអាជីវកម្ម!</p>
-      </div>
-    </div>
-
-    <!-- 🎁 COMBO SET -->
-    <div class="section-title-box">
-      <div class="sec-title-main">🎁 ឈុតពិសេស Combo Team SET</div>
-      <div class="sec-title-sub">កញ្ចប់កាដូ និងរសជាតិពិសេសប្រចាំហាង (ទិញបានត្រឹម ១ ឈុត/នាក់)</div>
-    </div>
     
-    <div class="combo-section-wrap">
-      <div class="combo-grid-3" id="combo-sets-container"></div>
-    </div>
-
-    <!-- 2. VIDEO GALLERY -->
-    <div class="video-gallery-section">
-      <div class="gallery-title">🎬 មើលវីដេអូស្ពត & Review (Video Feed)</div>
-      <div class="filter-scroll">
-        <button class="chip-btn active" onclick="filterVideos('ALL', this)">ទាំងអស់</button>
-        <button class="chip-btn" onclick="filterVideos('B-TO-B', this)">🤝 B-TO-B / ដៃគូ</button>
-        <button class="chip-btn" onclick="filterVideos('EAT-MUKBANG', this)">😋 Mukbang</button>
-        <button class="chip-btn" onclick="filterVideos('PROC', this)">🏭 សង្វាក់ផលិតកម្ម</button>
-        <button class="chip-btn" onclick="filterVideos('PROD', this)">🍌 ផលិតផល</button>
-        <button class="chip-btn" onclick="filterVideos('PROMO', this)">🎁 ប្រូម៉ូសិន</button>
-        <button class="chip-btn" onclick="filterVideos('REV-MARKET', this)">🏪 Review Market</button>
-      </div>
-      <div class="video-cards-scroll" id="video-feed-container"></div>
-    </div>
-
-    <!-- Notice Box -->
-    <div class="notice-box">
-      <strong>📌 លក្ខខណ្ឌកុម្ម៉ង់តម្លៃបោះដុំ៖</strong><br>
-      • កញ្ចប់ <strong>200g / 300g / 500g</strong>: ទិញចាប់ពី <strong>10 ប្រអប់ឡើងទៅ</strong><br>
-      • កញ្ចប់ <strong>100g</strong>: ទិញចាប់ពី <strong>20 ប្រអប់ឡើងទៅ</strong><br>
-      🎁 <strong>ប្រូម៉ូសិនហ្វ្រីសេវាដឹក & ថែមជូន៖</strong><br>
-      • 200g ចាប់ពី 30 ប្រអប់ ➔ ហ្វ្រីដឹក + ថែម 200g មួយប្រអប់<br>
-      • 100g ចាប់ពី 60 ប្រអប់ ➔ ហ្វ្រីដឹក + ថែម 100g ពីរប្រអប់
-    </div>
-
-    <!-- ផ្នែកទី ១៖ ដំណាប់ចេក -->
-    <div class="section-title-box">
-      <div class="sec-title-main">1. ដំណាប់ចេកណាំវ៉ាខ្មែរ</div>
-      <div class="sec-title-sub">សាច់ទន់ស្វិតបន្ទះស្ដើង សម្ងួតអនាម័យ</div>
-    </div>
-    <div class="grid" id="domnap-container"></div>
-
-    <!-- ➕ បន្ថែម Coming Soon ផ្នែកទី ១ (ខាងលើ ២ ប្រភេទ៖ ដំណាប់ចេកថ្មី) -->
-    <div style="margin-top: 10px;"></div>
-    <div class="grid" id="domnap-coming-soon">
-      <div class="product-card coming-soon">
-        <span class="coming-soon-badge">Coming Soon</span>
-        <div class="media-box">
-          <img src="coming-soon-d1.jpg" alt="Coming Soon" onerror="this.src='https://via.placeholder.com/250x320/222/f39c12?text=Coming+Soon+-+Banana+Dried'">
-        </div>
-        <div class="product-info">
-          <div class="flavor-section-wrap">
-            <div class="row-1-type">ដំណាប់ចេកពិសេស</div>
-            <div class="row-2-flavor">រសជាតិថ្មី (ត្រៀមចេញលក់)</div>
-            <div class="row-3-price-weight">
-              <span class="price-tag">-- ៛</span>
-              <span class="weight-tag">(200g)</span>
-            </div>
-          </div>
-          <div style="text-align: center; font-size: 0.75rem; color: #888; padding: 6px 0; font-weight: bold;">រង់ចាំការមកដល់ឆាប់ៗនេះ</div>
-        </div>
-      </div>
-      <div class="product-card coming-soon">
-        <span class="coming-soon-badge">Coming Soon</span>
-        <div class="media-box">
-          <img src="coming-soon-d2.jpg" alt="Coming Soon" onerror="this.src='https://via.placeholder.com/250x320/222/f39c12?text=Coming+Soon+-+Special'">
-        </div>
-        <div class="product-info">
-          <div class="flavor-section-wrap">
-            <div class="row-1-type">ដំណាប់ចេកពិសេស</div>
-            <div class="row-2-flavor">រសជាតិពិសេសថ្មី</div>
-            <div class="row-3-price-weight">
-              <span class="price-tag">-- ៛</span>
-              <span class="weight-tag">(300g)</span>
-            </div>
-          </div>
-          <div style="text-align: center; font-size: 0.75rem; color: #888; padding: 6px 0; font-weight: bold;">រង់ចាំការមកដល់ឆាប់ៗនេះ</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ផ្នែកទី ២៖ ចេកបំពងស្រួយ -->
-    <div class="section-title-box">
-      <div class="sec-title-main">2. ចេកបំពងស្រួយ ម៉ូម័រ MoMore</div>
-      <div class="sec-title-sub">ស្រួយស្រែស ឈ្ងុយឆ្ងាញ់ គ្រប់រសជាតិ</div>
-    </div>
-    <div class="grid" id="crispy-container"></div>
-
-    <!-- ➕ បន្ថែម Coming Soon ផ្នែកទី ២ (ខាងក្រោម ៣ ប្រភេទ៖ ចេកបំពងស្រួយថ្មី) -->
-    <div style="margin-top: 10px;"></div>
-    <div class="grid" id="crispy-coming-soon">
-      <div class="product-card coming-soon">
-        <span class="coming-soon-badge">Coming Soon</span>
-        <div class="media-box">
-          <img src="coming-soon-c1.jpg" alt="Coming Soon" onerror="this.src='https://via.placeholder.com/250x320/222/e74c3c?text=Coming+Soon+-+Crispy+1'">
-        </div>
-        <div class="product-info">
-          <div class="flavor-section-wrap">
-            <div class="row-1-type">ចេកបំពងស្រួយ</div>
-            <div class="row-2-flavor">រសជាតិថ្មីទី ១</div>
-            <div class="row-3-price-weight">
-              <span class="price-tag">-- ៛</span>
-              <span class="weight-tag">(200g)</span>
-            </div>
-          </div>
-          <div style="text-align: center; font-size: 0.75rem; color: #888; padding: 6px 0; font-weight: bold;">រង់ចាំការមកដល់ឆាប់ៗនេះ</div>
-        </div>
-      </div>
-      <div class="product-card coming-soon">
-        <span class="coming-soon-badge">Coming Soon</span>
-        <div class="media-box">
-          <img src="coming-soon-c2.jpg" alt="Coming Soon" onerror="this.src='https://via.placeholder.com/250x320/222/e74c3c?text=Coming+Soon+-+Crispy+2'">
-        </div>
-        <div class="product-info">
-          <div class="flavor-section-wrap">
-            <div class="row-1-type">ចេកបំពងស្រួយ</div>
-            <div class="row-2-flavor">រសជាតិថ្មីទី ២</div>
-            <div class="row-3-price-weight">
-              <span class="price-tag">-- ៛</span>
-              <span class="weight-tag">(200g)</span>
-            </div>
-          </div>
-          <div style="text-align: center; font-size: 0.75rem; color: #888; padding: 6px 0; font-weight: bold;">រង់ចាំការមកដល់ឆាប់ៗនេះ</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
 
   <!-- Modal វីដេអូ -->
   <div class="modal" id="videoModal">
@@ -1299,16 +1036,7 @@
     const tg = window.Telegram.WebApp;
     tg.expand();
 
-    const products = {
-      D_ORIG200: { type: "ដំណាប់ចេក", flavor: "រសជាតិដើម", price: 8000, qty: 0, size: '200g', id: 'D_ORIG200' },
-      D_SESM200: { type: "ដំណាប់ចេក", flavor: "រោយល្ង ស/ខ្មៅ", price: 8000, qty: 0, size: '200g', id: 'D_SESM200' },
-      C_ORIG500: { type: "ចេកបំពងស្រួយ", flavor: "រសជាតិដើមសាប", price: 10000, qty: 0, size: '500g', id: 'C_ORIG500' },
-      C_CHOC200: { type: "ចេកបំពងស្រួយ", flavor: "សូកូឡាដោះគោ", price: 10000, qty: 0, size: '200g', id: 'C_CHOC200' },
-      C_CHES200: { type: "ចេកបំពងស្រួយ", flavor: "ឈីស ដោះគោ", price: 10000, qty: 0, size: '200g', id: 'C_CHES200' },
-      C_SPIC200: { type: "ចេកបំពងស្រួយ", flavor: "ម្ទេសខ្ទឹម", price: 14000, qty: 0, size: '200g', id: 'C_SPIC200' }
-    };
-
-    function renderProducts() {
+     function renderProducts() {
       const domnapContainer = document.getElementById('domnap-container');
       const crispyContainer = document.getElementById('crispy-container');
       domnapContainer.innerHTML = '';
