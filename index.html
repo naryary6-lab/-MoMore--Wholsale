@@ -90,7 +90,7 @@
       font-weight: 400;
     }
 
-    /* 🎁 Combo Thumbnail 16:9 (យកតែ 3 ប្រអប់, Padding អក្សរក្រូចលាយក្រហម) */
+    /* 🎁 Combo Thumbnail 16:9 */
     .combo-section-wrap {
       margin-bottom: 18px;
     }
@@ -253,7 +253,26 @@
     .form-group input, .form-group select { width: 100%; padding: 10px 12px; border: 1.5px solid #bbb; border-radius: 8px; font-size: 0.86rem; background: #fff; font-weight: 400; }
     .required-tag { color: var(--price-red); font-weight: bold; }
 
-    /* BANK / TRANSFER ACCOUNT INFO BOX (ជំនួស KHQR) */
+    /* 🧾 CSS រចនាបទវិក្កយបត្រ 55mm សម្រាប់ Preview & Print */
+    .receipt-55mm {
+      background: #ffffff;
+      color: #000000;
+      padding: 8px;
+      border-radius: 6px;
+      font-size: 11pt;
+      line-height: 1.25;
+      font-family: 'Kantumruy Pro', Arial, sans-serif;
+      width: 100%;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    .btn-action { width: 100%; padding: 12px; border-radius: 8px; font-size: 0.95rem; font-weight: 700; border: none; cursor: pointer; margin-top: 8px; text-align: center; }
+    .btn-preview { background: linear-gradient(135deg, #FF9900, #FF5500); color: #FFF; } 
+    .btn-print { background: linear-gradient(135deg, #00C9FF, #92FE9D); color: #000; }
+    .btn-telegram { background: linear-gradient(135deg, #0088cc, #005580); color: #FFF; }
+
+    /* BANK / TRANSFER ACCOUNT INFO BOX */
     .bank-account-box { 
       background: #1a1a1a; 
       border-radius: 10px; 
@@ -319,16 +338,14 @@
       </div>
     </div>
 
-    <!-- 🎁 ផ្នែក COMBO SET ដាក់នៅខាងមុខ (យកតែ 3 ប្រអប់, ខ្នាត 16:9, Padding អក្សរក្រហមលាយទឹកក្រូច) -->
+    <!-- 🎁 ផ្នែក COMBO SET -->
     <div class="section-title-box">
       <div class="sec-title-main">🎁 ឈុតពិសេស Combo Team SET</div>
       <div class="sec-title-sub">កញ្ចប់កាដូ និងរសជាតិពិសេសប្រចាំហាង (ទិញបានត្រឹម ១ ឈុត/នាក់)</div>
     </div>
     
     <div class="combo-section-wrap">
-      <div class="combo-grid-3" id="combo-sets-container">
-        <!-- Render 3 Combo Cards dynamically via JS -->
-      </div>
+      <div class="combo-grid-3" id="combo-sets-container"></div>
     </div>
 
     <!-- 2. VIDEO GALLERY / FEED SECTION -->
@@ -384,7 +401,7 @@
     </div>
   </div>
 
-  <!-- Modal Detail (សម្រាប់ផលិតផល និង Combo 16:9) -->
+  <!-- Modal Detail -->
   <div class="modal" id="detailModal">
     <div class="modal-content">
       <span class="close-modal" onclick="closeDetailModal()">&times;</span>
@@ -410,7 +427,7 @@
     </div>
   </div>
 
-  <!-- Checkout Modal (Popup វិក្កយបត្រ និងទូទាត់ - ដក KHQR ចេញ ជំនួសដោយលេខគណនេយ្យ/វេរលុយ និង Sticker អរគុណ) -->
+  <!-- Checkout Modal (Popup វិក្កយបត្រ និងទូទាត់រួមជាមួយប៊ូតុង Print) -->
   <div class="modal" id="checkoutModal">
     <div class="modal-content">
       <span class="close-modal" onclick="closeCheckoutModal()">&times;</span>
@@ -420,9 +437,7 @@
         <!-- Summary Box ជាមួយបញ្ជីទំនិញ Lock -->
         <div class="summary-box">
           <div style="font-weight: 700; margin-bottom: 6px; font-size: 0.9rem; color: #333;">🛍️ បញ្ជីទំនិញដែលបានជ្រើសរើស (Lock):</div>
-          <div class="locked-items-list" id="popup-locked-items">
-            <!-- Dynamic Injected Locked Items -->
-          </div>
+          <div class="locked-items-list" id="popup-locked-items"></div>
 
           <div class="summary-row" style="display:flex; justify-content:space-between; margin-top:8px; font-size:0.86rem;">
             <span>សេវាដឹកជញ្ជូន:</span>
@@ -447,13 +462,11 @@
           <input type="tel" id="cust-phone" placeholder="ឧទាហរណ៍៖ 012 345 678" required>
         </div>
 
-        <!-- សម្រាប់ភ្នំពេញ -->
         <div class="form-group" id="phnompenh-fields">
           <label>🏠 លេខផ្ទះ / លេខផ្លូវ / ទីតាំងលម្អិត <span class="required-tag">*</span></label>
           <input type="text" id="cust-address" placeholder="ឧទាហរណ៍៖ ផ្ទះលេខ 12, ផ្លូវ 310, បឹងកេងកង">
         </div>
 
-        <!-- សម្រាប់ខេត្ត -->
         <div class="form-group" id="province-fields" style="display:none;">
           <label>🏢 សាខាក្រុមហ៊ុនដឹកជញ្ជូននៅខេត្ត <span class="required-tag">*</span></label>
           <input type="text" id="cust-branch" placeholder="ឧទាហរណ៍៖ វីរៈប៊ុនថាំ សាខាខេត្តសៀមរាប">
@@ -464,7 +477,7 @@
           <input type="text" id="cust-note" placeholder="កំណត់ចំណាំបន្ថែមដល់អ្នកដឹកជញ្ជូន...">
         </div>
 
-        <!-- 💳 លេខគណនេយ្យ និងលេខវេរលុយ (ជំនួស KHQR) + Sticker អរគុណ -->
+        <!-- 💳 លេខគណនេយ្យ និងលេខវេរលុយ -->
         <div class="bank-account-box">
           <div class="bank-info-header">
             <img src="https://api.iconify.design/fluent-emoji:folded-hands.svg" alt="Thank You Sticker" class="thank-you-sticker" onerror="this.src='https://via.placeholder.com/50x50?text=🙏'">
@@ -491,13 +504,32 @@
 
         <div class="form-group" style="margin-top:10px;">
           <label>🧾 បង្ហោះរូបភាពវិក្កយបត្រ (Payment Slip) <span class="required-tag">*</span></label>
-          <input type="file" id="slip-file" accept="image/*" required>
+          <input type="file" id="slip-file" accept="image/*">
         </div>
 
-        <button class="btn-checkout" style="width:100%; margin-top:8px; padding:11px;" onclick="submitOrder()">🚀 បញ្ជូនការកុម្ម៉ង់ទៅ Telegram Admin</button>
+        <!-- ប៊ូតុងព្រីន និងផ្ញើ -->
+        <button class="btn-action btn-preview" onclick="openInvoiceModal()"> 🧐 Preview វិក្កយបត្រ 55mm 🧾 </button>
+        <button class="btn-action btn-print" onclick="triggerDirectPrint()">🖨️ បោះពុម្ពវិក្កយបត្រ (Print 55mm)</button>
+        <button class="btn-action btn-telegram" onclick="copyReceiptText()">📋 ចម្លងអត្ថបទសម្រាប់ Print PeriPage</button>
+        <button class="btn-checkout" style="width:100%; margin-top:10px; padding:12px;" onclick="submitOrder()">🚀 បញ្ជូនការកុម្ម៉ង់ទៅ Telegram Admin</button>
       </div>
     </div>
   </div>
+
+  <!-- Modal Preview Invoice -->
+  <div class="modal" id="invoiceModal">
+    <div class="modal-content" style="background:#000; padding:15px; max-width:350px;">
+      <span class="close-modal" onclick="closeInvoiceModal()">&times;</span>
+      <div style="color: var(--primary); font-weight:700; font-size:1.1rem; text-align:center; margin-bottom:10px;">📄 វិក្កយបត្រ 55mm Preview</div>
+      
+      <div id="invoice-render-area" style="max-height:60vh; overflow-y:auto; background:#fff; border-radius:6px; padding:6px;"></div>
+
+      <button class="btn-action btn-print" onclick="triggerDirectPrint()" style="margin-top:10px;">🖨️ បោះពុម្ពឥឡូវនេះ (Print)</button>
+      <button class="btn-action" style="background:#444; color:#fff;" onclick="closeInvoiceModal()">បិទផ្ទាំងនេះ</button>
+    </div>
+  </div>
+
+  <iframe id="printFrame" style="display:none;"></iframe>
 
   <!-- Cart Fixed Bottom -->
   <div class="cart-bar">
@@ -516,36 +548,11 @@
     const videoList = [
       { id: 'B-TO-B-001', name: 'B-TO-B 001', type: 'B-TO-B', file: 'B-TO-B-001.mp4' },
       { id: 'B-TO-B-002', name: 'B-TO-B 002', type: 'B-TO-B', file: 'B-TO-B-002.mp4' },
-      { id: 'B-TO-B-003', name: 'B-TO-B 003', type: 'B-TO-B', file: 'B-TO-B-003.mp4' },
-      { id: 'B-TO-B-004', name: 'B-TO-B 004', type: 'B-TO-B', file: 'B-TO-B-004.mp4' },
-      
       { id: 'EAT-MUKBANG-001', name: 'Mukbang 001', type: 'EAT-MUKBANG', file: 'EAT-MUKBANG-001.mp4' },
-      { id: 'EAT-MUKBANG-002', name: 'Mukbang 002', type: 'EAT-MUKBANG', file: 'EAT-MUKBANG-002.mp4' },
-      { id: 'EAT-MUKBANG-003', name: 'Mukbang 003', type: 'EAT-MUKBANG', file: 'EAT-MUKBANG-003.mp4' },
-      { id: 'EAT-MUKBANG-004', name: 'Mukbang 004', type: 'EAT-MUKBANG', file: 'EAT-MUKBANG-004.mp4' },
-      { id: 'EAT-MUKBANG-005', name: 'Mukbang 005', type: 'EAT-MUKBANG', file: 'EAT-MUKBANG-005.mp4' },
-      
       { id: 'PROC-001', name: 'សង្វាក់ផលិតកម្ម 001', type: 'PROC', file: 'PROC-001.mp4' },
-      
       { id: 'PROD-001', name: 'ផលិតផល 001', type: 'PROD', file: 'PROD-001.mp4' },
-      { id: 'PROD-002', name: 'ផលិតផល 002', type: 'PROD', file: 'PROD-002.mp4' },
-      { id: 'PROD-003', name: 'ផលិតផល 003', type: 'PROD', file: 'PROD-003.mp4' },
-      { id: 'PROD-004', name: 'ផលិតផល 004', type: 'PROD', file: 'PROD-004.mp4' },
-      { id: 'PROD-005', name: 'ផលិតផល 005', type: 'PROD', file: 'PROD-005.mp4' },
-      
       { id: 'PROMO-001', name: 'ប្រូម៉ូសិន 001', type: 'PROMO', file: 'PROMO-001.mp4' },
-      { id: 'PROMO-002', name: 'ប្រូម៉ូសិន 002', type: 'PROMO', file: 'PROMO-002.mp4' },
-      { id: 'PROMO-003', name: 'ប្រូម៉ូសិន 003', type: 'PROMO', file: 'PROMO-003.mp4' },
-      { id: 'PROMO-004', name: 'ប្រូម៉ូសិន 004', type: 'PROMO', file: 'PROMO-004.mp4' },
-      { id: 'PROMO-005', name: 'ប្រូម៉ូសិន 005', type: 'PROMO', file: 'PROMO-005.mp4' },
-      { id: 'PROMO-006', name: 'ប្រូម៉ូសិន 006', type: 'PROMO', file: 'PROMO-006.mp4' },
-      { id: 'PROMO-007', name: 'ប្រូម៉ូសិន 007', type: 'PROMO', file: 'PROMO-007.mp4' },
-      { id: 'PROMO-008', name: 'ប្រូម៉ូសិន 008', type: 'PROMO', file: 'PROMO-008.mp4' },
-      { id: 'PROMO-009', name: 'ប្រូម៉ូសិន 009', type: 'PROMO', file: 'PROMO-009.mp4' },
-      
-      { id: 'REV-MARKET-001', name: 'Review Market 001', type: 'REV-MARKET', file: 'REV-MARKET-001.mp4' },
-      { id: 'REV-MARKET-002', name: 'Review Market 002', type: 'REV-MARKET', file: 'REV-MARKET-002.mp4' },
-      { id: 'REV-MARKET-003', name: 'Review Market 003', type: 'REV-MARKET', file: 'REV-MARKET-003.mp4' }
+      { id: 'REV-MARKET-001', name: 'Review Market 001', type: 'REV-MARKET', file: 'REV-MARKET-001.mp4' }
     ];
 
     const comboSetsData = [
@@ -574,49 +581,49 @@
         benefits: "ផ្តល់ជាតិប្រូតេអ៊ីន និងខ្លាញ់ល្អពីគ្រាប់អាល់ម៉ុន ជួយសុខភាពបេះដូង។",
         taste: "រសជាតិប្លែកអារម្មណ៍ ឈ្ងុយខ្ទិះ និងភាពស្រួយនៃអាល់ម៉ុន",
         pack: "វេចខ្ចប់ក្នុងប្រអប់ការពារជម្រាបខ្យល់យ៉ាងល្អ", 
-        storage: "រក្សាទុកបាន ៦ ខែ ក្នុងកន្លែងស្ងួត"
+        storage: "រក្សាទុកได้ ៦ ខែ ក្នុងកន្លែងស្ងួត"
       },
       D_MIXG200: { 
         type: "ដំណាប់ចេក", flavor: "រោយធញ្ញជាតិគ្រប់មុខ", price: 10000, qty: 0, size: '200g', id: 'D_MIXG200', 
         benefits: "ទទួលបានអាហាររូបត្ថម្ភចម្រុះពីធញ្ញជាតិ ជួយប្រព័ន្ធរំលាយអាហារ។",
         taste: "ទន់ស្វិត ផ្តល់អាហាររូបត្ថម្ភខ្ពស់ពីធញ្ញជាតិ",
         pack: "ប្រអប់ស្តង់ដារអនាម័យ បិទជិតយ៉ាងប្រុងប្រយ័ត្ន", 
-        storage: "បិទមាត់ប្រអប់ឱ្យជិត ទុកបាន ៦ ខែ"
+        storage: "បិទមាត់ប្រអប់ឱ្យជិត ទុកได้ ៦ ខែ"
       },
       D_COCO200: { 
         type: "ដំណាប់ចេក", flavor: "រោយដូង", price: 10000, qty: 0, size: '200g', id: 'D_COCO200', 
         benefits: "ផ្តល់ថាមពលលឿន ជួយឱ្យអារម្មណ៍ស្រស់ថ្លាជាមួយក្លិនដូងធម្មជាតិ។",
         taste: "ក្លិនដូងឈ្ងុយឆ្ងាញ់ ត្រូវជាមួយសាច់ចេកទន់ផ្អែម",
         pack: "ប្រអប់អនាម័យបិទជិត", 
-        storage: "រក្សាទុកសីតុណ្ហភាពធម្មតាបាន ៦ ខែ"
+        storage: "រក្សាទុកសីតុណ្ហភាពធម្មតាได้ ៦ ខែ"
       },
       D_BALL200: { 
         type: "ដំណាប់ចេក", flavor: "ដំណាប់ចេកមូល", price: 10000, qty: 0, size: '200g', id: 'D_BALL200', 
         benefits: "ងាយស្រួលកាន់ញ៉ាំ ផ្តល់កម្លាំង និងកាត់បន្ថយភាពហត់នឿយ។",
         taste: "ទន់ស្វិតល្មើយ ងាយស្រួលទំពា",
         pack: "ប្រអប់ការពារសំណើមត្រឹមត្រូវ", 
-        storage: "រក្សាទុកបាន រហូត ៦ ខែ"
+        storage: "រក្សាទុកได้ รហូត ៦ ខែ"
       },
       D_RCHCS300: { 
         type: "ដំណាប់ចេក", flavor: "ស្នូលសូកូឡាដូងល្ងរ", price: 17000, qty: 0, size: '300g', id: 'D_RCHCS300', 
         benefits: "សូកូឡាជួយកាត់បន្ថយស្រ្តេស បូករួមសារធាតុចិញ្ចឹមពីចេក និងដូង។",
         taste: "រសជាតិខ្ទិះដូងលាយសូកូឡា និងល្ង ឆ្ងាញ់ប្លែកមាត់",
         pack: "ប្រអប់ 300g ស្អាតសប្រណីត", 
-        storage: "រក្សាទុកបាន ៣-៦ ខែ"
+        storage: "រក្សាទុកได้ ៣-៦ ខែ"
       },
       D_RCHCC300: { 
         type: "ដំណាប់ចេក", flavor: "ស្នូលសូកូឡាចន្ទី", price: 17000, qty: 0, size: '300g', id: 'D_RCHCC300', 
         benefits: "គ្រាប់ចន្ទីជួយពង្រឹងឆ្អឹង និងផ្តល់ជាតិម៉ាញេស្យូមខ្ពស់។",
         taste: "ឈ្ងុយគ្រាប់ចន្ទី លាយភាពផ្អែមស្រទន់នៃសូកូឡា",
         pack: "ប្រអប់ស្តង់ដារអនាម័យ", 
-        storage: "រក្សាទុកបាន ៣-៦ ខែ"
+        storage: "រក្សាទុកได้ ៣-៦ ខែ"
       },
       C_ORIG500: { 
         type: "ចេកបំពងស្រួយ", flavor: "រសជាតិដើមសាប", price: 10000, qty: 0, size: '500g', id: 'C_ORIG500', 
         benefits: "មិនមានជាតិស្ករបន្ថែម ញ៉ាំមិនទ្រលាន់ និងគ្មានខ្លាញ់កក។",
         taste: "ស្រួយស្រែស មិនជាប់ខ្លាញ់ រសជាតិដើមសាប",
         pack: "ថង់ហ្ស៊ីបបិទជិតការពារខ្យល់ចូល", 
-        storage: "រក្សាទុកក្នុងថង់បិទជិតបាន ៦ ខែ"
+        storage: "រក្សាទុកក្នុងថង់បិទជិតได้ ៦ ខែ"
       },
       C_CHOC200: { 
         type: "ចេកបំពងស្រួយ", flavor: "សូកូឡាដោះគោ", price: 10000, qty: 0, size: '200g', id: 'C_CHOC200', 
@@ -644,7 +651,7 @@
         benefits: "សម្រន់ឈីសស្រួយ ងាយស្រួលញ៉ាំកម្សាន្តគ្រប់ទីកន្លែង។",
         taste: "ប្រៃផ្អែម ឈ្ងុយឈីស ញ៉ាំកម្សាន្ត",
         pack: "កញ្ចប់តូចច្រឡឹង", 
-        storage: "រក្សាទុកបានយូរក្នុងថង់បិទជិត"
+        storage: "រក្សាទុកได้យូរក្នុងថង់បិទជិត"
       },
       C_SPIC200: { 
         type: "ចេកបំពងស្រួយ", flavor: "ម្ទេសខ្ទឹម", price: 14000, qty: 0, size: '200g', id: 'C_SPIC200', 
@@ -658,7 +665,7 @@
         benefits: "រសជាតិហឹរអែម បើកភ្នែក និងជួយឱ្យបាត់ងងុយគេង។",
         taste: "ហឹរតិចៗ ប្រៃផ្អែមខ្ទិះ ឈ្ងុយខ្ទឹម",
         pack: "កញ្ចប់តូច បិទជិត", 
-        storage: "រក្សាទុកក្នុងកន្លែងស្ងួត"
+        storage: "រក្សាទុកในកន្លែងស្ងួត"
       },
       C_BBQ200: { 
         type: "ចេកបំពងស្រួយ", flavor: "រសជាតិបាប៊ីឃ្យូ BBQ", price: 10000, qty: 0, size: '200g', id: 'C_BBQ200', 
@@ -897,6 +904,10 @@
       document.getElementById('checkoutModal').style.display = 'none';
     }
 
+    function closeInvoiceModal() {
+      document.getElementById('invoiceModal').style.display = 'none';
+    }
+
     function toggleLocationFields() {
       const type = document.getElementById('location-type').value;
       if (type === 'phnompenh') {
@@ -906,6 +917,189 @@
         document.getElementById('phnompenh-fields').style.display = 'none';
         document.getElementById('province-fields').style.display = 'block';
       }
+    }
+
+    function getCustomerAddress() {
+      const type = document.getElementById('location-type').value;
+      if (type === 'phnompenh') {
+        return "ភ្នំពេញ ៖ " + (document.getElementById('cust-address').value || 'ទីតាំងភ្នំពេញ');
+      } else {
+        return "ខេត្ត ៖ " + (document.getElementById('cust-branch').value || 'តាមខេត្ត');
+      }
+    }
+
+    /* 🧐 Preview វិក្កយបត្រ 55mm */
+    function openInvoiceModal() {
+      const phone = document.getElementById('cust-phone').value || 'មិនបានបញ្ចូល';
+      const locType = document.getElementById('location-type').value;
+      const addr = getCustomerAddress();
+      const calc = calculateTotal();
+
+      let itemsHtml = '';
+      for (let key in products) {
+        const item = products[key];
+        if (item.qty > 0) {
+          const totalItemPrice = item.price * item.qty;
+          itemsHtml += `<div style="margin-bottom:4px; font-size:7.5pt; border-bottom:0.5px dotted #666; padding-bottom:2px;">
+                          <div><b>${item.size} - ${item.type} (${item.flavor})</b></div>
+                          <div>${item.qty}ប្រអប់ ( x ${item.price.toLocaleString()}៛ ) = <span style="font-weight:bold;">${totalItemPrice.toLocaleString()}៛</span></div>
+                        </div>`;
+        }
+      }
+
+      const content = `
+        <div class="receipt-55mm">
+          <div style="text-align:center; border-bottom:1.5px solid #000; padding-bottom:4px; margin-bottom:4px;">
+            <h1 style="font-size:13pt; font-weight:bold; margin:0; text-transform:uppercase;">ម៉ូម័រ MOMORE</h1>
+            <div style="font-size:8pt; font-weight:bold; margin:2px 0;">ចេកស្អិត ដំណាប់ចេកណាំវ៉ាខ្មែរ</div>
+          </div>
+
+          <div style="border:1.5px solid #000; padding:3px; margin-bottom:3px; text-align:center; background:#fffdf0;">
+            <div style="font-size:7pt;">អ្នកផ្ញើ៖</div>
+            <div style="font-size:10.5pt; font-weight:bold;">085 966 548</div>
+          </div>
+
+          <div style="font-size:7.5pt; margin-bottom:3px;">
+            <div style="border:1.5px solid #000; padding:3px; margin:3px 0; text-align:center;">
+              <div style="font-size:7pt;">អ្នកទទួល៖</div>
+              <div style="font-size:11pt; font-weight:bold;">${phone}</div>
+            </div>
+            <div>📍 <b>ទីតាំង៖</b> ${addr}</div>
+            <div>🚚 <b>សេវាដឹក៖</b> ${calc.deliveryFee === 0 ? 'FREE' : calc.deliveryFee.toLocaleString() + ' ៛'}</div>
+          </div>
+
+          <div style="border-bottom:1.5px dashed #000; margin:4px 0;"></div>
+          <div style="font-size:8pt; font-weight:bold; margin-bottom:2px;">បញ្ជីទំនិញ៖</div>
+          ${itemsHtml}
+
+          <div style="font-size:10.5pt; font-weight:bold; text-align:center; margin-top:4px; border-top:1.5px solid #000; border-bottom:1.5px solid #000; padding:4px 0; background:#f9f9f9;">
+            ទឹកលុយសរុប៖ <span style="font-size:12pt; color:#dc2626;">${calc.grandTotal.toLocaleString()} ៛</span>
+          </div>
+
+          <div style="margin-top:6px; border-top:1.5px dashed #000; padding-top:4px; font-size:7pt;">
+            <div style="text-align:center; font-weight:bold; font-size:8pt;">💳 ព័ត៌មានគណនីធនាគារ</div>
+            <div><b>ឈ្មោះ:</b> SORM SOURPUNNARY</div>
+            <div><b>ABA/ID:</b> 15198798</div>
+            <div><b>Phone:</b> 066 895 789</div>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('invoice-render-area').innerHTML = content;
+      document.getElementById('invoiceModal').style.display = 'flex';
+    }
+
+    /* 🖨️ Print Direct 55mm */
+    function triggerDirectPrint() {
+      const phone = document.getElementById('cust-phone').value || 'មិនបានបញ្ចូល';
+      const addr = getCustomerAddress();
+      const calc = calculateTotal();
+
+      let itemsText = '';
+      for (let key in products) {
+        const item = products[key];
+        if (item.qty > 0) {
+          const totalItemPrice = item.price * item.qty;
+          itemsText += `<div style="margin-bottom:4px; font-size:7.5pt; border-bottom:0.5px dotted #666; padding-bottom:2px;">
+                          <div><b>${item.size} - ${item.type} (${item.flavor})</b></div>
+                          <div>${item.qty}ប្រអប់ x ${item.price.toLocaleString()}៛ = <span style="font-weight:bold;">${totalItemPrice.toLocaleString()}៛</span></div>
+                        </div>`;
+        }
+      }
+
+      const printHTML = `
+        <html>
+        <head>
+          <meta charset="UTF-8">
+          <style>
+            @page { size: 55mm auto; margin: 1mm; }
+            body { font-family: 'Kantumruy Pro', Arial, sans-serif; width: 53mm; padding: 1mm; font-size: 7.5pt; color: #000; line-height: 1.25; }
+            .center { text-align: center; }
+            .dashed { border-bottom: 1.5px dashed #000; margin: 4px 0; }
+          </style>
+        </head>
+        <body>
+          <div class="center" style="border-bottom:1.5px solid #000; padding-bottom:4px; margin-bottom:4px;">
+            <h1 style="font-size:13pt; font-weight:bold; margin:0; text-transform:uppercase;">ម៉ូម័រ MOMORE</h1>
+            <div style="font-size:8pt; font-weight:bold; margin:2px 0;">ចេកស្អិត ដំណាប់ចេកណាំវ៉ាខ្មែរ</div>
+          </div>
+
+          <div style="border:1.5px solid #000; padding:3px; margin-bottom:3px; text-align:center;">
+            <div style="font-size:7pt;">អ្នកផ្ញើ៖ 085 966 548</div>
+          </div>
+
+          <div style="font-size:7.5pt; margin-bottom:3px;">
+            <div><b>អ្នកទទួល៖</b> ${phone}</div>
+            <div><b>ទីតាំង៖</b> ${addr}</div>
+            <div><b>សេវាដឹក៖</b> ${calc.deliveryFee === 0 ? 'FREE' : calc.deliveryFee.toLocaleString() + ' ៛'}</div>
+          </div>
+
+          <div class="dashed"></div>
+          <div style="font-size:8pt; font-weight:bold; margin-bottom:2px;">បញ្ជីទំនិញ៖</div>
+          ${itemsText}
+
+          <div style="font-size:10.5pt; font-weight:bold; text-align:center; margin-top:4px; border-top:1.5px solid #000; border-bottom:1.5px solid #000; padding:4px 0;">
+            ទឹកលុយសរុប៖ <span style="font-size:12pt; color:#dc2626;">${calc.grandTotal.toLocaleString()} ៛</span>
+          </div>
+
+          <div style="margin-top: 6px; border-top: 1.5px dashed #000; padding-top: 4px; font-size: 7pt;">
+            <div class="center" style="font-weight: bold; font-size: 8pt;">💳 ព័ត៌មានគណនីធនាគារ</div>
+            <div><b>ឈ្មោះ:</b> SORM SOURPUNNARY</div>
+            <div><b>ABA ID:</b> 15198798</div>
+            <div><b>Phone:</b> 066 895 789</div>
+          </div>
+        </body>
+        </html>
+      `;
+
+      const frame = document.getElementById('printFrame');
+      const frameDoc = frame.contentWindow || frame.contentDocument;
+      const doc = frameDoc.document || frameDoc;
+      doc.open();
+      doc.write(printHTML);
+      doc.close();
+
+      setTimeout(() => {
+        frame.contentWindow.focus();
+        frame.contentWindow.print();
+      }, 300);
+    }
+
+    /* ចម្លងអត្ថបទសម្រាប់ Print តាម PeriPage App */
+    function copyReceiptText() {
+      const phone = document.getElementById('cust-phone').value || 'មិនបានបញ្ចូល';
+      const addr = getCustomerAddress();
+      const calc = calculateTotal();
+
+      let itemsText = '';
+      for (let key in products) {
+        const item = products[key];
+        if (item.qty > 0) {
+          itemsText += `• ${item.size} - ${item.type} (${item.flavor}) x ${item.qty} = ${(item.price * item.qty).toLocaleString()}៛\n`;
+        }
+      }
+
+      const textToCopy = `     ម៉ូម័រ MOMORE\n` +
+                          ` ចេកស្អិត ដំណាប់ចេកណាំវ៉ាខ្មែរ\n` +
+                          `----------------------------\n` +
+                          `អ្នកផ្ញើ៖ 085 966 548\n` +
+                          `----------------------------\n` +
+                          `អ្នកទទួល៖ ${phone}\n` +
+                          `ទីតាំង៖ ${addr}\n` +
+                          `ដឹកជញ្ជូន៖ ${calc.deliveryFee === 0 ? 'FREE' : calc.deliveryFee.toLocaleString() + ' ៛'}\n` +
+                          `----------------------------\n` +
+                          `បញ្ជីទំនិញ៖\n${itemsText}\n` +
+                          `----------------------------\n` +
+                          `ទឹកលុយសរុប៖ ${calc.grandTotal.toLocaleString()} ៛\n` +
+                          `----------------------------\n` +
+                          `💳 ព័ត៌មានគណនីធនាគារ\n` +
+                          `ឈ្មោះ: SORM SOURPUNNARY\n` +
+                          `ABA: 151 987 988\n` +
+                          `Phone: 066 895 789`;
+
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        alert("✅ បាន Copy ព័ត៌មានវិក្កយបត្ររួចរាល់! អ្នកអាចយកទៅ Paste ក្នុងកម្មវិធី PeriPage / RawBT ដើម្បី Print បានភ្លាមៗ។");
+      });
     }
 
     async function submitOrder() {
