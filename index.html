@@ -581,7 +581,7 @@
         benefits: "ផ្តល់ជាតិប្រូតេអ៊ីន និងខ្លាញ់ល្អពីគ្រាប់អាល់ម៉ុន ជួយសុខភាពបេះដូង។",
         taste: "រសជាតិប្លែកអារម្មណ៍ ឈ្ងុយខ្ទិះ និងភាពស្រួយនៃអាល់ម៉ុន",
         pack: "វេចខ្ចប់ក្នុងប្រអប់ការពារជម្រាបខ្យល់យ៉ាងល្អ", 
-        storage: "រក្សាទុកได้ ៦ ខែ ក្នុងកន្លែងស្ងួត"
+        storage: "រក្សាទុកបាន ៦ ខែ ក្នុងកន្លែងស្ងួត"
       },
       D_MIXG200: { 
         type: "ដំណាប់ចេក", flavor: "រោយធញ្ញជាតិគ្រប់មុខ", price: 10000, qty: 0, size: '200g', id: 'D_MIXG200', 
@@ -602,7 +602,7 @@
         benefits: "ងាយស្រួលកាន់ញ៉ាំ ផ្តល់កម្លាំង និងកាត់បន្ថយភាពហត់នឿយ។",
         taste: "ទន់ស្វិតល្មើយ ងាយស្រួលទំពា",
         pack: "ប្រអប់ការពារសំណើមត្រឹមត្រូវ", 
-        storage: "រក្សាទុកได้ รហូត ៦ ខែ"
+        storage: "រក្សាទុកได้ រហូត ៦ ខែ"
       },
       D_RCHCS300: { 
         type: "ដំណាប់ចេក", flavor: "ស្នូលសូកូឡាដូងល្ងរ", price: 17000, qty: 0, size: '300g', id: 'D_RCHCS300', 
@@ -931,7 +931,6 @@
     /* 🧐 Preview វិក្កយបត្រ 55mm */
     function openInvoiceModal() {
       const phone = document.getElementById('cust-phone').value || 'មិនបានបញ្ចូល';
-      const locType = document.getElementById('location-type').value;
       const addr = getCustomerAddress();
       const calc = calculateTotal();
 
