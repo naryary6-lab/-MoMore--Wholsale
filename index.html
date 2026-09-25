@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MoMore Wholesale WebApp</title>
-  <!-- Google Fonts: Kantumruy Pro -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -13,118 +12,93 @@
     :root {
       --primary: #f1c40f; 
       --primary-dark: #d35400;   
-      --dark-red: #641E16; /* ពណ៌ឈាមជ្រូកក្រម៉ៅ */
-      --light-bg: #f8f9fa;
-      --card-bg: #ffffff;
-      --text-dark: #000000;
-      --text-gray: #555555;
-      --price-red: #e74c3c;     
+      --dark-red: #641E16; 
+      --light-bg: #121212; 
+      --card-bg: #1e1e1e;
+      --text-dark: #ffffff;
+      --text-gray: #bbbbbb;
+      --price-red: #ff6b6b;     
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Kantumruy Pro', sans-serif; }
     
     body { background-color: var(--light-bg); color: var(--text-dark); padding-bottom: 140px; font-size: 14px; }
     
-    header { background: #000; color: var(--primary); padding: 14px; text-align: center; font-weight: 800; font-size: 1.2rem; position: sticky; top: 0; z-index: 100; border-bottom: 4px solid var(--primary); }
+    header { background: #000; color: var(--primary); padding: 14px; text-align: center; font-weight: 800; font-size: 1.2rem; position: sticky; top: 0; z-index: 100; border-bottom: 3px solid var(--primary); box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
     
     .container { max-width: 600px; margin: auto; padding: 16px 10px 10px 10px; }
 
-    /* ពណ៌លឿងមាស អក្សរខ្មៅ គែមឈាមជ្រូកក្រម៉ៅ សម្រាប់ចំណងជើងផ្នែកនីមួយៗ */
-    .section-title-box { 
-      margin: 24px 0 12px 0; 
-      padding: 12px 14px; 
-      background: var(--primary); /* ខាងក្នុងពណ៌លឿង */
-      border: 3px solid var(--dark-red); /* Stroke ពណ៌ឈាមជ្រូកក្រម៉ៅ */
-      border-radius: 8px; 
-      color: #000; /* អក្សរពណ៌ខ្មៅ */
-      font-weight: 800; 
-      font-size: 1.15rem; 
-      box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+    .promo-banner-btn {
+      background: linear-gradient(45deg, #e74c3c, #c0392b); color: white; padding: 12px; border-radius: 10px; text-align: center; font-weight: 800; font-size: 1.05rem; margin-bottom: 16px; cursor: pointer; border: 2px solid #ffb8b8; box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4); animation: pulse 2s infinite; display: flex; align-items: center; justify-content: center; gap: 8px;
     }
+    @keyframes pulse { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7); } 50% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(231, 76, 60, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); } }
+
+    .section-title-box { margin: 24px 0 12px 0; padding: 12px 14px; background: var(--primary); border: 2px solid var(--dark-red); border-radius: 8px; color: #000; font-weight: 800; font-size: 1.1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
     
-    /* Hero Banner */
-    .hero-banner { width: 100%; aspect-ratio: 16 / 9; background: #1a1a1a; border-radius: 14px; overflow: hidden; margin-bottom: 14px; border: 2px solid var(--primary); position: relative; }
+    .hero-banner { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 14px; overflow: hidden; margin-bottom: 14px; border: 2px solid var(--primary); position: relative; }
     .hero-banner img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .hero-banner-content { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.85), transparent); padding: 14px 12px 10px 12px; color: #ffffff; text-align: center; }
+    .hero-banner-content { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); padding: 14px 12px 10px 12px; color: #ffffff; text-align: center; }
     .hero-banner-content h1 { font-size: 1.05rem; color: var(--primary); margin-bottom: 2px; }
-    .hero-banner-content p { font-size: 0.74rem; color: #eeeeee; }
 
-    /* Combo Sets */
-    .combo-section-wrap { margin-bottom: 18px; }
-    .combo-grid-3 { display: flex; flex-direction: column; gap: 12px; }
-    .combo-card-169 { width: 100%; aspect-ratio: 16 / 9; background: #1a1a1a; border-radius: 12px; overflow: hidden; border: 2px solid #e74c3c; position: relative; cursor: pointer; }
-    .combo-card-169 img { width: 100%; height: 100%; object-fit: cover; }
-    .combo-thumbnail-padding { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(135deg, rgba(231, 76, 60, 0.92), rgba(243, 156, 18, 0.92)); padding: 10px 14px; color: #ffffff; }
-    .combo-title-text { font-size: 0.95rem; font-weight: 700; display: flex; justify-content: space-between; }
-
-    /* Video Gallery */
-    .video-gallery-section { background: #ffffff; border-radius: 14px; padding: 12px; margin-bottom: 16px; border: 1px solid #e0e0e0; box-shadow: 0 4px 14px rgba(0,0,0,0.06); }
-    .gallery-title { font-weight: 700; font-size: 0.92rem; color: #121212; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
-    .filter-scroll { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 10px; scrollbar-width: none; }
-    .filter-scroll::-webkit-scrollbar { display: none; }
-    .chip-btn { background: #f1f2f6; border: 1.5px solid #ddd; border-radius: 20px; padding: 5px 12px; font-size: 0.76rem; font-weight: 600; white-space: nowrap; cursor: pointer; color: #444; }
-    .chip-btn.active { background: var(--primary); color: #121212; border-color: var(--primary); font-weight: 700; }
-    .video-cards-scroll { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: thin; }
-    .video-card-item { flex: 0 0 140px; background: #121212; border-radius: 12px; overflow: hidden; position: relative; cursor: pointer; border: 1.5px solid #333; }
-    .video-card-thumb { width: 100%; height: 180px; object-fit: cover; }
-    .video-play-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 34px; height: 34px; background: rgba(243, 156, 18, 0.95); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #121212; font-size: 0.9rem; font-weight: bold; }
-    .video-card-title { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.95), transparent); color: #fff; padding: 12px 4px 4px 4px; font-size: 0.72rem; font-weight: 600; text-align: center; }
-
-    .notice-box { background: #fff8f0; border-left: 4px solid var(--primary); padding: 12px 14px; border-radius: 10px; margin-bottom: 16px; font-size: 0.81rem; line-height: 1.45; border: 1px solid #ffe8cc; }
-
-    /* Products Grid */
     .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
-    .product-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; box-shadow: 0 3px 8px rgba(0,0,0,0.08); display: flex; flex-direction: column; border: 1.5px solid #ddd; }
-    .media-box { width: 100%; height: 240px; background-color: #f0f0f0; position: relative; cursor: pointer; }
+    .product-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; box-shadow: 0 3px 8px rgba(0,0,0,0.5); display: flex; flex-direction: column; border: 1px solid #333; }
+    .media-box { width: 100%; height: 240px; background-color: #000; position: relative; cursor: pointer; }
     .media-box img { width: 100%; height: 100%; object-fit: cover; }
-    .play-video-badge { position: absolute; top: 6px; right: 6px; background: rgba(18, 18, 18, 0.88); color: #fff; padding: 3px 7px; border-radius: 12px; font-size: 0.66rem; font-weight: 600; border: 1px solid var(--primary); z-index: 2; }
     
     .product-info { padding: 10px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
-    .row-1-type { font-size: 0.78rem; color: var(--text-gray); font-weight: 700; cursor: pointer; }
-    .row-2-flavor { font-size: 0.95rem; font-weight: 800; margin: 2px 0 6px 0; line-height: 1.3; cursor: pointer; }
-    .row-3-price-weight { display: flex; align-items: baseline; gap: 5px; margin-bottom: 8px; cursor: pointer; }
-    .price-tag { font-size: 1.1rem; font-weight: 800; color: var(--price-red); }
-    .weight-tag { font-size: 0.8rem; font-weight: 600; color: #444; background: #eee; padding: 2px 6px; border-radius: 4px;}
+    .row-1-type { font-size: 0.78rem; color: var(--text-gray); font-weight: 700; }
+    .row-2-flavor { font-size: 0.95rem; font-weight: 800; color: #fff; margin: 2px 0 6px 0; line-height: 1.3; }
+    .row-3-price-weight { display: flex; align-items: baseline; gap: 5px; margin-bottom: 8px; }
+    .price-tag { font-size: 1.1rem; font-weight: 800; color: var(--primary); }
+    .weight-tag { font-size: 0.8rem; font-weight: 600; color: #000; background: var(--primary); padding: 2px 6px; border-radius: 4px;}
     
-    .quantity-control { display: flex; align-items: center; justify-content: space-between; background: #f1f2f6; border-radius: 8px; padding: 4px 8px; }
-    .btn-qty { width: 32px; height: 32px; background: white; border: 1.5px solid #ccc; border-radius: 6px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #000; font-size: 1.1rem;}
-    .qty-number { font-weight: 800; font-size: 1rem; }
+    .quantity-control { display: flex; align-items: center; justify-content: space-between; background: #2a2a2a; border-radius: 8px; padding: 4px 8px; border: 1px solid #444; }
+    .btn-qty { width: 32px; height: 32px; background: #444; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.1rem;}
+    .qty-number { font-weight: 800; font-size: 1rem; color: #fff; }
 
-    /* Coming Soon Card */
-    .coming-soon-card { background: #f9f9f9; border-radius: 12px; border: 2px dashed #bbb; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; min-height: 330px; text-align: center; color: #888; padding: 20px; }
+    .coming-soon-card { background: #1a1a1a; border-radius: 12px; border: 2px dashed #444; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; min-height: 330px; text-align: center; color: #777; padding: 20px; }
 
-    /* Cart Bar */
-    .cart-bar { position: fixed; bottom: 22px; left: 12px; right: 12px; background: #000; color: white; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; max-width: 580px; margin: auto; border-radius: 12px; border: 2px solid var(--primary); z-index: 999; }
+    .cart-bar { position: fixed; bottom: 22px; left: 12px; right: 12px; background: #000; color: white; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; max-width: 580px; margin: auto; border-radius: 12px; border: 2px solid var(--primary); z-index: 999; box-shadow: 0 -5px 20px rgba(0,0,0,0.8); }
     .total-price { font-size: 1.2rem; font-weight: 800; color: var(--primary); }
-    .delivery-info { font-size: 0.75rem; color: #f1c40f; font-weight: 600; margin-top: 2px; }
-    .btn-checkout { background: var(--primary); color: #000; border: none; padding: 10px 18px; border-radius: 8px; font-weight: 800; cursor: pointer; font-size: 1rem;}
-    .btn-checkout:disabled { background: #555; color: #888; cursor: not-allowed; }
+    .delivery-info { font-size: 0.75rem; color: #2ecc71; font-weight: 600; margin-top: 2px; }
+    .btn-checkout-bar { background: var(--primary); color: #000; border: none; padding: 10px 18px; border-radius: 8px; font-weight: 800; cursor: pointer; font-size: 1rem;}
+    .btn-checkout-bar:disabled { background: #444; color: #777; cursor: not-allowed; }
 
-    /* Modals */
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.88); z-index: 2000; justify-content: center; align-items: center; padding: 12px; overflow-y: auto;}
-    .modal-content { width: 100%; max-width: 440px; background: #fff; border-radius: 14px; position: relative; display: flex; flex-direction: column; max-height: 95vh; }
-    .close-modal { position: absolute; top: 10px; right: 10px; color: white; font-size: 18px; font-weight: bold; cursor: pointer; z-index: 2001; background: rgba(0,0,0,0.75); width: 30px; height: 30px; border-radius: 50%; text-align: center; line-height: 28px; }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; justify-content: center; align-items: center; padding: 12px; overflow-y: auto;}
+    .modal-content { width: 100%; max-width: 440px; background: #111; border-radius: 12px; position: relative; display: flex; flex-direction: column; max-height: 95vh; border: 2px solid #e74c3c; box-shadow: 0 0 20px rgba(231,76,60,0.3);}
+    .close-modal { position: absolute; top: 10px; right: 10px; color: #fff; font-size: 22px; font-weight: bold; cursor: pointer; z-index: 2001; background: #333; width: 34px; height: 34px; border-radius: 50%; text-align: center; line-height: 32px; border: 1px solid #555; }
     
-    .detail-header-media { width: 100%; height: 240px; background: #121212; position: relative; }
-    .detail-header-media img, .detail-header-media video { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .detail-body { padding: 14px; overflow-y: auto; font-size: 0.84rem; line-height: 1.4; color: #333; }
-    .detail-title { font-size: 1.05rem; font-weight: 700; color: #121212; }
-    .detail-price { font-size: 1.05rem; font-weight: 700; color: var(--price-red); margin-bottom: 8px; }
-    .detail-sec-title { font-weight: 700; color: var(--primary-dark); margin-top: 8px; margin-bottom: 2px; font-size: 0.85rem; }
-
-    .checkout-body { padding: 18px 16px; overflow-y: auto; background: #fafafa; }
-    .btn-action { width: 100%; padding: 12px; border-radius: 8px; font-weight: 800; margin-top: 10px; border: none; cursor: pointer; font-size: 1rem; color: #000; }
-    .btn-print { background: var(--primary); }
-    .btn-telegram { background: #3498db; color: white; }
-    .btn-close-preview { background: #e74c3c; color: white;}
-
-    /* ទម្រង់វិក្កយបត្រថ្មី */
-    .invoice-preview-card { background: white; padding: 15px; border-radius: 8px; color: #000; font-size: 14px; max-height: 65vh; overflow-y: auto; box-shadow: 0 4px 10px rgba(0,0,0,0.15); border: 1px solid #ddd;}
-    .invoice-preview-card h2 { text-align: center; margin: 0 0 5px 0; font-weight: 800; font-size: 18px;}
-    .invoice-preview-card hr { border: none; border-top: 1.5px dashed #000; margin: 10px 0; }
+    .checkout-body { padding: 18px 16px; overflow-y: auto; background: #160a0a; color: #fff; border-radius: 10px; }
+    .checkout-total-box { border: 2px solid var(--primary); border-radius: 10px; padding: 12px; text-align: center; margin-bottom: 15px; background: #000;}
+    .checkout-total-box h2 { color: var(--primary); margin: 0; font-size: 1.4rem; font-weight: 800;}
     
-    .packing-note-box { background: #fff3cd; border: 2px solid #ffc107; border-radius: 8px; padding: 12px; margin-top: 15px; font-weight: 800; color: #856404; font-size: 15px; line-height: 1.6; }
-    .packing-title { font-size: 16px; color: #000; margin-bottom: 5px; text-decoration: underline;}
+    .btn-pay-method { width: 100%; padding: 14px; border-radius: 8px; font-weight: 800; margin-bottom: 10px; border: none; cursor: pointer; font-size: 1.05rem; display: flex; align-items: center; justify-content: center; gap: 8px;}
+    .btn-khqr { background: linear-gradient(90deg, #f39c12, #e67e22); color: #000; }
+    .btn-cod { background: linear-gradient(90deg, #e74c3c, #c0392b); color: #fff; }
+    
+    .khqr-dropdown { display: none; background: #000; border: 2px solid var(--primary); border-radius: 8px; padding: 15px; text-align: center; margin-bottom: 15px; }
+    .khqr-dropdown img { width: 220px; height: 220px; object-fit: contain; background: #fff; padding: 10px; border-radius: 8px; margin: 10px auto; display: block; border: 2px solid var(--primary); }
+    .khqr-link { color: var(--primary); font-weight: 800; font-size: 1.05rem; text-decoration: underline; display: inline-block; margin-top: 5px; padding: 8px; background: #222; border-radius: 6px; border: 1px dashed var(--primary); }
+    
+    .customer-form-box { border: 1px solid #e74c3c; border-radius: 8px; padding: 15px; margin-top: 10px; background: #0a0a0a;}
+    .customer-form-title { color: var(--primary); font-weight: 800; font-size: 1rem; margin-bottom: 12px; border-bottom: 1px dashed #444; padding-bottom: 8px;}
+    
+    .form-group { margin-bottom: 12px; }
+    .form-group label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 5px; color: #ccc; }
+    .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid #e74c3c; border-radius: 6px; font-size: 0.95rem; background: #000; color: #fff; font-weight: 600; }
+    .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--primary); }
+
+    .btn-action { width: 100%; padding: 14px; border-radius: 8px; font-weight: 800; margin-top: 10px; border: none; cursor: pointer; font-size: 1.05rem; color: #fff; }
+    .btn-preview { background: #34495e; color: #fff; border: 1px solid #555; }
+    .btn-telegram { background: #e67e22; color: #fff; }
+
+    .invoice-preview-card { background: #000; padding: 15px; border-radius: 8px; color: #fff; font-size: 14px; max-height: 60vh; overflow-y: auto; border: 2px solid var(--primary); }
+    .invoice-preview-card h2 { text-align: center; margin: 0 0 5px 0; font-weight: 800; font-size: 18px; color: var(--primary);}
+    .invoice-preview-card hr { border: none; border-top: 1.5px dashed #555; margin: 10px 0; }
+    .packing-note-box { background: #3E1010; border: 2px solid #e74c3c; border-radius: 8px; padding: 12px; margin-top: 15px; font-weight: 800; color: #fff; font-size: 15px; line-height: 1.6; }
+
+    .promo-content-box { background: #1a1a1a; color: #fff; padding: 15px; border-radius: 10px; font-size: 0.9rem; line-height: 1.6; border: 2px solid var(--primary); }
+    .promo-content-box h4 { color: var(--primary); font-size: 1.05rem; margin-top: 10px; margin-bottom: 5px; border-bottom: 1px solid #444; padding-bottom: 4px; }
   </style>
 </head>
 <body>
@@ -132,44 +106,18 @@
   <header>🍌 MOMORE - កម្មង់ទំនិញបោះដុំ</header>
 
   <div class="container">
-    <!-- Hero Banner (បានត្រឡប់មកវិញ) -->
+    <div class="promo-banner-btn" onclick="openPromoModal()">
+      🎁 មើលលក្ខខណ្ឌ និង ប្រូម៉ូសិនបោះដុំ ទីនេះ! 🎁
+    </div>
+
     <div class="hero-banner">
-      <img src="hero-banner.jpg" alt="MoMore Wholesale Banner" onerror="this.onerror=null; this.src='https://via.placeholder.com/800x450/1a1a1a/f39c12?text=MoMore+Wholesale'">
+      <img src="hero-banner.jpg" alt="MoMore Wholesale" onerror="this.onerror=null; this.src='https://via.placeholder.com/800x450/1a1a1a/f39c12?text=MoMore+Wholesale'">
       <div class="hero-banner-content">
         <h1>MoMore Wholesale (តម្លៃបោះដុំ)</h1>
-        <p>ប្រព័ន្ធបញ្ជាទិញបោះដុំផ្ទាល់ពីរោងចក្រ គុណភាពខ្ពស់ និងអនាម័យស្តង់ដារ!</p>
+        <p>ប្រព័ន្ធបញ្ជាទិញបោះដុំផ្ទាល់ពីរោងចក្រ</p>
       </div>
     </div>
 
-    <!-- ឈុតពិសេស Combo (បានត្រឡប់មកវិញ) -->
-    <div class="section-title-box">🎁 ឈុតពិសេស Combo Team SET</div>
-    <div class="combo-section-wrap">
-      <div class="combo-grid-3" id="combo-sets-container"></div>
-    </div>
-
-    <!-- វីដេអូ Gallery (បានត្រឡប់មកវិញ) -->
-    <div class="video-gallery-section">
-      <div class="gallery-title">🎬 មើលវីដេអូស្ពត & Review</div>
-      <div class="filter-scroll">
-        <button class="chip-btn active" onclick="filterVideos('ALL', this)">ទាំងអស់</button>
-        <button class="chip-btn" onclick="filterVideos('B-TO-B', this)">🤝 B-TO-B / ដៃគូ</button>
-        <button class="chip-btn" onclick="filterVideos('EAT-MUKBANG', this)">😋 Mukbang</button>
-        <button class="chip-btn" onclick="filterVideos('PROC', this)">🏭 សង្វាក់ផលិតកម្ម</button>
-        <button class="chip-btn" onclick="filterVideos('PROD', this)">🍌 ផលិតផល</button>
-        <button class="chip-btn" onclick="filterVideos('PROMO', this)">🎁 ប្រូម៉ូសិន</button>
-        <button class="chip-btn" onclick="filterVideos('REV-MARKET', this)">🏪 Review Market</button>
-      </div>
-      <div class="video-cards-scroll" id="video-feed-container"></div>
-    </div>
-
-    <div class="notice-box">
-      <strong>📌 លក្ខខណ្ឌកុម្ម៉ង់តម្លៃបោះដុំ៖</strong><br>
-      • កញ្ចប់ <strong>200g / 300g / 500g</strong>: ទិញចាប់ពី <strong>10 ប្រអប់ឡើងទៅ</strong><br>
-      • កញ្ចប់ <strong>100g</strong>: ទិញចាប់ពី <strong>20 ប្រអប់ឡើងទៅ</strong><br>
-      • ដំណាប់ចេក <strong>5 kg</strong>: ទិញចាប់ពី <strong>10 kg (2 កញ្ចប់) ឡើងទៅ</strong> ហ្វ្រីដឹក
-    </div>
-
-    <!-- Products (បង្កើតដោយ Javascript) -->
     <div id="dynamic-products-container"></div>
   </div>
 
@@ -179,138 +127,154 @@
       <div class="total-price"><span id="total-val">0</span> ៛</div>
       <div class="delivery-info" id="delivery-info">🚚 សេវាដឹក៖ 8,000 ៛</div>
     </div>
-    <button class="btn-checkout" id="submit-btn" onclick="openCheckoutModal()">🛒 គិតលុយ</button>
+    <button class="btn-checkout-bar" id="submit-btn" onclick="openCheckoutModal()">🛒 គិតលុយ</button>
   </div>
 
-  <!-- Modal Video (វីដេអូ Popup) -->
-  <div class="modal" id="videoModal">
-    <div class="modal-content" style="background:#000; max-width: 360px;">
-      <span class="close-modal" onclick="closeVideoModal()">&times;</span>
-      <video id="popupVideo" controls style="width:100%; max-height: 80vh; aspect-ratio: 9/16; display:block;" autoplay playsinline></video>
-    </div>
-  </div>
-
-  <!-- Modal Detail (ទិន្នន័យផលិតផល Popup) -->
-  <div class="modal" id="detailModal">
+  <!-- Promotion Modal -->
+  <div class="modal" id="promoModal">
     <div class="modal-content">
-      <span class="close-modal" onclick="closeDetailModal()">&times;</span>
-      <div class="detail-header-media">
-        <img id="detail-img" src="" alt="" style="width:100%; height:100%; object-fit:cover;" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x400/121212/f39c12?text=MoMore'">
-      </div>
-      <div class="detail-body">
-        <div id="detail-name" class="detail-title"></div>
-        <div id="detail-price" class="detail-price"></div>
-        <div class="detail-sec-title">🌟 អត្ថប្រយោជន៍ និងគុណសម្បត្តិ</div><p id="detail-benefits"></p>
-        <div class="detail-sec-title">✨ រសជាតិ & គុណភាព</div><p id="detail-taste"></p>
-        <div class="detail-sec-title">📦 ការវេចខ្ចប់</div><p id="detail-pack"></p>
-        <div class="detail-sec-title">🛡️ ការរក្សាទុក និងគុណប្រយោជន៍</div><p id="detail-storage"></p>
+      <span class="close-modal" onclick="closePromoModal()">&times;</span>
+      <div class="checkout-body">
+        <h3 style="color: var(--primary); margin-bottom: 10px; text-align: center;">🎉 លក្ខខណ្ឌ & ប្រូម៉ូសិនបោះដុំ</h3>
+        <div class="promo-content-box">
+          <h4>📌 លក្ខខណ្ឌទិញបោះដុំអប្បបរមា (MOQ)</h4>
+          • ប្រអប់ <strong>200g / 300g / 500g</strong>: ចាប់ពី <strong>10 ប្រអប់ឡើង</strong><br>
+          • ប្រអប់ <strong>100g</strong>: ចាប់ពី <strong>20 ប្រអប់ឡើង</strong><br>
+          • ដំណាប់ចេក <strong>5 kg</strong>: ចាប់ពី <strong>10 kg (2 កញ្ចប់)</strong> (Free ដឹក)<br>
+
+          <h4>🎁 ប្រូម៉ូសិន ដំណាប់ចេក</h4>
+          • ទិញ 10 ប្រអប់: ថែម 2 ប្រអប់<br>
+          • ទិញ 30 ប្រអប់: ថែម 6 ប្រអប់ + 🚚 Free ដឹក<br>
+          • ទិញ 1kg ថែម 2ខាំ<br>
+          • ទិញ 5kg ថែម 1kg<br>
+          • ទិញ 10kg ថែម 1kg + 🚚 Free ដឹក
+
+          <h4>🎁 ប្រូម៉ូសិន ចេកបំពង</h4>
+          • 200g x 30 ប្រអប់: ថែម 200g 1ប្រអប់ + 🚚 Free ដឹក<br>
+          • 100g x 60 ប្រអប់: ថែម 100g 2ប្រអប់ + 🚚 Free ដឹក<br>
+          • លាយគ្នា ចាប់ពី 30 ប្រអប់: 🚚 Free ដឹក<br>
+          • លាយគ្នា ចំនួន 60 ប្រអប់: ថែម 200g 1ប្រអប់ + 🚚 Free ដឹក
+
+          <h4>🌟 ពិសេស (VIP Free Delivery)</h4>
+          បញ្ជាក់: ឱ្យតែអតិថិជនទិញគ្រប់លក្ខខណ្ឌ <strong>Free សេវាដឹក</strong> ខាងលើ នោះរាល់មុខទំនិញដែលគាត់ទិញបន្ថែមពីលើ (១ ឬ ២ ប្រអប់ទៀត) គឺទទួលបាន <strong>Free សេវាដឹកជញ្ជូនទាំងអស់!</strong>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Checkout Form Modal -->
+  <!-- ផ្ទាំង Checkout -->
   <div class="modal" id="checkoutModal">
     <div class="modal-content">
       <span class="close-modal" onclick="closeCheckoutModal()">&times;</span>
       <div class="checkout-body">
-        <h3 style="margin-bottom: 15px; font-weight: 800; border-bottom: 2px solid var(--primary); padding-bottom: 5px;">📝 បំពេញព័ត៌មានអតិថិជន</h3>
         
-        <div style="margin-bottom: 12px;">
-          <label style="font-weight:700;">📞 លេខទូរស័ព្ទ / ឈ្មោះ ៖</label>
-          <input type="text" id="cust-phone" placeholder="012 345 678 / ឈ្មោះ..." style="width:100%; padding:10px; border-radius:6px; border:1px solid #ccc; margin-top:5px; font-size:15px;" required>
+        <div class="checkout-total-box">
+          <h2>សរុប ៖ <span id="checkout-grand-total">0</span> ៛</h2>
         </div>
 
-        <div style="margin-bottom: 12px;">
-          <label style="font-weight:700;">💳 ការទូទាត់ ៖</label>
-          <select id="payment-status" style="width:100%; padding:10px; border-radius:6px; border:1px solid #ccc; margin-top:5px; font-size:15px; font-weight: bold;">
-            <option value="COD (មិនទាន់វេរលុយ)">🔴 COD (មិនទាន់វេរលុយ)</option>
-            <option value="PAID (វេរលុយរួច)">🟢 PAID (វេរលុយរួច)</option>
-          </select>
+        <button class="btn-pay-method btn-khqr" onclick="togglePayment('KHQR')">
+          💳 ទូទាត់ប្រាក់តាម KHQR 💰
+        </button>
+
+        <div id="khqr-dropdown" class="khqr-dropdown">
+          <div style="color:var(--primary); font-weight:bold; font-size:1.1rem; margin-bottom:5px;">💳 SOURPUNARY SORM</div>
+          <!-- Auto-Generate QR Code តាម Link ABA របស់បង -->
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://pay.ababank.com/oRF8/vmb5lvp3" alt="ABA KHQR Code">
+          <a href="https://pay.ababank.com/oRF8/vmb5lvp3" target="_blank" class="khqr-link">👉 ចុចទីនេះដើម្បីទូទាត់ប្រាក់ (ABA Link)</a>
         </div>
 
-        <button class="btn-action btn-print" onclick="openInvoicePreview()">🧾 បង្កើតវិក្កយបត្រ (Preview)</button>
+        <button class="btn-pay-method btn-cod" onclick="togglePayment('COD')">
+          🚀 ទូទាត់ តាមអ្នកដឹកជញ្ជូន 📝
+        </button>
+        
+        <input type="hidden" id="selected-payment-method" value="">
+
+        <div class="customer-form-box">
+          <div class="customer-form-title">ព័ត៌មានអតិថិជន & ការដឹកជញ្ជូន ៖</div>
+          
+          <div class="form-group">
+            <label>👤 ឈ្មោះអតិថិជន ៖</label>
+            <input type="text" id="cust-name" placeholder="បញ្ចូលឈ្មោះរបស់អ្នក..." required>
+          </div>
+
+          <div class="form-group">
+            <label>📞 លេខទូរស័ព្ទ (Telegram) ៖</label>
+            <input type="tel" id="cust-phone" placeholder="បញ្ចូលលេខទូរស័ព្ទ..." required>
+          </div>
+
+          <div class="form-group">
+            <label>🗺️ អាសយដ្ឋានដឹកជញ្ជូន ជ្រើសរើស ៖</label>
+            <select id="location-type" onchange="checkLocationRule()">
+              <option value="ភ្នំពេញ">រាជធានីភ្នំពេញ</option>
+              <option value="តាមខេត្ត">ផ្ញើតាមខេត្ត (វីរៈប៊ុនថាំ / ផ្សេងៗ)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>📍 ទីតាំងលម្អិត / សាខាខេត្ត ៖</label>
+            <input type="text" id="cust-address" placeholder="ផ្ទះលេខ, ផ្លូវ, ឬ សាខាខេត្ត..." required>
+          </div>
+        </div>
+
+        <button class="btn-action btn-preview" onclick="openInvoicePreview()">🧐 Preview វិក្កយបត្រ / បញ្ជាក់</button>
       </div>
     </div>
   </div>
 
-  <!-- Invoice Preview Modal -->
+  <!-- ផ្ទាំង Preview វិក្កយបត្រ -->
   <div class="modal" id="invoiceModal">
-    <div class="modal-content" style="background: #e2e8f0;">
+    <div class="modal-content">
       <div class="checkout-body">
-        <h3 style="text-align: center; margin-bottom: 10px;">📄 ពិនិត្យវិក្កយបត្រ</h3>
+        <h3 style="text-align: center; margin-bottom: 10px; color:var(--primary);">📄 វិក្កយបត្រ (Preview)</h3>
         <div id="invoice-render-area" class="invoice-preview-card"></div>
+        
         <button class="btn-action btn-telegram" onclick="sendToTelegram()">🚀 ផ្ញើចូល Telegram Admin</button>
-        <button class="btn-action btn-close-preview" onclick="closeInvoiceModal()">ត្រឡប់ក្រោយ</button>
+        <button class="btn-action btn-preview" style="background:#555;" onclick="closeInvoiceModal()">ត្រឡប់ក្រោយ</button>
       </div>
     </div>
   </div>
 
   <script>
-    // Data Videos
-    const videoList = [
-      { id: 'B-TO-B-001', name: 'B-TO-B 001', type: 'B-TO-B', file: 'B-TO-B-001.mp4' },
-      { id: 'EAT-MUKBANG-001', name: 'Mukbang 001', type: 'EAT-MUKBANG', file: 'EAT-MUKBANG-001.mp4' },
-      { id: 'PROC-001', name: 'សង្វាក់ផលិតកម្ម 001', type: 'PROC', file: 'PROC-001.mp4' },
-      { id: 'PROD-001', name: 'ផលិតផល 001', type: 'PROD', file: 'PROD-001.mp4' },
-      { id: 'PROMO-001', name: 'ប្រូម៉ូសិន 001', type: 'PROMO', file: 'PROMO-001.mp4' },
-      { id: 'REV-MARKET-001', name: 'Review Market 001', type: 'REV-MARKET', file: 'REV-MARKET-001.mp4' }
-    ];
-
-    // Data Combos
-    const comboSetsData = [
-      { id: 'COMBO_1', name: 'Combo Team SET #1', price: 25000, size: 'Combo Set', image: 'combo-1.jpg', benefits: 'ឈុតកាដូពិសេសរួមបញ្ចូលដំណាប់ចេក និងចេកស្រួយចម្រុះរសជាតិ។', taste: 'ផ្អែមឆ្ងាញ់ ស្រួយស្រែស ឈ្ងុយឆ្ងាញ់ពេញចិត្ត', pack: 'ប្រអប់កាដូស្ដង់ដារអនាម័យស្រស់ស្អាត', storage: 'រក្សាទុកក្នុងកន្លែងស្ងួតត្រជាក់បាន ៦ ខែ' },
-      { id: 'COMBO_2', name: 'Combo Team SET #2', price: 35000, size: 'Combo Set', image: 'combo-2.jpg', benefits: 'ឈុតធំសម្រាប់ក្រុមគ្រួសារ ចែករំលែកភាពសប្បាយរីករាយ។', taste: 'ចម្រុះរសជាតិពេញនិយម ឆ្ងាញ់ញ៉ាំជក់មាត់', pack: 'ប្រអប់កាដូធំទូលាយ រៀបចំយ៉ាងល្អ', storage: 'រក្សាទុកក្នុងកន្លែងស្ងួតត្រជាក់បាន ៦ ខែ' }
-    ];
-
-    /* ទិន្នន័យផលិតផល និងតម្លៃ (ភាសាខ្មែរ លេខឡាតាំង) */
     const products = {
-      // 1. ដំណាប់ចេក 200g
-      D_ORIG200: { cat: 'CAT_1', type: "ដំណាប់ចេក", flavor: "រសជាតិដើម", price: 8000, qty: 0, size: '200g', id: 'd1_200', benefits: "សម្បូរវីតាមីន និងប៉ូតាមស្យូម ផ្តល់ថាមពលភ្លាមៗ។", taste: "សាច់ដំណាប់ទន់ស្វិត ផ្អែមឆ្ងាញ់បែបធម្មជាតិ", pack: "វេចខ្ចប់ក្នុងប្រអប់បិទជិតការពារខ្យល់", storage: "រក្សាទុកកន្លែងស្ងួតត្រជាក់ បាន 6 ខែ" },
-      D_SESM200: { cat: 'CAT_1', type: "ដំណាប់ចេក", flavor: "រោយល្ងសខ្មៅ", price: 8000, qty: 0, size: '200g', id: 'd2_200', benefits: "ល្ងជួយទ្រទ្រង់ឆ្អឹង និងផ្តល់ជាតិកាល់ស្យូម។", taste: "សាច់ចេកទន់ស្វិតផ្អែមល្មម លាយក្លិនឈ្ងុយល្ងរលីង", pack: "សម្ងួតស្អាត រោយល្ងស្មើល្អ វេចខ្ចប់ក្នុងប្រអប់អនាម័យ", storage: "រក្សាទុកក្នុងប្រអប់បិទជិត បាន 6 ខែ" },
-      D_ALMD200: { cat: 'CAT_1', type: "ដំណាប់ចេក", flavor: "រោយអាល់ម៉ុន", price: 10000, qty: 0, size: '200g', id: 'd3_200', benefits: "ផ្តល់ជាតិប្រូតេអ៊ីន និងខ្លាញ់ល្អពីគ្រាប់អាល់ម៉ុន ជួយសុខភាពបេះដូង។", taste: "រសជាតិប្លែកអារម្មណ៍ ឈ្ងុយខ្ទិះ និងភាពស្រួយនៃអាល់ម៉ុន", pack: "វេចខ្ចប់ក្នុងប្រអប់ការពារជម្រាបខ្យល់យ៉ាងល្អ", storage: "រក្សាទុកបាន 6 ខែ ក្នុងកន្លែងស្ងួត" },
-      D_MIXG200: { cat: 'CAT_1', type: "ដំណាប់ចេក", flavor: "រោយធញ្ញជាតិ", price: 10000, qty: 0, size: '200g', id: 'd4_200', benefits: "ទទួលបានអាហាររូបត្ថម្ភចម្រុះពីធញ្ញជាតិ ជួយប្រព័ន្ធរំលាយអាហារ។", taste: "ទន់ស្វិត ផ្តល់អាហាររូបត្ថម្ភខ្ពស់ពីធញ្ញជាតិ", pack: "ប្រអប់ស្តង់ដារអនាម័យ បិទជិតយ៉ាងប្រុងប្រយ័ត្ន", storage: "បិទមាត់ប្រអប់ឱ្យជិត ទុកបាន 6 ខែ" },
-      D_COCO200: { cat: 'CAT_1', type: "ដំណាប់ចេក", flavor: "រោយដូង", price: 10000, qty: 0, size: '200g', id: 'd5_200', benefits: "ផ្តល់ថាមពលលឿន ជួយឱ្យអារម្មណ៍ស្រស់ថ្លាជាមួយក្លិនដូងធម្មជាតិ។", taste: "ក្លិនដូងឈ្ងុយឆ្ងាញ់ ត្រូវជាមួយសាច់ចេកទន់ផ្អែម", pack: "ប្រអប់អនាម័យបិទជិត", storage: "រក្សាទុកសីតុណ្ហភាពធម្មតាបាន 6 ខែ" },
-      D_BALL200: { cat: 'CAT_1', type: "ដំណាប់ចេក", flavor: "ចេកមូល", price: 8000, qty: 0, size: '200g', id: 'd6_200', benefits: "ងាយស្រួលកាន់ញ៉ាំ ផ្តល់កម្លាំង និងកាត់បន្ថយភាពហត់នឿយ។", taste: "ទន់ស្វិតល្មើយ ងាយស្រួលទំពា", pack: "ប្រអប់ការពារសំណើមត្រឹមត្រូវ", storage: "រក្សាទុកបាន រហូត 6 ខែ" },
+      D_ORIG200: { cat: 'CAT_1', type: "ដំណាប់ចេក", flavor: "រសជាតិដើម", price: 8000, qty: 0, size: '200g', id: 'd1_200' },
+      D_SESM200: { cat: 'CAT_1', type: "ដំណាប់ចេក", flavor: "រោយល្ងសខ្មៅ", price: 8000, qty: 0, size: '200g', id: 'd2_200' },
+      D_ALMD200: { cat: 'CAT_1', type: "ដំណាប់ចេក", flavor: "រោយអាល់ម៉ុន", price: 10000, qty: 0, size: '200g', id: 'd3_200' },
+      D_MIXG200: { cat: 'CAT_1', type: "ដំណាប់ចេក", flavor: "រោយធញ្ញជាតិ", price: 10000, qty: 0, size: '200g', id: 'd4_200' },
+      D_COCO200: { cat: 'CAT_1', type: "ដំណាប់ចេក", flavor: "រោយដូង", price: 10000, qty: 0, size: '200g', id: 'd5_200' },
+      D_BALL200: { cat: 'CAT_1', type: "ដំណាប់ចេក", flavor: "ចេកមូល", price: 8000, qty: 0, size: '200g', id: 'd6_200' },
 
-      // 2. ដំណាប់ចេក 1KG 
-      D_ORIG1KG: { cat: 'CAT_2', type: "ដំណាប់ចេក", flavor: "រសជាតិដើម", price: 40000, qty: 0, size: '1kg', id: 'd1_1kg', benefits: "ចំណេញច្រើនសម្រាប់អ្នកបោះដុំបន្ត គុណភាពល្អដូចស្តង់ដារប្រអប់។", taste: "សាច់ដំណាប់ទន់ស្វិត ផ្អែមឆ្ងាញ់ធម្មជាតិ", pack: "វេចខ្ចប់ថង់ធំបិទជិតការពារខ្យល់", storage: "រក្សាទុកកន្លែងស្ងួតត្រជាក់ បាន 6 ខែ" },
-      D_SESM1KG: { cat: 'CAT_2', type: "ដំណាប់ចេក", flavor: "រោយល្ងសខ្មៅ", price: 40000, qty: 0, size: '1kg', id: 'd2_1kg', benefits: "ចំណេញច្រើនសម្រាប់អ្នកបោះដុំបន្ត", taste: "សាច់ចេកទន់ស្វិតផ្អែមល្មម លាយក្លិនឈ្ងុយល្ងរលីង", pack: "វេចខ្ចប់ថង់ធំបិទជិតការពារខ្យល់", storage: "រក្សាទុកកន្លែងស្ងួតត្រជាក់ បាន 6 ខែ" },
-      D_ALMD1KG: { cat: 'CAT_2', type: "ដំណាប់ចេក", flavor: "រោយអាល់ម៉ុន", price: 50000, qty: 0, size: '1kg', id: 'd3_1kg', benefits: "ទទួលបានអាល់ម៉ុនច្រើន ទិញដុំចំណេញខ្ពស់។", taste: "រសជាតិប្លែកអារម្មណ៍ ឈ្ងុយខ្ទិះ", pack: "វេចខ្ចប់ថង់ធំបិទជិតការពារខ្យល់", storage: "រក្សាទុកបាន 6 ខែ ក្នុងកន្លែងស្ងួត" },
-      D_MIXG1KG: { cat: 'CAT_2', type: "ដំណាប់ចេក", flavor: "រោយធញ្ញជាតិ", price: 50000, qty: 0, size: '1kg', id: 'd4_1kg', benefits: "ទទួលបានអាហាររូបត្ថម្ភចម្រុះពីធញ្ញជាតិ ទិញដុំចំណេញខ្ពស់។", taste: "ទន់ស្វិត ផ្តល់អាហាររូបត្ថម្ភខ្ពស់ពីធញ្ញជាតិ", pack: "វេចខ្ចប់ថង់ធំបិទជិតការពារខ្យល់", storage: "រក្សាទុកបាន 6 ខែ ក្នុងកន្លែងស្ងួត" },
-      D_COCO1KG: { cat: 'CAT_2', type: "ដំណាប់ចេក", flavor: "រោយដូង", price: 50000, qty: 0, size: '1kg', id: 'd5_1kg', benefits: "ផ្ដល់ថាមពលលឿន ងាយស្រួលបែងចែកលក់បន្ត។", taste: "ក្លិនដូងឈ្ងុយឆ្ងាញ់ ត្រូវជាមួយសាច់ចេកទន់ផ្អែម", pack: "វេចខ្ចប់ថង់ធំបិទជិតការពារខ្យល់", storage: "រក្សាទុកសីតុណ្ហភាពធម្មតាបាន 6 ខែ" },
-      D_BALL1KG: { cat: 'CAT_2', type: "ដំណាប់ចេក", flavor: "ចេកមូល", price: 40000, qty: 0, size: '1kg', id: 'd6_1kg', benefits: "ងាយស្រួលកាន់ញ៉ាំ ទិញដុំតម្លៃពិសេសបំផុត។", taste: "ទន់ស្វិតល្មើយ ងាយស្រួលទំពា", pack: "វេចខ្ចប់ថង់ធំបិទជិតការពារខ្យល់", storage: "រក្សាទុកបាន រហូត 6 ខែ" },
+      D_ORIG1KG: { cat: 'CAT_2', type: "ដំណាប់ចេក", flavor: "រសជាតិដើម", price: 40000, qty: 0, size: '1kg', id: 'd1_1kg' },
+      D_SESM1KG: { cat: 'CAT_2', type: "ដំណាប់ចេក", flavor: "រោយល្ងសខ្មៅ", price: 40000, qty: 0, size: '1kg', id: 'd2_1kg' },
+      D_ALMD1KG: { cat: 'CAT_2', type: "ដំណាប់ចេក", flavor: "រោយអាល់ម៉ុន", price: 50000, qty: 0, size: '1kg', id: 'd3_1kg' },
+      D_MIXG1KG: { cat: 'CAT_2', type: "ដំណាប់ចេក", flavor: "រោយធញ្ញជាតិ", price: 50000, qty: 0, size: '1kg', id: 'd4_1kg' },
+      D_COCO1KG: { cat: 'CAT_2', type: "ដំណាប់ចេក", flavor: "រោយដូង", price: 50000, qty: 0, size: '1kg', id: 'd5_1kg' },
+      D_BALL1KG: { cat: 'CAT_2', type: "ដំណាប់ចេក", flavor: "ចេកមូល", price: 40000, qty: 0, size: '1kg', id: 'd6_1kg' },
 
-      // 3. ដំណាប់ចេក 5KG 
-      D_ORIG5KG: { cat: 'CAT_3', type: "ដំណាប់ចេក", flavor: "រសជាតិដើម", price: 175000, qty: 0, size: '5kg', id: 'd1_1kg', benefits: "សម្រាប់អ្នកលក់បន្ត ទិញ 5kg បានតម្លៃពិសេស", taste: "សាច់ដំណាប់ទន់ស្វិត ផ្អែមឆ្ងាញ់ធម្មជាតិ", pack: "វេចខ្ចប់ថង់ធំបិទជិតការពារខ្យល់", storage: "រក្សាទុកបាន 6 ខែ" },
-      D_SESM5KG: { cat: 'CAT_3', type: "ដំណាប់ចេក", flavor: "រោយល្ងសខ្មៅ", price: 175000, qty: 0, size: '5kg', id: 'd2_1kg', benefits: "សម្រាប់អ្នកលក់បន្ត ទិញ 5kg បានតម្លៃពិសេស", taste: "សាច់ចេកទន់ស្វិតផ្អែមល្មម លាយក្លិនឈ្ងុយល្ងរលីង", pack: "វេចខ្ចប់ថង់ធំបិទជិតការពារខ្យល់", storage: "រក្សាទុកបាន 6 ខែ" },
-      D_ALMD5KG: { cat: 'CAT_3', type: "ដំណាប់ចេក", flavor: "រោយអាល់ម៉ុន", price: 225000, qty: 0, size: '5kg', id: 'd3_1kg', benefits: "សម្រាប់អ្នកលក់បន្ត ទិញ 5kg បានតម្លៃពិសេស", taste: "រសជាតិប្លែកអារម្មណ៍ ឈ្ងុយខ្ទិះ", pack: "វេចខ្ចប់ថង់ធំបិទជិតការពារខ្យល់", storage: "រក្សាទុកបាន 6 ខែ" },
-      D_MIXG5KG: { cat: 'CAT_3', type: "ដំណាប់ចេក", flavor: "រោយធញ្ញជាតិ", price: 225000, qty: 0, size: '5kg', id: 'd4_1kg', benefits: "សម្រាប់អ្នកលក់បន្ត ទិញ 5kg បានតម្លៃពិសេស", taste: "ទន់ស្វិត ផ្តល់អាហាររូបត្ថម្ភខ្ពស់ពីធញ្ញជាតិ", pack: "វេចខ្ចប់ថង់ធំបិទជិតការពារខ្យល់", storage: "រក្សាទុកបាន 6 ខែ" },
-      D_COCO5KG: { cat: 'CAT_3', type: "ដំណាប់ចេក", flavor: "រោយដូង", price: 225000, qty: 0, size: '5kg', id: 'd5_1kg', benefits: "សម្រាប់អ្នកលក់បន្ត ទិញ 5kg បានតម្លៃពិសេស", taste: "ក្លិនដូងឈ្ងុយឆ្ងាញ់ ត្រូវជាមួយសាច់ចេកទន់ផ្អែម", pack: "វេចខ្ចប់ថង់ធំបិទជិតការពារខ្យល់", storage: "រក្សាទុកសីតុណ្ហភាពធម្មតាបាន 6 ខែ" },
-      D_BALL5KG: { cat: 'CAT_3', type: "ដំណាប់ចេក", flavor: "ចេកមូល", price: 175000, qty: 0, size: '5kg', id: 'd6_1kg', benefits: "ងាយស្រួលកាន់ញ៉ាំ ទិញដុំតម្លៃពិសេសបំផុត", taste: "ទន់ស្វិតល្មើយ ងាយស្រួលទំពា", pack: "វេចខ្ចប់ថង់ធំបិទជិតការពារខ្យល់", storage: "រក្សាទុកបាន រហូត 6 ខែ" },
+      D_ORIG5KG: { cat: 'CAT_3', type: "ដំណាប់ចេក", flavor: "រសជាតិដើម", price: 175000, qty: 0, size: '5kg', id: 'd1_1kg' },
+      D_SESM5KG: { cat: 'CAT_3', type: "ដំណាប់ចេក", flavor: "រោយល្ងសខ្មៅ", price: 175000, qty: 0, size: '5kg', id: 'd2_1kg' },
+      D_ALMD5KG: { cat: 'CAT_3', type: "ដំណាប់ចេក", flavor: "រោយអាល់ម៉ុន", price: 225000, qty: 0, size: '5kg', id: 'd3_1kg' },
+      D_MIXG5KG: { cat: 'CAT_3', type: "ដំណាប់ចេក", flavor: "រោយធញ្ញជាតិ", price: 225000, qty: 0, size: '5kg', id: 'd4_1kg' },
+      D_COCO5KG: { cat: 'CAT_3', type: "ដំណាប់ចេក", flavor: "រោយដូង", price: 225000, qty: 0, size: '5kg', id: 'd5_1kg' },
+      D_BALL5KG: { cat: 'CAT_3', type: "ដំណាប់ចេក", flavor: "ចេកមូល", price: 175000, qty: 0, size: '5kg', id: 'd6_1kg' },
 
-      // 4. ដំណាប់ចេកសូកូឡា 300g
-      D_RCHCS300: { cat: 'CAT_4', type: "ដំណាប់ចេក", flavor: "សូកូឡាស្នូលដូង", price: 17000, qty: 0, size: '300g', id: 'd7_300', benefits: "សូកូឡាជួយកាត់បន្ថយស្រ្តេស បូករួមសារធាតុចិញ្ចឹមពីចេក និងដូង។", taste: "រសជាតិខ្ទិះដូងលាយសូកូឡា ឆ្ងាញ់ប្លែកមាត់", pack: "ប្រអប់ 300g ស្អាតសប្រណីត", storage: "រក្សាទុកបាន 3-6 ខែ" },
-      D_RCHCC300: { cat: 'CAT_4', type: "ដំណាប់ចេក", flavor: "សូកូឡាស្នូលចន្ទី", price: 17000, qty: 0, size: '300g', id: 'd8_300', benefits: "គ្រាប់ចន្ទីជួយពង្រឹងឆ្អឹង និងផ្តល់ជាតិម៉ាញេស្យូមខ្ពស់។", taste: "ឈ្ងុយគ្រាប់ចន្ទី លាយភាពផ្អែមស្រទន់នៃសូកូឡា", pack: "ប្រអប់ស្តង់ដារអនាម័យ", storage: "រក្សាទុកបាន 3-6 ខែ" },
+      D_RCHCS300: { cat: 'CAT_4', type: "ដំណាប់ចេក", flavor: "សូកូឡាស្នូលដូង", price: 17000, qty: 0, size: '300g', id: 'd7_300' },
+      D_RCHCC300: { cat: 'CAT_4', type: "ដំណាប់ចេក", flavor: "សូកូឡាស្នូលចន្ទី", price: 17000, qty: 0, size: '300g', id: 'd8_300' },
 
-      // 5. ចេកបំពង 200g
-      C_CHOC200: { cat: 'CAT_5', type: "ចេកបំពងស្រួយ", flavor: "សូកូឡាទឹកដោះគោ", price: 10000, qty: 0, size: '200g', id: 'b1_200', benefits: "ផ្តល់ភាពរីករាយ និងថាមពលជាមួយសូកូឡាដោះគោគុណភាពខ្ពស់។", taste: "ស្រួយផ្អែមឈ្ងុយ សូកូឡាដោះគោ", pack: "ប្រអប់អនាម័យបិទជិត", storage: "រក្សាទុកក្នុងសីតុណ្ហភាពត្រជាក់" },
-      C_CHES200: { cat: 'CAT_5', type: "ចេកបំពងស្រួយ", flavor: "ឈីស ទឹកដោះគោ", price: 10000, qty: 0, size: '200g', id: 'b2_200', benefits: "រសជាតិប្រៃផ្អែមប្លែកមាត់ ជួយបង្កើនអារម្មណ៍ស្រស់ស្រាយ។", taste: "ប្រៃផ្អែម ឈ្ងុយឈីសខ្លាំង ញ៉ាំជក់មាត់", pack: "ប្រអប់បិទជិតអនាម័យ", storage: "បិទមាត់ប្រអប់ឱ្យជិតជានិច្ច" },
-      C_BBQ200: { cat: 'CAT_5', type: "ចេកបំពងស្រួយ", flavor: "បាប៊ីឃ្យូ BBQ", price: 10000, qty: 0, size: '200g', id: 'b3_200', benefits: "រសជាតិ BBQ ប្លែក ញ៉ាំជុំគ្នាយ៉ាងសប្បាយរីករាយ។", taste: "រសជាតិបាប៊ីឃ្យូ ឈ្ងុយឆ្ងាញ់", pack: "ប្រអប់បិទជិត", storage: "រក្សាទុកได้យូរក្នុងប្រអប់បិទជិត" },
-      C_SPIC200: { cat: 'CAT_5', type: "ចេកបំពងស្រួយ", flavor: "ម្ទេសខ្ទឹម", price: 10000, qty: 0, size: '200g', id: 'b4_200', benefits: "ខ្ទឹមសជួយពង្រឹងប្រព័ន្ធការពាររាងកាយ និងប្រឆាំងបាក់តេរី។", taste: "ហឹរតិចៗ ឈ្ងុយខ្ទឹមស ឆ្ងាញ់ជាប់មាត់", pack: "ប្រអប់បិទជិត", storage: "រក្សាទុកក្នុងកន្លែងស្ងួត" },
+      C_CHOC200: { cat: 'CAT_5', type: "ចេកបំពងស្រួយ", flavor: "សូកូឡាទឹកដោះគោ", price: 10000, qty: 0, size: '200g', id: 'b1_200' },
+      C_CHES200: { cat: 'CAT_5', type: "ចេកបំពងស្រួយ", flavor: "ឈីស ទឹកដោះគោ", price: 10000, qty: 0, size: '200g', id: 'b2_200' },
+      C_BBQ200: { cat: 'CAT_5', type: "ចេកបំពងស្រួយ", flavor: "បាប៊ីឃ្យូ BBQ", price: 10000, qty: 0, size: '200g', id: 'b3_200' },
+      C_SPIC200: { cat: 'CAT_5', type: "ចេកបំពងស្រួយ", flavor: "ម្ទេសខ្ទឹម", price: 10000, qty: 0, size: '200g', id: 'b4_200' },
 
-      // 6. ចេកបំពង 100g
-      C_CHOC100: { cat: 'CAT_6', type: "ចេកបំពងស្រួយ", flavor: "សូកូឡាទឹកដោះគោ", price: 5000, qty: 0, size: '100g', id: 'b1_100', benefits: "កញ្ចប់តូចងាយស្រួលតាមខ្លួន ផ្តល់ថាមពលសម្រន់ពេលល្ងាច។", taste: "ស្រួយផ្អែមឈ្ងុយ សូកូឡាដោះគោ", pack: "កញ្ចប់តូចច្រឡឹង បិទជិត", storage: "រក្សាទុកក្នុងកន្លែងស្ងួតត្រជាក់" },
-      C_CHES100: { cat: 'CAT_6', type: "ចេកបំពងស្រួយ", flavor: "ឈីស ទឹកដោះគោ", price: 5000, qty: 0, size: '100g', id: 'b2_100', benefits: "សម្រន់ឈីសស្រួយ ងាយស្រួលញ៉ាំកម្សាន្តគ្រប់ទីកន្លែង។", taste: "ប្រៃផ្អែម ឈ្ងុយឈីស ញ៉ាំកម្សាន្ត", pack: "កញ្ចប់តូចច្រឡឹង", storage: "រក្សាទុកបានយូរក្នុងថង់បិទជិត" },
-      C_BBQ100: { cat: 'CAT_6', type: "ចេកបំពងស្រួយ", flavor: "បាប៊ីឃ្យូ BBQ", price: 5000, qty: 0, size: '100g', id: 'b3_100', benefits: "កញ្ចប់ល្មមញ៉ាំ ឈ្ងុយគ្រឿងបាប៊ីឃ្យូស្តង់ដារ។", taste: "រសជាតិបាប៊ីឃ្យូ BBQ", pack: "កញ្ចប់តូច បិទជិត", storage: "រក្សាទុកក្នុងថង់បិទជិត" },
-      C_SPIC100: { cat: 'CAT_6', type: "ចេកបំពងស្រួយ", flavor: "ម្ទេសខ្ទឹម", price: 5000, qty: 0, size: '100g', id: 'b4_100', benefits: "រសជាតិហឹរអែម បើកភ្នែក និងជួយឱ្យបាត់ងងុយគេង។", taste: "ហឹរតិចៗ ប្រៃផ្អែមខ្ទិះ ឈ្ងុយខ្ទឹម", pack: "កញ្ចប់តូច បិទជិត", storage: "រក្សាទុកក្នុងកន្លែងស្ងួត" },
+      C_CHOC100: { cat: 'CAT_6', type: "ចេកបំពងស្រួយ", flavor: "សូកូឡាទឹកដោះគោ", price: 5000, qty: 0, size: '100g', id: 'b1_100' },
+      C_CHES100: { cat: 'CAT_6', type: "ចេកបំពងស្រួយ", flavor: "ឈីស ទឹកដោះគោ", price: 5000, qty: 0, size: '100g', id: 'b2_100' },
+      C_BBQ100: { cat: 'CAT_6', type: "ចេកបំពងស្រួយ", flavor: "បាប៊ីឃ្យូ BBQ", price: 5000, qty: 0, size: '100g', id: 'b3_100' },
+      C_SPIC100: { cat: 'CAT_6', type: "ចេកបំពងស្រួយ", flavor: "ម្ទេសខ្ទឹម", price: 5000, qty: 0, size: '100g', id: 'b4_100' },
 
-      // 7. ចេកបំពងរសជាតិដើម (សាបស្រួយ)
-      C_PLAIN250: { cat: 'CAT_7', type: "ចេកបំពងស្រួយ", flavor: "រសជាតិដើមសាប", price: 5000, qty: 0, size: '250g', id: 'b5_250', benefits: "មិនមានជាតិស្ករបន្ថែម ញ៉ាំមិនទ្រលាន់ និងគ្មានខ្លាញ់កក។", taste: "ស្រួយស្រែស មិនជាប់ខ្លាញ់ រសជាតិដើមសាប", pack: "ថង់ហ្ស៊ីបបិទជិតការពារខ្យល់ចូល", storage: "រក្សាទុកក្នុងថង់បិទជិតបាន 6 ខែ" },
-      C_PLAIN500: { cat: 'CAT_7', type: "ចេកបំពងស្រួយ", flavor: "រសជាតិដើមសាប", price: 10000, qty: 0, size: '500g', id: 'b5_500', benefits: "កញ្ចប់ធំល្មម ចែករំលែកសប្បាយជុំគ្រួសារ។", taste: "ស្រួយស្រែស មិនជាប់ខ្លាញ់ រសជាតិដើមសាប", pack: "ថង់ហ្ស៊ីបបិទជិតការពារខ្យល់ចូល", storage: "រក្សាទុកក្នុងថង់បិទជិតបាន 6 ខែ" },
-      C_PLAIN1KG: { cat: 'CAT_7', type: "ចេកបំពងស្រួយ", flavor: "រសជាតិដើមសាប", price: 20000, qty: 0, size: '1kg', id: 'b5_1kg', benefits: "ចំណេញខ្ពស់សម្រាប់អ្នកទិញបោះដុំ។", taste: "ស្រួយស្រែស មិនជាប់ខ្លាញ់ រសជាតិដើមសាប", pack: "ថង់ហ្ស៊ីបបិទជិតការពារខ្យល់ចូល", storage: "រក្សាទុកក្នុងថង់បិទជិតបាន 6 ខែ" }
+      C_PLAIN250: { cat: 'CAT_7', type: "ចេកបំពងស្រួយ", flavor: "រសជាតិដើមសាប", price: 5000, qty: 0, size: '250g', id: 'b5_250' },
+      C_PLAIN500: { cat: 'CAT_7', type: "ចេកបំពងស្រួយ", flavor: "រសជាតិដើមសាប", price: 10000, qty: 0, size: '500g', id: 'b5_500' },
+      C_PLAIN1KG: { cat: 'CAT_7', type: "ចេកបំពងស្រួយ", flavor: "រសជាតិដើមសាប", price: 20000, qty: 0, size: '1kg', id: 'b5_1kg' }
     };
 
-    // ចំណងជើងផ្នែកជាភាសាខ្មែរ លេខឡាតាំង
     const categoriesConfig = [
       { id: 'CAT_1', title: '1. ដំណាប់ចេកណាំវ៉ាខ្មែរ (200g)' },
       { id: 'CAT_2', title: '2. ដំណាប់ចេកណាំវ៉ាខ្មែរ (1kg)' },
@@ -321,71 +285,8 @@
       { id: 'CAT_7', title: '7. ចេកបំពងស្រួយ រសជាតិដើមសាប' }
     ];
 
-    function renderComboSets() {
-      const container = document.getElementById('combo-sets-container');
-      container.innerHTML = '';
-      comboSetsData.forEach((combo) => {
-        const card = document.createElement('div');
-        card.className = 'combo-card-169';
-        card.onclick = () => openComboDetail(combo);
-        card.innerHTML = `
-          <img src="${combo.image}" alt="${combo.name}" onerror="this.onerror=null; this.src='https://via.placeholder.com/800x450/1a1a1a/e74c3c?text=Combo+16:9'">
-          <div class="combo-thumbnail-padding">
-            <div class="combo-title-text"><span>🎁 ${combo.name}</span><span style="font-size: 0.85rem; color: #fff;">${combo.price.toLocaleString()} ៛</span></div>
-          </div>`;
-        container.appendChild(card);
-      });
-    }
-
-    function openComboDetail(combo) {
-      document.getElementById('detail-img').src = combo.image;
-      document.getElementById('detail-name').innerText = combo.name;
-      document.getElementById('detail-price').innerText = `${combo.price.toLocaleString()} ៛ (${combo.size})`;
-      document.getElementById('detail-benefits').innerText = combo.benefits;
-      document.getElementById('detail-taste').innerText = combo.taste;
-      document.getElementById('detail-pack').innerText = combo.pack;
-      document.getElementById('detail-storage').innerText = combo.storage;
-      document.getElementById('detailModal').style.display = 'flex';
-    }
-
-    function renderVideoGallery(filterType = 'ALL') {
-      const container = document.getElementById('video-feed-container');
-      container.innerHTML = '';
-      const filtered = filterType === 'ALL' ? videoList : videoList.filter(v => v.type === filterType);
-      filtered.forEach(item => {
-        const div = document.createElement('div');
-        div.className = 'video-card-item';
-        div.onclick = () => playVideo(item.file);
-        div.innerHTML = `<img src="${item.id}.jpg" class="video-card-thumb" onerror="this.onerror=null; this.src='https://via.placeholder.com/150x200/121212/f39c12?text=Video'"><div class="video-play-overlay">▶</div><div class="video-card-title">${item.name}</div>`;
-        container.appendChild(div);
-      });
-    }
-    
-    function filterVideos(type, btnElem) {
-      document.querySelectorAll('.chip-btn').forEach(b => b.classList.remove('active'));
-      btnElem.classList.add('active');
-      renderVideoGallery(type);
-    }
-    
-    function playVideo(videoFile) { 
-      const modal = document.getElementById('videoModal'); 
-      const video = document.getElementById('popupVideo'); 
-      video.src = videoFile; modal.style.display = 'flex'; video.play().catch(e=>console.log(e)); 
-    }
-    function closeVideoModal() { document.getElementById('popupVideo').pause(); document.getElementById('videoModal').style.display = 'none'; }
-    function closeDetailModal() { document.getElementById('detailModal').style.display = 'none'; }
-
-    function openProductDetail(key) {
-      const p = products[key];
-      document.getElementById('detail-img').src = `${p.id}.jpg`;
-      document.getElementById('detail-name').innerText = `${p.type} ${p.flavor}`;
-      document.getElementById('detail-price').innerText = `${p.price.toLocaleString()} ៛ (${p.size})`;
-      document.getElementById('detail-benefits').innerText = p.benefits;
-      document.getElementById('detail-taste').innerText = p.taste;
-      document.getElementById('detail-pack').innerText = p.pack;
-      document.getElementById('detail-storage').innerText = p.storage;
-      document.getElementById('detailModal').style.display = 'flex';
-    }
+    function openPromoModal() { document.getElementById('promoModal').style.display = 'flex'; }
+    function closePromoModal() { document.getElementById('promoModal').style.display = 'none'; }
 
     function renderDynamicProducts() {
       const mainContainer = document.getElementById('dynamic-products-container');
@@ -400,12 +301,11 @@
             let p = products[key];
             itemsHtml += `
               <div class="product-card">
-                <div class="media-box" onclick="openProductDetail('${key}')">
-                  <img src="${p.id}.jpg" alt="${p.flavor}" onerror="this.onerror=null; this.src='https://via.placeholder.com/250x320/f0f0f0/888?text=Image'">
-                  <div class="play-video-badge" onclick="event.stopPropagation(); playVideo('${p.id}.mp4');">▶️ វីដេអូ</div>
+                <div class="media-box">
+                  <img src="${p.id}.jpg" alt="${p.flavor}" onerror="this.onerror=null; this.src='https://via.placeholder.com/250x320/1a1a1a/555?text=MoMore'">
                 </div>
                 <div class="product-info">
-                  <div onclick="openProductDetail('${key}')">
+                  <div>
                     <div class="row-1-type">${p.type}</div>
                     <div class="row-2-flavor">${p.flavor}</div>
                     <div class="row-3-price-weight">
@@ -426,28 +326,11 @@
         }
 
         if (itemCount > 0) {
-          // បញ្ចូលប្រអប់ Coming Soon ចំនួន 2 ប្រអប់ ខាងក្រោមរាល់ពេលចប់មួយក្រឡាក់ៗ
           itemsHtml += `
-            <div class="product-card">
-              <div class="coming-soon-card">
-                <span style="font-size: 2.5rem;">🍌</span>
-                <h3 style="color:#333; margin-top:10px;">ម៉ូម័រ</h3>
-                <p style="font-size: 0.8rem; margin-top: 5px;">Coming Soon</p>
-              </div>
-            </div>
-            <div class="product-card">
-              <div class="coming-soon-card">
-                <span style="font-size: 2.5rem;">🍌</span>
-                <h3 style="color:#333; margin-top:10px;">ម៉ូម័រ</h3>
-                <p style="font-size: 0.8rem; margin-top: 5px;">Coming Soon</p>
-              </div>
-            </div>
+            <div class="product-card"><div class="coming-soon-card"><span style="font-size: 2.5rem;">🍌</span><h3 style="color:#ddd; margin-top:10px;">ម៉ូម័រ</h3><p style="font-size: 0.8rem; margin-top: 5px;">Coming Soon</p></div></div>
+            <div class="product-card"><div class="coming-soon-card"><span style="font-size: 2.5rem;">🍌</span><h3 style="color:#ddd; margin-top:10px;">ម៉ូម័រ</h3><p style="font-size: 0.8rem; margin-top: 5px;">Coming Soon</p></div></div>
           `;
-          
-          mainContainer.innerHTML += `
-            <div class="section-title-box">${cat.title}</div>
-            <div class="grid">${itemsHtml}</div>
-          `;
+          mainContainer.innerHTML += `<div class="section-title-box">${cat.title}</div><div class="grid">${itemsHtml}</div>`;
         }
       });
     }
@@ -460,64 +343,67 @@
     }
 
     function calculateTotal() {
-      let foodTotal = 0;
-      let d200 = 0, d1kg = 0, d5kg = 0, c200 = 0, c100 = 0, d300 = 0;
+      let foodTotal = 0, d200 = 0, d1kg = 0, d5kg = 0, c200 = 0, c100 = 0, d300 = 0, mixTotalBoxes = 0;
 
       for (let key in products) {
         let p = products[key];
         foodTotal += p.qty * p.price;
         
-        if (p.cat === 'CAT_1') d200 += p.qty;
+        if (p.cat === 'CAT_1') { d200 += p.qty; mixTotalBoxes += p.qty; }
+        if (p.cat === 'CAT_4') { d300 += p.qty; mixTotalBoxes += p.qty; }
+        if (p.cat === 'CAT_7' && p.size === '250g') mixTotalBoxes += p.qty;
+        if (p.cat === 'CAT_7' && p.size === '500g') mixTotalBoxes += p.qty;
+        
         if (p.cat === 'CAT_2') d1kg += p.qty;
-        if (p.cat === 'CAT_3') d5kg += p.qty; // 1 pack = 5kg
-        if (p.cat === 'CAT_4') d300 += p.qty;
+        if (p.cat === 'CAT_3') d5kg += p.qty; 
+        
         if (p.cat === 'CAT_5') c200 += p.qty;
         if (p.cat === 'CAT_6') c100 += p.qty;
       }
 
       let deliveryFee = 8000;
-      let bonuses = [];
-      let isFreeShipping = false;
-      
-      let free200g = 0;
-      let free100g = 0;
-      let freeKg = 0;
+      let bonuses = [], isFreeShipping = false;
+      let free200g = 0, free100g = 0, freeKg = 0;
 
       if (d200 >= 30) {
-        isFreeShipping = true;
-        free200g = Math.floor(d200 / 30) * 6;
-        bonuses.push(`ទិញ 200g ${d200}ប្រអប់ ថែម 🎁 ${free200g}ប្រអប់`);
+        isFreeShipping = true; free200g = Math.floor(d200 / 30) * 6; bonuses.push(`ទិញ 200g ${d200}ប្រអប់ ថែម 🎁 ${free200g}ប្រអប់ (Free ដឹក)`);
       } else if (d200 >= 10) {
-        free200g = Math.floor(d200 / 10) * 2;
-        bonuses.push(`ទិញ 200g ${d200}ប្រអប់ ថែម 🎁 ${free200g}ប្រអប់`);
+        free200g = Math.floor(d200 / 10) * 2; bonuses.push(`ទិញ 200g ${d200}ប្រអប់ ថែម 🎁 ${free200g}ប្រអប់`);
       }
 
       let totalDamnabKg = d1kg + (d5kg * 5);
       if (totalDamnabKg >= 10) {
-        isFreeShipping = true;
-        freeKg = Math.floor(totalDamnabKg / 5) * 1; 
-        bonuses.push(`ទិញ 1kg/5kg សរុប ${totalDamnabKg}kg ថែម 🎁 ${freeKg}kg`);
+        isFreeShipping = true; freeKg = Math.floor(totalDamnabKg / 5) * 1; bonuses.push(`ទិញសរុប ${totalDamnabKg}kg ថែម 🎁 ${freeKg}kg (Free ដឹក)`);
       } else if (totalDamnabKg >= 5) {
-        freeKg = 1;
-        bonuses.push(`ទិញ 1kg/5kg សរុប ${totalDamnabKg}kg ថែម 🎁 1kg`);
+        freeKg = 1; bonuses.push(`ទិញសរុប ${totalDamnabKg}kg ថែម 🎁 1kg`);
       } else if (totalDamnabKg >= 1 && totalDamnabKg < 5) {
-        let freeKham = totalDamnabKg * 2; 
-        bonuses.push(`ទិញ ${totalDamnabKg}kg ថែម 🎁 ${freeKham}ខាំ (0.${freeKham}kg)`);
-        freeKg = freeKham / 10;
+        let freeKham = totalDamnabKg * 2; bonuses.push(`ទិញ ${totalDamnabKg}kg ថែម 🎁 ${freeKham}ខាំ`); freeKg = freeKham / 10;
       }
 
       let totalCrispyBoxes = c200 + c100;
       if (c200 >= 30 && c100 === 0) {
-        isFreeShipping = true; free200g += 1; bonuses.push(`ចេកបំពង 200g ថែម 🎁 1ប្រអប់`);
+        isFreeShipping = true; free200g += 1; bonuses.push(`ចេកបំពង 200g ថែម 🎁 1ប្រអប់ (Free ដឹក)`);
       } else if (c100 >= 60 && c200 === 0) {
-        isFreeShipping = true; free100g += 2; bonuses.push(`ចេកបំពង 100g ថែម 🎁 2ប្រអប់`);
+        isFreeShipping = true; free100g += 2; bonuses.push(`ចេកបំពង 100g ថែម 🎁 2ប្រអប់ (Free ដឹក)`);
       } else if (totalCrispyBoxes >= 60) {
-        isFreeShipping = true; free200g += 1; bonuses.push(`លាយចេកបំពង 60ប្រអប់ ថែម 🎁 200g (1ប្រអប់)`);
+        isFreeShipping = true; free200g += 1; bonuses.push(`លាយចេកបំពង 60ប្រអប់ ថែម 🎁 200g (1ប្រអប់) (Free ដឹក)`);
       } else if (totalCrispyBoxes >= 30) {
         isFreeShipping = true; bonuses.push(`លាយចេកបំពង 30ប្រអប់ (Free សេវាដឹក)`);
       }
 
       if (isFreeShipping || foodTotal === 0) deliveryFee = 0;
+
+      let minQtyMet = false;
+      let qtyStatusMsg = "";
+      if (isFreeShipping) {
+         minQtyMet = true; 
+      } else {
+         if (mixTotalBoxes >= 10 || c100 >= 20 || totalDamnabKg >= 5 || totalCrispyBoxes >= 20) {
+            minQtyMet = true;
+         } else if (foodTotal > 0) {
+            qtyStatusMsg = " (មិនទាន់គ្រប់លក្ខខណ្ឌបោះដុំ)";
+         }
+      }
 
       let grandTotal = foodTotal + deliveryFee;
       document.getElementById('total-val').innerText = grandTotal.toLocaleString();
@@ -525,17 +411,43 @@
       const delBox = document.getElementById('delivery-info');
       delBox.innerText = deliveryFee === 0 && foodTotal > 0 ? `🚚 សេវាដឹក៖ FREE ឥតគិតថ្លៃ!` : `🚚 សេវាដឹក៖ ${deliveryFee.toLocaleString()} ៛`;
 
-      let pack_total200g = d200 + c200 + free200g;
-      let pack_total100g = c100 + free100g;
-      let pack_total300g = d300;
-      let pack_totalKg = totalDamnabKg + freeKg;
+      const btnSubmit = document.getElementById('submit-btn');
+      if (foodTotal === 0) { btnSubmit.disabled = true; btnSubmit.innerText = "🛒 គិតលុយ"; }
+      else if (!minQtyMet) { btnSubmit.disabled = true; btnSubmit.innerText = "អត់ទាន់គ្រប់ដុំ" + qtyStatusMsg; }
+      else { btnSubmit.disabled = false; btnSubmit.innerText = "🛒 គិតលុយ"; }
 
-      return { grandTotal, foodTotal, deliveryFee, bonuses, pack_total200g, pack_total100g, pack_total300g, pack_totalKg };
+      return { grandTotal, foodTotal, deliveryFee, bonuses, pack_total200g: d200 + c200 + free200g, pack_total100g: c100 + free100g, pack_total300g: d300, pack_totalKg: totalDamnabKg + freeKg };
+    }
+
+    function togglePayment(type) {
+      const khqrBox = document.getElementById('khqr-dropdown');
+      const inputMethod = document.getElementById('selected-payment-method');
+      const locationSelect = document.getElementById('location-type');
+
+      if (type === 'KHQR') {
+        khqrBox.style.display = (khqrBox.style.display === 'block') ? 'none' : 'block';
+        inputMethod.value = "KHQR";
+      } else if (type === 'COD') {
+        khqrBox.style.display = 'none';
+        inputMethod.value = "COD";
+        locationSelect.value = "ភ្នំពេញ"; 
+        alert("📌 ទូទាត់តាមអ្នកដឹកជញ្ជូន (COD) គឺសម្រាប់តែការដឹកជញ្ជូនក្នុង រាជធានីភ្នំពេញ ប៉ុណ្ណោះ!");
+      }
+    }
+
+    function checkLocationRule() {
+      const method = document.getElementById('selected-payment-method').value;
+      const loc = document.getElementById('location-type').value;
+      if (method === 'COD' && loc === 'តាមខេត្ត') {
+        alert("សុំទោសអតិថិជន! ការផ្ញើតាមខេត្តតម្រូវឲ្យទូទាត់ប្រាក់តាម KHQR ជាមុនសិន។ សូមរើសយកវិធីសាស្ត្រ KHQR វិញ។");
+        document.getElementById('location-type').value = "ភ្នំពេញ";
+      }
     }
 
     function openCheckoutModal() {
       let calc = calculateTotal();
       if (calc.foodTotal === 0) return;
+      document.getElementById('checkout-grand-total').innerText = calc.grandTotal.toLocaleString();
       document.getElementById('checkoutModal').style.display = 'flex';
     }
     function closeCheckoutModal() { document.getElementById('checkoutModal').style.display = 'none'; }
@@ -543,34 +455,34 @@
 
     function openInvoicePreview() {
       let calc = calculateTotal();
+      const name = document.getElementById('cust-name').value.trim();
       const phone = document.getElementById('cust-phone').value.trim();
-      const status = document.getElementById('payment-status').value;
+      const payMethod = document.getElementById('selected-payment-method').value;
+      const loc = document.getElementById('location-type').value;
+      const addr = document.getElementById('cust-address').value.trim();
       
-      if (!phone) { alert("សូមបញ្ចូលលេខទូរស័ព្ទ / ឈ្មោះ!"); return; }
+      if (!name || !phone || !addr) { alert("សូមបញ្ចូលព័ត៌មានអតិថិជន និងទីតាំងឲ្យបានគ្រប់គ្រាន់!"); return; }
+      if (!payMethod) { alert("សូមជ្រើសរើសវិធីសាស្ត្រទូទាត់ប្រាក់ (KHQR ឬ តាមអ្នកដឹកជញ្ជូន)!"); return; }
 
-      const d = new Date();
-      let printDate = `${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()} ${d.getHours()}:${d.getMinutes()}`;
-      
+      let status = payMethod === 'KHQR' ? "PAID (តាម KHQR)" : "COD (អ្នកដឹកជញ្ជូន)";
+
       let html = `
         <h2>MOMORE WHOLESALE</h2>
-        <p style="text-align:center; font-weight:bold; margin-bottom:10px;">Tel: 066 895 789</p>
         <hr>
-        <p style="font-weight:700;">កាលបរិច្ឆេទ: ${printDate}<br>ភ្ញៀវ: <span style="color:var(--primary-dark);">${phone}</span><br>ការទូទាត់: ${status}</p>
+        <p style="font-weight:700;">អតិថិជន: <span style="color:var(--primary);">${name}</span><br>ទូរស័ព្ទ: ${phone}<br>ការទូទាត់: ${status}<br>ទីតាំង: ${loc} (${addr})</p>
         <hr>
       `;
       
       for (let key in products) {
         if (products[key].qty > 0) {
           let p = products[key];
-          let rowTotal = p.price * p.qty;
-          
           html += `
             <div style="margin-bottom: 12px; font-weight: 700;">
                <div style="display:flex; justify-content:space-between;">
                   <span>- ${p.flavor} ${p.size}</span>
-                  <span style="font-size: 15px;">${rowTotal.toLocaleString()}៛</span>
+                  <span style="font-size: 15px;">${(p.price * p.qty).toLocaleString()}៛</span>
                </div>
-               <div style="display:flex; justify-content:space-between; color:#555; font-size:13px; font-weight: 600; padding-left: 10px;">
+               <div style="display:flex; justify-content:space-between; color:#aaa; font-size:13px; font-weight: 600; padding-left: 10px;">
                   <span>(${p.qty} ប្រអប់/កញ្ចប់ x ${p.price.toLocaleString()}៛)</span>
                </div>
             </div>
@@ -578,21 +490,19 @@
         }
       }
       
-      html += `<hr>`;
-      
-      html += `
+      html += `<hr>
         <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-weight:700;">
           <span>សេវាដឹកជញ្ជូន:</span>
           <span>${calc.deliveryFee === 0 ? 'FREE (0៛)' : calc.deliveryFee.toLocaleString()+'៛'}</span>
         </div>
-        <div style="display:flex; justify-content:space-between; font-weight:900; font-size:1.3rem; margin-top:10px;">
+        <div style="display:flex; justify-content:space-between; font-weight:900; font-size:1.3rem; margin-top:10px; color:var(--primary);">
           <span>សរុបទាំងអស់:</span>
           <span>${calc.grandTotal.toLocaleString()} ៛</span>
         </div>
       `;
       
       if(calc.bonuses.length > 0) {
-        html += `<div style="margin-top:15px; font-weight:800; font-size:13px; color:var(--primary-dark);">`;
+        html += `<div style="margin-top:15px; font-weight:800; font-size:13px; color:#2ecc71;">`;
         calc.bonuses.forEach(b => { html += `<div>${b}</div>`; });
         html += `</div>`;
       }
@@ -615,32 +525,32 @@
 
     function sendToTelegram() {
       let calc = calculateTotal();
+      const name = document.getElementById('cust-name').value;
       const phone = document.getElementById('cust-phone').value;
-      const status = document.getElementById('payment-status').value;
+      const payMethod = document.getElementById('selected-payment-method').value;
+      const loc = document.getElementById('location-type').value;
+      const addr = document.getElementById('cust-address').value;
       
-      let text = `🛍️ MOMORE WHOLESALE\n📞 ភ្ញៀវ: ${phone}\n💳 ទូទាត់: ${status}\n\n`;
+      let status = payMethod === 'KHQR' ? "PAID (KHQR)" : "COD";
+      let text = `🛍️ MOMORE WHOLESALE\n👤 ឈ្មោះ: ${name}\n📞 ទូរស័ព្ទ: ${phone}\n📍 ទីតាំង: ${loc} (${addr})\n💳 ទូទាត់: ${status}\n\n`;
       
       for (let key in products) {
         if (products[key].qty > 0) {
-          text += `- ${products[key].flavor} ${products[key].size} | ${(products[key].price * products[key].qty).toLocaleString()}៛\n  (${products[key].qty} x ${products[key].price.toLocaleString()}៛)\n`;
+          text += `- ${products[key].flavor} ${products[key].size} | ${(products[key].price * products[key].qty).toLocaleString()}៛\n`;
         }
       }
       
       text += `\n🚚 សេវាដឹក: ${calc.deliveryFee === 0 ? 'FREE' : calc.deliveryFee.toLocaleString()+' ៛'}\n`;
       text += `💰 សរុបទាំងអស់: ${calc.grandTotal.toLocaleString()} ៛\n`;
       
-      if(calc.bonuses.length > 0) {
-        text += `\n🎁 ប្រូម៉ូសិន:\n${calc.bonuses.join('\n')}\n`;
-      }
-
+      if(calc.bonuses.length > 0) text += `\n🎁 ប្រូម៉ូសិន:\n${calc.bonuses.join('\n')}\n`;
+      
       text += `\n📦 Note រៀបអីវ៉ាន់:\n- 200g = ${calc.pack_total200g} ប្រអប់\n- 100g = ${calc.pack_total100g} ប្រអប់\n- គីឡូ = ${calc.pack_totalKg} kg`;
 
       const encodedText = encodeURIComponent(text);
       window.open(`https://t.me/MoMore_collection?text=${encodedText}`, '_blank');
     }
 
-    renderComboSets();
-    renderVideoGallery();
     renderDynamicProducts();
   </script>
 </body>
