@@ -45,14 +45,14 @@
     .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
     .product-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid #333; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
     
-    .media-box { width: 100%; aspect-ratio: 1 / 1; position: relative; cursor: pointer; background: #111; }
+    .media-box { width: 100%; aspect-ratio: 1 / 1; position: relative; cursor: pointer; background: #222; display: flex; align-items: center; justify-content: center; overflow: hidden; }
     .media-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
     
-    .weight-badge { position: absolute; top: 8px; left: 8px; background: var(--primary); color: #000; padding: 3px 8px; border-radius: 6px; font-size: 0.7rem; font-weight: 900; box-shadow: 0 2px 5px rgba(0,0,0,0.5); }
-    .play-video-badge { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.7); color: #fff; padding: 3px 6px; border-radius: 6px; font-size: 0.65rem; font-weight: 700; border: 1px solid #fff; }
+    .weight-badge { position: absolute; top: 8px; left: 8px; background: var(--primary); color: #000; padding: 3px 8px; border-radius: 6px; font-size: 0.7rem; font-weight: 900; box-shadow: 0 2px 5px rgba(0,0,0,0.5); z-index: 2; }
+    .play-video-badge { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.7); color: #fff; padding: 3px 6px; border-radius: 6px; font-size: 0.65rem; font-weight: 700; border: 1px solid #fff; z-index: 2; }
 
-    /* Product Info (តូចល្មម ត្រឹម 10-15%) */
-    .product-info { padding: 8px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
+    /* Product Info */
+    .product-info { padding: 8px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; background: #1a1a1a; }
     .row-1-type { font-size: 0.7rem; color: var(--text-gray); font-weight: 700; text-transform: uppercase; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .row-2-flavor { font-size: 0.85rem; font-weight: 800; color: #fff; margin: 2px 0 4px 0; line-height: 1.2; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .price-tag { font-size: 0.95rem; font-weight: 900; color: var(--price-color); display: block; margin-bottom: 6px; }
@@ -65,13 +65,13 @@
     .video-gallery-section { background: #1a1a1a; border-radius: 12px; padding: 15px; margin-bottom: 20px; border: 1px solid #333; }
     .gallery-title { font-weight: 900; font-size: 1rem; color: #fff; margin-bottom: 12px; }
     .video-cards-scroll { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 8px; scrollbar-width: none; }
-    .video-card-item { flex: 0 0 140px; border-radius: 10px; overflow: hidden; position: relative; cursor: pointer; border: 1px solid #444; aspect-ratio: 9/16; }
+    .video-card-item { flex: 0 0 140px; border-radius: 10px; overflow: hidden; position: relative; cursor: pointer; border: 1px solid #444; aspect-ratio: 9/16; background: #222; }
     .video-card-item img { width: 100%; height: 100%; object-fit: cover; }
     .video-play-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; background: rgba(241, 196, 15, 0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #000; font-size: 1.2rem; }
     .video-card-title { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); color: #fff; padding: 15px 8px 8px 8px; font-size: 0.8rem; font-weight: 700; text-align: center; }
 
     /* Combo Sets */
-    .combo-card-169 { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 12px; overflow: hidden; position: relative; cursor: pointer; border: 2px solid #e74c3c; margin-bottom: 12px; }
+    .combo-card-169 { width: 100%; aspect-ratio: 16 / 9; background: #222; border-radius: 12px; overflow: hidden; position: relative; cursor: pointer; border: 2px solid #e74c3c; margin-bottom: 12px; }
     .combo-card-169 img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .combo-thumbnail-padding { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(135deg, rgba(231, 76, 60, 0.95), rgba(243, 156, 18, 0.95)); padding: 10px 14px; color: #fff; }
 
@@ -82,12 +82,11 @@
     .btn-checkout-bar { background: var(--primary); color: #000; border: none; padding: 12px 18px; border-radius: 8px; font-weight: 900; cursor: pointer; font-size: 1rem; transition: all 0.2s;}
     .btn-checkout-bar:disabled { background: #444 !important; color: #aaa !important; cursor: not-allowed; border: 1px solid #555; }
 
-    /* Modals (Pop-ups) */
+    /* Modals */
     .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(4px); z-index: 2000; justify-content: center; align-items: center; padding: 15px; }
     .modal-content { width: 100%; max-width: 450px; background: #111; border-radius: 16px; position: relative; display: flex; flex-direction: column; max-height: 92vh; border: 1px solid #444; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5);}
     .close-modal { position: absolute; top: 12px; right: 12px; color: #fff; font-size: 24px; font-weight: bold; cursor: pointer; z-index: 2001; background: rgba(0,0,0,0.6); width: 36px; height: 36px; border-radius: 50%; text-align: center; line-height: 34px; border: 1px solid #555; }
     
-    /* Pop-up Detail Styling (ព័ត៌មានលម្អិតពេញលេញ) */
     .detail-header-media { width: 100%; aspect-ratio: 1/1; background: #000; position: relative; }
     .detail-header-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .detail-body { padding: 16px; overflow-y: auto; font-size: 0.9rem; line-height: 1.5; color: #ddd; }
@@ -95,7 +94,6 @@
     .detail-price { font-size: 1.2rem; font-weight: 900; color: var(--price-color); margin-bottom: 12px; border-bottom: 1px solid #333; padding-bottom: 10px;}
     .detail-sec-title { font-weight: 800; color: var(--primary); margin-top: 12px; margin-bottom: 4px; font-size: 0.95rem; }
 
-    /* Checkout & Preview Design */
     .checkout-body { padding: 18px; overflow-y: auto; background: #1a1a1a; color: #fff; }
     .checkout-title { font-size: 1.2rem; font-weight: 900; color: var(--primary); margin-bottom: 15px; text-align: center; }
     
@@ -110,13 +108,11 @@
     .promo-note { font-size: 0.9rem; font-weight: 800; background: #e8f5e9; color: #2e7d32; padding: 10px; border-radius: 6px; margin-bottom: 10px; border: 1px solid #c8e6c9; }
     .packing-note-big { font-size: 1.1rem; font-weight: 900; color: #000; background: #f1c40f; padding: 12px; border-radius: 8px; margin-top: 15px; text-align: center; line-height: 1.5; border: 2px solid #d35400;}
 
-    /* Form Fields */
     .form-group { margin-bottom: 15px; }
     .form-group label { display: block; font-weight: 800; font-size: 0.9rem; margin-bottom: 6px; color: #ccc; }
     .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid #444; border-radius: 8px; font-size: 0.95rem; background: #000; color: #fff; font-weight: 700; }
     .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--primary); }
 
-    /* Social Links & QR in Checkout */
     .checkout-footer-links { margin-top: 20px; text-align: center; padding-top: 15px; border-top: 1px dashed #444;}
     .qr-container { display: flex; gap: 10px; justify-content: center; margin-bottom: 15px;}
     .qr-box { flex: 1; max-width: 150px; background: #fff; padding: 8px; border-radius: 8px; border: 2px solid var(--primary); }
@@ -137,7 +133,7 @@
   <header>🍌 MOMORE WHOLESALE</header>
 
   <div class="hero-banner">
-    <img src="hero-banner.jpg" alt="MoMore Wholesale Banner" onerror="this.src='https://via.placeholder.com/800x450/111/f1c40f?text=MoMore+Wholesale'">
+    <img src="hero-banner.jpg" alt="MoMore Wholesale Banner" onerror="this.onerror=null; this.src='https://placehold.co/800x450/111/f1c40f?text=MoMore+Wholesale'">
     <div class="hero-banner-content">
       <h1>ប្រព័ន្ធបញ្ជាទិញបោះដុំផ្ទាល់ពីរោងចក្រ</h1>
     </div>
@@ -146,20 +142,17 @@
   <div class="container">
     <div class="promo-banner-btn" onclick="openPromoModal()">🎁 មើលលក្ខខណ្ឌ និង ប្រូម៉ូសិនបោះដុំ!</div>
 
-    <!-- Combo Sets -->
     <div class="section-title-box">
       <div>🎁 ឈុតពិសេស Combo Team SET</div>
       <div class="sec-title-sub">កញ្ចប់កាដូ និងរសជាតិពិសេសប្រចាំហាង</div>
     </div>
     <div class="combo-section-wrap" id="combo-sets-container"></div>
 
-    <!-- Videos Feed -->
     <div class="video-gallery-section">
       <div class="gallery-title">🎬 មើលវីដេអូស្ពត & Review</div>
       <div class="video-cards-scroll" id="video-feed-container"></div>
     </div>
 
-    <!-- Dynamic Products (Pinterest Style Layout) -->
     <div class="section-title-box"><div>🍌 1. ដំណាប់ចេកណាំវ៉ាខ្មែរ (២០០ ក្រាម)</div></div>
     <div class="grid" id="cat-200-container"></div>
 
@@ -179,7 +172,6 @@
     <div class="grid" id="cat-crispy-plain-container"></div>
   </div>
 
-  <!-- Cart Bar & STRICT LOCK BUTTON -->
   <div class="cart-bar">
     <div>
       <div style="font-size:0.75rem; color:#aaa; font-weight: 700;">សរុបសាច់ប្រាក់:</div>
@@ -189,7 +181,6 @@
     <button class="btn-checkout-bar" id="submit-btn" onclick="openCheckoutModal()" disabled>សូមរើសទំនិញ</button>
   </div>
 
-  <!-- Promotion Modal -->
   <div class="modal" id="promoModal">
     <div class="modal-content">
       <span class="close-modal" onclick="closePromoModal()">&times;</span>
@@ -213,7 +204,6 @@
     </div>
   </div>
 
-  <!-- Video Modal -->
   <div class="modal" id="videoModal">
     <div class="modal-content" style="background:#000; max-width: 360px;">
       <span class="close-modal" onclick="closeVideoModal()">&times;</span>
@@ -221,7 +211,6 @@
     </div>
   </div>
 
-  <!-- Product Detail Modal (Popup លម្អិតពេលចុចលើរូបផលិតផល) -->
   <div class="modal" id="detailModal">
     <div class="modal-content">
       <span class="close-modal" onclick="closeDetailModal()">&times;</span>
@@ -243,7 +232,6 @@
     </div>
   </div>
 
-  <!-- Checkout Modal -->
   <div class="modal" id="checkoutModal">
     <div class="modal-content">
       <span class="close-modal" onclick="closeCheckoutModal()">&times;</span>
@@ -303,7 +291,7 @@
             </div>
             <div class="qr-box">
               <div class="qr-label acleda-label">ACLEDA</div>
-              <img src="1000022079.jpg" alt="ACLEDA QR" onerror="this.src='https://via.placeholder.com/300x300/fff/000?text=QR'">
+              <img src="1000022079.jpg" alt="ACLEDA QR" onerror="this.onerror=null; this.src='https://placehold.co/300x300/fff/000?text=QR'">
             </div>
           </div>
           
@@ -378,13 +366,14 @@
         const card = document.createElement('div');
         card.className = 'combo-card-169';
         card.onclick = () => openComboDetail(combo);
-        card.innerHTML = `<img src="${combo.image}" alt="${combo.name}" onerror="this.src='https://via.placeholder.com/800x450/111/f1c40f?text=Combo'"><div class="combo-thumbnail-padding"><div style="font-weight:900; display:flex; justify-content:space-between;"><span>🎁 ${combo.name}</span><span style="color:#f1c40f;">${combo.price.toLocaleString()} ៛</span></div></div>`;
+        card.innerHTML = `<img src="${combo.image}" alt="${combo.name}" onerror="this.onerror=null; this.src='https://placehold.co/800x450/222/f1c40f?text=${encodeURIComponent(combo.name)}'"><div class="combo-thumbnail-padding"><div style="font-weight:900; display:flex; justify-content:space-between;"><span>🎁 ${combo.name}</span><span style="color:#f1c40f;">${combo.price.toLocaleString()} ៛</span></div></div>`;
         container.appendChild(card);
       });
     }
 
     function openComboDetail(combo) {
       document.getElementById('detail-img').src = combo.image;
+      document.getElementById('detail-img').onerror = function() { this.onerror=null; this.src='https://placehold.co/400x400/222/f1c40f?text=MoMore'; };
       document.getElementById('detail-name').innerText = combo.name;
       document.getElementById('detail-price').innerText = `${combo.price.toLocaleString()} ៛ (${combo.size})`;
       document.getElementById('detail-benefits').innerText = combo.benefits;
@@ -401,7 +390,7 @@
         const div = document.createElement('div');
         div.className = 'video-card-item';
         div.onclick = () => playVideo(item.file);
-        div.innerHTML = `<img src="${item.id}.jpg" onerror="this.src='https://via.placeholder.com/150x250/111/f1c40f?text=Video'"><div class="video-play-overlay">▶</div><div class="video-card-title">${item.name}</div>`;
+        div.innerHTML = `<img src="${item.id}.jpg" onerror="this.onerror=null; this.src='https://placehold.co/150x250/222/f1c40f?text=${encodeURIComponent(item.name)}'"><div class="video-play-overlay">▶</div><div class="video-card-title">${item.name}</div>`;
         container.appendChild(div);
       });
     }
@@ -409,12 +398,13 @@
     function renderProducts() {
       for (let key in products) {
         let p = products[key];
+        const placeholderText = encodeURIComponent(`${p.type} - ${p.flavor}`);
         const cardHtml = `
           <div class="product-card">
-            <!-- Pinterest Style: រូបធំពេញ 1:1 -->
+            <!-- Pinterest Style: រូបធំពេញ 1:1 พร้อม Fallback ប្រអប់ស្អាត -->
             <div class="media-box" onclick="openProductDetail('${key}')">
               <span class="weight-badge">${p.size}</span>
-              <img src="${p.id}.jpg" alt="${p.flavor}" onerror="this.src='https://via.placeholder.com/300x300/222/555?text=MoMore'">
+              <img src="${p.id}.jpg" alt="${p.flavor}" onerror="this.onerror=null; this.src='https://placehold.co/300x300/222/f1c40f?text=${placeholderText}'">
               <div class="play-video-badge" onclick="event.stopPropagation(); playVideo('${p.id}.mp4');">▶️ វីដេអូ</div>
             </div>
             <!-- អក្សរតូចល្មម ត្រឹម 10-15% មិនបាំងរូប -->
@@ -445,7 +435,7 @@
     function openProductDetail(key) {
       const p = products[key];
       document.getElementById('detail-img').src = `${p.id}.jpg`;
-      document.getElementById('detail-img').onerror = function() { this.src='https://via.placeholder.com/400x400/111/f1c40f?text=MoMore'; };
+      document.getElementById('detail-img').onerror = function() { this.onerror=null; this.src='https://placehold.co/400x400/222/f1c40f?text=MoMore'; };
       
       document.getElementById('detail-name').innerText = `${p.type} ${p.flavor}`;
       document.getElementById('detail-price').innerText = `${p.price.toLocaleString()} ៛ (${p.size})`;
