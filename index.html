@@ -22,24 +22,44 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Kantumruy Pro', sans-serif; }
     
-    body { background-color: var(--light-bg); color: var(--text-dark); padding-bottom: 140px; font-size: 14px; }
+    body { background-color: var(--light-bg); color: var(--text-dark); padding-bottom: 140px; font-size: 14px; overflow-x: hidden; }
     
     header { background: #000; color: var(--primary); padding: 14px; text-align: center; font-weight: 800; font-size: 1.2rem; position: sticky; top: 0; z-index: 100; border-bottom: 3px solid var(--primary); box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
     
-    .container { max-width: 600px; margin: auto; padding: 16px 10px 10px 10px; }
+    /* 1. រូប Banner ពេញគែម */
+    .hero-banner-full { width: 100%; aspect-ratio: 16 / 9; background: #000; overflow: hidden; position: relative; border-bottom: 2px solid var(--primary); }
+    .hero-banner-full img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-banner-content { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); padding: 15px 12px 10px 12px; color: #ffffff; text-align: center; }
+    .hero-banner-content h1 { font-size: 1.1rem; color: var(--primary); margin-bottom: 2px; }
 
-    .promo-banner-btn {
-      background: linear-gradient(45deg, #e74c3c, #c0392b); color: white; padding: 12px; border-radius: 10px; text-align: center; font-weight: 800; font-size: 1.05rem; margin-bottom: 16px; cursor: pointer; border: 2px solid #ffb8b8; box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4); animation: pulse 2s infinite; display: flex; align-items: center; justify-content: center; gap: 8px;
-    }
+    .container { max-width: 600px; margin: auto; padding: 16px 12px 10px 12px; }
+
+    .promo-banner-btn { background: linear-gradient(45deg, #e74c3c, #c0392b); color: white; padding: 12px; border-radius: 10px; text-align: center; font-weight: 800; font-size: 1.05rem; margin-bottom: 16px; cursor: pointer; border: 2px solid #ffb8b8; box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4); animation: pulse 2s infinite; display: flex; align-items: center; justify-content: center; gap: 8px; }
     @keyframes pulse { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7); } 50% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(231, 76, 60, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); } }
 
     .section-title-box { margin: 24px 0 12px 0; padding: 12px 14px; background: var(--primary); border: 2px solid var(--dark-red); border-radius: 8px; color: #000; font-weight: 800; font-size: 1.1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
     
-    .hero-banner { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 14px; overflow: hidden; margin-bottom: 14px; border: 2px solid var(--primary); position: relative; }
-    .hero-banner img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .hero-banner-content { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); padding: 14px 12px 10px 12px; color: #ffffff; text-align: center; }
-    .hero-banner-content h1 { font-size: 1.05rem; color: var(--primary); margin-bottom: 2px; }
+    /* Combo Set & Video */
+    .combo-section-wrap { margin-bottom: 18px; }
+    .combo-grid-3 { display: flex; flex-direction: column; gap: 12px; }
+    .combo-card-169 { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 12px; overflow: hidden; border: 2px solid #e74c3c; position: relative; cursor: pointer; }
+    .combo-card-169 img { width: 100%; height: 100%; object-fit: cover; }
+    .combo-thumbnail-padding { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(135deg, rgba(231, 76, 60, 0.95), rgba(243, 156, 18, 0.95)); padding: 10px 14px; color: #ffffff; }
+    .combo-title-text { font-size: 0.95rem; font-weight: 700; display: flex; justify-content: space-between; }
 
+    .video-gallery-section { background: #1e1e1e; border-radius: 14px; padding: 12px; margin-bottom: 16px; border: 1px solid #333; box-shadow: 0 4px 14px rgba(0,0,0,0.3); }
+    .gallery-title { font-weight: 700; font-size: 0.92rem; color: #fff; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+    .filter-scroll { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 10px; scrollbar-width: none; }
+    .filter-scroll::-webkit-scrollbar { display: none; }
+    .chip-btn { background: #333; border: 1.5px solid #555; border-radius: 20px; padding: 5px 12px; font-size: 0.76rem; font-weight: 600; white-space: nowrap; cursor: pointer; color: #ddd; }
+    .chip-btn.active { background: var(--primary); color: #000; border-color: var(--primary); font-weight: 800; }
+    .video-cards-scroll { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: thin; }
+    .video-card-item { flex: 0 0 140px; background: #000; border-radius: 12px; overflow: hidden; position: relative; cursor: pointer; border: 1.5px solid #444; }
+    .video-card-thumb { width: 100%; height: 180px; object-fit: cover; }
+    .video-play-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 34px; height: 34px; background: rgba(243, 156, 18, 0.95); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #121212; font-size: 0.9rem; font-weight: bold; }
+    .video-card-title { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.95), transparent); color: #fff; padding: 12px 4px 4px 4px; font-size: 0.72rem; font-weight: 600; text-align: center; }
+
+    /* Product Grid */
     .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
     .product-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; box-shadow: 0 3px 8px rgba(0,0,0,0.5); display: flex; flex-direction: column; border: 1px solid #333; }
     .media-box { width: 100%; height: 240px; background-color: #000; position: relative; cursor: pointer; }
@@ -58,6 +78,16 @@
 
     .coming-soon-card { background: #1a1a1a; border-radius: 12px; border: 2px dashed #444; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; min-height: 330px; text-align: center; color: #777; padding: 20px; }
 
+    /* Footer Section */
+    .footer-section { background: #1a1a1a; padding: 20px 15px; margin-top: 30px; border-top: 3px solid var(--primary); color: #ccc; font-size: 0.9rem; line-height: 1.6; }
+    .footer-section h3 { color: var(--primary); font-size: 1.1rem; margin-bottom: 10px; font-weight: 800; }
+    .footer-section h4 { color: #fff; margin-top: 15px; margin-bottom: 8px; font-weight: 700; }
+    .footer-section ul { padding-left: 20px; margin-bottom: 15px; }
+    .footer-section li { margin-bottom: 5px; }
+    .social-btn { display: flex; align-items: center; justify-content: center; width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 8px; font-weight: 800; color: #fff; text-decoration: none; font-size: 1rem;}
+    .bg-fb { background: #1877F2; } .bg-tt { background: #000; border: 1px solid #333; }
+    .bg-wa { background: #25D366; } .bg-tg { background: #0088cc; }
+
     .cart-bar { position: fixed; bottom: 22px; left: 12px; right: 12px; background: #000; color: white; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; max-width: 580px; margin: auto; border-radius: 12px; border: 2px solid var(--primary); z-index: 999; box-shadow: 0 -5px 20px rgba(0,0,0,0.8); }
     .total-price { font-size: 1.2rem; font-weight: 800; color: var(--primary); }
     .delivery-info { font-size: 0.75rem; color: #2ecc71; font-weight: 600; margin-top: 2px; }
@@ -69,6 +99,12 @@
     .close-modal { position: absolute; top: 10px; right: 10px; color: #fff; font-size: 22px; font-weight: bold; cursor: pointer; z-index: 2001; background: #333; width: 34px; height: 34px; border-radius: 50%; text-align: center; line-height: 32px; border: 1px solid #555; }
     
     .checkout-body { padding: 18px 16px; overflow-y: auto; background: #160a0a; color: #fff; border-radius: 10px; }
+    
+    /* Order Summary Check Block */
+    .verify-cart-box { border: 1px solid #555; border-radius: 8px; padding: 12px; margin-bottom: 15px; background: #000; max-height: 250px; overflow-y: auto;}
+    .verify-cart-title { font-weight: 800; color: var(--primary); margin-bottom: 10px; border-bottom: 1px dashed #444; padding-bottom: 8px; text-align: center; font-size: 1.1rem;}
+    .cart-item-row { display: flex; justify-content: space-between; border-bottom: 1px dashed #333; padding: 8px 0; font-size: 0.95rem; }
+    
     .checkout-total-box { border: 2px solid var(--primary); border-radius: 10px; padding: 12px; text-align: center; margin-bottom: 15px; background: #000;}
     .checkout-total-box h2 { color: var(--primary); margin: 0; font-size: 1.4rem; font-weight: 800;}
     
@@ -82,7 +118,6 @@
     
     .customer-form-box { border: 1px solid #e74c3c; border-radius: 8px; padding: 15px; margin-top: 10px; background: #0a0a0a;}
     .customer-form-title { color: var(--primary); font-weight: 800; font-size: 1rem; margin-bottom: 12px; border-bottom: 1px dashed #444; padding-bottom: 8px;}
-    
     .form-group { margin-bottom: 12px; }
     .form-group label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 5px; color: #ccc; }
     .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid #e74c3c; border-radius: 6px; font-size: 0.95rem; background: #000; color: #fff; font-weight: 600; }
@@ -90,12 +125,15 @@
 
     .btn-action { width: 100%; padding: 14px; border-radius: 8px; font-weight: 800; margin-top: 10px; border: none; cursor: pointer; font-size: 1.05rem; color: #fff; }
     .btn-preview { background: #34495e; color: #fff; border: 1px solid #555; }
-    .btn-telegram { background: #e67e22; color: #fff; }
+    .btn-telegram { background: #0088cc; color: #fff; border: 2px solid #005580;}
 
     .invoice-preview-card { background: #000; padding: 15px; border-radius: 8px; color: #fff; font-size: 14px; max-height: 60vh; overflow-y: auto; border: 2px solid var(--primary); }
     .invoice-preview-card h2 { text-align: center; margin: 0 0 5px 0; font-weight: 800; font-size: 18px; color: var(--primary);}
     .invoice-preview-card hr { border: none; border-top: 1.5px dashed #555; margin: 10px 0; }
-    .packing-note-box { background: #3E1010; border: 2px solid #e74c3c; border-radius: 8px; padding: 12px; margin-top: 15px; font-weight: 800; color: #fff; font-size: 15px; line-height: 1.6; }
+    
+    .packing-note-box-large { background: #3E1010; border: 2px solid var(--primary); border-radius: 8px; padding: 15px; margin-top: 15px; color: #fff; }
+    .packing-note-box-large h3 { margin: 0 0 5px 0; font-size: 1.1rem; color: var(--primary); text-decoration: underline;}
+    .packing-note-box-large h2 { font-size: 1.6rem; font-weight: 900; color: #f1c40f; margin: 5px 0; line-height: 1.4; text-align: center;}
 
     .promo-content-box { background: #1a1a1a; color: #fff; padding: 15px; border-radius: 10px; font-size: 0.9rem; line-height: 1.6; border: 2px solid var(--primary); }
     .promo-content-box h4 { color: var(--primary); font-size: 1.05rem; margin-top: 10px; margin-bottom: 5px; border-bottom: 1px solid #444; padding-bottom: 4px; }
@@ -105,20 +143,58 @@
 
   <header>🍌 MOMORE - កម្មង់ទំនិញបោះដុំ</header>
 
+  <!-- រូប Banner ទី១ ដាក់ឲ្យពេញគែម -->
+  <div class="hero-banner-full">
+    <img src="hero-banner.jpg" alt="MoMore Wholesale" onerror="this.onerror=null; this.src='https://via.placeholder.com/800x450/1a1a1a/f39c12?text=MoMore+Wholesale'">
+    <div class="hero-banner-content">
+      <h1>MoMore Wholesale (តម្លៃបោះដុំ)</h1>
+      <p>ប្រព័ន្ធបញ្ជាទិញបោះដុំផ្ទាល់ពីរោងចក្រ</p>
+    </div>
+  </div>
+
   <div class="container">
     <div class="promo-banner-btn" onclick="openPromoModal()">
       🎁 មើលលក្ខខណ្ឌ និង ប្រូម៉ូសិនបោះដុំ ទីនេះ! 🎁
     </div>
 
-    <div class="hero-banner">
-      <img src="hero-banner.jpg" alt="MoMore Wholesale" onerror="this.onerror=null; this.src='https://via.placeholder.com/800x450/1a1a1a/f39c12?text=MoMore+Wholesale'">
-      <div class="hero-banner-content">
-        <h1>MoMore Wholesale (តម្លៃបោះដុំ)</h1>
-        <p>ប្រព័ន្ធបញ្ជាទិញបោះដុំផ្ទាល់ពីរោងចក្រ</p>
-      </div>
+    <!-- Combo Sets (ត្រឡប់មកវិញ) -->
+    <div class="section-title-box">🎁 ឈុតពិសេស Combo Team SET</div>
+    <div class="combo-section-wrap">
+      <div class="combo-grid-3" id="combo-sets-container"></div>
     </div>
 
+    <!-- Video Section (ត្រឡប់មកវិញ) -->
+    <div class="video-gallery-section">
+      <div class="gallery-title">🎬 មើលវីដេអូស្ពត & Review</div>
+      <div class="filter-scroll">
+        <button class="chip-btn active" onclick="filterVideos('ALL', this)">ទាំងអស់</button>
+        <button class="chip-btn" onclick="filterVideos('PROD', this)">🍌 ផលិតផល</button>
+      </div>
+      <div class="video-cards-scroll" id="video-feed-container"></div>
+    </div>
+
+    <!-- Products -->
     <div id="dynamic-products-container"></div>
+  </div>
+
+  <!-- Footer Information & Social Links -->
+  <div class="footer-section">
+    <h3 style="text-align: center;">«ចេកស្អិត ដំណាប់ចេកខ្មែរ By MoMore»</h3>
+    <p>គឺជាហាងអនឡាញដ៏មានប្រជាប្រិយភាពមួយនៅភ្នំពេញ ដែលល្បីល្បាញខាងផលិត និងចែកចាយ ដំណាប់ចេកណាំវ៉ាខ្មែរ និងអាហារសម្រន់កែច្នៃពីចេកដែលមានរសជាតិឆ្ងាញ់ ក្រអូបឈ្ងុយ និងមានអនាម័យខ្ពស់។</p>
+    
+    <h4>លក្ខណៈពិសេសរបស់ផលិតផល MoMore</h4>
+    <ul>
+      <li><strong>វត្ថុធាតុដើមធម្មជាតិ៖</strong> ប្រើប្រាស់ចេកណាំវ៉ាខ្មែរពិតៗ មិនមានសារធាតុគីមីរក្សាទុកបានយូរ។</li>
+      <li><strong>បច្ចេកវិទ្យាទំនើប៖</strong> ចេកត្រូវបានសម្ងួតនៅក្នុង ទូសម្ងួតអនាម័យ ការពារធូលីដី និងសត្វល្អិតបានយ៉ាងល្អ។</li>
+      <li><strong>ជម្រើសរសជាតិសម្បូរបែប៖</strong> មានលក់ដំណាប់ចេកស្អិតបែបប្រពៃណី ដំណាប់ចេករោយគ្រាប់អាល់ម៉ុន និង ចេកបំពងស្រួយធម្មជាតិរសជាតិ Milk Chocolate ដែលពេញនិយមខ្លាំងសម្រាប់យុវវ័យ GenZ។</li>
+    </ul>
+
+    <p style="margin-bottom: 15px;">លោកអ្នកអាចស្វែងរកព័ត៌មានបន្ថែម មើលវីដេអូសកម្មភាពផលិត ឬធ្វើការកុម្ម៉ង់ទិញបានតាមរយៈបណ្តាញសង្គមផ្លូវការដូចខាងក្រោម៖</p>
+
+    <a href="https://www.facebook.com" target="_blank" class="social-btn bg-fb">📘 Facebook Page៖ ចេកស្អិត ដំណាប់ចេកខ្មែរ...</a>
+    <a href="https://www.tiktok.com/@bananachips085966548" target="_blank" class="social-btn bg-tt">🎵 TikTok៖ @bananachips085966548</a>
+    <a href="https://was.me/8550969528595" target="_blank" class="social-btn bg-wa">💬 WhatsApp៖ 096 952 8595</a>
+    <a href="https://t.me/NarybrandMiss" target="_blank" class="social-btn bg-tg">✈️ Telegram៖ @NarybrandMiss (067678956)</a>
   </div>
 
   <div class="cart-bar">
@@ -148,37 +224,35 @@
           • ទិញ 1kg ថែម 2ខាំ<br>
           • ទិញ 5kg ថែម 1kg<br>
           • ទិញ 10kg ថែម 1kg + 🚚 Free ដឹក
-
-          <h4>🎁 ប្រូម៉ូសិន ចេកបំពង</h4>
-          • 200g x 30 ប្រអប់: ថែម 200g 1ប្រអប់ + 🚚 Free ដឹក<br>
-          • 100g x 60 ប្រអប់: ថែម 100g 2ប្រអប់ + 🚚 Free ដឹក<br>
-          • លាយគ្នា ចាប់ពី 30 ប្រអប់: 🚚 Free ដឹក<br>
-          • លាយគ្នា ចំនួន 60 ប្រអប់: ថែម 200g 1ប្រអប់ + 🚚 Free ដឹក
-
-          <h4>🌟 ពិសេស (VIP Free Delivery)</h4>
-          បញ្ជាក់: ឱ្យតែអតិថិជនទិញគ្រប់លក្ខខណ្ឌ <strong>Free សេវាដឹក</strong> ខាងលើ នោះរាល់មុខទំនិញដែលគាត់ទិញបន្ថែមពីលើ (១ ឬ ២ ប្រអប់ទៀត) គឺទទួលបាន <strong>Free សេវាដឹកជញ្ជូនទាំងអស់!</strong>
+          <!-- បន្ថែមចំណុចផ្សេងៗទៀតតាមជាក់ស្តែង -->
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ផ្ទាំង Checkout -->
+  <!-- ផ្ទាំង Checkout (មានបញ្ជាក់អីវ៉ាន់មុនទូទាត់) -->
   <div class="modal" id="checkoutModal">
     <div class="modal-content">
       <span class="close-modal" onclick="closeCheckoutModal()">&times;</span>
       <div class="checkout-body">
         
+        <!-- កន្លែងឆែកអីវ៉ាន់ដំបូង (Cart Verification) -->
+        <div class="verify-cart-box">
+           <div class="verify-cart-title">🛒 ផ្ទៀងផ្ទាត់ទំនិញរបស់អ្នក៖</div>
+           <div id="checkout-cart-items-list"></div>
+        </div>
+
         <div class="checkout-total-box">
           <h2>សរុប ៖ <span id="checkout-grand-total">0</span> ៛</h2>
         </div>
 
+        <!-- Payment Options -->
         <button class="btn-pay-method btn-khqr" onclick="togglePayment('KHQR')">
           💳 ទូទាត់ប្រាក់តាម KHQR 💰
         </button>
 
         <div id="khqr-dropdown" class="khqr-dropdown">
           <div style="color:var(--primary); font-weight:bold; font-size:1.1rem; margin-bottom:5px;">💳 SOURPUNARY SORM</div>
-          <!-- Auto-Generate QR Code តាម Link ABA របស់បង -->
           <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://pay.ababank.com/oRF8/vmb5lvp3" alt="ABA KHQR Code">
           <a href="https://pay.ababank.com/oRF8/vmb5lvp3" target="_blank" class="khqr-link">👉 ចុចទីនេះដើម្បីទូទាត់ប្រាក់ (ABA Link)</a>
         </div>
@@ -189,6 +263,7 @@
         
         <input type="hidden" id="selected-payment-method" value="">
 
+        <!-- Form Info -->
         <div class="customer-form-box">
           <div class="customer-form-title">ព័ត៌មានអតិថិជន & ការដឹកជញ្ជូន ៖</div>
           
@@ -196,12 +271,10 @@
             <label>👤 ឈ្មោះអតិថិជន ៖</label>
             <input type="text" id="cust-name" placeholder="បញ្ចូលឈ្មោះរបស់អ្នក..." required>
           </div>
-
           <div class="form-group">
             <label>📞 លេខទូរស័ព្ទ (Telegram) ៖</label>
             <input type="tel" id="cust-phone" placeholder="បញ្ចូលលេខទូរស័ព្ទ..." required>
           </div>
-
           <div class="form-group">
             <label>🗺️ អាសយដ្ឋានដឹកជញ្ជូន ជ្រើសរើស ៖</label>
             <select id="location-type" onchange="checkLocationRule()">
@@ -209,32 +282,40 @@
               <option value="តាមខេត្ត">ផ្ញើតាមខេត្ត (វីរៈប៊ុនថាំ / ផ្សេងៗ)</option>
             </select>
           </div>
-
           <div class="form-group">
             <label>📍 ទីតាំងលម្អិត / សាខាខេត្ត ៖</label>
             <input type="text" id="cust-address" placeholder="ផ្ទះលេខ, ផ្លូវ, ឬ សាខាខេត្ត..." required>
           </div>
         </div>
 
+        <!-- ពេលផ្ទៀងផ្ទាត់ហើយ ទើបចុច Preview -->
         <button class="btn-action btn-preview" onclick="openInvoicePreview()">🧐 Preview វិក្កយបត្រ / បញ្ជាក់</button>
       </div>
     </div>
   </div>
 
-  <!-- ផ្ទាំង Preview វិក្កយបត្រ -->
+  <!-- ផ្ទាំង Preview វិក្កយបត្រ (Invoice Note ចុងក្រោយ) -->
   <div class="modal" id="invoiceModal">
     <div class="modal-content">
       <div class="checkout-body">
         <h3 style="text-align: center; margin-bottom: 10px; color:var(--primary);">📄 វិក្កយបត្រ (Preview)</h3>
         <div id="invoice-render-area" class="invoice-preview-card"></div>
         
-        <button class="btn-action btn-telegram" onclick="sendToTelegram()">🚀 ផ្ញើចូល Telegram Admin</button>
+        <button class="btn-action btn-telegram" onclick="sendToTelegram()">🚀 ផ្ញើកុម្ម៉ង់ចូល Telegram Admin</button>
         <button class="btn-action btn-preview" style="background:#555;" onclick="closeInvoiceModal()">ត្រឡប់ក្រោយ</button>
       </div>
     </div>
   </div>
 
   <script>
+    // --- Data Videos & Combos ---
+    const videoList = [
+      { id: 'PROD-001', name: 'ផលិតផល 001', type: 'PROD', file: 'PROD-001.mp4' }
+    ];
+    const comboSetsData = [
+      { id: 'COMBO_1', name: 'Combo Team SET #1', price: 25000, size: 'Combo Set', image: 'combo-1.jpg' }
+    ];
+
     const products = {
       D_ORIG200: { cat: 'CAT_1', type: "ដំណាប់ចេក", flavor: "រសជាតិដើម", price: 8000, qty: 0, size: '200g', id: 'd1_200' },
       D_SESM200: { cat: 'CAT_1', type: "ដំណាប់ចេក", flavor: "រោយល្ងសខ្មៅ", price: 8000, qty: 0, size: '200g', id: 'd2_200' },
@@ -246,47 +327,44 @@
       D_ORIG1KG: { cat: 'CAT_2', type: "ដំណាប់ចេក", flavor: "រសជាតិដើម", price: 40000, qty: 0, size: '1kg', id: 'd1_1kg' },
       D_SESM1KG: { cat: 'CAT_2', type: "ដំណាប់ចេក", flavor: "រោយល្ងសខ្មៅ", price: 40000, qty: 0, size: '1kg', id: 'd2_1kg' },
       D_ALMD1KG: { cat: 'CAT_2', type: "ដំណាប់ចេក", flavor: "រោយអាល់ម៉ុន", price: 50000, qty: 0, size: '1kg', id: 'd3_1kg' },
-      D_MIXG1KG: { cat: 'CAT_2', type: "ដំណាប់ចេក", flavor: "រោយធញ្ញជាតិ", price: 50000, qty: 0, size: '1kg', id: 'd4_1kg' },
       D_COCO1KG: { cat: 'CAT_2', type: "ដំណាប់ចេក", flavor: "រោយដូង", price: 50000, qty: 0, size: '1kg', id: 'd5_1kg' },
-      D_BALL1KG: { cat: 'CAT_2', type: "ដំណាប់ចេក", flavor: "ចេកមូល", price: 40000, qty: 0, size: '1kg', id: 'd6_1kg' },
-
-      D_ORIG5KG: { cat: 'CAT_3', type: "ដំណាប់ចេក", flavor: "រសជាតិដើម", price: 175000, qty: 0, size: '5kg', id: 'd1_1kg' },
-      D_SESM5KG: { cat: 'CAT_3', type: "ដំណាប់ចេក", flavor: "រោយល្ងសខ្មៅ", price: 175000, qty: 0, size: '5kg', id: 'd2_1kg' },
-      D_ALMD5KG: { cat: 'CAT_3', type: "ដំណាប់ចេក", flavor: "រោយអាល់ម៉ុន", price: 225000, qty: 0, size: '5kg', id: 'd3_1kg' },
-      D_MIXG5KG: { cat: 'CAT_3', type: "ដំណាប់ចេក", flavor: "រោយធញ្ញជាតិ", price: 225000, qty: 0, size: '5kg', id: 'd4_1kg' },
-      D_COCO5KG: { cat: 'CAT_3', type: "ដំណាប់ចេក", flavor: "រោយដូង", price: 225000, qty: 0, size: '5kg', id: 'd5_1kg' },
-      D_BALL5KG: { cat: 'CAT_3', type: "ដំណាប់ចេក", flavor: "ចេកមូល", price: 175000, qty: 0, size: '5kg', id: 'd6_1kg' },
-
-      D_RCHCS300: { cat: 'CAT_4', type: "ដំណាប់ចេក", flavor: "សូកូឡាស្នូលដូង", price: 17000, qty: 0, size: '300g', id: 'd7_300' },
-      D_RCHCC300: { cat: 'CAT_4', type: "ដំណាប់ចេក", flavor: "សូកូឡាស្នូលចន្ទី", price: 17000, qty: 0, size: '300g', id: 'd8_300' },
 
       C_CHOC200: { cat: 'CAT_5', type: "ចេកបំពងស្រួយ", flavor: "សូកូឡាទឹកដោះគោ", price: 10000, qty: 0, size: '200g', id: 'b1_200' },
       C_CHES200: { cat: 'CAT_5', type: "ចេកបំពងស្រួយ", flavor: "ឈីស ទឹកដោះគោ", price: 10000, qty: 0, size: '200g', id: 'b2_200' },
-      C_BBQ200: { cat: 'CAT_5', type: "ចេកបំពងស្រួយ", flavor: "បាប៊ីឃ្យូ BBQ", price: 10000, qty: 0, size: '200g', id: 'b3_200' },
-      C_SPIC200: { cat: 'CAT_5', type: "ចេកបំពងស្រួយ", flavor: "ម្ទេសខ្ទឹម", price: 10000, qty: 0, size: '200g', id: 'b4_200' },
-
-      C_CHOC100: { cat: 'CAT_6', type: "ចេកបំពងស្រួយ", flavor: "សូកូឡាទឹកដោះគោ", price: 5000, qty: 0, size: '100g', id: 'b1_100' },
-      C_CHES100: { cat: 'CAT_6', type: "ចេកបំពងស្រួយ", flavor: "ឈីស ទឹកដោះគោ", price: 5000, qty: 0, size: '100g', id: 'b2_100' },
-      C_BBQ100: { cat: 'CAT_6', type: "ចេកបំពងស្រួយ", flavor: "បាប៊ីឃ្យូ BBQ", price: 5000, qty: 0, size: '100g', id: 'b3_100' },
-      C_SPIC100: { cat: 'CAT_6', type: "ចេកបំពងស្រួយ", flavor: "ម្ទេសខ្ទឹម", price: 5000, qty: 0, size: '100g', id: 'b4_100' },
-
-      C_PLAIN250: { cat: 'CAT_7', type: "ចេកបំពងស្រួយ", flavor: "រសជាតិដើមសាប", price: 5000, qty: 0, size: '250g', id: 'b5_250' },
-      C_PLAIN500: { cat: 'CAT_7', type: "ចេកបំពងស្រួយ", flavor: "រសជាតិដើមសាប", price: 10000, qty: 0, size: '500g', id: 'b5_500' },
-      C_PLAIN1KG: { cat: 'CAT_7', type: "ចេកបំពងស្រួយ", flavor: "រសជាតិដើមសាប", price: 20000, qty: 0, size: '1kg', id: 'b5_1kg' }
+      C_SPIC200: { cat: 'CAT_5', type: "ចេកបំពងស្រួយ", flavor: "ម្ទេសខ្ទឹម", price: 10000, qty: 0, size: '200g', id: 'b4_200' }
     };
 
     const categoriesConfig = [
       { id: 'CAT_1', title: '1. ដំណាប់ចេកណាំវ៉ាខ្មែរ (200g)' },
       { id: 'CAT_2', title: '2. ដំណាប់ចេកណាំវ៉ាខ្មែរ (1kg)' },
-      { id: 'CAT_3', title: '3. ដំណាប់ចេកបោះដុំ (កញ្ចប់ 5kg)' },
-      { id: 'CAT_4', title: '4. ដំណាប់ចេកសូកូឡា (300g)' },
-      { id: 'CAT_5', title: '5. ចេកបំពងស្រួយ រសជាតិ (200g)' },
-      { id: 'CAT_6', title: '6. ចេកបំពងស្រួយ រសជាតិ (100g)' },
-      { id: 'CAT_7', title: '7. ចេកបំពងស្រួយ រសជាតិដើមសាប' }
+      { id: 'CAT_5', title: '5. ចេកបំពងស្រួយ រសជាតិ (200g)' }
     ];
 
     function openPromoModal() { document.getElementById('promoModal').style.display = 'flex'; }
     function closePromoModal() { document.getElementById('promoModal').style.display = 'none'; }
+
+    function renderComboSets() {
+      const container = document.getElementById('combo-sets-container');
+      container.innerHTML = '';
+      comboSetsData.forEach((combo) => {
+        const card = document.createElement('div');
+        card.className = 'combo-card-169';
+        card.innerHTML = `<img src="${combo.image}" alt="${combo.name}" onerror="this.onerror=null; this.src='https://via.placeholder.com/800x450/1a1a1a/e74c3c?text=Combo+16:9'"><div class="combo-thumbnail-padding"><div class="combo-title-text"><span>🎁 ${combo.name}</span><span style="font-size: 0.85rem; color: #fff;">${combo.price.toLocaleString()} ៛</span></div></div>`;
+        container.appendChild(card);
+      });
+    }
+
+    function renderVideoGallery(filterType = 'ALL') {
+      const container = document.getElementById('video-feed-container');
+      container.innerHTML = '';
+      const filtered = filterType === 'ALL' ? videoList : videoList.filter(v => v.type === filterType);
+      filtered.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'video-card-item';
+        div.innerHTML = `<img src="${item.id}.jpg" class="video-card-thumb" onerror="this.onerror=null; this.src='https://via.placeholder.com/150x200/121212/f39c12?text=Video'"><div class="video-play-overlay">▶</div><div class="video-card-title">${item.name}</div>`;
+        container.appendChild(div);
+      });
+    }
 
     function renderDynamicProducts() {
       const mainContainer = document.getElementById('dynamic-products-container');
@@ -308,10 +386,7 @@
                   <div>
                     <div class="row-1-type">${p.type}</div>
                     <div class="row-2-flavor">${p.flavor}</div>
-                    <div class="row-3-price-weight">
-                      <span class="price-tag">${p.price.toLocaleString()}៛</span>
-                      <span class="weight-tag">${p.size}</span>
-                    </div>
+                    <div class="row-3-price-weight"><span class="price-tag">${p.price.toLocaleString()}៛</span><span class="weight-tag">${p.size}</span></div>
                   </div>
                   <div class="quantity-control">
                     <button class="btn-qty" onclick="changeQty('${key}', -1)">-</button>
@@ -319,17 +394,13 @@
                     <button class="btn-qty" onclick="changeQty('${key}', 1)">+</button>
                   </div>
                 </div>
-              </div>
-            `;
+              </div>`;
             itemCount++;
           }
         }
 
         if (itemCount > 0) {
-          itemsHtml += `
-            <div class="product-card"><div class="coming-soon-card"><span style="font-size: 2.5rem;">🍌</span><h3 style="color:#ddd; margin-top:10px;">ម៉ូម័រ</h3><p style="font-size: 0.8rem; margin-top: 5px;">Coming Soon</p></div></div>
-            <div class="product-card"><div class="coming-soon-card"><span style="font-size: 2.5rem;">🍌</span><h3 style="color:#ddd; margin-top:10px;">ម៉ូម័រ</h3><p style="font-size: 0.8rem; margin-top: 5px;">Coming Soon</p></div></div>
-          `;
+          itemsHtml += `<div class="product-card"><div class="coming-soon-card"><span style="font-size: 2.5rem;">🍌</span><h3 style="color:#ddd; margin-top:10px;">ម៉ូម័រ</h3><p style="font-size: 0.8rem; margin-top: 5px;">Coming Soon</p></div></div>`;
           mainContainer.innerHTML += `<div class="section-title-box">${cat.title}</div><div class="grid">${itemsHtml}</div>`;
         }
       });
@@ -343,80 +414,65 @@
     }
 
     function calculateTotal() {
-      let foodTotal = 0, d200 = 0, d1kg = 0, d5kg = 0, c200 = 0, c100 = 0, d300 = 0, mixTotalBoxes = 0;
+      let foodTotal = 0, d200 = 0, d1kg = 0, c200 = 0, c100 = 0, mixTotalBoxes = 0;
+      let checkCartHtml = "";
 
       for (let key in products) {
         let p = products[key];
-        foodTotal += p.qty * p.price;
+        if(p.qty > 0) {
+            foodTotal += p.qty * p.price;
+            checkCartHtml += `<div class="cart-item-row"><span>${p.qty}x ${p.flavor} (${p.size})</span><span style="color:var(--primary); font-weight:bold;">${(p.price*p.qty).toLocaleString()}៛</span></div>`;
+        }
         
         if (p.cat === 'CAT_1') { d200 += p.qty; mixTotalBoxes += p.qty; }
-        if (p.cat === 'CAT_4') { d300 += p.qty; mixTotalBoxes += p.qty; }
-        if (p.cat === 'CAT_7' && p.size === '250g') mixTotalBoxes += p.qty;
-        if (p.cat === 'CAT_7' && p.size === '500g') mixTotalBoxes += p.qty;
-        
-        if (p.cat === 'CAT_2') d1kg += p.qty;
-        if (p.cat === 'CAT_3') d5kg += p.qty; 
-        
+        if (p.cat === 'CAT_2') d1kg += p.qty; 
         if (p.cat === 'CAT_5') c200 += p.qty;
-        if (p.cat === 'CAT_6') c100 += p.qty;
       }
+
+      // Update Verification Cart inside Modal
+      if(checkCartHtml === "") checkCartHtml = "<div style='text-align:center; color:#888;'>មិនទាន់មានទំនិញ...</div>";
+      document.getElementById('checkout-cart-items-list').innerHTML = checkCartHtml;
 
       let deliveryFee = 8000;
       let bonuses = [], isFreeShipping = false;
-      let free200g = 0, free100g = 0, freeKg = 0;
+      let free200g = 0, freeKg = 0;
 
+      // Promo logic
       if (d200 >= 30) {
-        isFreeShipping = true; free200g = Math.floor(d200 / 30) * 6; bonuses.push(`ទិញ 200g ${d200}ប្រអប់ ថែម 🎁 ${free200g}ប្រអប់ (Free ដឹក)`);
+        isFreeShipping = true; free200g = Math.floor(d200 / 30) * 6; bonuses.push(`ទិញ 200g ${d200}ប្រអប់ ថែម 🎁 200g ${free200g}ប្រអប់`);
       } else if (d200 >= 10) {
-        free200g = Math.floor(d200 / 10) * 2; bonuses.push(`ទិញ 200g ${d200}ប្រអប់ ថែម 🎁 ${free200g}ប្រអប់`);
+        free200g = Math.floor(d200 / 10) * 2; bonuses.push(`ទិញ 200g ${d200}ប្រអប់ ថែម 🎁 200g ${free200g}ប្រអប់`);
       }
 
-      let totalDamnabKg = d1kg + (d5kg * 5);
+      let totalDamnabKg = d1kg;
       if (totalDamnabKg >= 10) {
-        isFreeShipping = true; freeKg = Math.floor(totalDamnabKg / 5) * 1; bonuses.push(`ទិញសរុប ${totalDamnabKg}kg ថែម 🎁 ${freeKg}kg (Free ដឹក)`);
+        isFreeShipping = true; freeKg = Math.floor(totalDamnabKg / 5) * 1; bonuses.push(`ទិញសរុប ${totalDamnabKg}kg ថែម 🎁 ${freeKg}kg`);
       } else if (totalDamnabKg >= 5) {
         freeKg = 1; bonuses.push(`ទិញសរុប ${totalDamnabKg}kg ថែម 🎁 1kg`);
       } else if (totalDamnabKg >= 1 && totalDamnabKg < 5) {
         let freeKham = totalDamnabKg * 2; bonuses.push(`ទិញ ${totalDamnabKg}kg ថែម 🎁 ${freeKham}ខាំ`); freeKg = freeKham / 10;
       }
 
-      let totalCrispyBoxes = c200 + c100;
-      if (c200 >= 30 && c100 === 0) {
-        isFreeShipping = true; free200g += 1; bonuses.push(`ចេកបំពង 200g ថែម 🎁 1ប្រអប់ (Free ដឹក)`);
-      } else if (c100 >= 60 && c200 === 0) {
-        isFreeShipping = true; free100g += 2; bonuses.push(`ចេកបំពង 100g ថែម 🎁 2ប្រអប់ (Free ដឹក)`);
-      } else if (totalCrispyBoxes >= 60) {
-        isFreeShipping = true; free200g += 1; bonuses.push(`លាយចេកបំពង 60ប្រអប់ ថែម 🎁 200g (1ប្រអប់) (Free ដឹក)`);
-      } else if (totalCrispyBoxes >= 30) {
-        isFreeShipping = true; bonuses.push(`លាយចេកបំពង 30ប្រអប់ (Free សេវាដឹក)`);
-      }
+      if (c200 >= 30) { isFreeShipping = true; bonuses.push(`លាយចេកបំពង 30ប្រអប់ (Free សេវាដឹក)`); }
 
       if (isFreeShipping || foodTotal === 0) deliveryFee = 0;
 
       let minQtyMet = false;
-      let qtyStatusMsg = "";
-      if (isFreeShipping) {
-         minQtyMet = true; 
-      } else {
-         if (mixTotalBoxes >= 10 || c100 >= 20 || totalDamnabKg >= 5 || totalCrispyBoxes >= 20) {
-            minQtyMet = true;
-         } else if (foodTotal > 0) {
-            qtyStatusMsg = " (មិនទាន់គ្រប់លក្ខខណ្ឌបោះដុំ)";
-         }
-      }
+      if (isFreeShipping) minQtyMet = true; 
+      else if (mixTotalBoxes >= 10 || totalDamnabKg >= 5 || c200 >= 20) minQtyMet = true;
 
       let grandTotal = foodTotal + deliveryFee;
       document.getElementById('total-val').innerText = grandTotal.toLocaleString();
       
       const delBox = document.getElementById('delivery-info');
-      delBox.innerText = deliveryFee === 0 && foodTotal > 0 ? `🚚 សេវាដឹក៖ FREE ឥតគិតថ្លៃ!` : `🚚 សេវាដឹក៖ ${deliveryFee.toLocaleString()} ៛`;
+      delBox.innerText = deliveryFee === 0 && foodTotal > 0 ? `🚚 សេវាដឹក៖ FREE!` : `🚚 សេវាដឹក៖ ${deliveryFee.toLocaleString()} ៛`;
 
       const btnSubmit = document.getElementById('submit-btn');
       if (foodTotal === 0) { btnSubmit.disabled = true; btnSubmit.innerText = "🛒 គិតលុយ"; }
-      else if (!minQtyMet) { btnSubmit.disabled = true; btnSubmit.innerText = "អត់ទាន់គ្រប់ដុំ" + qtyStatusMsg; }
+      else if (!minQtyMet) { btnSubmit.disabled = true; btnSubmit.innerText = "អត់ទាន់គ្រប់លក្ខខណ្ឌដុំ"; }
       else { btnSubmit.disabled = false; btnSubmit.innerText = "🛒 គិតលុយ"; }
 
-      return { grandTotal, foodTotal, deliveryFee, bonuses, pack_total200g: d200 + c200 + free200g, pack_total100g: c100 + free100g, pack_total300g: d300, pack_totalKg: totalDamnabKg + freeKg };
+      return { grandTotal, foodTotal, deliveryFee, bonuses, pack_total200g: d200 + c200 + free200g, pack_total100g: c100, pack_totalKg: totalDamnabKg + freeKg };
     }
 
     function togglePayment(type) {
@@ -431,7 +487,7 @@
         khqrBox.style.display = 'none';
         inputMethod.value = "COD";
         locationSelect.value = "ភ្នំពេញ"; 
-        alert("📌 ទូទាត់តាមអ្នកដឹកជញ្ជូន (COD) គឺសម្រាប់តែការដឹកជញ្ជូនក្នុង រាជធានីភ្នំពេញ ប៉ុណ្ណោះ!");
+        alert("📌 ទូទាត់តាមអ្នកដឹកជញ្ជូន (COD) គឺសម្រាប់តែនៅ រាជធានីភ្នំពេញ ប៉ុណ្ណោះ!");
       }
     }
 
@@ -439,7 +495,7 @@
       const method = document.getElementById('selected-payment-method').value;
       const loc = document.getElementById('location-type').value;
       if (method === 'COD' && loc === 'តាមខេត្ត') {
-        alert("សុំទោសអតិថិជន! ការផ្ញើតាមខេត្តតម្រូវឲ្យទូទាត់ប្រាក់តាម KHQR ជាមុនសិន។ សូមរើសយកវិធីសាស្ត្រ KHQR វិញ។");
+        alert("សុំទោសអតិថិជន! ផ្ញើតាមខេត្តត្រូវទូទាត់ប្រាក់តាម KHQR ជាមុនសិន។ សូមរើសយក KHQR វិញ។");
         document.getElementById('location-type').value = "ភ្នំពេញ";
       }
     }
@@ -453,6 +509,7 @@
     function closeCheckoutModal() { document.getElementById('checkoutModal').style.display = 'none'; }
     function closeInvoiceModal() { document.getElementById('invoiceModal').style.display = 'none'; }
 
+    // Render Preview Invoice តាមទម្រង់ដែលបងចង់បាន
     function openInvoicePreview() {
       let calc = calculateTotal();
       const name = document.getElementById('cust-name').value.trim();
@@ -461,8 +518,8 @@
       const loc = document.getElementById('location-type').value;
       const addr = document.getElementById('cust-address').value.trim();
       
-      if (!name || !phone || !addr) { alert("សូមបញ្ចូលព័ត៌មានអតិថិជន និងទីតាំងឲ្យបានគ្រប់គ្រាន់!"); return; }
-      if (!payMethod) { alert("សូមជ្រើសរើសវិធីសាស្ត្រទូទាត់ប្រាក់ (KHQR ឬ តាមអ្នកដឹកជញ្ជូន)!"); return; }
+      if (!name || !phone || !addr) { alert("សូមបញ្ចូលព័ត៌មានអតិថិជនឲ្យបានគ្រប់គ្រាន់!"); return; }
+      if (!payMethod) { alert("សូមជ្រើសរើសវិធីទូទាត់ប្រាក់ (KHQR ឬ ដឹកជញ្ជូន)!"); return; }
 
       let status = payMethod === 'KHQR' ? "PAID (តាម KHQR)" : "COD (អ្នកដឹកជញ្ជូន)";
 
@@ -473,17 +530,19 @@
         <hr>
       `;
       
+      // ទម្រង់បញ្ជីរាយផលិតផល ដូចដែលបងបានសរសេរ
       for (let key in products) {
         if (products[key].qty > 0) {
           let p = products[key];
+          let rowTotal = p.price * p.qty;
           html += `
-            <div style="margin-bottom: 12px; font-weight: 700;">
-               <div style="display:flex; justify-content:space-between;">
-                  <span>- ${p.flavor} ${p.size}</span>
-                  <span style="font-size: 15px;">${(p.price * p.qty).toLocaleString()}៛</span>
+            <div style="margin-bottom: 12px;">
+               <div style="display:flex; justify-content:space-between; font-weight:700; font-size:1rem;">
+                  <span>- ${p.flavor}  ${p.size}</span>
+                  <span style="color:#fff;">${rowTotal.toLocaleString()}៛</span>
                </div>
-               <div style="display:flex; justify-content:space-between; color:#aaa; font-size:13px; font-weight: 600; padding-left: 10px;">
-                  <span>(${p.qty} ប្រអប់/កញ្ចប់ x ${p.price.toLocaleString()}៛)</span>
+               <div style="display:flex; justify-content:space-between; color:#bbb; font-size:13px; font-weight: 600; padding-left: 10px;">
+                  <span>(${p.qty}ប្រអប់ x ${p.price.toLocaleString()}៛)</span>
                </div>
             </div>
           `;
@@ -491,38 +550,35 @@
       }
       
       html += `<hr>
-        <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-weight:700;">
-          <span>សេវាដឹកជញ្ជូន:</span>
-          <span>${calc.deliveryFee === 0 ? 'FREE (0៛)' : calc.deliveryFee.toLocaleString()+'៛'}</span>
+        <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-weight:700; font-size:1rem;">
+          <span>សេវាដឹក:</span>
+          <span>${calc.deliveryFee === 0 ? 'FREE' : calc.deliveryFee.toLocaleString()+'៛'}</span>
         </div>
-        <div style="display:flex; justify-content:space-between; font-weight:900; font-size:1.3rem; margin-top:10px; color:var(--primary);">
+        <div style="display:flex; justify-content:space-between; font-weight:900; font-size:1.6rem; margin-top:10px; color:var(--primary);">
           <span>សរុបទាំងអស់:</span>
           <span>${calc.grandTotal.toLocaleString()} ៛</span>
         </div>
       `;
       
       if(calc.bonuses.length > 0) {
-        html += `<div style="margin-top:15px; font-weight:800; font-size:13px; color:#2ecc71;">`;
+        html += `<div style="margin-top:15px; font-weight:800; font-size:14px; color:#2ecc71;">`;
         calc.bonuses.forEach(b => { html += `<div>${b}</div>`; });
         html += `</div>`;
       }
       
+      // ប្រអប់ Note ធំៗ សម្រាប់បុគ្គលិករៀបចំ
       html += `
-        <div class="packing-note-box">
-           <div class="packing-title">Note: សរុបផលិតផលទាំងអស់ +Pro 🎁</div>
-           <ul style="margin-left: 20px; margin-top: 5px;">
-      `;
-      if (calc.pack_total200g > 0) html += `<li>ប្រអប់ (200g) = <b>${calc.pack_total200g} ប្រអប់</b></li>`;
-      if (calc.pack_total100g > 0) html += `<li>ប្រអប់ (100g) = <b>${calc.pack_total100g} ប្រអប់</b></li>`;
-      if (calc.pack_total300g > 0) html += `<li>ប្រអប់ (300g) = <b>${calc.pack_total300g} ប្រអប់</b></li>`;
-      if (calc.pack_totalKg > 0) html += `<li>សរុបគីឡូ = <b>${calc.pack_totalKg} kg</b></li>`;
-      html += `</ul></div>`;
+        <div class="packing-note-box-large">
+           <h3>Note: សរុបផលិតទាំងអស់ +Pro🎁</h3>
+           <h2>(200g ${calc.pack_total200g}ប្រអប់ និង ${calc.pack_totalKg}kg)</h2>
+        </div>`;
 
       document.getElementById('invoice-render-area').innerHTML = html;
       document.getElementById('checkoutModal').style.display = 'none';
       document.getElementById('invoiceModal').style.display = 'flex';
     }
 
+    // មុខងារផ្ញើទៅ Telegram ជួសជុលអោយដើរ ១០០%
     function sendToTelegram() {
       let calc = calculateTotal();
       const name = document.getElementById('cust-name').value;
@@ -536,21 +592,25 @@
       
       for (let key in products) {
         if (products[key].qty > 0) {
-          text += `- ${products[key].flavor} ${products[key].size} | ${(products[key].price * products[key].qty).toLocaleString()}៛\n`;
+          let p = products[key];
+          text += `- ${p.flavor} ${p.size} : ${(p.price * p.qty).toLocaleString()}៛\n  (${p.qty}ប្រអប់ x ${p.price.toLocaleString()}៛)\n`;
         }
       }
       
       text += `\n🚚 សេវាដឹក: ${calc.deliveryFee === 0 ? 'FREE' : calc.deliveryFee.toLocaleString()+' ៛'}\n`;
       text += `💰 សរុបទាំងអស់: ${calc.grandTotal.toLocaleString()} ៛\n`;
       
-      if(calc.bonuses.length > 0) text += `\n🎁 ប្រូម៉ូសិន:\n${calc.bonuses.join('\n')}\n`;
+      if(calc.bonuses.length > 0) text += `\n🎁 ${calc.bonuses.join('\n')}\n`;
       
-      text += `\n📦 Note រៀបអីវ៉ាន់:\n- 200g = ${calc.pack_total200g} ប្រអប់\n- 100g = ${calc.pack_total100g} ប្រអប់\n- គីឡូ = ${calc.pack_totalKg} kg`;
+      text += `\n📦 Note រៀបអីវ៉ាន់ +Pro🎁:\n(200g ${calc.pack_total200g}ប្រអប់ និង ${calc.pack_totalKg}kg)`;
 
+      // ប្តូរ Link ទៅគណនី @NarybrandMiss របស់បង
       const encodedText = encodeURIComponent(text);
-      window.open(`https://t.me/MoMore_collection?text=${encodedText}`, '_blank');
+      window.open(`https://t.me/NarybrandMiss?text=${encodedText}`, '_blank');
     }
 
+    renderComboSets();
+    renderVideoGallery();
     renderDynamicProducts();
   </script>
 </body>
