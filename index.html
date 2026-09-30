@@ -1,615 +1,370 @@
 <!DOCTYPE html>
 <html lang="km">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MoMore Wholesale WebApp</title>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  
-  <style>
-    :root {
-      --primary: #f1c40f; 
-      --primary-dark: #d35400;   
-      --dark-bg: #121212;
-      --card-bg: #1a1a1a;
-      --text-dark: #ffffff;
-      --text-gray: #aaaaaa;
-      --price-color: #ff6b6b;     
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Kantumruy Pro', sans-serif; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ម៉ូម័រ - Momore</title>
     
-    body { background-color: var(--dark-bg); color: var(--text-dark); padding-bottom: 140px; font-size: 14px; overflow-x: hidden; }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    header { background: #000; color: var(--primary); padding: 15px; text-align: center; font-weight: 900; font-size: 1.2rem; position: sticky; top: 0; z-index: 100; border-bottom: 2px solid var(--primary); box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    .hero-banner { width: 100%; aspect-ratio: 16 / 9; background: #000; overflow: hidden; position: relative; border-bottom: 1px solid #333; }
-    .hero-banner img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .hero-banner-content { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); padding: 20px 15px 12px 15px; text-align: center; }
-    .hero-banner-content h1 { font-size: 1.2rem; color: var(--primary); margin-bottom: 4px; font-weight: 900; }
-    
-    .container { max-width: 600px; margin: auto; padding: 15px 10px; }
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-    .promo-banner-btn { background: linear-gradient(45deg, #e74c3c, #c0392b); color: white; padding: 14px; border-radius: 10px; text-align: center; font-weight: 800; font-size: 1.05rem; margin-bottom: 20px; cursor: pointer; border: 2px solid #ffb8b8; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Kantumruy Pro"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            DEFAULT: '#f97316', // Orange 500
+                            dark: '#ea580c',   // Orange 600
+                            light: '#fdba74',  // Orange 300
+                        },
+                        darkBg: '#111827', // Gray 900
+                    }
+                }
+            }
+        }
+    </script>
 
-    .section-title-box { margin: 20px 0 12px 0; padding: 10px 14px; background: #222; border-left: 5px solid var(--primary); border-radius: 6px; color: #fff; font-weight: 800; font-size: 1.05rem; display: flex; flex-direction: column;}
-    .sec-title-sub { font-size: 0.75rem; color: #aaa; margin-top: 4px; font-weight: 600; }
-
-    /* Grid & Separate Card Layout */
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px; }
-    .product-card { background: var(--card-bg); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid #333; box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
-    
-    .media-box { width: 100%; aspect-ratio: 1 / 1; position: relative; cursor: pointer; background: #1a1a1a; display: flex; align-items: center; justify-content: center; overflow: hidden; border-bottom: 1px solid #282828; }
-    .media-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    
-    .weight-badge { position: absolute; top: 8px; left: 8px; background: var(--primary); color: #000; padding: 3px 8px; border-radius: 6px; font-size: 0.7rem; font-weight: 900; z-index: 2; box-shadow: 0 2px 5px rgba(0,0,0,0.5); }
-    .play-video-badge { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.75); color: #fff; padding: 3px 6px; border-radius: 6px; font-size: 0.65rem; font-weight: 700; border: 1px solid #fff; z-index: 2; }
-
-    .product-info { padding: 10px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; background: #1a1a1a; }
-    .row-1-type { font-size: 0.7rem; color: var(--text-gray); font-weight: 700; text-transform: uppercase; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 2px; }
-    .row-2-flavor { font-size: 0.9rem; font-weight: 800; color: #fff; margin-bottom: 6px; line-height: 1.2; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .price-tag { font-size: 1rem; font-weight: 900; color: var(--price-color); display: block; margin-bottom: 8px; }
-    
-    .quantity-control { display: flex; align-items: center; justify-content: space-between; background: #252525; border-radius: 8px; padding: 4px 8px; border: 1px solid #444; }
-    .btn-qty { width: 28px; height: 28px; background: #353535; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; color: #fff; font-size: 1rem; display: flex; align-items: center; justify-content: center; }
-    .qty-number { font-weight: 900; font-size: 0.95rem; color: #fff; width: 24px; text-align: center;}
-
-    /* Video Feed Scroll */
-    .video-gallery-section { background: #1a1a1a; border-radius: 12px; padding: 15px; margin-bottom: 20px; border: 1px solid #333; }
-    .gallery-title { font-weight: 900; font-size: 1rem; color: #fff; margin-bottom: 12px; }
-    .video-cards-scroll { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 8px; scrollbar-width: none; }
-    .video-card-item { flex: 0 0 140px; border-radius: 10px; overflow: hidden; position: relative; cursor: pointer; border: 1px solid #444; aspect-ratio: 9/16; background: #222; }
-    .video-card-item img { width: 100%; height: 100%; object-fit: cover; }
-    .video-play-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; background: rgba(241, 196, 15, 0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #000; font-size: 1.2rem; }
-    .video-card-title { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); color: #fff; padding: 15px 8px 8px 8px; font-size: 0.8rem; font-weight: 700; text-align: center; }
-
-    /* Combo Sets */
-    .combo-card-169 { width: 100%; aspect-ratio: 16 / 9; background: #222; border-radius: 12px; overflow: hidden; position: relative; cursor: pointer; border: 2px solid #e74c3c; margin-bottom: 12px; }
-    .combo-card-169 img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .combo-thumbnail-padding { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(135deg, rgba(231, 76, 60, 0.95), rgba(243, 156, 18, 0.95)); padding: 10px 14px; color: #fff; }
-
-    /* Sticky Cart */
-    .cart-bar { position: fixed; bottom: 20px; left: 15px; right: 15px; background: #000; color: white; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; max-width: 570px; margin: auto; border-radius: 12px; z-index: 999; box-shadow: 0 -5px 25px rgba(0,0,0,0.8); border: 2px solid var(--primary); }
-    .total-price { font-size: 1.3rem; font-weight: 900; color: var(--primary); }
-    .delivery-info { font-size: 0.8rem; color: #2ecc71; font-weight: 700; margin-top: 2px; }
-    .btn-checkout-bar { background: var(--primary); color: #000; border: none; padding: 12px 18px; border-radius: 8px; font-weight: 900; cursor: pointer; font-size: 1rem; transition: all 0.2s;}
-    .btn-checkout-bar:disabled { background: #444 !important; color: #aaa !important; cursor: not-allowed; border: 1px solid #555; }
-
-    /* Modals */
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(4px); z-index: 2000; justify-content: center; align-items: center; padding: 15px; }
-    .modal-content { width: 100%; max-width: 420px; background: #151515; border-radius: 16px; position: relative; display: flex; flex-direction: column; max-height: 88vh; border: 1px solid #444; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.6);}
-    .close-modal { position: absolute; top: 12px; right: 12px; color: #fff; font-size: 22px; font-weight: bold; cursor: pointer; z-index: 2001; background: rgba(0,0,0,0.7); width: 34px; height: 34px; border-radius: 50%; text-align: center; line-height: 32px; border: 1px solid #666; }
-    
-    /* Perfect Popup Detail Layout (រូបភាពផ្នែកលើល្មម អក្សរធំច្បាស់ គៀកគ្នាស្អាត មិនបាំងរូប) */
-    .detail-header-media { width: 100%; aspect-ratio: 1 / 1; background: #000; position: relative; flex-shrink: 0; max-height: 220px; }
-    .detail-header-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .detail-body { padding: 14px 16px; overflow-y: auto; font-size: 0.95rem; line-height: 1.35; color: #e0e0e0; }
-    .detail-title { font-size: 1.15rem; font-weight: 900; color: #fff; margin-bottom: 2px; }
-    .detail-price { font-size: 1.1rem; font-weight: 900; color: var(--price-color); margin-bottom: 8px; border-bottom: 1px solid #333; padding-bottom: 6px;}
-    .detail-sec-title { font-weight: 800; color: var(--primary); margin-top: 8px; margin-bottom: 2px; font-size: 0.9rem; }
-    .detail-body p { margin-bottom: 4px; }
-
-    .checkout-body { padding: 18px; overflow-y: auto; background: #1a1a1a; color: #fff; }
-    .checkout-title { font-size: 1.2rem; font-weight: 900; color: var(--primary); margin-bottom: 15px; text-align: center; }
-    
-    .print-preview-box { background: #fff; color: #000; border-radius: 10px; padding: 15px; margin-bottom: 15px; font-family: 'Kantumruy Pro', sans-serif; }
-    .preview-header { text-align: center; border-bottom: 2px dashed #ccc; padding-bottom: 10px; margin-bottom: 10px; font-weight: 900; font-size: 1.1rem;}
-    
-    .preview-row { display: flex; justify-content: space-between; font-weight: 800; font-size: 1rem; margin-top: 8px; align-items: flex-start;}
-    .preview-sub { font-size: 0.85rem; color: #666; margin-bottom: 8px; border-bottom: 1px dashed #eee; padding-bottom: 8px; font-weight: 700;}
-    
-    .preview-total { font-weight: 900; color: #e74c3c; font-size: 1.4rem; border-top: 2px solid #333; padding-top: 10px; margin-top: 10px; display: flex; justify-content: space-between; }
-    
-    .promo-note { font-size: 0.9rem; font-weight: 800; background: #e8f5e9; color: #2e7d32; padding: 10px; border-radius: 6px; margin-bottom: 10px; border: 1px solid #c8e6c9; }
-    .packing-note-big { font-size: 1.1rem; font-weight: 900; color: #000; background: #f1c40f; padding: 12px; border-radius: 8px; margin-top: 15px; text-align: center; line-height: 1.5; border: 2px solid #d35400;}
-
-    .form-group { margin-bottom: 15px; }
-    .form-group label { display: block; font-weight: 800; font-size: 0.9rem; margin-bottom: 6px; color: #ccc; }
-    .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid #444; border-radius: 8px; font-size: 0.95rem; background: #000; color: #fff; font-weight: 700; }
-
-    .checkout-footer-links { margin-top: 20px; text-align: center; padding-top: 15px; border-top: 1px dashed #444;}
-    .qr-container { display: flex; gap: 10px; justify-content: center; margin-bottom: 15px;}
-    .qr-box { flex: 1; max-width: 150px; background: #fff; padding: 8px; border-radius: 8px; border: 2px solid var(--primary); }
-    .qr-box img { width: 100%; height: auto; border-radius: 6px; }
-    .qr-label { color: #000; font-weight: 900; font-size: 0.85rem; padding: 4px; margin-bottom: 5px; border-radius: 4px;}
-    .aba-label { background: #0055a6; color: #fff;}
-    .acleda-label { background: #0c437a; color: #fff;}
-    
-    .social-btn { display: block; width: 100%; padding: 12px; margin-bottom: 8px; border-radius: 8px; font-weight: 800; color: #fff; text-decoration: none; font-size: 0.95rem; }
-    .bg-fb { background: #1877F2; } 
-    .bg-tt { background: #000; border: 1px solid #444; }
-
-    .btn-action-primary { background: linear-gradient(135deg, #0088cc, #005580); color: #fff; border: none; padding: 15px; border-radius: 10px; font-weight: 900; cursor: pointer; font-size: 1.1rem; width: 100%; margin-top: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
-  </style>
+    <style>
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        
+        body {
+            -webkit-tap-highlight-color: transparent;
+            background-color: #f3f4f6; /* Gray 100 */
+        }
+        
+        /* Smooth transition for cart button */
+        .cart-slide-up {
+            transform: translateY(0);
+            transition: transform 0.3s ease-out;
+        }
+        .cart-hidden {
+            transform: translateY(150%);
+            transition: transform 0.3s ease-in;
+        }
+    </style>
 </head>
-<body>
+<body class="font-sans text-gray-800 pb-24">
 
-  <header>🍌 MOMORE WHOLESALE</header>
+    <!-- App Container (Max width for desktop viewing to simulate mobile) -->
+    <div class="max-w-md mx-auto bg-gray-50 min-h-screen relative shadow-lg">
 
-  <div class="hero-banner">
-    <img src="hero-banner.jpg" alt="MoMore Wholesale Banner" onerror="this.onerror=null; this.src='https://placehold.co/800x450/111/f1c40f?text=MoMore+Wholesale'">
-    <div class="hero-banner-content">
-      <h1>ប្រព័ន្ធបញ្ជាទិញបោះដុំផ្ទាល់ពីរោងចក្រ</h1>
-    </div>
-  </div>
+        <!-- Header -->
+        <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md px-4 py-3 flex justify-between items-center shadow-sm">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-brand rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md">
+                    ម
+                </div>
+                <h1 class="text-xl font-bold text-gray-900 tracking-wide">ម៉ូម័រ</h1>
+            </div>
+            <button class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-200 transition">
+                <i class="fas fa-search"></i>
+            </button>
+        </header>
 
-  <div class="container">
-    <div class="promo-banner-btn" onclick="openPromoModal()">🎁 មើលលក្ខខណ្ឌ និង ប្រូម៉ូសិនបោះដុំ!</div>
-
-    <div class="section-title-box">
-      <div>🎁 ឈុតពិសេស Combo Team SET</div>
-      <div class="sec-title-sub">កញ្ចប់កាដូ និងរសជាតិពិសេសប្រចាំហាង</div>
-    </div>
-    <div class="combo-section-wrap" id="combo-sets-container"></div>
-
-    <div class="video-gallery-section">
-      <div class="gallery-title">🎬 មើលវីដេអូស្ពត & Review</div>
-      <div class="video-cards-scroll" id="video-feed-container"></div>
-    </div>
-
-    <div class="section-title-box"><div>🍌 1. ដំណាប់ចេកណាំវ៉ាខ្មែរ (២០០ ក្រាម)</div></div>
-    <div class="grid" id="cat-200-container"></div>
-
-    <div class="section-title-box"><div>🥥 2. ដំណាប់ចេកសូកូឡា (៣០០ ក្រាម)</div></div>
-    <div class="grid" id="cat-300-container"></div>
-
-    <div class="section-title-box"><div>📦 3. ដំណាប់ចេកបោះដុំ (១ គីឡូ)</div></div>
-    <div class="grid" id="cat-1kg-container"></div>
-    
-    <div class="section-title-box"><div>📦 4. ដំណាប់ចេកបោះដុំ (៥ គីឡូ)</div></div>
-    <div class="grid" id="cat-5kg-container"></div>
-
-    <div class="section-title-box"><div>🔥 5. ចេកបំពងស្រួយ រសជាតិ (១០០g & ២០០g)</div></div>
-    <div class="grid" id="cat-crispy-flavor-container"></div>
-
-    <div class="section-title-box"><div>🍌 6. ចេកបំពងស្រួយ រសជាតិដើមសាប</div></div>
-    <div class="grid" id="cat-crispy-plain-container"></div>
-  </div>
-
-  <div class="cart-bar">
-    <div>
-      <div style="font-size:0.75rem; color:#aaa; font-weight: 700;">សរុបសាច់ប្រាក់:</div>
-      <div class="total-price"><span id="total-val">0</span> ៛</div>
-      <div class="delivery-info" id="delivery-info">🚚 សេវាដឹក៖ 8,000 ៛</div>
-    </div>
-    <button class="btn-checkout-bar" id="submit-btn" onclick="openCheckoutModal()" disabled>សូមរើសទំនិញ</button>
-  </div>
-
-  <div class="modal" id="promoModal">
-    <div class="modal-content">
-      <span class="close-modal" onclick="closePromoModal()">&times;</span>
-      <div class="checkout-body">
-        <h3 style="color: var(--primary); margin-bottom: 15px; text-align: center;">🎉 លក្ខខណ្ឌ & ប្រូម៉ូសិន</h3>
-        <div style="background: #111; padding: 15px; border-radius: 8px; border: 1px solid #444; line-height: 1.6;">
-          <h4 style="color: #fff;">📌 លក្ខខណ្ឌទិញបោះដុំអប្បបរមា (MOQ)</h4>
-          • ប្រអប់ <strong>200g / 300g / 500g</strong>: ចាប់ពី <strong>10 ប្រអប់ឡើង</strong><br>
-          • ប្រអប់ <strong>100g</strong>: ចាប់ពី <strong>20 ប្រអប់ឡើង</strong><br>
-          • ដំណាប់ចេក <strong>5 kg</strong>: ចាប់ពី <strong>10 kg (2 កញ្ចប់)</strong> (Free ដឹក)<br><br>
-
-          <h4 style="color: #fff;">🎁 ប្រូម៉ូសិន ដំណាប់ចេក</h4>
-          • ទិញ 200g 10 ប្រអប់ ថែម 2 ប្រអប់<br>
-          • ទិញ 200g 30 ប្រអប់ ថែម 6 ប្រអប់ + 🚚 Free ដឹក<br><br>
-
-          <h4 style="color: #fff;">🎁 ប្រូម៉ូសិន ចេកបំពង</h4>
-          • 100g 60 ប្រអប់: ថែម 100g 2ប្រអប់ + 🚚 Free ដឹក<br>
-          • លាយគ្នា ចាប់ពី 30 ប្រអប់: 🚚 Free ដឹក
+        <!-- Hero Section -->
+        <div class="px-4 py-4">
+            <div class="bg-darkBg rounded-2xl p-5 relative overflow-hidden shadow-xl flex items-center justify-between">
+                <div class="z-10 w-2/3">
+                    <span class="bg-brand/20 text-brand text-xs font-semibold px-2 py-1 rounded-md mb-2 inline-block">លក់ដាច់បំផុត 🔥</span>
+                    <h2 class="text-white text-lg font-bold leading-snug mb-2">
+                        ដំណាប់ចេកទន់ និង ចេកបំពងស្រួយរសជាតិឆ្ងាញ់
+                    </h2>
+                    <p class="text-gray-300 text-xs mb-3">ផលិតពីធម្មជាតិ ១០០% គ្មានសារធាតុរក្សាទុក។</p>
+                    <button class="bg-brand hover:bg-brand-dark text-white text-sm font-semibold py-2 px-4 rounded-full shadow-lg shadow-brand/30 transition transform active:scale-95">
+                        កម្ម៉ង់ឥឡូវនេះ <i class="fas fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+                <!-- Image Placeholder -->
+                <div class="absolute right-[-20px] bottom-[-20px] w-40 h-40">
+                    <img src="https://placehold.co/300x300/f97316/ffffff?text=Momore+Banana" alt="Banana Preserves" class="w-full h-full object-cover rounded-full border-4 border-darkBg shadow-2xl opacity-90 transform rotate-[-15deg]">
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="modal" id="videoModal">
-    <div class="modal-content" style="background:#000; max-width: 360px;">
-      <span class="close-modal" onclick="closeVideoModal()">&times;</span>
-      <video id="popupVideo" controls style="width:100%; max-height: 80vh; aspect-ratio: 9/16; display:block;" autoplay playsinline></video>
-    </div>
-  </div>
+        <!-- Categories -->
+        <div class="px-4 mb-2">
+            <h3 class="text-sm font-bold text-gray-800 mb-3 flex items-center justify-center">
+                <span class="h-px bg-gray-300 flex-1 mr-3"></span>
+                មុខម្ហូបពេញនិយម
+                <span class="h-px bg-gray-300 flex-1 ml-3"></span>
+            </h3>
+            <div class="flex overflow-x-auto gap-3 no-scrollbar pb-2">
+                <button class="whitespace-nowrap px-5 py-2 bg-brand text-white rounded-full text-sm font-medium shadow-md shadow-brand/20">ទាំងអស់</button>
+                <button class="whitespace-nowrap px-5 py-2 bg-white text-gray-600 border border-gray-200 rounded-full text-sm font-medium hover:bg-gray-50">ដំណាប់ចេកទន់</button>
+                <button class="whitespace-nowrap px-5 py-2 bg-white text-gray-600 border border-gray-200 rounded-full text-sm font-medium hover:bg-gray-50">ចេកបំពងស្រួយ</button>
+                <button class="whitespace-nowrap px-5 py-2 bg-white text-gray-600 border border-gray-200 rounded-full text-sm font-medium hover:bg-gray-50">ឈុតពិសេស</button>
+            </div>
+        </div>
 
-  <!-- Product Detail Modal (Fixed Layout: រូបភាពសមល្មម អក្សរធំល្មម គៀកគ្នាស្អាត មិនបាំងរូប) -->
-  <div class="modal" id="detailModal">
-    <div class="modal-content">
-      <span class="close-modal" onclick="closeDetailModal()">&times;</span>
-      <div class="detail-header-media">
-        <img id="detail-img" src="" alt="">
-      </div>
-      <div class="detail-body">
-        <div id="detail-name" class="detail-title"></div>
-        <div id="detail-price" class="detail-price"></div>
-        <div class="detail-sec-title">🌟 អត្ថប្រយោជន៍ និងគុណសម្បត្តិ</div>
-        <p id="detail-benefits"></p>
-        <div class="detail-sec-title">✨ រសជាតិ & គុណភាព</div>
-        <p id="detail-taste"></p>
-        <div class="detail-sec-title">📦 ការវេចខ្ចប់</div>
-        <p id="detail-pack"></p>
-        <div class="detail-sec-title">🛡️ ការរក្សាទុក</div>
-        <p id="detail-storage"></p>
-      </div>
-    </div>
-  </div>
+        <!-- Product Grid Part 1 -->
+        <div class="px-4 grid grid-cols-2 gap-4 mb-4">
+            
+            <!-- Product Card 1 -->
+            <div class="bg-white rounded-2xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between">
+                <div class="relative w-full aspect-square mb-3 rounded-xl overflow-hidden bg-gray-100">
+                    <span class="absolute top-2 left-2 bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded z-10">HOT</span>
+                    <img src="https://placehold.co/200x200/ffe4e6/be123c?text=Soft+Banana" alt="Product" class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <h4 class="font-semibold text-sm text-gray-800 leading-tight mb-1">ដំណាប់ចេកទន់ធម្មជាតិ</h4>
+                    <div class="flex items-center text-xs text-yellow-500 mb-2">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span class="text-gray-400 ml-1">(4.9)</span>
+                    </div>
+                    <div class="flex justify-between items-center mt-auto">
+                        <span class="font-bold text-lg text-gray-900">$3.00</span>
+                        <button onclick="addToCart('ដំណាប់ចេកទន់ធម្មជាតិ', 3.00)" class="bg-orange-100 hover:bg-orange-200 text-brand font-bold py-1 px-3 rounded-lg transition transform active:scale-95">
+                            Add <i class="fas fa-plus text-xs ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
 
-  <div class="modal" id="checkoutModal">
-    <div class="modal-content">
-      <span class="close-modal" onclick="closeCheckoutModal()">&times;</span>
-      <div class="checkout-body">
-        <div class="checkout-title">🧾 វិក្កយបត្រ (Preview)</div>
+            <!-- Product Card 2 -->
+            <div class="bg-white rounded-2xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between">
+                <div class="relative w-full aspect-square mb-3 rounded-xl overflow-hidden bg-gray-100">
+                    <img src="https://placehold.co/200x200/fef3c7/b45309?text=Sesame+Banana" alt="Product" class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <h4 class="font-semibold text-sm text-gray-800 leading-tight mb-1">ដំណាប់ចេកទន់ល្ង</h4>
+                    <div class="flex items-center text-xs text-yellow-500 mb-2">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span class="text-gray-400 ml-1">(5.0)</span>
+                    </div>
+                    <div class="flex justify-between items-center mt-auto">
+                        <span class="font-bold text-lg text-gray-900">$3.50</span>
+                        <button onclick="addToCart('ដំណាប់ចេកទន់ល្ង', 3.50)" class="bg-orange-100 hover:bg-orange-200 text-brand font-bold py-1 px-3 rounded-lg transition transform active:scale-95">
+                            Add <i class="fas fa-plus text-xs ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Promo Combo Banner -->
+        <div class="px-4 mb-4">
+            <div class="bg-gradient-to-r from-amber-400 to-orange-500 rounded-2xl p-4 flex items-center justify-between shadow-md relative overflow-hidden">
+                <!-- Deco circles -->
+                <div class="absolute -top-6 -left-6 w-20 h-20 bg-white opacity-20 rounded-full"></div>
+                <div class="absolute -bottom-8 -right-8 w-24 h-24 bg-white opacity-20 rounded-full"></div>
+                
+                <div class="relative z-10 w-[65%]">
+                    <h3 class="font-black text-white text-xl uppercase italic mb-1 text-shadow">Combo សន្សំប្រាក់</h3>
+                    <p class="text-white/90 text-xs mb-2">ទិញដំណាប់ចេក ១ + ចេកបំពង ១ ត្រឹមតែ</p>
+                    <div class="flex items-end gap-2">
+                        <span class="text-white font-bold text-2xl leading-none">$5.00</span>
+                        <span class="text-white/70 line-through text-sm mb-0.5">$5.50</span>
+                    </div>
+                    <button onclick="addToCart('ឈុតសន្សំប្រាក់ (ទន់+ស្រួយ)', 5.00)" class="mt-3 bg-darkBg text-white text-xs font-bold py-1.5 px-4 rounded-full shadow-lg">
+                        បញ្ជាទិញឈុតនេះ
+                    </button>
+                </div>
+                <div class="relative z-10 w-[35%] flex justify-end">
+                     <img src="https://placehold.co/150x150/ffffff/f97316?text=Combo" alt="Combo" class="w-24 h-24 object-cover rounded-full border-2 border-white shadow-lg">
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Grid Part 2 -->
+        <div class="px-4 grid grid-cols-2 gap-4 mb-6">
+            
+            <!-- Product Card 3 -->
+            <div class="bg-white rounded-2xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between">
+                <div class="relative w-full aspect-square mb-3 rounded-xl overflow-hidden bg-gray-100">
+                    <img src="https://placehold.co/200x200/ecfccb/4d7c0f?text=Crispy+Sweet" alt="Product" class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <h4 class="font-semibold text-sm text-gray-800 leading-tight mb-1">ចេកបំពងស្រួយផ្អែម</h4>
+                    <div class="flex items-center text-xs text-yellow-500 mb-2">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                        <span class="text-gray-400 ml-1">(4.0)</span>
+                    </div>
+                    <div class="flex justify-between items-center mt-auto">
+                        <span class="font-bold text-lg text-gray-900">$2.50</span>
+                        <button onclick="addToCart('ចេកបំពងស្រួយផ្អែម', 2.50)" class="bg-orange-100 hover:bg-orange-200 text-brand font-bold py-1 px-3 rounded-lg transition transform active:scale-95">
+                            Add <i class="fas fa-plus text-xs ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 4 -->
+            <div class="bg-white rounded-2xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between">
+                <div class="relative w-full aspect-square mb-3 rounded-xl overflow-hidden bg-gray-100">
+                    <img src="https://placehold.co/200x200/e0f2fe/0369a1?text=Crispy+Salty" alt="Product" class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <h4 class="font-semibold text-sm text-gray-800 leading-tight mb-1">ចេកបំពងស្រួយប្រៃ</h4>
+                    <div class="flex items-center text-xs text-yellow-500 mb-2">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span class="text-gray-400 ml-1">(4.8)</span>
+                    </div>
+                    <div class="flex justify-between items-center mt-auto">
+                        <span class="font-bold text-lg text-gray-900">$2.50</span>
+                        <button onclick="addToCart('ចេកបំពងស្រួយប្រៃ', 2.50)" class="bg-orange-100 hover:bg-orange-200 text-brand font-bold py-1 px-3 rounded-lg transition transform active:scale-95">
+                            Add <i class="fas fa-plus text-xs ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="text-center pb-8 pt-4">
+            <p class="text-gray-400 text-xs">© 2026 ម៉ូម័រ (Momore). រក្សាសិទ្ធិគ្រប់យ៉ាង។</p>
+        </div>
+
+        <!-- Floating Cart Button -->
+        <div id="floatingCart" class="fixed bottom-0 left-0 right-0 z-50 p-4 max-w-md mx-auto cart-hidden">
+            <div class="bg-brand rounded-2xl shadow-xl shadow-brand/40 flex items-center justify-between p-4 cursor-pointer hover:bg-brand-dark transition" onclick="checkout()">
+                <div class="flex items-center gap-3 text-white">
+                    <div class="relative">
+                        <i class="fas fa-shopping-cart text-xl"></i>
+                        <span id="cartCountBadge" class="absolute -top-2 -right-2 bg-white text-brand font-bold text-[10px] w-5 h-5 flex items-center justify-center rounded-full shadow-sm">0</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xs font-medium text-white/80">សរុបទឹកប្រាក់</span>
+                        <span id="cartTotalText" class="font-bold text-lg leading-none">$0.00</span>
+                    </div>
+                </div>
+                <div class="flex items-center text-white font-semibold text-sm">
+                    View Cart <i class="fas fa-chevron-right ml-2 text-xs"></i>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Telegram WebApp Initialization
+        let tg = window.Telegram.WebApp;
+        tg.expand(); // Expand app to maximum available height
         
-        <div class="print-preview-box">
-          <div class="preview-header">🛒 បញ្ជីទំនិញដែលបានជ្រើសរើស</div>
-          <div id="popup-locked-items"></div>
-          
-          <div id="promo-bonus-list" class="promo-note" style="display: none;"></div>
+        // Cart State
+        let cart = {
+            items: [],
+            totalCount: 0,
+            totalPrice: 0.00
+        };
 
-          <div style="display:flex; justify-content:space-between; margin-top:10px; font-size:1rem; font-weight:800; border-top: 1px dashed #ccc; padding-top:10px;">
-            <span>សេវាដឹកជញ្ជូន:</span>
-            <span id="popup-delivery-fee">8,000 ៛</span>
-          </div>
-          
-          <div class="preview-total">
-            <span>សរុបប្រាក់បង់:</span>
-            <span id="popup-grand-total">0 ៛</span>
-          </div>
-          
-          <div id="packing-note-box" class="packing-note-big"></div>
-        </div>
+        const floatingCart = document.getElementById('floatingCart');
+        const cartCountBadge = document.getElementById('cartCountBadge');
+        const cartTotalText = document.getElementById('cartTotalText');
 
-        <div class="form-group">
-          <label>📍 ទីតាំងទទួលទំនិញ</label>
-          <select id="location-type" onchange="toggleLocationFields()">
-            <option value="ភ្នំពេញ">ភ្នំពេញ (Phnom Penh)</option>
-            <option value="តាមខេត្ត">ខេត្តផ្សេងៗ (Provinces)</option>
-          </select>
-        </div>
+        // Function to handle Add to Cart
+        function addToCart(name, price) {
+            // Check if item exists
+            let existingItem = cart.items.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.items.push({ name: name, price: price, quantity: 1 });
+            }
+            
+            // Provide Haptic Feedback via Telegram SDK (if available)
+            if (tg.HapticFeedback) {
+                tg.HapticFeedback.impactOccurred('light');
+            }
 
-        <div class="form-group">
-          <label>👤 ឈ្មោះអតិថិជន</label>
-          <input type="text" id="cust-name" placeholder="បញ្ជូលឈ្មោះ..." required>
-        </div>
-        <div class="form-group">
-          <label>📞 លេខទូរស័ព្ទ</label>
-          <input type="tel" id="cust-phone" placeholder="012 345 678" required>
-        </div>
-        <div class="form-group" id="phnompenh-fields">
-          <label>🏠 ទីតាំងលម្អិត</label>
-          <input type="text" id="cust-address" placeholder="ផ្ទះលេខ 12, ផ្លូវ 310">
-        </div>
-        <div class="form-group" id="province-fields" style="display:none;">
-          <label>🏢 សាខាដឹកជញ្ជូន</label>
-          <input type="text" id="cust-branch" placeholder="វីរៈប៊ុនថាំ សៀមរាប">
-        </div>
-
-        <div class="checkout-footer-links">
-          <div style="font-weight: 800; color: #fff; margin-bottom: 10px;">💳 ស្កេនទូទាត់ប្រាក់ (KHQR)</div>
-          <div class="qr-container">
-            <div class="qr-box">
-              <div class="qr-label aba-label">ABA Bank</div>
-              <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://pay.ababank.com/oRF8/vmb5lvp3" alt="ABA QR">
-            </div>
-            <div class="qr-box">
-              <div class="qr-label acleda-label">ACLEDA</div>
-              <img src="1000022079.jpg" alt="ACLEDA QR" onerror="this.onerror=null; this.src='https://placehold.co/300x300/fff/000?text=QR'">
-            </div>
-          </div>
-          
-          <div style="margin-top: 15px;">
-            <a href="https://www.facebook.com" target="_blank" class="social-btn bg-fb">📘 Facebook Page</a>
-            <a href="https://www.tiktok.com/@bananachips085966548" target="_blank" class="social-btn bg-tt">🎵 TikTok @bananachips085966548</a>
-          </div>
-        </div>
-
-        <button class="btn-action-primary" onclick="submitOrder()">🚀 បញ្ជូនការកុម្ម៉ង់ទៅ Admin</button>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    const videoList = [
-      { id: 'B-TO-B-001', name: 'B-TO-B 001', file: 'B-TO-B-001.mp4' },
-      { id: 'EAT-MUKBANG-001', name: 'Mukbang 001', file: 'EAT-MUKBANG-001.mp4' },
-      { id: 'PROC-001', name: 'សង្វាក់ផលិត', file: 'PROC-001.mp4' },
-      { id: 'PROD-001', name: 'ផលិតផល', file: 'PROD-001.mp4' },
-      { id: 'PROMO-001', name: 'ប្រូម៉ូសិន', file: 'PROMO-001.mp4' },
-      { id: 'REV-MARKET-001', name: 'Review', file: 'REV-MARKET-001.mp4' }
-    ];
-
-    const comboSetsData = [
-      { id: 'COMBO_1', name: 'Combo Team SET #1', price: 25000, size: 'Combo Set', image: 'combo-1.jpg', benefits: 'ឈុតកាដូពិសេសរួមបញ្ចូលដំណាប់ចេក និងចេកស្រួយចម្រុះរសជាតិ។', taste: 'ផ្អែមឆ្ងាញ់ ស្រួយស្រែស ឈ្ងុយឆ្ងាញ់ពេញចិត្ត', pack: 'ប្រអប់កាដូស្ដង់ដារអនាម័យស្រស់ស្អាត', storage: 'រក្សាទុកក្នុងកន្លែងស្ងួតត្រជាក់បាន ៦ ខែ' },
-      { id: 'COMBO_2', name: 'Combo Team SET #2', price: 35000, size: 'Combo Set', image: 'combo-2.jpg', benefits: 'ឈុតធំសម្រាប់ក្រុមគ្រួសារ ចែករំលែកភាពសប្បាយរីករាយ។', taste: 'ចម្រុះរសជាតិពេញនិយម ឆ្ងាញ់ញ៉ាំជក់មាត់', pack: 'ប្រអប់កាដូធំទូលាយ រៀបចំយ៉ាងល្អ', storage: 'រក្សាទុកក្នុងកន្លែងស្ងួតត្រជាក់បាន ៦ ខែ' }
-    ];
-
-    const products = {
-      D_ORIG200: { cat: 'cat200', type: "ដំណាប់ចេក", flavor: "រសជាតិដើម", price: 8000, qty: 0, size: '200g', id: 'd1_200', benefits: "សម្បូរវីតាមីន និងប៉ូតាមស្យូម ផ្តល់ថាមពលភ្លាមៗ។", taste: "សាច់ដំណាប់ទន់ស្វិត ផ្អែមឆ្ងាញ់បែបធម្មជាតិ", pack: "វេចខ្ចប់ក្នុងប្រអប់បិទជិតការពារខ្យល់", storage: "រក្សាទុកកន្លែងស្ងួតត្រជាក់ បាន ៦ ខែ" },
-      D_SESM200: { cat: 'cat200', type: "ដំណាប់ចេក", flavor: "រោយល្ង ស/ខ្មៅ", price: 8000, qty: 0, size: '200g', id: 'd2_200', benefits: "ល្ងជួយទ្រទ្រង់ឆ្អឹង និងផ្តល់ជាតិកាល់ស្យូម។", taste: "សាច់ចេកទន់ស្វិតផ្អែមល្មម លាយក្លិនឈ្ងុយល្ងរលីង", pack: "សម្ងួតស្អាត រោយល្ងស្មើល្អ វេចខ្ចប់ក្នុងប្រអប់អនាម័យ", storage: "រក្សាទុកក្នុងប្រអប់បិទជិត បាន ៦ ខែ" },
-      D_ALMD200: { cat: 'cat200', type: "ដំណាប់ចេក", flavor: "រោយអាល់ម៉ុន", price: 10000, qty: 0, size: '200g', id: 'd3_200', benefits: "ផ្តល់ជាតិប្រូតេអ៊ីន និងខ្លាញ់ល្អពីគ្រាប់អាល់ម៉ុន ជួយសុខភាពបេះដូង។", taste: "រសជាតិប្លែកអារម្មណ៍ ឈ្ងុយខ្ទិះ និងភាពស្រួយនៃអាល់ម៉ុន", pack: "វេចខ្ចប់ក្នុងប្រអប់ការពារជម្រាបខ្យល់យ៉ាងល្អ", storage: "រក្សាទុកបាន ៦ ខែ ក្នុងកន្លែងស្ងួត" },
-      D_MIXG200: { cat: 'cat200', type: "ដំណាប់ចេក", flavor: "រោយធញ្ញជាតិ", price: 10000, qty: 0, size: '200g', id: 'd4_200', benefits: "ទទួលបានអាហាររូបត្ថម្ភចម្រុះពីធញ្ញជាតិ ជួយប្រព័ន្ធរំលាយអាហារ។", taste: "សាច់ទន់ស្វិត ផ្តល់អាហាររូបត្ថម្ភខ្ពស់ពីធញ្ញជាតិ", pack: "ប្រអប់ស្តង់ដារអនាម័យ បិទជិតយ៉ាងប្រុងប្រយ័ត្ន", storage: "បិទមាត់ប្រអប់ឱ្យជិត ទុកបាន ៦ ខែ" },
-      D_COCO200: { cat: 'cat200', type: "ដំណាប់ចេក", flavor: "រោយដូង", price: 10000, qty: 0, size: '200g', id: 'd5_200', benefits: "ផ្តល់ថាមពលលឿន ជួយឱ្យអារម្មណ៍ស្រស់ថ្លាជាមួយក្លិនដូងធម្មជាតិ។", taste: "ក្លិនដូងឈ្ងុយឆ្ងាញ់ ត្រូវជាមួយសាច់ចេកទន់ផ្អែម", pack: "ប្រអប់អនាម័យបិទជិត", storage: "រក្សាទុកសីតុណ្ហភាពធម្មតាបាន ៦ ខែ" },
-      D_BALL200: { cat: 'cat200', type: "ដំណាប់ចេក", flavor: "ដំណាប់ចេកមូល", price: 8000, qty: 0, size: '200g', id: 'd6_200', benefits: "ងាយស្រួលកាន់ញ៉ាំ ផ្តល់កម្លាំង និងកាត់បន្ថយភាពហត់នឿយ។", taste: "ទន់ស្វិតល្មើយ ងាយស្រួលទំពា", pack: "ប្រអប់ការពារសំណើមត្រឹមត្រូវ", storage: "រក្សាទុកបាន រហូត ៦ ខែ" },
-
-      D_RCHCS300: { cat: 'cat300', type: "ដំណាប់ចេក", flavor: "សូកូឡាស្នូលដូង", price: 17000, qty: 0, size: '300g', id: 'd7_300', benefits: "សូកូឡាជួយកាត់បន្ថយស្រ្តេស បូករួមសារធាតុចិញ្ចឹមពីចេក និងដូង។", taste: "រសជាតិខ្ទិះដូងលាយសូកូឡា ឆ្ងាញ់ប្លែកមាត់", pack: "ប្រអប់ 300g ស្អាតសប្រណីត", storage: "រក្សាទុកបាន ៣-៦ ខែ" },
-      D_RCHCC300: { cat: 'cat300', type: "ដំណាប់ចេក", flavor: "សូកូឡាស្នូលចន្ទី", price: 17000, qty: 0, size: '300g', id: 'd8_300', benefits: "គ្រាប់ចន្ទីជួយពង្រឹងឆ្អឹង និងផ្តល់ជាតិម៉ាញេស្យូមខ្ពស់។", taste: "ឈ្ងុយគ្រាប់ចន្ទី លាយភាពផ្អែមស្រទន់នៃសូកូឡា", pack: "ប្រអប់ស្តង់ដារអនាម័យ", storage: "រក្សាទុកបាន ៣-៦ ខែ" },
-
-      D_ORIG1KG: { cat: 'cat1kg', type: "ដំណាប់ចេកបោះដុំ", flavor: "រសជាតិដើម", price: 40000, qty: 0, size: '1kg', id: 'd1_1kg', benefits: "ចំណេញច្រើនសម្រាប់អ្នកបោះដុំបន្ត គុណភាពល្អដូចស្តង់ដារប្រអប់។", taste: "សាច់ដំណាប់ទន់ស្វិត ផ្អែមឆ្ងាញ់ធម្មជាតិ", pack: "វេចខ្ចប់ថង់ធំបិទជិតការពារខ្យល់", storage: "រក្សាទុកកន្លែងស្ងួតត្រជាក់ បាន ៦ ខែ" },
-      D_SESM1KG: { cat: 'cat1kg', type: "ដំណាប់ចេកបោះដុំ", flavor: "រោយល្ង", price: 40000, qty: 0, size: '1kg', id: 'd2_1kg', benefits: "ចំណេញច្រើនសម្រាប់អ្នកបោះដុំបន្ត គុណភាពល្អដូចស្តង់ដារប្រអប់។", taste: "សាច់ចេកទន់ស្វិតផ្អែមល្មម លាយក្លិនឈ្ងុយល្ងរលីង", pack: "វេចខ្ចប់ថង់ធំបិទជិតការពារខ្យល់", storage: "រក្សាទុកកន្លែងស្ងួតត្រជាក់ បាន ៦ ខែ" },
-      D_ALMD1KG: { cat: 'cat1kg', type: "ដំណាប់ចេកបោះដុំ", flavor: "រោយអាល់ម៉ុន", price: 50000, qty: 0, size: '1kg', id: 'd3_1kg', benefits: "ទទួលបានអាល់ម៉ុនច្រើន ទិញដុំចំណេញខ្ពស់។", taste: "រសជាតិប្លែកអារម្មណ៍ ឈ្ងុយខ្ទិះ និងភាពស្រួយនៃអាល់ម៉ុន", pack: "វេចខ្ចប់ថង់ធំបិទជិតការពារខ្យល់", storage: "រក្សាទុកបាន ៦ ខែ ក្នុងកន្លែងស្ងួត" },
-      
-      D_ORIG5KG: { cat: 'cat5kg', type: "ដំណាប់ចេកបោះដុំ", flavor: "រសជាតិដើម", price: 175000, qty: 0, size: '5kg', id: 'd1_1kg', benefits: "ចំណេញខ្ពស់បំផុតសម្រាប់អាជីវករខ្នាតធំ។", taste: "សាច់ដំណាប់ទន់ស្វិត ផ្អែមឆ្ងាញ់ធម្មជាតិ", pack: "ថង់ធំស្ដង់ដាររោងចក្រ", storage: "រក្សាទុកកន្លែងស្ងួតត្រជាក់ បាន ៦ ខែ" },
-      D_SESM5KG: { cat: 'cat5kg', type: "ដំណាប់ចេកបោះដុំ", flavor: "រោយល្ង", price: 175000, qty: 0, size: '5kg', id: 'd2_1kg', benefits: "ចំណេញខ្ពស់បំផុតសម្រាប់អាជីវករខ្នាតធំ។", taste: "សាច់ចេកទន់ស្វិតផ្អែមល្មម លាយក្លិនឈ្ងុយល្ងរលីង", pack: "ថង់ធំស្ដង់ដាររោងចក្រ", storage: "រក្សាទុកកន្លែងស្ងួតត្រជាក់ បាន ៦ ខែ" },
-      D_ALMD5KG: { cat: 'cat5kg', type: "ដំណាប់ចេកបោះដុំ", flavor: "រោយអាល់ម៉ុន", price: 225000, qty: 0, size: '5kg', id: 'd3_1kg', benefits: "ទទួលបានអាល់ម៉ុនច្រើន ទិញដុំចំណេញខ្ពស់បំផុត។", taste: "រសជាតិប្លែកអារម្មណ៍ ឈ្ងុយខ្ទិះ និងភាពស្រួយនៃអាល់ម៉ុន", pack: "ថង់ធំស្ដង់ដាររោងចក្រ", storage: "រក្សាទុកបាន ៦ ខែ ក្នុងកន្លែងស្ងួត" },
-
-      C_CHOC200: { cat: 'crispyFlavor', type: "ចេកបំពងស្រួយ", flavor: "សូកូឡាទឹកដោះគោ", price: 10000, qty: 0, size: '200g', id: 'b1_200', benefits: "ផ្តល់ភាពរីករាយ និងថាមពលជាមួយសូកូឡាដោះគោគុណភាពខ្ពស់។", taste: "ស្រួយផ្អែមឈ្ងុយ សូកូឡាដោះគោ", pack: "ប្រអប់អនាម័យបិទជិត", storage: "រក្សាទុកក្នុងសីតុណ្ហភាពត្រជាក់" },
-      C_CHES200: { cat: 'crispyFlavor', type: "ចេកបំពងស្រួយ", flavor: "ឈីស ទឹកដោះគោ", price: 10000, qty: 0, size: '200g', id: 'b2_200', benefits: "រសជាតិប្រៃផ្អែមប្លែកមាត់ ជួយបង្កើនអារម្មណ៍ស្រស់ស្រាយ។", taste: "ប្រៃផ្អែម ឈ្ងុយឈីសខ្លាំង ញ៉ាំជក់មាត់", pack: "ប្រអប់បិទជិតអនាម័យ", storage: "បិទមាត់ប្រអប់ឱ្យជិតជានិច្ច" },
-      C_BBQ200: { cat: 'crispyFlavor', type: "ចេកបំពងស្រួយ", flavor: "បាប៊ីឃ្យូ", price: 10000, qty: 0, size: '200g', id: 'b3_200', benefits: "រសជាតិ BBQ ប្លែក ញ៉ាំជុំគ្នាយ៉ាងសប្បាយរីករាយ។", taste: "រសជាតិបាប៊ីឃ្យូ ឈ្ងុយឆ្ងាញ់", pack: "ប្រអប់បិទជិត", storage: "រក្សាទុកបានយូរក្នុងប្រអប់បិទជិត" },
-      C_SPIC200: { cat: 'crispyFlavor', type: "ចេកបំពងស្រួយ", flavor: "ម្ទេសខ្ទឹម", price: 10000, qty: 0, size: '200g', id: 'b4_200', benefits: "ខ្ទឹមសជួយពង្រឹងប្រព័ន្ធការពាររាងកាយ និងប្រឆាំងបាក់តេរី។", taste: "ហឹរតិចៗ ឈ្ងុយខ្ទឹមស ឆ្ងាញ់ជាប់មាត់", pack: "ប្រអប់បិទជិត", storage: "រក្សាទុកក្នុងកន្លែងស្ងួត" },
-      
-      C_CHOC100: { cat: 'crispyFlavor', type: "ចេកបំពងស្រួយ", flavor: "សូកូឡាទឹកដោះគោ", price: 5000, qty: 0, size: '100g', id: 'b1_100', benefits: "កញ្ចប់តូចងាយស្រួលតាមខ្លួន ផ្តល់ថាមពលសម្រន់ពេលល្ងាច។", taste: "ស្រួយផ្អែមឈ្ងុយ សូកូឡាដោះគោ", pack: "កញ្ចប់តូចច្រឡឹង បិទជិត", storage: "រក្សាទុកក្នុងកន្លែងស្ងួតត្រជាក់" },
-      C_CHES100: { cat: 'crispyFlavor', type: "ចេកបំពងស្រួយ", flavor: "ឈីស ទឹកដោះគោ", price: 5000, qty: 0, size: '100g', id: 'b2_100', benefits: "សម្រន់ឈីសស្រួយ ងាយស្រួលញ៉ាំកម្សាន្តគ្រប់ទីកន្លែង។", taste: "ប្រៃផ្អែម ឈ្ងុយឈីស ញ៉ាំកម្សាន្ត", pack: "កញ្ចប់តូចច្រឡឹង", storage: "រក្សាទុកបានយូរក្នុងថង់បិទជិត" },
-      C_BBQ100: { cat: 'crispyFlavor', type: "ចេកបំពងស្រួយ", flavor: "បាប៊ីឃ្យូ", price: 5000, qty: 0, size: '100g', id: 'b3_100', benefits: "កញ្ចប់ល្មមញ៉ាំ ឈ្ងុយគ្រឿងបាប៊ីឃ្យូស្តង់ដារ។", taste: "រសជាតិបាប៊ីឃ្យូ BBQ", pack: "កញ្ចប់តូច បិទជិត", storage: "រក្សាទុកក្នុងថង់បិទជិត" },
-      C_SPIC100: { cat: 'crispyFlavor', type: "ចេកបំពងស្រួយ", flavor: "ម្ទេសខ្ទឹម", price: 5000, qty: 0, size: '100g', id: 'b4_100', benefits: "រសជាតិហឹរអែម បើកភ្នែក និងជួយឱ្យបាត់ងងុយគេង។", taste: "ហឹរតិចៗ ប្រៃផ្អែមខ្ទិះ ឈ្ងុយខ្ទឹម", pack: "កញ្ចប់តូច បិទជិត", storage: "រក្សាទុកក្នុងកន្លែងស្ងួត" },
-
-      C_PLAIN250: { cat: 'crispyPlain', type: "ចេកបំពងស្រួយ", flavor: "រសជាតិដើមសាប", price: 5000, qty: 0, size: '250g', id: 'b5_250', benefits: "មិនមានជាតិស្ករបន្ថែម ញ៉ាំមិនទ្រលាន់ និងគ្មានខ្លាញ់កក។", taste: "ស្រួយស្រែស មិនជាប់ខ្លាញ់ រសជាតិដើមសាប", pack: "ថង់ហ្ស៊ីបបិទជិតការពារខ្យល់ចូល", storage: "រក្សាទុកក្នុងថង់បិទជិតបាន ៦ ខែ" },
-      C_PLAIN500: { cat: 'crispyPlain', type: "ចេកបំពងស្រួយ", flavor: "រសជាតិដើមសាប", price: 10000, qty: 0, size: '500g', id: 'b5_500', benefits: "កញ្ចប់ធំល្មម ចែករំលែកសប្បាយជុំគ្រួសារ។", taste: "ស្រួយស្រែស មិនជាប់ខ្លាញ់ រសជាតិដើមសាប", pack: "ថង់ហ្ស៊ីបបិទជិតការពារខ្យល់ចូល", storage: "រក្សាទុកក្នុងថង់បិទជិតបាន ៦ ខែ" }
-    };
-
-    function openPromoModal() { document.getElementById('promoModal').style.display = 'flex'; }
-    function closePromoModal() { document.getElementById('promoModal').style.display = 'none'; }
-    function playVideo(file) { const v = document.getElementById('popupVideo'); v.src=file; document.getElementById('videoModal').style.display='flex'; v.play().catch(e=>{});}
-    function closeVideoModal() { document.getElementById('popupVideo').pause(); document.getElementById('videoModal').style.display='none'; }
-
-    function renderComboSets() {
-      const container = document.getElementById('combo-sets-container');
-      container.innerHTML = '';
-      comboSetsData.forEach((combo) => {
-        const card = document.createElement('div');
-        card.className = 'combo-card-169';
-        card.onclick = () => openComboDetail(combo);
-        card.innerHTML = `<img src="${combo.image}" alt="${combo.name}" onerror="this.onerror=null; this.src='https://placehold.co/800x450/222/f1c40f?text=${encodeURIComponent(combo.name)}'"><div class="combo-thumbnail-padding"><div style="font-weight:900; display:flex; justify-content:space-between;"><span>🎁 ${combo.name}</span><span style="color:#f1c40f;">${combo.price.toLocaleString()} ៛</span></div></div>`;
-        container.appendChild(card);
-      });
-    }
-
-    function openComboDetail(combo) {
-      document.getElementById('detail-img').src = combo.image;
-      document.getElementById('detail-img').onerror = function() { this.onerror=null; this.src='https://placehold.co/400x400/222/f1c40f?text=MoMore'; };
-      document.getElementById('detail-name').innerText = combo.name;
-      document.getElementById('detail-price').innerText = `${combo.price.toLocaleString()} ៛ (${combo.size})`;
-      document.getElementById('detail-benefits').innerText = combo.benefits;
-      document.getElementById('detail-taste').innerText = combo.taste;
-      document.getElementById('detail-pack').innerText = combo.pack;
-      document.getElementById('detail-storage').innerText = combo.storage;
-      document.getElementById('detailModal').style.display = 'flex';
-    }
-
-    function renderVideoGallery() {
-      const container = document.getElementById('video-feed-container');
-      container.innerHTML = '';
-      videoList.forEach(item => {
-        const div = document.createElement('div');
-        div.className = 'video-card-item';
-        div.onclick = () => playVideo(item.file);
-        div.innerHTML = `<img src="${item.id}.jpg" onerror="this.onerror=null; this.src='https://placehold.co/150x250/222/f1c40f?text=${encodeURIComponent(item.name)}'"><div class="video-play-overlay">▶</div><div class="video-card-title">${item.name}</div>`;
-        container.appendChild(div);
-      });
-    }
-
-    function renderProducts() {
-      for (let key in products) {
-        let p = products[key];
-        const placeholderText = encodeURIComponent(`${p.flavor} (${p.size})`);
-        const cardHtml = `
-          <div class="product-card">
-            <div class="media-box" onclick="openProductDetail('${key}')">
-              <span class="weight-badge">${p.size}</span>
-              <img src="${p.id}.jpg" alt="${p.flavor}" onerror="this.onerror=null; this.src='https://placehold.co/400x400/222/f1c40f?text=${placeholderText}'">
-              <div class="play-video-badge" onclick="event.stopPropagation(); playVideo('${p.id}.mp4');">▶️ វីដេអូ</div>
-            </div>
-            <div class="product-info">
-              <div>
-                <div class="row-1-type" onclick="openProductDetail('${key}')">${p.type}</div>
-                <div class="row-2-flavor" onclick="openProductDetail('${key}')">${p.flavor}</div>
-                <span class="price-tag">${p.price.toLocaleString()} ៛</span>
-              </div>
-              <div class="quantity-control">
-                <button class="btn-qty" onclick="changeQty('${key}', -1)">-</button>
-                <span class="qty-number" id="qty-${key}">0</span>
-                <button class="btn-qty" onclick="changeQty('${key}', 1)">+</button>
-              </div>
-            </div>
-          </div>
-        `;
-        
-        if (p.cat === 'cat200') document.getElementById('cat-200-container').innerHTML += cardHtml;
-        else if (p.cat === 'cat300') document.getElementById('cat-300-container').innerHTML += cardHtml;
-        else if (p.cat === 'cat1kg') document.getElementById('cat-1kg-container').innerHTML += cardHtml;
-        else if (p.cat === 'cat5kg') document.getElementById('cat-5kg-container').innerHTML += cardHtml;
-        else if (p.cat === 'crispyFlavor') document.getElementById('cat-crispy-flavor-container').innerHTML += cardHtml;
-        else if (p.cat === 'crispyPlain') document.getElementById('cat-crispy-plain-container').innerHTML += cardHtml;
-      }
-    }
-
-    function openProductDetail(key) {
-      const p = products[key];
-      document.getElementById('detail-img').src = `${p.id}.jpg`;
-      document.getElementById('detail-img').onerror = function() { this.onerror=null; this.src='https://placehold.co/400x400/222/f1c40f?text=MoMore'; };
-      
-      document.getElementById('detail-name').innerText = `${p.type} ${p.flavor}`;
-      document.getElementById('detail-price').innerText = `${p.price.toLocaleString()} ៛ (${p.size})`;
-      document.getElementById('detail-benefits').innerText = p.benefits;
-      document.getElementById('detail-taste').innerText = p.taste;
-      document.getElementById('detail-pack').innerText = p.pack;
-      document.getElementById('detail-storage').innerText = p.storage;
-      document.getElementById('detailModal').style.display = 'flex';
-    }
-
-    function closeDetailModal() { document.getElementById('detailModal').style.display = 'none'; }
-
-    function changeQty(key, amount) {
-      products[key].qty += amount;
-      if (products[key].qty < 0) products[key].qty = 0;
-      document.getElementById(`qty-${key}`).innerText = products[key].qty;
-      calculateTotal();
-    }
-
-    function calculateTotal() {
-      let foodTotal = 0;
-      let totalPacks200 = 0, totalPacks100 = 0, totalPacks300 = 0, totalKgs = 0;
-
-      for (let key in products) {
-        let p = products[key];
-        foodTotal += p.qty * p.price;
-        
-        if (p.cat === 'cat200') totalPacks200 += p.qty;
-        if (p.cat === 'cat1kg') totalKgs += p.qty;
-        if (p.cat === 'cat5kg') totalKgs += (p.qty * 5);
-        if (p.cat === 'crispyFlavor' && p.size === '200g') totalPacks200 += p.qty;
-        if (p.cat === 'crispyFlavor' && p.size === '100g') totalPacks100 += p.qty;
-        if (p.cat === 'cat300') totalPacks300 += p.qty;
-        if (p.cat === 'crispyPlain' && p.size === '250g') totalPacks200 += p.qty;
-        if (p.cat === 'crispyPlain' && p.size === '500g') totalPacks200 += p.qty;
-      }
-
-      let deliveryFee = 8000;
-      let bonuses = [];
-      let isFreeShipping = false;
-
-      if (totalPacks200 >= 30) {
-        let freeAmt = Math.floor(totalPacks200/30)*6;
-        isFreeShipping = true; bonuses.push(`🎁 ទិញ 200g ថែម ${freeAmt} ប្រអប់ + 🚚 Free ដឹក`); totalPacks200 += freeAmt;
-      } else if (totalPacks200 >= 10) {
-        let freeAmt = Math.floor(totalPacks200/10)*2;
-        bonuses.push(`🎁 ទិញ 200g ថែម ${freeAmt} ប្រអប់`); totalPacks200 += freeAmt;
-      }
-
-      if (totalPacks100 >= 60) {
-        isFreeShipping = true; bonuses.push(`🎁 ទិញ 100g 60 ប្រអប់ ថែម 2 ប្រអប់ + 🚚 Free ដឹក`); totalPacks100 += 2;
-      }
-
-      if (totalKgs >= 10) {
-        let freeAmt = Math.floor(totalKgs/10)*1;
-        isFreeShipping = true; bonuses.push(`🎁 ទិញគីឡូ ថែម ${freeAmt}kg + 🚚 Free ដឹក`); totalKgs += freeAmt;
-      }
-
-      if (isFreeShipping || foodTotal === 0) deliveryFee = 0;
-
-      let minQtyMet = false;
-      let qtyStatusMsg = "";
-      let allComboPacks = totalPacks200 + totalPacks300;
-      
-      if (allComboPacks >= 10) minQtyMet = true;
-      if (totalPacks100 >= 20) minQtyMet = true;
-      if (totalKgs >= 5) minQtyMet = true;
-      if (allComboPacks + totalPacks100 >= 30) minQtyMet = true; 
-
-      const btnSubmit = document.getElementById('submit-btn');
-      
-      if (foodTotal === 0) {
-        btnSubmit.disabled = true; 
-        btnSubmit.innerText = "សូមរើសទំនិញ";
-      } else if (!minQtyMet) {
-        btnSubmit.disabled = true; 
-        let need = 10 - allComboPacks;
-        if(need > 0 && allComboPacks > 0) qtyStatusMsg = ` (ខ្វះ ${need})`;
-        btnSubmit.innerText = "🔒 មិនទាន់គ្រប់ ១០ប្រអប់" + qtyStatusMsg;
-      } else {
-        btnSubmit.disabled = false; 
-        btnSubmit.innerText = "🛒 បន្តការកុម្ម៉ង់";
-      }
-
-      let grandTotal = foodTotal + deliveryFee;
-      document.getElementById('total-val').innerText = grandTotal.toLocaleString();
-      
-      const delBox = document.getElementById('delivery-info');
-      if (foodTotal === 0) delBox.innerText = `🚚 សេវាដឹក៖ 8,000 ៛`;
-      else if (deliveryFee === 0) delBox.innerText = `🚚 សេវាដឹក៖ FREE`;
-      else delBox.innerText = `🚚 សេវាដឹក៖ ${deliveryFee.toLocaleString()} ៛`;
-
-      let packingNoteText = `(200g x ${totalPacks200}ប្រអប់) | (100g x ${totalPacks100}ប្រអប់)`;
-      if(totalPacks300 > 0) packingNoteText += ` | (300g x ${totalPacks300}ប្រអប់)`;
-      if(totalKgs > 0) packingNoteText += ` | (សរុប ${totalKgs} គីឡូ)`;
-
-      return { grandTotal, foodTotal, deliveryFee, bonuses, minQtyMet, packingNoteText };
-    }
-
-    function openCheckoutModal() {
-      let calc = calculateTotal();
-      if (calc.foodTotal === 0 || !calc.minQtyMet) return;
-
-      const lockedContainer = document.getElementById('popup-locked-items');
-      lockedContainer.innerHTML = '';
-      
-      for (let key in products) {
-        let p = products[key];
-        if (p.qty > 0) {
-          lockedContainer.innerHTML += `
-            <div class="preview-row">
-              <span>- ${p.flavor} ${p.size}</span>
-              <span>${(p.price * p.qty).toLocaleString()} ៛</span>
-            </div>
-            <div class="preview-sub">
-              (${p.qty} ប្រអប់ x ${p.price.toLocaleString()}៛)
-            </div>`;
+            updateCartState();
+            
+            // Visual feedback: simple animation on the floating cart
+            floatingCart.classList.add('scale-[1.02]');
+            setTimeout(() => floatingCart.classList.remove('scale-[1.02]'), 150);
         }
-      }
 
-      const promoBox = document.getElementById('promo-bonus-list');
-      if (calc.bonuses.length > 0) {
-        promoBox.style.display = 'block';
-        promoBox.innerHTML = calc.bonuses.join('<br><hr style="border-top:1px dashed #c8e6c9; margin:6px 0;">');
-      } else {
-        promoBox.style.display = 'none';
-      }
+        // Function to calculate and update UI
+        function updateCartState() {
+            cart.totalCount = cart.items.reduce((sum, item) => sum + item.quantity, 0);
+            cart.totalPrice = cart.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
-      document.getElementById('popup-delivery-fee').innerText = calc.deliveryFee === 0 ? "FREE" : `8,000 ៛`;
-      document.getElementById('popup-grand-total').innerText = `${calc.grandTotal.toLocaleString()} ៛`;
-      document.getElementById('packing-note-box').innerHTML = `📦 Note រៀបអីវ៉ាន់ (+Pro) ៖<br><span style="color:#000; font-size: 1.3rem;">${calc.packingNoteText}</span>`;
+            // Update UI Texts
+            cartCountBadge.innerText = cart.totalCount;
+            cartTotalText.innerText = `$${cart.totalPrice.toFixed(2)}`;
 
-      document.getElementById('checkoutModal').style.display = 'flex';
-    }
-
-    function closeCheckoutModal() { document.getElementById('checkoutModal').style.display = 'none'; }
-    
-    function toggleLocationFields() {
-      const type = document.getElementById('location-type').value;
-      document.getElementById('phnompenh-fields').style.display = (type === 'ភ្នំពេញ') ? 'block' : 'none';
-      document.getElementById('province-fields').style.display = (type === 'តាមខេត្ត') ? 'block' : 'none';
-    }
-
-    function submitOrder() {
-      let calc = calculateTotal();
-      const name = document.getElementById('cust-name').value.trim();
-      const phone = document.getElementById('cust-phone').value.trim();
-      const locType = document.getElementById('location-type').value;
-      const address = document.getElementById('cust-address').value.trim();
-      const branch = document.getElementById('cust-branch').value.trim();
-
-      if (!name) { alert("សូមបំពេញឈ្មោះអតិថិជន!"); return; }
-      if (!phone) { alert("សូមបំពេញលេខទូរស័ព្ទទំនាក់ទំនង!"); return; }
-
-      let fullAddress = locType === 'ភ្នំពេញ' ? address : `ខេត្ត (${branch})`;
-
-      let text = `🛍️ MOMORE WHOLESALE\n👤 ឈ្មោះ: ${name}\n📞 ទូរស័ព្ទ: ${phone}\n📍 ទីតាំង: ${locType} | ${fullAddress}\n\n🛒 បញ្ជីកុម្ម៉ង់៖\n`;
-
-      for (let key in products) {
-        if (products[key].qty > 0) {
-          let p = products[key];
-          text += `- ${p.flavor} (${p.size}): ${p.qty} x ${p.price.toLocaleString()}៛ = ${(p.price * p.qty).toLocaleString()}៛\n`;
+            // Show or hide floating cart
+            if (cart.totalCount > 0) {
+                floatingCart.classList.remove('cart-hidden');
+                floatingCart.classList.add('cart-slide-up');
+                
+                // Optional: We can also configure the native Telegram MainButton
+                tg.MainButton.setText(`CHECKOUT $${cart.totalPrice.toFixed(2)}`);
+                if(!tg.MainButton.isVisible) {
+                    // tg.MainButton.show(); // Uncomment if you prefer native TG button over HTML floating button
+                }
+            } else {
+                floatingCart.classList.remove('cart-slide-up');
+                floatingCart.classList.add('cart-hidden');
+                // tg.MainButton.hide();
+            }
         }
-      }
 
-      text += `\n🚚 សេវាដឹក: ${calc.deliveryFee === 0 ? 'FREE' : calc.deliveryFee.toLocaleString()+' ៛'}\n`;
-      text += `💰 សរុបទាំងអស់: ${calc.grandTotal.toLocaleString()} ៛\n`;
-      
-      if(calc.bonuses.length > 0) text += `\n🎁 ប្រូម៉ូសិន:\n${calc.bonuses.join('\n')}\n`;
-      text += `\n📦 Note រៀបអីវ៉ាន់:\n${calc.packingNoteText}\n`;
+        // Function to handle Checkout (Telegram SDK Integration Placeholder)
+        function checkout() {
+            if (cart.totalCount === 0) return;
 
-      const encodedText = encodeURIComponent(text);
-      window.open(`https://t.me/MoMore_colection?text=${encodedText}`, '_blank');
-    }
+            // Log data for debugging
+            console.log("Preparing to checkout: ", cart);
 
-    renderComboSets();
-    renderVideoGallery();
-    renderProducts();
-  </script>
+            // Using Telegram WebApp method to send data back to the bot
+            const checkoutData = JSON.stringify({
+                action: 'checkout',
+                items: cart.items,
+                total: cart.totalPrice
+            });
+
+            // If running inside Telegram
+            if (tg.initDataUnsafe && Object.keys(tg.initDataUnsafe).length > 0) {
+                // For bots expecting Web App data (keyboard button)
+                tg.sendData(checkoutData);
+                
+                // OR alternatively, if you use a direct API call to your backend:
+                // fetch('https://your-backend.com/api/order', { method: 'POST', body: checkoutData });
+                
+                // Show a brief message before closing (Telegram UI usually closes immediately on sendData)
+            } else {
+                // Fallback for Web Browser testing
+                const msgBox = document.createElement('div');
+                msgBox.style.cssText = "position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#111827;color:white;padding:20px;border-radius:12px;z-index:9999;text-align:center;";
+                msgBox.innerHTML = `
+                    <h3 style="font-size:18px;font-weight:bold;margin-bottom:10px;">Order Summary</h3>
+                    <p>Total Items: ${cart.totalCount}</p>
+                    <p>Total Price: $${cart.totalPrice.toFixed(2)}</p>
+                    <p style="margin-top:10px;font-size:12px;color:#aaa;">(Telegram WebApp SDK simulated)</p>
+                    <button onclick="this.parentElement.remove()" style="margin-top:15px;background:#f97316;border:none;padding:8px 16px;border-radius:20px;color:white;cursor:pointer;">Close</button>
+                `;
+                document.body.appendChild(msgBox);
+            }
+        }
+
+        // Native MainButton click handler (If using tg.MainButton.show())
+        tg.onEvent('mainButtonClicked', function() {
+            checkout();
+        });
+
+    </script>
 </body>
 </html>
