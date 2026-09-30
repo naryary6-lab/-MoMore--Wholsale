@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ម៉ូម័រ - Momore</title>
+    <title>ម៉ូម័រ - Momore (Telegram Mini App)</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -29,8 +29,10 @@
                             DEFAULT: '#f97316', // Orange 500
                             dark: '#ea580c',   // Orange 600
                             light: '#fdba74',  // Orange 300
+                            red: '#dc2626'
                         },
-                        darkBg: '#111827', // Gray 900
+                        gold: '#FFE600',
+                        darkBg: '#120303', // Original dark red/black
                     }
                 }
             }
@@ -38,220 +40,115 @@
     </script>
 
     <style>
-        /* Hide scrollbar for Chrome, Safari and Opera */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        /* Hide scrollbar for IE, Edge and Firefox */
-        .no-scrollbar {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
-        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
         body {
             -webkit-tap-highlight-color: transparent;
-            background-color: #f3f4f6; /* Gray 100 */
+            background-color: #f3f4f6; 
         }
         
-        /* Smooth transition for cart button */
-        .cart-slide-up {
-            transform: translateY(0);
-            transition: transform 0.3s ease-out;
-        }
-        .cart-hidden {
-            transform: translateY(150%);
-            transition: transform 0.3s ease-in;
-        }
+        /* Cart slide animation */
+        .cart-slide-up { transform: translateY(0); transition: transform 0.3s ease-out; }
+        .cart-hidden { transform: translateY(150%); transition: transform 0.3s ease-in; }
+
+        /* Modal bottom sheet animation */
+        .bottom-sheet { transform: translateY(100%); transition: transform 0.35s cubic-bezier(0.1, 0.76, 0.55, 1); }
+        .bottom-sheet.open { transform: translateY(0); }
+        
+        /* Backdrop fade */
+        .backdrop-fade { opacity: 0; transition: opacity 0.3s ease-in-out; pointer-events: none; }
+        .backdrop-fade.open { opacity: 1; pointer-events: auto; }
     </style>
 </head>
-<body class="font-sans text-gray-800 pb-24">
+<body class="font-sans text-gray-800 pb-28 bg-gray-50">
 
-    <!-- App Container (Max width for desktop viewing to simulate mobile) -->
-    <div class="max-w-md mx-auto bg-gray-50 min-h-screen relative shadow-lg">
+    <div class="max-w-md mx-auto min-h-screen relative shadow-lg bg-gray-50 overflow-hidden" id="app-container">
 
         <!-- Header -->
-        <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md px-4 py-3 flex justify-between items-center shadow-sm">
-            <div class="flex items-center gap-2">
-                <div class="w-10 h-10 bg-brand rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md">
+        <header class="sticky top-0 z-30 bg-darkBg text-white px-4 py-3 flex justify-between items-center shadow-md border-b-2 border-brand">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-brand rounded-full flex items-center justify-center font-bold text-lg border-2 border-gold shadow-md">
                     ម
                 </div>
-                <h1 class="text-xl font-bold text-gray-900 tracking-wide">ម៉ូម័រ</h1>
+                <div class="flex flex-col">
+                    <h1 class="text-lg font-black tracking-wide text-gold leading-tight">ម៉ូម័រ MOMORE</h1>
+                    <span class="text-[10px] text-gray-300">ដំណាប់ចេកណាំវ៉ាខ្មែរ & ចេកបំពង</span>
+                </div>
             </div>
-            <button class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-200 transition">
-                <i class="fas fa-search"></i>
-            </button>
         </header>
 
-        <!-- Hero Section -->
-        <div class="px-4 py-4">
-            <div class="bg-darkBg rounded-2xl p-5 relative overflow-hidden shadow-xl flex items-center justify-between">
-                <div class="z-10 w-2/3">
-                    <span class="bg-brand/20 text-brand text-xs font-semibold px-2 py-1 rounded-md mb-2 inline-block">លក់ដាច់បំផុត 🔥</span>
-                    <h2 class="text-white text-lg font-bold leading-snug mb-2">
-                        ដំណាប់ចេកទន់ និង ចេកបំពងស្រួយរសជាតិឆ្ងាញ់
-                    </h2>
-                    <p class="text-gray-300 text-xs mb-3">ផលិតពីធម្មជាតិ ១០០% គ្មានសារធាតុរក្សាទុក។</p>
-                    <button class="bg-brand hover:bg-brand-dark text-white text-sm font-semibold py-2 px-4 rounded-full shadow-lg shadow-brand/30 transition transform active:scale-95">
-                        កម្ម៉ង់ឥឡូវនេះ <i class="fas fa-arrow-right ml-1"></i>
-                    </button>
-                </div>
-                <!-- Image Placeholder -->
-                <div class="absolute right-[-20px] bottom-[-20px] w-40 h-40">
-                    <img src="https://placehold.co/300x300/f97316/ffffff?text=Momore+Banana" alt="Banana Preserves" class="w-full h-full object-cover rounded-full border-4 border-darkBg shadow-2xl opacity-90 transform rotate-[-15deg]">
-                </div>
-            </div>
-        </div>
-
-        <!-- Categories -->
-        <div class="px-4 mb-2">
-            <h3 class="text-sm font-bold text-gray-800 mb-3 flex items-center justify-center">
-                <span class="h-px bg-gray-300 flex-1 mr-3"></span>
-                មុខម្ហូបពេញនិយម
-                <span class="h-px bg-gray-300 flex-1 ml-3"></span>
-            </h3>
-            <div class="flex overflow-x-auto gap-3 no-scrollbar pb-2">
-                <button class="whitespace-nowrap px-5 py-2 bg-brand text-white rounded-full text-sm font-medium shadow-md shadow-brand/20">ទាំងអស់</button>
-                <button class="whitespace-nowrap px-5 py-2 bg-white text-gray-600 border border-gray-200 rounded-full text-sm font-medium hover:bg-gray-50">ដំណាប់ចេកទន់</button>
-                <button class="whitespace-nowrap px-5 py-2 bg-white text-gray-600 border border-gray-200 rounded-full text-sm font-medium hover:bg-gray-50">ចេកបំពងស្រួយ</button>
-                <button class="whitespace-nowrap px-5 py-2 bg-white text-gray-600 border border-gray-200 rounded-full text-sm font-medium hover:bg-gray-50">ឈុតពិសេស</button>
-            </div>
-        </div>
-
-        <!-- Product Grid Part 1 -->
-        <div class="px-4 grid grid-cols-2 gap-4 mb-4">
-            
-            <!-- Product Card 1 -->
-            <div class="bg-white rounded-2xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between">
-                <div class="relative w-full aspect-square mb-3 rounded-xl overflow-hidden bg-gray-100">
-                    <span class="absolute top-2 left-2 bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded z-10">HOT</span>
-                    <img src="https://placehold.co/200x200/ffe4e6/be123c?text=Soft+Banana" alt="Product" class="w-full h-full object-cover">
-                </div>
-                <div>
-                    <h4 class="font-semibold text-sm text-gray-800 leading-tight mb-1">ដំណាប់ចេកទន់ធម្មជាតិ</h4>
-                    <div class="flex items-center text-xs text-yellow-500 mb-2">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                        <span class="text-gray-400 ml-1">(4.9)</span>
-                    </div>
-                    <div class="flex justify-between items-center mt-auto">
-                        <span class="font-bold text-lg text-gray-900">$3.00</span>
-                        <button onclick="addToCart('ដំណាប់ចេកទន់ធម្មជាតិ', 3.00)" class="bg-orange-100 hover:bg-orange-200 text-brand font-bold py-1 px-3 rounded-lg transition transform active:scale-95">
-                            Add <i class="fas fa-plus text-xs ml-1"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Product Card 2 -->
-            <div class="bg-white rounded-2xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between">
-                <div class="relative w-full aspect-square mb-3 rounded-xl overflow-hidden bg-gray-100">
-                    <img src="https://placehold.co/200x200/fef3c7/b45309?text=Sesame+Banana" alt="Product" class="w-full h-full object-cover">
-                </div>
-                <div>
-                    <h4 class="font-semibold text-sm text-gray-800 leading-tight mb-1">ដំណាប់ចេកទន់ល្ង</h4>
-                    <div class="flex items-center text-xs text-yellow-500 mb-2">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        <span class="text-gray-400 ml-1">(5.0)</span>
-                    </div>
-                    <div class="flex justify-between items-center mt-auto">
-                        <span class="font-bold text-lg text-gray-900">$3.50</span>
-                        <button onclick="addToCart('ដំណាប់ចេកទន់ល្ង', 3.50)" class="bg-orange-100 hover:bg-orange-200 text-brand font-bold py-1 px-3 rounded-lg transition transform active:scale-95">
-                            Add <i class="fas fa-plus text-xs ml-1"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Promo Combo Banner -->
-        <div class="px-4 mb-4">
-            <div class="bg-gradient-to-r from-amber-400 to-orange-500 rounded-2xl p-4 flex items-center justify-between shadow-md relative overflow-hidden">
-                <!-- Deco circles -->
-                <div class="absolute -top-6 -left-6 w-20 h-20 bg-white opacity-20 rounded-full"></div>
-                <div class="absolute -bottom-8 -right-8 w-24 h-24 bg-white opacity-20 rounded-full"></div>
-                
-                <div class="relative z-10 w-[65%]">
-                    <h3 class="font-black text-white text-xl uppercase italic mb-1 text-shadow">Combo សន្សំប្រាក់</h3>
-                    <p class="text-white/90 text-xs mb-2">ទិញដំណាប់ចេក ១ + ចេកបំពង ១ ត្រឹមតែ</p>
-                    <div class="flex items-end gap-2">
-                        <span class="text-white font-bold text-2xl leading-none">$5.00</span>
-                        <span class="text-white/70 line-through text-sm mb-0.5">$5.50</span>
-                    </div>
-                    <button onclick="addToCart('ឈុតសន្សំប្រាក់ (ទន់+ស្រួយ)', 5.00)" class="mt-3 bg-darkBg text-white text-xs font-bold py-1.5 px-4 rounded-full shadow-lg">
-                        បញ្ជាទិញឈុតនេះ
-                    </button>
-                </div>
-                <div class="relative z-10 w-[35%] flex justify-end">
-                     <img src="https://placehold.co/150x150/ffffff/f97316?text=Combo" alt="Combo" class="w-24 h-24 object-cover rounded-full border-2 border-white shadow-lg">
-                </div>
-            </div>
-        </div>
-
-        <!-- Product Grid Part 2 -->
-        <div class="px-4 grid grid-cols-2 gap-4 mb-6">
-            
-            <!-- Product Card 3 -->
-            <div class="bg-white rounded-2xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between">
-                <div class="relative w-full aspect-square mb-3 rounded-xl overflow-hidden bg-gray-100">
-                    <img src="https://placehold.co/200x200/ecfccb/4d7c0f?text=Crispy+Sweet" alt="Product" class="w-full h-full object-cover">
-                </div>
-                <div>
-                    <h4 class="font-semibold text-sm text-gray-800 leading-tight mb-1">ចេកបំពងស្រួយផ្អែម</h4>
-                    <div class="flex items-center text-xs text-yellow-500 mb-2">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-                        <span class="text-gray-400 ml-1">(4.0)</span>
-                    </div>
-                    <div class="flex justify-between items-center mt-auto">
-                        <span class="font-bold text-lg text-gray-900">$2.50</span>
-                        <button onclick="addToCart('ចេកបំពងស្រួយផ្អែម', 2.50)" class="bg-orange-100 hover:bg-orange-200 text-brand font-bold py-1 px-3 rounded-lg transition transform active:scale-95">
-                            Add <i class="fas fa-plus text-xs ml-1"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Product Card 4 -->
-            <div class="bg-white rounded-2xl p-3 shadow-sm border border-gray-100 flex flex-col justify-between">
-                <div class="relative w-full aspect-square mb-3 rounded-xl overflow-hidden bg-gray-100">
-                    <img src="https://placehold.co/200x200/e0f2fe/0369a1?text=Crispy+Salty" alt="Product" class="w-full h-full object-cover">
-                </div>
-                <div>
-                    <h4 class="font-semibold text-sm text-gray-800 leading-tight mb-1">ចេកបំពងស្រួយប្រៃ</h4>
-                    <div class="flex items-center text-xs text-yellow-500 mb-2">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                        <span class="text-gray-400 ml-1">(4.8)</span>
-                    </div>
-                    <div class="flex justify-between items-center mt-auto">
-                        <span class="font-bold text-lg text-gray-900">$2.50</span>
-                        <button onclick="addToCart('ចេកបំពងស្រួយប្រៃ', 2.50)" class="bg-orange-100 hover:bg-orange-200 text-brand font-bold py-1 px-3 rounded-lg transition transform active:scale-95">
-                            Add <i class="fas fa-plus text-xs ml-1"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="text-center pb-8 pt-4">
-            <p class="text-gray-400 text-xs">© 2026 ម៉ូម័រ (Momore). រក្សាសិទ្ធិគ្រប់យ៉ាង។</p>
+        <!-- Main Product Container (Injected via JS) -->
+        <div id="catalog-container" class="pb-6">
+            <!-- Dynamic Content goes here -->
         </div>
 
         <!-- Floating Cart Button -->
-        <div id="floatingCart" class="fixed bottom-0 left-0 right-0 z-50 p-4 max-w-md mx-auto cart-hidden">
-            <div class="bg-brand rounded-2xl shadow-xl shadow-brand/40 flex items-center justify-between p-4 cursor-pointer hover:bg-brand-dark transition" onclick="checkout()">
-                <div class="flex items-center gap-3 text-white">
+        <div id="floatingCart" class="fixed bottom-0 left-0 right-0 z-20 p-4 max-w-md mx-auto cart-hidden">
+            <div class="bg-brand-red rounded-2xl shadow-[0_10px_25px_rgba(220,38,38,0.5)] flex items-center justify-between p-4 cursor-pointer hover:bg-red-700 transition border border-red-500" onclick="checkout()">
+                <div class="flex items-center gap-4 text-white">
                     <div class="relative">
-                        <i class="fas fa-shopping-cart text-xl"></i>
-                        <span id="cartCountBadge" class="absolute -top-2 -right-2 bg-white text-brand font-bold text-[10px] w-5 h-5 flex items-center justify-center rounded-full shadow-sm">0</span>
+                        <div class="bg-white/20 p-2 rounded-full">
+                            <i class="fas fa-shopping-basket text-xl"></i>
+                        </div>
+                        <span id="cartCountBadge" class="absolute -top-1 -right-1 bg-gold text-darkBg font-black text-[11px] w-5 h-5 flex items-center justify-center rounded-full shadow-md">0</span>
                     </div>
                     <div class="flex flex-col">
-                        <span class="text-xs font-medium text-white/80">សរុបទឹកប្រាក់</span>
-                        <span id="cartTotalText" class="font-bold text-lg leading-none">$0.00</span>
+                        <span class="text-[11px] font-medium text-white/90">ទឹកប្រាក់សរុប</span>
+                        <span id="cartTotalText" class="font-black text-xl leading-none text-gold">0 ៛</span>
                     </div>
                 </div>
-                <div class="flex items-center text-white font-semibold text-sm">
-                    View Cart <i class="fas fa-chevron-right ml-2 text-xs"></i>
+                <div class="flex items-center text-white font-bold text-sm bg-black/20 px-4 py-2 rounded-xl">
+                    ទូទាត់ <i class="fas fa-chevron-right ml-2 text-xs"></i>
                 </div>
+            </div>
+        </div>
+
+        <!-- POP-UP MODAL (Bottom Sheet) -->
+        <div id="modalBackdrop" class="fixed inset-0 bg-black/60 z-40 backdrop-fade backdrop-blur-sm max-w-md mx-auto" onclick="closeModal()"></div>
+        
+        <div id="productModal" class="fixed bottom-0 left-0 right-0 z-50 w-full max-w-md mx-auto bg-white rounded-t-3xl shadow-2xl bottom-sheet flex flex-col max-h-[85vh]">
+            <!-- Close handle -->
+            <div class="w-full flex justify-center pt-3 pb-1" onclick="closeModal()">
+                <div class="w-12 h-1.5 bg-gray-300 rounded-full"></div>
+            </div>
+            
+            <div class="overflow-y-auto px-5 pb-6 pt-2">
+                <!-- Image -->
+                <div class="w-full aspect-square bg-gray-100 rounded-2xl mb-4 relative overflow-hidden border border-gray-200">
+                    <img id="modalImage" src="" alt="Product" class="w-full h-full object-cover">
+                    <span id="modalCategoryLabel" class="absolute top-3 left-3 bg-brand/90 text-white text-[10px] font-bold px-2 py-1 rounded-lg backdrop-blur-sm shadow-sm">Category</span>
+                </div>
+                
+                <!-- Info -->
+                <div class="mb-4 border-b border-gray-100 pb-4">
+                    <div class="flex justify-between items-start mb-1">
+                        <h2 id="modalTitle" class="text-xl font-bold text-gray-900 leading-tight pr-2">ឈ្មោះផលិតផល</h2>
+                    </div>
+                    <div class="flex items-center gap-2 mb-2">
+                        <span id="modalSize" class="bg-gray-100 text-gray-600 text-xs font-semibold px-2.5 py-1 rounded-md border border-gray-200">ទំហំ</span>
+                    </div>
+                    <div id="modalPrice" class="text-2xl font-black text-brand-red">0 ៛</div>
+                </div>
+                
+                <!-- Quantity Selector -->
+                <div class="flex items-center justify-between bg-gray-50 p-4 rounded-2xl mb-6 border border-gray-100">
+                    <span class="font-semibold text-gray-700 text-sm">ចំនួនបញ្ជាទិញ៖</span>
+                    <div class="flex items-center gap-4">
+                        <button onclick="changeModalQty(-1)" class="w-10 h-10 rounded-full bg-white border border-gray-300 text-gray-600 flex items-center justify-center text-lg hover:bg-gray-100 active:scale-95 shadow-sm">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <span id="modalQtyDisplay" class="font-bold text-xl min-w-[30px] text-center">1</span>
+                        <button onclick="changeModalQty(1)" class="w-10 h-10 rounded-full bg-brand text-white flex items-center justify-center text-lg hover:bg-brand-dark active:scale-95 shadow-md shadow-brand/30">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Add Button -->
+                <button onclick="confirmAddToCart()" class="w-full bg-brand hover:bg-brand-dark text-white font-bold py-4 rounded-2xl shadow-lg shadow-brand/40 text-lg transition active:scale-[0.98] flex justify-center items-center gap-2">
+                    <i class="fas fa-cart-plus"></i> បន្ថែមចូលកន្ត្រក
+                </button>
             </div>
         </div>
 
@@ -259,111 +156,272 @@
 
     <!-- Scripts -->
     <script>
-        // Telegram WebApp Initialization
+        // Telegram WebApp Init
         let tg = window.Telegram.WebApp;
-        tg.expand(); // Expand app to maximum available height
+        tg.expand();
         
-        // Cart State
-        let cart = {
-            items: [],
-            totalCount: 0,
-            totalPrice: 0.00
-        };
-
-        const floatingCart = document.getElementById('floatingCart');
-        const cartCountBadge = document.getElementById('cartCountBadge');
-        const cartTotalText = document.getElementById('cartTotalText');
-
-        // Function to handle Add to Cart
-        function addToCart(name, price) {
-            // Check if item exists
-            let existingItem = cart.items.find(item => item.name === name);
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.items.push({ name: name, price: price, quantity: 1 });
+        // --- DATA FROM YOUR ORIGINAL CODE ---
+        const fullCatalog = [
+            {
+                section: "🍌 ដំណាប់ចេកណាំវ៉ាខ្មែរ (២០០ ក្រាម)",
+                imgColor: "ffe4e6", imgText: "be123c",
+                items: [
+                    { id: 'd1_200', catName: 'ដំណាប់ចេក', name: 'រសជាតិដើម', sizeStr: '200g', isKg: false, r: 10000, group: 'damnab200' },
+                    { id: 'd2_200', catName: 'ដំណាប់ចេក', name: 'រសជាតិរោយល្ង', sizeStr: '200g', isKg: false, r: 10000, group: 'damnab200' },
+                    { id: 'd3_200', catName: 'ដំណាប់ចេក', name: 'រោយអាល់មុន', sizeStr: '200g', isKg: false, r: 12000, group: 'damnab200' },
+                    { id: 'd4_200', catName: 'ដំណាប់ចេក', name: 'រោយធញ្ញជាតិគ្រប់មុខ', sizeStr: '200g', isKg: false, r: 12000, group: 'damnab200' },
+                    { id: 'd5_200', catName: 'ដំណាប់ចេក', name: 'រោយដូង', sizeStr: '200g', isKg: false, r: 12000, group: 'damnab200' },
+                    { id: 'd6_200', catName: 'ដំណាប់ចេក', name: 'ចេកមូល', sizeStr: '200g', isKg: false, r: 10000, group: 'damnab200' }
+                ]
+            },
+            {
+                section: "🍌 ចេកបំពងស្រួយ (២០០ ក្រាម)",
+                imgColor: "fef3c7", imgText: "b45309",
+                items: [
+                    { id: 'b1_200', catName: 'ចេកបំពងស្រួយ', name: 'សូកូឡាទឹកដោះគោ', sizeStr: '200g', isKg: false, r: 14000, group: 'crispy200' },
+                    { id: 'b2_200', catName: 'ចេកបំពងស្រួយ', name: 'ឈីស ទឹកដោះគោ', sizeStr: '200g', isKg: false, r: 14000, group: 'crispy200' },
+                    { id: 'b3_200', catName: 'ចេកបំពងស្រួយ', name: 'បាប៊ីឃ្យូ BBQ 🔥', sizeStr: '200g', isKg: false, r: 14000, group: 'crispy200' },
+                    { id: 'b4_200', catName: 'ចេកបំពងស្រួយ', name: 'ម្ទេស ខ្ទឹម 🌶️🧄', sizeStr: '200g', isKg: false, r: 14000, group: 'crispy200' }
+                ]
+            },
+            {
+                section: "🍌 ចេកបំពងស្រួយ (១០០ ក្រាម)",
+                imgColor: "e0f2fe", imgText: "0369a1",
+                items: [
+                    { id: 'b1_100', catName: 'ចេកបំពងស្រួយ', name: 'សូកូឡាទឹកដោះគោ', sizeStr: '100g', isKg: false, r: 7000, group: 'crispy100' },
+                    { id: 'b2_100', catName: 'ចេកបំពងស្រួយ', name: 'ឈីស ទឹកដោះគោ', sizeStr: '100g', isKg: false, r: 7000, group: 'crispy100' },
+                    { id: 'b3_100', catName: 'ចេកបំពងស្រួយ', name: 'បាប៊ីឃ្យូ BBQ 🔥', sizeStr: '100g', isKg: false, r: 7000, group: 'crispy100' },
+                    { id: 'b4_100', catName: 'ចេកបំពងស្រួយ', name: 'ម្ទេស ខ្ទឹម 🌶️🧄', sizeStr: '100g', isKg: false, r: 7000, group: 'crispy100' }
+                ]
+            },
+            {
+                section: "🍫 ដំណាប់ចេកសូកូឡា (៣០០ ក្រាម)",
+                imgColor: "f3e8ff", imgText: "7e22ce",
+                items: [
+                    { id: 'd7_300', catName: 'ដំណាប់ចេក', name: 'សូកូឡាស្នូលដូង', sizeStr: '300g', isKg: false, r: 20000, group: 'choco300' },
+                    { id: 'd8_300', catName: 'ដំណាប់ចេក', name: 'សូកូឡាស្នូលចន្ទី', sizeStr: '300g', isKg: false, r: 20000, group: 'choco300' }
+                ]
+            },
+            {
+                section: "🍌 ចេកបំពងស្រួយ - រសជាតិដើម",
+                imgColor: "ecfccb", imgText: "4d7c0f",
+                items: [
+                    { id: 'b5_250', catName: 'ចេកបំពងស្រួយ', name: 'រសជាតិដើម (សាបស្រួយ)', sizeStr: '250g', isKg: false, r: 7000, group: 'plain' },
+                    { id: 'b5_500', catName: 'ចេកបំពងស្រួយ', name: 'រសជាតិដើម (សាបស្រួយ)', sizeStr: '500g', isKg: false, r: 13000, group: 'plain' },
+                    { id: 'b5_1kg', catName: 'ចេកបំពងស្រួយ', name: 'រសជាតិដើម (សាបស្រួយ)', sizeStr: '1 kg', isKg: true, r: 25000, group: 'plain' }
+                ]
+            },
+            {
+                section: "📦 ដំណាប់ចេកណាំវ៉ាខ្មែរ (ប្រភេទ 1kg)",
+                imgColor: "ffedd5", imgText: "c2410c",
+                items: [
+                    { id: 'd1_1kg', catName: 'ដំណាប់ចេក', name: 'រសជាតិដើម', sizeStr: '1 kg', isKg: true, r: 50000, group: 'damnabKg' },
+                    { id: 'd2_1kg', catName: 'ដំណាប់ចេក', name: 'រសជាតិរោយល្ង', sizeStr: '1 kg', isKg: true, r: 50000, group: 'damnabKg' },
+                    { id: 'd3_1kg', catName: 'ដំណាប់ចេក', name: 'រោយអាល់មុន', sizeStr: '1 kg', isKg: true, r: 60000, group: 'damnabKg' },
+                    { id: 'd4_1kg', catName: 'ដំណាប់ចេក', name: 'រោយធញ្ញជាតិគ្រប់មុខ', sizeStr: '1 kg', isKg: true, r: 60000, group: 'damnabKg' },
+                    { id: 'd5_1kg', catName: 'ដំណាប់ចេក', name: 'រោយដូង', sizeStr: '1 kg', isKg: true, r: 60000, group: 'damnabKg' },
+                    { id: 'd6_1kg', catName: 'ដំណាប់ចេក', name: 'ចេកមូល', sizeStr: '1 kg', isKg: true, r: 50000, group: 'damnabKg' }
+                ]
             }
-            
-            // Provide Haptic Feedback via Telegram SDK (if available)
-            if (tg.HapticFeedback) {
-                tg.HapticFeedback.impactOccurred('light');
-            }
+        ];
 
-            updateCartState();
-            
-            // Visual feedback: simple animation on the floating cart
-            floatingCart.classList.add('scale-[1.02]');
-            setTimeout(() => floatingCart.classList.remove('scale-[1.02]'), 150);
-        }
+        // System State
+        let cart = {}; 
+        // Using object mapped by ID to store quantity, similar to original code logic
+        
+        let activeModalItem = null;
+        let tempModalQty = 1;
 
-        // Function to calculate and update UI
-        function updateCartState() {
-            cart.totalCount = cart.items.reduce((sum, item) => sum + item.quantity, 0);
-            cart.totalPrice = cart.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        // Render UI dynamically based on catalog
+        function renderMenu() {
+            const container = document.getElementById('catalog-container');
+            container.innerHTML = '';
 
-            // Update UI Texts
-            cartCountBadge.innerText = cart.totalCount;
-            cartTotalText.innerText = `$${cart.totalPrice.toFixed(2)}`;
+            // Add Promo Combo Banner at top
+            container.innerHTML += `
+                <div class="px-4 py-4">
+                    <div class="bg-gradient-to-r from-amber-400 to-orange-500 rounded-2xl p-4 flex items-center justify-between shadow-md relative overflow-hidden">
+                        <div class="absolute -top-6 -left-6 w-20 h-20 bg-white opacity-20 rounded-full"></div>
+                        <div class="relative z-10 w-[70%]">
+                            <h3 class="font-black text-white text-lg uppercase italic mb-1">ផ្តល់ជូនការ Free ដឹក</h3>
+                            <p class="text-white/90 text-[11px] font-medium leading-tight">ទិញដំណាប់ចេក ៥ប្រអប់ ថែម ១ប្រអប់ ព្រមទាំងដឹកជូនដោយឥតគិតថ្លៃ!</p>
+                        </div>
+                        <div class="relative z-10 w-[30%] flex justify-end">
+                            <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center border border-white/50">
+                                <i class="fas fa-gift text-2xl text-white"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
 
-            // Show or hide floating cart
-            if (cart.totalCount > 0) {
-                floatingCart.classList.remove('cart-hidden');
-                floatingCart.classList.add('cart-slide-up');
+            fullCatalog.forEach(sec => {
+                // Section Title
+                let sectionHtml = `
+                    <div class="px-4 mt-2 mb-3">
+                        <h3 class="text-sm font-black text-darkBg flex items-center">
+                            <span class="w-1 h-4 bg-brand rounded-full mr-2"></span>
+                            ${sec.section}
+                        </h3>
+                    </div>
+                    <div class="px-4 grid grid-cols-2 gap-3 mb-6">
+                `;
+
+                // Render Items as Cards
+                sec.items.forEach(p => {
+                    // Create safe strings for function call
+                    const itemJson = encodeURIComponent(JSON.stringify({...p, imgColor: sec.imgColor, imgText: sec.imgText}));
+                    
+                    sectionHtml += `
+                        <div class="bg-white rounded-2xl p-2.5 shadow-sm border border-gray-100 flex flex-col justify-between" onclick="openProductModal('${itemJson}')">
+                            <div class="relative w-full aspect-square mb-2 rounded-xl overflow-hidden bg-gray-50 border border-gray-100">
+                                <img src="https://placehold.co/200x200/${sec.imgColor}/${sec.imgText}?text=${encodeURIComponent(p.name)}" alt="Product" class="w-full h-full object-cover">
+                            </div>
+                            <div class="flex-1 flex flex-col justify-between">
+                                <div>
+                                    <h4 class="font-bold text-xs text-gray-800 leading-tight mb-1">${p.name}</h4>
+                                    <span class="text-[10px] text-gray-500 bg-gray-100 px-1.5 py-0.5 rounded">${p.sizeStr}</span>
+                                </div>
+                                <div class="flex justify-between items-end mt-2 pt-2 border-t border-gray-50">
+                                    <span class="font-black text-[13px] text-brand-red">${p.r.toLocaleString()}៛</span>
+                                    <button class="bg-orange-50 text-brand hover:bg-brand hover:text-white w-7 h-7 rounded-lg flex items-center justify-center transition">
+                                        <i class="fas fa-plus text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
                 
-                // Optional: We can also configure the native Telegram MainButton
-                tg.MainButton.setText(`CHECKOUT $${cart.totalPrice.toFixed(2)}`);
-                if(!tg.MainButton.isVisible) {
-                    // tg.MainButton.show(); // Uncomment if you prefer native TG button over HTML floating button
-                }
-            } else {
-                floatingCart.classList.remove('cart-slide-up');
-                floatingCart.classList.add('cart-hidden');
-                // tg.MainButton.hide();
+                sectionHtml += `</div>`;
+                container.innerHTML += sectionHtml;
+            });
+        }
+
+        // --- POP-UP MODAL LOGIC ---
+        const backdrop = document.getElementById('modalBackdrop');
+        const sheet = document.getElementById('productModal');
+        
+        function openProductModal(itemJsonStr) {
+            const item = JSON.parse(decodeURIComponent(itemJsonStr));
+            activeModalItem = item;
+            tempModalQty = 1; // reset default qty
+
+            // Populate Modal Data
+            document.getElementById('modalTitle').innerText = item.name;
+            document.getElementById('modalCategoryLabel').innerText = item.catName;
+            document.getElementById('modalSize').innerText = item.sizeStr;
+            document.getElementById('modalPrice').innerText = item.r.toLocaleString() + ' ៛';
+            document.getElementById('modalQtyDisplay').innerText = tempModalQty;
+            
+            // Set placeholder image
+            document.getElementById('modalImage').src = `https://placehold.co/400x400/${item.imgColor}/${item.imgText}?text=${encodeURIComponent(item.name)}`;
+
+            // Haptic feedback
+            if (tg.HapticFeedback) tg.HapticFeedback.impactOccurred('light');
+
+            // Open Animation
+            backdrop.classList.add('open');
+            sheet.classList.add('open');
+        }
+
+        function closeModal() {
+            backdrop.classList.remove('open');
+            sheet.classList.remove('open');
+            activeModalItem = null;
+        }
+
+        function changeModalQty(change) {
+            let newQty = tempModalQty + change;
+            if (newQty >= 1) {
+                tempModalQty = newQty;
+                document.getElementById('modalQtyDisplay').innerText = tempModalQty;
+                // Calculate dynamic price in modal
+                let totalPrice = activeModalItem.r * tempModalQty;
+                document.getElementById('modalPrice').innerText = totalPrice.toLocaleString() + ' ៛';
+                
+                if (tg.HapticFeedback) tg.HapticFeedback.selectionChanged();
             }
         }
 
-        // Function to handle Checkout (Telegram SDK Integration Placeholder)
-        function checkout() {
-            if (cart.totalCount === 0) return;
+        function confirmAddToCart() {
+            if(!activeModalItem) return;
+            
+            let id = activeModalItem.id;
+            
+            // Add or update cart
+            if(!cart[id]) {
+                cart[id] = { ...activeModalItem, qty: tempModalQty };
+            } else {
+                cart[id].qty += tempModalQty;
+            }
 
-            // Log data for debugging
-            console.log("Preparing to checkout: ", cart);
+            if (tg.HapticFeedback) tg.HapticFeedback.notificationOccurred('success');
+            
+            updateCartUI();
+            closeModal();
+        }
 
-            // Using Telegram WebApp method to send data back to the bot
-            const checkoutData = JSON.stringify({
-                action: 'checkout',
-                items: cart.items,
-                total: cart.totalPrice
+        // --- CART UI LOGIC ---
+        function updateCartUI() {
+            let totalItemCount = 0;
+            let totalPriceRiel = 0;
+
+            Object.keys(cart).forEach(id => {
+                totalItemCount += cart[id].qty;
+                totalPriceRiel += (cart[id].r * cart[id].qty);
             });
 
-            // If running inside Telegram
-            if (tg.initDataUnsafe && Object.keys(tg.initDataUnsafe).length > 0) {
-                // For bots expecting Web App data (keyboard button)
-                tg.sendData(checkoutData);
+            const cartBtn = document.getElementById('floatingCart');
+            const cartTotal = document.getElementById('cartTotalText');
+            const cartBadge = document.getElementById('cartCountBadge');
+
+            cartTotal.innerText = totalPriceRiel.toLocaleString() + ' ៛';
+            cartBadge.innerText = totalItemCount;
+
+            if (totalItemCount > 0) {
+                cartBtn.classList.remove('cart-hidden');
+                cartBtn.classList.add('cart-slide-up');
                 
-                // OR alternatively, if you use a direct API call to your backend:
-                // fetch('https://your-backend.com/api/order', { method: 'POST', body: checkoutData });
-                
-                // Show a brief message before closing (Telegram UI usually closes immediately on sendData)
+                // Telegram native MainButton
+                tg.MainButton.setText(`CHECKOUT ${totalPriceRiel.toLocaleString()} ៛`);
+                tg.MainButton.color = "#dc2626"; // Red color
+                if(!tg.MainButton.isVisible) tg.MainButton.show();
             } else {
-                // Fallback for Web Browser testing
-                const msgBox = document.createElement('div');
-                msgBox.style.cssText = "position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#111827;color:white;padding:20px;border-radius:12px;z-index:9999;text-align:center;";
-                msgBox.innerHTML = `
-                    <h3 style="font-size:18px;font-weight:bold;margin-bottom:10px;">Order Summary</h3>
-                    <p>Total Items: ${cart.totalCount}</p>
-                    <p>Total Price: $${cart.totalPrice.toFixed(2)}</p>
-                    <p style="margin-top:10px;font-size:12px;color:#aaa;">(Telegram WebApp SDK simulated)</p>
-                    <button onclick="this.parentElement.remove()" style="margin-top:15px;background:#f97316;border:none;padding:8px 16px;border-radius:20px;color:white;cursor:pointer;">Close</button>
-                `;
-                document.body.appendChild(msgBox);
+                cartBtn.classList.remove('cart-slide-up');
+                cartBtn.classList.add('cart-hidden');
+                if(tg.MainButton.isVisible) tg.MainButton.hide();
             }
         }
 
-        // Native MainButton click handler (If using tg.MainButton.show())
+        function checkout() {
+            // Check if cart has items
+            if(Object.keys(cart).length === 0) return;
+            
+            // Convert Cart Object to Array for sending
+            const cartArray = Object.keys(cart).map(id => cart[id]);
+            
+            const checkoutData = JSON.stringify({
+                action: 'initiate_checkout',
+                items: cartArray
+            });
+
+            console.log("Sending order data to Bot:", checkoutData);
+
+            if (tg.initDataUnsafe && Object.keys(tg.initDataUnsafe).length > 0) {
+                tg.sendData(checkoutData); // Sends data back to bot to handle delivery address
+            } else {
+                alert("This action works inside Telegram. Items to checkout: " + cartArray.length);
+            }
+        }
+
+        // Connect native TG button to our checkout function
         tg.onEvent('mainButtonClicked', function() {
             checkout();
         });
+
+        // Initialize App
+        renderMenu();
 
     </script>
 </body>
