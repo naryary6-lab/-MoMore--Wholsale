@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MoMore Wholesale WebApp</title>
+  <title>MoMore Wholesale WebApp - Full Admin</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <!-- Google Fonts: Kantumruy Pro & Suwannaphum & Moul -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,7 +34,7 @@
     header { 
       background: linear-gradient(135deg, #121212 0%, #2c2c2c 100%); 
       color: var(--primary); 
-      padding: 14px; 
+      padding: 14px 20px; 
       text-align: center; 
       font-weight: 700; 
       font-size: 1.1rem; 
@@ -43,6 +43,20 @@
       z-index: 100; 
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       border-bottom: 3px solid var(--primary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .admin-toggle-btn {
+      background: var(--primary);
+      color: #121212;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.75rem;
+      cursor: pointer;
     }
     
     .container { 
@@ -50,6 +64,24 @@
       margin: auto; 
       padding: 16px 10px 10px 10px; 
     }
+
+    /* Admin Panel Style */
+    #admin-panel {
+      display: none;
+      background: #1e1e1e;
+      color: #fff;
+      padding: 15px;
+      border-radius: 14px;
+      margin-bottom: 20px;
+      border: 2px solid var(--primary);
+    }
+    .admin-panel h2 { color: var(--primary); font-size: 1.1rem; margin-bottom: 10px; }
+    .admin-section-title { font-size: 0.95rem; color: var(--primary); margin: 12px 0 6px 0; font-weight: 700; border-bottom: 1px solid #444; padding-bottom: 4px; }
+    .admin-item-row { background: #2a2a2a; padding: 12px; border-radius: 8px; margin-bottom: 10px; border: 1px solid #444; }
+    .admin-item-row label { font-size: 0.8rem; color: #ddd; display: block; margin-top: 6px; font-weight: 600; }
+    .admin-item-row input[type="text"], .admin-item-row input[type="number"] { width: 100%; padding: 8px; margin-top: 4px; border-radius: 6px; border: 1px solid #555; background: #121212; color: #fff; font-size: 0.85rem; }
+    .admin-item-row input[type="file"] { margin-top: 6px; font-size: 0.8rem; color: var(--primary); }
+    .btn-save-admin { background: #2ecc71; color: #121212; border: none; padding: 8px 14px; border-radius: 8px; font-weight: 700; cursor: pointer; margin-top: 10px; width: 100%; }
 
     .hero-banner {
       width: 100%;
@@ -90,29 +122,29 @@
       font-weight: 400;
     }
 
-    /* 🎁 Combo Thumbnail 16:9 (យកតែ 3 ប្រអប់, Padding អក្សរក្រូចលាយក្រហម) */
+    /* 🎁 Combo Thumbnail ធំទូលាយ */
     .combo-section-wrap {
       margin-bottom: 18px;
     }
     .combo-grid-3 {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 16px;
     }
-    .combo-card-169 {
+    .combo-card-large {
       width: 100%;
-      aspect-ratio: 16 / 9;
+      aspect-ratio: 16 / 10;
       background: #1a1a1a;
-      border-radius: 12px;
+      border-radius: 14px;
       overflow: hidden;
-      border: 2px solid #e74c3c;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      border: 2.5px solid #e74c3c;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
       position: relative;
       cursor: pointer;
       transition: transform 0.2s;
     }
-    .combo-card-169:hover { transform: scale(1.01); }
-    .combo-card-169 img {
+    .combo-card-large:hover { transform: scale(1.01); }
+    .combo-card-large img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -123,20 +155,20 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: linear-gradient(135deg, rgba(231, 76, 60, 0.92) 0%, rgba(243, 156, 18, 0.92) 100%);
-      padding: 10px 14px;
+      background: linear-gradient(135deg, rgba(231, 76, 60, 0.94) 0%, rgba(243, 156, 18, 0.94) 100%);
+      padding: 12px 16px;
       color: #ffffff;
     }
     .combo-title-text {
-      font-size: 0.95rem;
+      font-size: 1.05rem;
       font-weight: 700;
-      margin-bottom: 2px;
+      margin-bottom: 3px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
     .combo-desc-text {
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       color: #fff;
       opacity: 0.95;
       font-weight: 400;
@@ -253,7 +285,7 @@
     .form-group input, .form-group select { width: 100%; padding: 10px 12px; border: 1.5px solid #bbb; border-radius: 8px; font-size: 0.86rem; background: #fff; font-weight: 400; }
     .required-tag { color: var(--price-red); font-weight: bold; }
 
-    /* BANK / TRANSFER ACCOUNT INFO BOX (ជំនួស KHQR) */
+    /* BANK / TRANSFER ACCOUNT INFO BOX */
     .bank-account-box { 
       background: #1a1a1a; 
       border-radius: 10px; 
@@ -306,29 +338,48 @@
 </head>
 <body>
 
-  <header>🍌 MOMORE - កម្មង់ទំនិញបោះដុំ</header>
+  <header>
+    <span>🍌 MOMORE - កម្មង់ទំនិញបោះដុំ</span>
+    <button class="admin-toggle-btn" onclick="toggleAdminPanel()">⚙️ កែទិន្នន័យ (Admin)</button>
+  </header>
 
   <div class="container">
 
+    <!-- ADMIN PANEL (កន្លែងសម្រាប់ Upload រូបភាពគ្រប់ប្រអប់) -->
+    <div id="admin-panel">
+      <h2>⚙️ ប្រព័ន្ធគ្រប់គ្រង និងបញ្ចូលរូបភាព (Admin Panel)</h2>
+      <p style="font-size:0.75rem; color:#ccc; margin-bottom: 10px;">បងអាចជ្រើសរើសរូបភាពថ្មីពីក្នុងទូរស័ព្ទសម្រាប់ Banner, ឈុត Combo និងផលិតផលនីមួយៗ រួចចុចរក្សាទុក!</p>
+      
+      <div class="admin-section-title">🖼️ រូបភាព Banner ធំខាងលើ</div>
+      <div class="admin-item-row">
+        <input type="file" id="adm-banner-file" accept="image/*" onchange="previewBanner(event)">
+        <button class="btn-save-admin" onclick="saveBanner()">រក្សាទុក Banner ថ្មី</button>
+      </div>
+
+      <div class="admin-section-title">🎁 រូបភាពឈុត Combo Team SET</div>
+      <div id="admin-combo-list"></div>
+
+      <div class="admin-section-title">🍌 រូបភាពផលិតផលនីមួយៗ</div>
+      <div id="admin-product-list"></div>
+    </div>
+
     <!-- 1. TRUE HERO BANNER -->
     <div class="hero-banner">
-      <img src="hero-banner.jpg" alt="MoMore Wholesale Banner" onerror="this.src='https://via.placeholder.com/800x450/1a1a1a/f39c12?text=MoMore+Wholesale+16:9+Banner'">
+      <img id="main-banner-img" src="hero-banner.jpg" alt="MoMore Wholesale Banner" onerror="this.src='https://via.placeholder.com/800x450/1a1a1a/f39c12?text=MoMore+Wholesale+16:9+Banner'">
       <div class="hero-banner-content">
         <h1>MoMore Wholesale (តម្លៃបោះដុំ)</h1>
         <p>ប្រព័ន្ធបញ្ជាទិញបោះដុំផ្ទាល់ពីរោងចក្រ គុណភាពខ្ពស់ និងអនាម័យស្តង់ដារសម្រាប់ដៃគូអាជីវកម្ម!</p>
       </div>
     </div>
 
-    <!-- 🎁 ផ្នែក COMBO SET ដាក់នៅខាងមុខ (យកតែ 3 ប្រអប់, ខ្នាត 16:9, Padding អក្សរក្រហមលាយទឹកក្រូច) -->
+    <!-- 🎁 ផ្នែក COMBO SET -->
     <div class="section-title-box">
       <div class="sec-title-main">🎁 ឈុតពិសេស Combo Team SET</div>
       <div class="sec-title-sub">កញ្ចប់កាដូ និងរសជាតិពិសេសប្រចាំហាង (ទិញបានត្រឹម ១ ឈុត/នាក់)</div>
     </div>
     
     <div class="combo-section-wrap">
-      <div class="combo-grid-3" id="combo-sets-container">
-        <!-- Render 3 Combo Cards dynamically via JS -->
-      </div>
+      <div class="combo-grid-3" id="combo-sets-container"></div>
     </div>
 
     <!-- 2. VIDEO GALLERY / FEED SECTION -->
@@ -384,7 +435,7 @@
     </div>
   </div>
 
-  <!-- Modal Detail (សម្រាប់ផលិតផល និង Combo 16:9) -->
+  <!-- Modal Detail -->
   <div class="modal" id="detailModal">
     <div class="modal-content">
       <span class="close-modal" onclick="closeDetailModal()">&times;</span>
@@ -410,19 +461,16 @@
     </div>
   </div>
 
-  <!-- Checkout Modal (Popup វិក្កយបត្រ និងទូទាត់ - ដក KHQR ចេញ ជំនួសដោយលេខគណនេយ្យ/វេរលុយ និង Sticker អរគុណ) -->
+  <!-- Checkout Modal -->
   <div class="modal" id="checkoutModal">
     <div class="modal-content">
       <span class="close-modal" onclick="closeCheckoutModal()">&times;</span>
       <div class="checkout-body">
         <div class="checkout-title">📝 បញ្ជាក់ការកុម្ម៉ង់ និងទូទាត់ប្រាក់</div>
         
-        <!-- Summary Box ជាមួយបញ្ជីទំនិញ Lock -->
         <div class="summary-box">
           <div style="font-weight: 700; margin-bottom: 6px; font-size: 0.9rem; color: #333;">🛍️ បញ្ជីទំនិញដែលបានជ្រើសរើស (Lock):</div>
-          <div class="locked-items-list" id="popup-locked-items">
-            <!-- Dynamic Injected Locked Items -->
-          </div>
+          <div class="locked-items-list" id="popup-locked-items"></div>
 
           <div class="summary-row" style="display:flex; justify-content:space-between; margin-top:8px; font-size:0.86rem;">
             <span>សេវាដឹកជញ្ជូន:</span>
@@ -447,13 +495,11 @@
           <input type="tel" id="cust-phone" placeholder="ឧទាហរណ៍៖ 012 345 678" required>
         </div>
 
-        <!-- សម្រាប់ភ្នំពេញ -->
         <div class="form-group" id="phnompenh-fields">
           <label>🏠 លេខផ្ទះ / លេខផ្លូវ / ទីតាំងលម្អិត <span class="required-tag">*</span></label>
           <input type="text" id="cust-address" placeholder="ឧទាហរណ៍៖ ផ្ទះលេខ 12, ផ្លូវ 310, បឹងកេងកង">
         </div>
 
-        <!-- សម្រាប់ខេត្ត -->
         <div class="form-group" id="province-fields" style="display:none;">
           <label>🏢 សាខាក្រុមហ៊ុនដឹកជញ្ជូននៅខេត្ត <span class="required-tag">*</span></label>
           <input type="text" id="cust-branch" placeholder="ឧទាហរណ៍៖ វីរៈប៊ុនថាំ សាខាខេត្តសៀមរាប">
@@ -464,7 +510,6 @@
           <input type="text" id="cust-note" placeholder="កំណត់ចំណាំបន្ថែមដល់អ្នកដឹកជញ្ជូន...">
         </div>
 
-        <!-- 💳 លេខគណនេយ្យ និងលេខវេរលុយ (ជំនួស KHQR) + Sticker អរគុណ -->
         <div class="bank-account-box">
           <div class="bank-info-header">
             <img src="https://api.iconify.design/fluent-emoji:folded-hands.svg" alt="Thank You Sticker" class="thank-you-sticker" onerror="this.src='https://via.placeholder.com/50x50?text=🙏'">
@@ -548,149 +593,143 @@
       { id: 'REV-MARKET-003', name: 'Review Market 003', type: 'REV-MARKET', file: 'REV-MARKET-003.mp4' }
     ];
 
-    const comboSetsData = [
-      { id: 'COMBO_1', name: 'Combo Team SET #1', price: 25000, size: 'Combo Set', image: 'combo-1.jpg', benefits: 'ឈុតកាដូពិសេសរួមបញ្ចូលដំណាប់ចេក និងចេកស្រួយចម្រុះរសជាតិ។', taste: 'ផ្អែមឆ្ងាញ់ ស្រួយស្រែស ឈ្ងុយឆ្ងាញ់ពេញចិត្ត', pack: 'ប្រអប់កាដូស្ដង់ដារអនាម័យស្រស់ស្អាត', storage: 'រក្សាទុកក្នុងកន្លែងស្ងួតត្រជាក់បាន ៦ ខែ' },
-      { id: 'COMBO_2', name: 'Combo Team SET #2', price: 35000, size: 'Combo Set', image: 'combo-2.jpg', benefits: 'ឈុតធំសម្រាប់ក្រុមគ្រួសារ ចែករំលែកភាពសប្បាយរីករាយ។', taste: 'ចម្រុះរសជាតិពេញនិយម ឆ្ងាញ់ញ៉ាំជក់មាត់', pack: 'ប្រអប់កាដូធំទូលាយ រៀបចំយ៉ាងល្អ', storage: 'រក្សាទុកក្នុងកន្លែងស្ងួតត្រជាក់បាន ៦ ខែ' },
-      { id: 'COMBO_3', name: 'Combo Team SET #3', price: 45000, size: 'Combo Set', image: 'combo-3.jpg', benefits: 'ឈុតពិសេសប្រណីត សម្រាប់ជូនជាកាដូដៃគូអាជីវកម្ម។', taste: 'រសជាតិពិសេសគុណភាពខ្ពស់ ផ្អែមស្រទន់', pack: 'ប្រអប់កាដូប្រណីត ធន់នឹងការដឹកជញ្ជូន', storage: 'រក្សាទុកក្នុងកន្លែងស្ងួតត្រជាក់បាន ៦ ខែ' }
+    // LocalStorage Data Management
+    let bannerImgSrc = localStorage.getItem('momore_banner') || 'https://via.placeholder.com/800x450/1a1a1a/f39c12?text=MoMore+Wholesale+16:9+Banner';
+    document.getElementById('main-banner-img').src = bannerImgSrc;
+
+    let comboSetsData = JSON.parse(localStorage.getItem('momore_combos')) || [
+      { id: 'COMBO_1', name: 'Combo Team SET #1', price: 25000, size: 'Combo Set', image: 'https://via.placeholder.com/800x500/1a1a1a/e74c3c?text=Combo+Team+SET+1', benefits: 'ឈុតកាដូពិសេសរួមបញ្ចូលដំណាប់ចេក និងចេកស្រួយចម្រុះរសជាតិ។', taste: 'ផ្អែមឆ្ងាញ់ ស្រួយស្រែស ឈ្ងុយឆ្ងាញ់ពេញចិត្ត', pack: 'ប្រអប់កាដូស្ដង់ដារអនាម័យស្រស់ស្អាត', storage: 'រក្សាទុកក្នុងកន្លែងស្ងួតត្រជាក់បាន ៦ ខែ' },
+      { id: 'COMBO_2', name: 'Combo Team SET #2', price: 35000, size: 'Combo Set', image: 'https://via.placeholder.com/800x500/1a1a1a/e74c3c?text=Combo+Team+SET+2', benefits: 'ឈុតធំសម្រាប់ក្រុមគ្រួសារ ចែករំលែកភាពសប្បាយរីករាយ។', taste: 'ចម្រុះរសជាតិពេញនិយម ឆ្ងាញ់ញ៉ាំជក់មាត់', pack: 'ប្រអប់កាដូធំទូលាយ រៀបចំយ៉ាងល្អ', storage: 'រក្សាទុកក្នុងកន្លែងស្ងួតត្រជាក់បាន ៦ ខែ' },
+      { id: 'COMBO_3', name: 'Combo Team SET #3', price: 45000, size: 'Combo Set', image: 'https://via.placeholder.com/800x500/1a1a1a/e74c3c?text=Combo+Team+SET+3', benefits: 'ឈុតពិសេសប្រណីត សម្រាប់ជូនជាកាដូដៃគូអាជីវកម្ម។', taste: 'រសជាតិពិសេសគុណភាពខ្ពស់ ផ្អែមស្រទន់', pack: 'ប្រអប់កាដូប្រណីត ធន់នឹងការដឹកជញ្ជូន', storage: 'រក្សាទុកក្នុងកន្លែងស្ងួតត្រជាក់បាន ៦ ខែ' }
     ];
 
-    const products = {
-      D_ORIG200: { 
-        type: "ដំណាប់ចេក", flavor: "រសជាតិដើម", price: 8000, qty: 0, size: '200g', id: 'D_ORIG200', 
-        benefits: "សម្បូរវីតាមីន និងប៉ូតាមស្យូម ផ្តល់ថាមពលភ្លាមៗ គ្មានសារធាតុគីមីរក្សាទុក។",
-        taste: "សាច់ដំណាប់ទន់ស្វិត ផ្អែមឆ្ងាញ់បែបធម្មជាតិ",
-        pack: "ចិតបន្ទះស្តើង សម្ងួតក្នុងទូអនាម័យ វេចខ្ចប់ក្នុងប្រអប់បិទជិតការពារខ្យល់", 
-        storage: "រក្សាទុកក្នុងសីតុណ្ហភាពធម្មតា កន្លែងស្ងួតត្រជាក់ បានរហូតដល់ ៦ ខែ"
-      },
-      D_SESM200: { 
-        type: "ដំណាប់ចេក", flavor: "រោយល្ង ស/ខ្មៅ", price: 8000, qty: 0, size: '200g', id: 'D_SESM200', 
-        benefits: "ល្ងជួយទ្រទ្រង់ឆ្អឹង និងផ្តល់ជាតិកាល់ស្យូម បូករួមជាតិហ្វាយបឺពីចេក។",
-        taste: "សាច់ចេកទន់ស្វិតផ្អែមល្មម លាយក្លិនឈ្ងុយល្ងរលីង",
-        pack: "សម្ងួតស្អាត រោយល្ងស្មើល្អ វេចខ្ចប់ក្នុងប្រអប់អនាម័យ", 
-        storage: "រក្សាទុកក្នុងប្រអប់បិទជិត បានរហូតដល់ ៦ ខែ"
-      },
-      D_ALMD200: { 
-        type: "ដំណាប់ចេក", flavor: "រោយអាល់ម៉ុន", price: 10000, qty: 0, size: '200g', id: 'D_ALMD200', 
-        benefits: "ផ្តល់ជាតិប្រូតេអ៊ីន និងខ្លាញ់ល្អពីគ្រាប់អាល់ម៉ុន ជួយសុខភាពបេះដូង។",
-        taste: "រសជាតិប្លែកអារម្មណ៍ ឈ្ងុយខ្ទិះ និងភាពស្រួយនៃអាល់ម៉ុន",
-        pack: "វេចខ្ចប់ក្នុងប្រអប់ការពារជម្រាបខ្យល់យ៉ាងល្អ", 
-        storage: "រក្សាទុកបាន ៦ ខែ ក្នុងកន្លែងស្ងួត"
-      },
-      D_MIXG200: { 
-        type: "ដំណាប់ចេក", flavor: "រោយធញ្ញជាតិគ្រប់មុខ", price: 10000, qty: 0, size: '200g', id: 'D_MIXG200', 
-        benefits: "ទទួលបានអាហាររូបត្ថម្ភចម្រុះពីធញ្ញជាតិ ជួយប្រព័ន្ធរំលាយអាហារ។",
-        taste: "ទន់ស្វិត ផ្តល់អាហាររូបត្ថម្ភខ្ពស់ពីធញ្ញជាតិ",
-        pack: "ប្រអប់ស្តង់ដារអនាម័យ បិទជិតយ៉ាងប្រុងប្រយ័ត្ន", 
-        storage: "បិទមាត់ប្រអប់ឱ្យជិត ទុកបាន ៦ ខែ"
-      },
-      D_COCO200: { 
-        type: "ដំណាប់ចេក", flavor: "រោយដូង", price: 10000, qty: 0, size: '200g', id: 'D_COCO200', 
-        benefits: "ផ្តល់ថាមពលលឿន ជួយឱ្យអារម្មណ៍ស្រស់ថ្លាជាមួយក្លិនដូងធម្មជាតិ។",
-        taste: "ក្លិនដូងឈ្ងុយឆ្ងាញ់ ត្រូវជាមួយសាច់ចេកទន់ផ្អែម",
-        pack: "ប្រអប់អនាម័យបិទជិត", 
-        storage: "រក្សាទុកសីតុណ្ហភាពធម្មតាបាន ៦ ខែ"
-      },
-      D_BALL200: { 
-        type: "ដំណាប់ចេក", flavor: "ដំណាប់ចេកមូល", price: 10000, qty: 0, size: '200g', id: 'D_BALL200', 
-        benefits: "ងាយស្រួលកាន់ញ៉ាំ ផ្តល់កម្លាំង និងកាត់បន្ថយភាពហត់នឿយ។",
-        taste: "ទន់ស្វិតល្មើយ ងាយស្រួលទំពា",
-        pack: "ប្រអប់ការពារសំណើមត្រឹមត្រូវ", 
-        storage: "រក្សាទុកបាន រហូត ៦ ខែ"
-      },
-      D_RCHCS300: { 
-        type: "ដំណាប់ចេក", flavor: "ស្នូលសូកូឡាដូងល្ងរ", price: 17000, qty: 0, size: '300g', id: 'D_RCHCS300', 
-        benefits: "សូកូឡាជួយកាត់បន្ថយស្រ្តេស បូករួមសារធាតុចិញ្ចឹមពីចេក និងដូង។",
-        taste: "រសជាតិខ្ទិះដូងលាយសូកូឡា និងល្ង ឆ្ងាញ់ប្លែកមាត់",
-        pack: "ប្រអប់ 300g ស្អាតសប្រណីត", 
-        storage: "រក្សាទុកបាន ៣-៦ ខែ"
-      },
-      D_RCHCC300: { 
-        type: "ដំណាប់ចេក", flavor: "ស្នូលសូកូឡាចន្ទី", price: 17000, qty: 0, size: '300g', id: 'D_RCHCC300', 
-        benefits: "គ្រាប់ចន្ទីជួយពង្រឹងឆ្អឹង និងផ្តល់ជាតិម៉ាញេស្យូមខ្ពស់។",
-        taste: "ឈ្ងុយគ្រាប់ចន្ទី លាយភាពផ្អែមស្រទន់នៃសូកូឡា",
-        pack: "ប្រអប់ស្តង់ដារអនាម័យ", 
-        storage: "រក្សាទុកបាន ៣-៦ ខែ"
-      },
-      C_ORIG500: { 
-        type: "ចេកបំពងស្រួយ", flavor: "រសជាតិដើមសាប", price: 10000, qty: 0, size: '500g', id: 'C_ORIG500', 
-        benefits: "មិនមានជាតិស្ករបន្ថែម ញ៉ាំមិនទ្រលាន់ និងគ្មានខ្លាញ់កក។",
-        taste: "ស្រួយស្រែស មិនជាប់ខ្លាញ់ រសជាតិដើមសាប",
-        pack: "ថង់ហ្ស៊ីបបិទជិតការពារខ្យល់ចូល", 
-        storage: "រក្សាទុកក្នុងថង់បិទជិតបាន ៦ ខែ"
-      },
-      C_CHOC200: { 
-        type: "ចេកបំពងស្រួយ", flavor: "សូកូឡាដោះគោ", price: 10000, qty: 0, size: '200g', id: 'C_CHOC200', 
-        benefits: "ផ្តល់ភាពរីករាយ និងថាមពលជាមួយសូកូឡាដោះគោគុណភាពខ្ពស់។",
-        taste: "ស្រួយផ្អែមឈ្ងុយ សូកូឡាដោះគោ",
-        pack: "ប្រអប់អនាម័យបិទជិត", 
-        storage: "រក្សាទុកក្នុងសីតុណ្ហភាពត្រជាក់"
-      },
-      C_CHOC100: { 
-        type: "ចេកបំពងស្រួយ", flavor: "សូកូឡាដោះគោ", price: 5000, qty: 0, size: '100g', id: 'C_CHOC100', 
-        benefits: "កញ្ចប់តូចងាយស្រួលតាមខ្លួន ផ្តល់ថាមពលសម្រន់ពេលល្ងាច។",
-        taste: "ស្រួយផ្អែមឈ្ងុយ សូកូឡាដោះគោ",
-        pack: "កញ្ចប់តូចច្រឡឹង បិទជិត", 
-        storage: "រក្សាទុកក្នុងកន្លែងស្ងួតត្រជាក់"
-      },
-      C_CHES200: { 
-        type: "ចេកបំពងស្រួយ", flavor: "ឈីស ដោះគោ", price: 10000, qty: 0, size: '200g', id: 'C_CHES200', 
-        benefits: "រសជាតិប្រៃផ្អែមប្លែកមាត់ ជួយបង្កើនអារម្មណ៍ស្រស់ស្រាយ។",
-        taste: "ប្រៃផ្អែម ឈ្ងុយឈីសខ្លាំង ញ៉ាំជក់មាត់",
-        pack: "ប្រអប់បិទជិតអនាម័យ", 
-        storage: "បិទមាត់ប្រអប់ឱ្យជិតជានិច្ច"
-      },
-      C_CHES100: { 
-        type: "ចេកបំពងស្រួយ", flavor: "ឈីស ដោះគោ", price: 5000, qty: 0, size: '100g', id: 'C_CHES100', 
-        benefits: "សម្រន់ឈីសស្រួយ ងាយស្រួលញ៉ាំកម្សាន្តគ្រប់ទីកន្លែង។",
-        taste: "ប្រៃផ្អែម ឈ្ងុយឈីស ញ៉ាំកម្សាន្ត",
-        pack: "កញ្ចប់តូចច្រឡឹង", 
-        storage: "រក្សាទុកបានយូរក្នុងថង់បិទជិត"
-      },
-      C_SPIC200: { 
-        type: "ចេកបំពងស្រួយ", flavor: "ម្ទេសខ្ទឹម", price: 14000, qty: 0, size: '200g', id: 'C_SPIC200', 
-        benefits: "ខ្ទឹមសជួយពង្រឹងប្រព័ន្ធការពាររាងកាយ និងប្រឆាំងបាក់តេរី។",
-        taste: "ហឹរតិចៗ ឈ្ងុយខ្ទឹមស ឆ្ងាញ់ជាប់មាត់",
-        pack: "ប្រអប់បិទជិត", 
-        storage: "រក្សាទុកក្នុងកន្លែងស្ងួត"
-      },
-      C_SPIC100: { 
-        type: "ចេកបំពងស្រួយ", flavor: "ម្ទេសខ្ទឹម", price: 5000, qty: 0, size: '100g', id: 'C_SPIC100', 
-        benefits: "រសជាតិហឹរអែម បើកភ្នែក និងជួយឱ្យបាត់ងងុយគេង។",
-        taste: "ហឹរតិចៗ ប្រៃផ្អែមខ្ទិះ ឈ្ងុយខ្ទឹម",
-        pack: "កញ្ចប់តូច បិទជិត", 
-        storage: "រក្សាទុកក្នុងកន្លែងស្ងួត"
-      },
-      C_BBQ200: { 
-        type: "ចេកបំពងស្រួយ", flavor: "រសជាតិបាប៊ីឃ្យូ BBQ", price: 10000, qty: 0, size: '200g', id: 'C_BBQ200', 
-        benefits: "រសជាតិ BBQ ប្លែក ញ៉ាំជុំគ្នាយ៉ាងសប្បាយរីករាយ។",
-        taste: "រសជាតិបាប៊ីឃ្យូ ឈ្ងុយឆ្ងាញ់",
-        pack: "ប្រអប់បិទជិត", 
-        storage: "រក្សាទុកได้យូរក្នុងប្រអប់បិទជិត"
-      },
-      C_BBQ100: { 
-        type: "ចេកបំពងស្រួយ", flavor: "រសជាតិបាប៊ីឃ្យូ BBQ", price: 5000, qty: 0, size: '100g', id: 'C_BBQ100', 
-        benefits: "កញ្ចប់ល្មមញ៉ាំ ឈ្ងុយគ្រឿងបាប៊ីឃ្យូស្តង់ដារ។",
-        taste: "រសជាតិបាប៊ីឃ្យូ BBQ",
-        pack: "កញ្ចប់តូច បិទជិត", 
-        storage: "រក្សាទុកក្នុងថង់បិទជិត"
-      }
+    let products = JSON.parse(localStorage.getItem('momore_products')) || {
+      D_ORIG200: { type: "ដំណាប់ចេក", flavor: "រសជាតិដើម", price: 8000, qty: 0, size: '200g', id: 'D_ORIG200', img: 'https://via.placeholder.com/250x320/121212/f39c12?text=Domnap+Original', benefits: "សម្បូរវីតាមីន និងប៉ូតាមស្យូម ផ្តល់ថាមពលភ្លាមៗ។", taste: "សាច់ដំណាប់ទន់ស្វិត ផ្អែមឆ្ងាញ់បែបធម្មជាតិ", pack: "ចិតបន្ទះស្តើង សម្ងួតអនាម័យ", storage: "ទុកបាន ៦ ខែ" },
+      D_SESM200: { type: "ដំណាប់ចេក", flavor: "រោយល្ង ស/ខ្មៅ", price: 8000, qty: 0, size: '200g', id: 'D_SESM200', img: 'https://via.placeholder.com/250x320/121212/f39c12?text=Domnap+Sesame', benefits: "ល្ងជួយទ្រទ្រង់ឆ្អឹង និងកាល់ស្យូម។", taste: "ទន់ស្វិតល្ងឈ្ងុយ", pack: "ប្រអប់អនាម័យ", storage: "ទុកបាន ៦ ខែ" },
+      D_ALMD200: { type: "ដំណាប់ចេក", flavor: "រោយអាល់ម៉ុន", price: 10000, qty: 0, size: '200g', id: 'D_ALMD200', img: 'https://via.placeholder.com/250x320/121212/f39c12?text=Domnap+Almond', benefits: "ប្រូតេអ៊ីនពីគ្រាប់អាល់ម៉ុន។", taste: "ឈ្ងុយខ្ទិះអាល់ម៉ុន", pack: "ប្រអប់ការពារខ្យល់", storage: "ទុកបាន ៦ ខែ" },
+      D_MIXG200: { type: "ដំណាប់ចេក", flavor: "រោយធញ្ញជាតិគ្រប់មុខ", price: 10000, qty: 0, size: '200g', id: 'D_MIXG200', img: 'https://via.placeholder.com/250x320/121212/f39c12?text=Domnap+MixGrain', benefits: "អាហាររូបត្ថម្ភចម្រុះ។", taste: "ផ្អែមទន់ធញ្ញជាតិ", pack: "ប្រអប់បិទជិត", storage: "ទុកបាន ៦ ខែ" },
+      D_COCO200: { type: "ដំណាប់ចេក", flavor: "រោយដូង", price: 10000, qty: 0, size: '200g', id: 'D_COCO200', img: 'https://via.placeholder.com/250x320/121212/f39c12?text=Domnap+Coconut', benefits: "ផ្តល់ថាមពលលឿន។", taste: "ក្លិនដូងឈ្ងុយ", pack: "ប្រអប់អនាម័យ", storage: "ទុកបាន ៦ ខែ" },
+      D_BALL200: { type: "ដំណាប់ចេក", flavor: "ដំណាប់ចេកមូល", price: 10000, qty: 0, size: '200g', id: 'D_BALL200', img: 'https://via.placeholder.com/250x320/121212/f39c12?text=Domnap+Ball', benefits: "ងាយស្រួលកាន់ញ៉ាំ។", taste: "ទន់ស្វិតល្មើយ", pack: "ប្រអប់សំណើម", storage: "ទុកបាន ៦ ខែ" },
+      D_RCHCS300: { type: "ដំណាប់ចេក", flavor: "ស្នូលសូកូឡាដូងល្ងរ", price: 17000, qty: 0, size: '300g', id: 'D_RCHCS300', img: 'https://via.placeholder.com/250x320/121212/f39c12?text=Choco+Coconut', benefits: "កាត់បន្ថយស្រ្តេស។", taste: "ខ្ទិះដូងសូកូឡា", pack: "ប្រអប់ 300g", storage: "ទុកបាន ៦ ខែ" },
+      D_RCHCC300: { type: "ដំណាប់ចេក", flavor: "ស្នូលសូកូឡាចន្ទី", price: 17000, qty: 0, size: '300g', id: 'D_RCHCC300', img: 'https://via.placeholder.com/250x320/121212/f39c12?text=Choco+Cashew', benefits: "ម៉ាញេស្យូមខ្ពស់។", taste: "ឈ្ងុយចន្ទីសូកូឡា", pack: "ប្រអប់អនាម័យ", storage: "ទុកបាន ៦ ខែ" },
+      C_ORIG500: { type: "ចេកបំពងស្រួយ", flavor: "រសជាតិដើមសាប", price: 10000, qty: 0, size: '500g', id: 'C_ORIG500', img: 'https://via.placeholder.com/250x320/121212/f39c12?text=Crispy+Original', benefits: "គ្មានស្ករបន្ថែម។", taste: "ស្រួយស្រែសសាប", pack: "ថង់ហ្ស៊ីបបិទជិត", storage: "ទុកបាន ៦ ខែ" },
+      C_CHOC200: { type: "ចេកបំពងស្រួយ", flavor: "សូកូឡាដោះគោ", price: 10000, qty: 0, size: '200g', id: 'C_CHOC200', img: 'https://via.placeholder.com/250x320/121212/f39c12?text=Crispy+Choco200', benefits: "ថាមពលសូកូឡា។", taste: "ស្រួយផ្អែមសូកូឡា", pack: "ប្រអប់បិទជិត", storage: "ទុកបានត្រជាក់" },
+      C_CHOC100: { type: "ចេកបំពងស្រួយ", flavor: "សូកូឡាដោះគោ", price: 5000, qty: 0, size: '100g', id: 'C_CHOC100', img: 'https://via.placeholder.com/250x320/121212/f39c12?text=Crispy+Choco100', benefits: "កញ្ចប់តូចងាយយកតាមខ្លួន។", taste: "ស្រួយផ្អែមសូកូឡា", pack: "កញ្ចប់តូច", storage: "ទុកកន្លែងស្ងួត" },
+      C_CHES200: { type: "ចេកបំពងស្រួយ", flavor: "ឈីស ដោះគោ", price: 10000, qty: 0, size: '200g', id: 'C_CHES200', img: 'https://via.placeholder.com/250x320/121212/f39c12?text=Crispy+Cheese200', benefits: "ប្រៃផ្អែមឈីស។", taste: "ឈ្ងុយឈីសខ្លាំង", pack: "ប្រអប់អនាម័យ", storage: "បិទជិតជានិច្ច" },
+      C_CHES100: { type: "ចេកបំពងស្រួយ", flavor: "ឈីស ដោះគោ", price: 5000, qty: 0, size: '100g', id: 'C_CHES100', img: 'https://via.placeholder.com/250x320/121212/f39c12?text=Crispy+Cheese100', benefits: "សម្រន់កម្សាន្ត។", taste: "ឈ្ងុយឈីស", pack: "កញ្ចប់តូច", storage: "ទុកកន្លែងស្ងួត" },
+      C_SPIC200: { type: "ចេកបំពងស្រួយ", flavor: "ម្ទេសខ្ទឹម", price: 14000, qty: 0, size: '200g', id: 'C_SPIC200', img: 'https://via.placeholder.com/250x320/121212/f39c12?text=Crispy+Spicy200', benefits: "ប្រឆាំងបាក់តេរីពីខ្ទឹម។", taste: "ហឹរតិចៗខ្ទឹមស", pack: "ប្រអប់បិទជិត", storage: "ទុកកន្លែងស្ងួត" },
+      C_SPIC100: { type: "ចេកបំពងស្រួយ", flavor: "ម្ទេសខ្ទឹម", price: 5000, qty: 0, size: '100g', id: 'C_SPIC100', img: 'https://via.placeholder.com/250x320/121212/f39c12?text=Crispy+Spicy100', benefits: "បាត់ងងុយគេង។", taste: "ហឹរអែមខ្ទឹម", pack: "កញ្ចប់តូច", storage: "ទុកកន្លែងស្ងួត" },
+      C_BBQ200: { type: "ចេកបំពងស្រួយ", flavor: "រសជាតិបាប៊ីឃ្យូ BBQ", price: 10000, qty: 0, size: '200g', id: 'C_BBQ200', img: 'https://via.placeholder.com/250x320/121212/f39c12?text=Crispy+BBQ200', benefits: "រសជាតិបាប៊ីឃ្យូឆ្ងាញ់។", taste: "បាប៊ីឃ្យូឈ្ងុយ", pack: "ប្រអប់បិទជិត", storage: "ទុកបានយូរ" },
+      C_BBQ100: { type: "ចេកបំពងស្រួយ", flavor: "រសជាតិបាប៊ីឃ្យូ BBQ", price: 5000, qty: 0, size: '100g', id: 'C_BBQ100', img: 'https://via.placeholder.com/250x320/121212/f39c12?text=Crispy+BBQ100', benefits: "កញ្ចប់ល្មមញ៉ាំ។", taste: "បាប៊ីឃ្យូស្តង់ដារ", pack: "កញ្ចប់តូច", storage: "ទុកកន្លែងស្ងួត" }
     };
+
+    function toggleAdminPanel() {
+      const panel = document.getElementById('admin-panel');
+      if (panel.style.display === 'block') {
+        panel.style.display = 'none';
+      } else {
+        panel.style.display = 'block';
+        renderAdminEditors();
+      }
+    }
+
+    let tempBannerData = "";
+    function previewBanner(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) { tempBannerData = e.target.result; }
+        reader.readAsDataURL(file);
+      }
+    }
+    function saveBanner() {
+      if (tempBannerData) {
+        bannerImgSrc = tempBannerData;
+        localStorage.setItem('momore_banner', bannerImgSrc);
+        document.getElementById('main-banner-img').src = bannerImgSrc;
+        alert("✅ រក្សាទុក Banner ថ្មីបានជោគជ័យ!");
+      } else { alert("⚠️ សូមជ្រើសរើសរូបភាព Banner ជាមុនសិន!"); }
+    }
+
+    let tempComboImages = {};
+    function previewComboImage(event, index) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) { tempComboImages[index] = e.target.result; }
+        reader.readAsDataURL(file);
+      }
+    }
+    function saveComboImage(index) {
+      if (tempComboImages[index]) {
+        comboSetsData[index].image = tempComboImages[index];
+        localStorage.setItem('momore_combos', JSON.stringify(comboSetsData));
+        renderComboSets();
+        alert(`✅ រក្សាុករូបភាព ${comboSetsData[index].name} បានជោគជ័យ!`);
+      } else { alert("⚠️ សូមជ្រើសរើសរូបភាពថ្មីជាមុនសិន!"); }
+    }
+
+    let tempProductImages = {};
+    function previewProductImage(event, key) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) { tempProductImages[key] = e.target.result; }
+        reader.readAsDataURL(file);
+      }
+    }
+    function saveProductImage(key) {
+      if (tempProductImages[key]) {
+        products[key].img = tempProductImages[key];
+        localStorage.setItem('momore_products', JSON.stringify(products));
+        renderProducts();
+        alert(`✅ រក្សាុករូបភាពផលិតផល (${products[key].flavor}) បានជោគជ័យ!`);
+      } else { alert("⚠️ សូមជ្រើសរើសរូបភាពថ្មីជាមុនសិន!"); }
+    }
+
+    function renderAdminEditors() {
+      // Render Combos
+      const comboContainer = document.getElementById('admin-combo-list');
+      comboContainer.innerHTML = '';
+      comboSetsData.forEach((combo, index) => {
+        comboContainer.innerHTML += `
+          <div class="admin-item-row">
+            <label>🖼️ ផ្លាស់ប្ដូរ ${combo.name}:</label>
+            <input type="file" accept="image/*" onchange="previewComboImage(event, ${index})">
+            <button class="btn-save-admin" onclick="saveComboImage(${index})">រក្សាទុក ${combo.name}</button>
+          </div>
+        `;
+      });
+
+      // Render Products
+      const prodContainer = document.getElementById('admin-product-list');
+      prodContainer.innerHTML = '';
+      for (let key in products) {
+        let p = products[key];
+        prodContainer.innerHTML += `
+          <div class="admin-item-row">
+            <label>🍌 ${p.type} - ${p.flavor} (${p.size}):</label>
+            <input type="file" accept="image/*" onchange="previewProductImage(event, '${key}')">
+            <button class="btn-save-admin" onclick="saveProductImage('${key}')">រក្សាទុក ${p.flavor}</button>
+          </div>
+        `;
+      }
+    }
 
     function renderComboSets() {
       const container = document.getElementById('combo-sets-container');
       container.innerHTML = '';
-      
       comboSetsData.forEach((combo, index) => {
         const num = index + 1;
         const card = document.createElement('div');
-        card.className = 'combo-card-169';
+        card.className = 'combo-card-large';
         card.onclick = () => openComboDetail(combo);
         card.innerHTML = `
-          <img src="${combo.image}" alt="${combo.name}" onerror="this.src='https://via.placeholder.com/800x450/1a1a1a/e74c3c?text=Combo+Team+SET+${num}+16:9'">
+          <img src="${combo.image}" alt="${combo.name}" onerror="this.src='https://via.placeholder.com/800x500/1a1a1a/e74c3c?text=Combo+${num}'">
           <div class="combo-thumbnail-padding">
             <div class="combo-title-text">
               <span>🎁 ${combo.name}</span>
-              <span style="font-size: 0.85rem; color: #fff;">${combo.price.toLocaleString()} ៛</span>
+              <span style="font-size: 0.9rem; color: #fff;">${combo.price.toLocaleString()} ៛</span>
             </div>
             <div class="combo-desc-text">ចុចទីនេះដើម្បីមើលព័ត៌មានលម្អិត និងអត្ថប្រយោជន៍នៃឈុតនេះ!</div>
           </div>
@@ -747,7 +786,7 @@
         const cardHtml = `
           <div class="product-card">
             <div class="media-box" onclick="openProductDetail('${key}')">
-              <img src="${p.id}.jpg" alt="${p.type} ${p.flavor}" onerror="this.src='https://via.placeholder.com/250x320/121212/f39c12?text=MoMore'">
+              <img src="${p.img}" alt="${p.type} ${p.flavor}" onerror="this.src='https://via.placeholder.com/250x320/121212/f39c12?text=MoMore'">
               <div class="play-video-badge" onclick="event.stopPropagation(); playVideo('${p.id}.mp4');">
                 ▶️ វីដេអូ
               </div>
@@ -763,24 +802,21 @@
               </div>
               <div class="quantity-control">
                 <button class="btn-qty" onclick="changeQty('${key}', -1)">-</button>
-                <span class="qty-number" id="qty-${key}">0</span>
+                <span class="qty-number" id="qty-${key}">${p.qty}</span>
                 <button class="btn-qty" onclick="changeQty('${key}', 1)">+</button>
               </div>
             </div>
           </div>
         `;
 
-        if (isDomnap) {
-          domnapContainer.innerHTML += cardHtml;
-        } else {
-          crispyContainer.innerHTML += cardHtml;
-        }
+        if (isDomnap) { domnapContainer.innerHTML += cardHtml; } 
+        else { crispyContainer.innerHTML += cardHtml; }
       }
     }
 
     function openProductDetail(key) {
       const p = products[key];
-      document.getElementById('detail-img').src = `${p.id}.jpg`;
+      document.getElementById('detail-img').src = p.img;
       document.getElementById('detail-name').innerText = `${p.type} ${p.flavor}`;
       document.getElementById('detail-price').innerText = `${p.price.toLocaleString()} ៛ (${p.size})`;
       document.getElementById('detail-benefits').innerText = p.benefits;
@@ -893,9 +929,7 @@
       document.getElementById('checkoutModal').style.display = 'flex';
     }
 
-    function closeCheckoutModal() {
-      document.getElementById('checkoutModal').style.display = 'none';
-    }
+    function closeCheckoutModal() { document.getElementById('checkoutModal').style.display = 'none'; }
 
     function toggleLocationFields() {
       const type = document.getElementById('location-type').value;
@@ -908,7 +942,7 @@
       }
     }
 
-    async function submitOrder() {
+    function submitOrder() {
       let calc = calculateTotal();
       const phone = document.getElementById('cust-phone').value.trim();
       const locType = document.getElementById('location-type').value;
@@ -923,12 +957,11 @@
       let orderDetails = "🛍️ ══════════════════ 🛍️\n";
       orderDetails += "          📥 **សំណើកុម្ម៉ង់ទំនិញថ្មី**\n";
       orderDetails += "🛍️ ══════════════════ 🛍️\n\n";
-      orderDetails += "📋 **បញ្ជីទំនិញដែលបានជ្រើសរើស (Lock):**\n";
+      orderDetails += "📋 **បញ្ជីទំនិញដែលបានជ្រើសរើស:**\n";
       for (let key in products) {
         if (products[key].qty > 0) {
           let p = products[key];
-          orderDetails += `▪️ ${p.type} (${p.flavor} - ${p.size})\n`;
-          orderDetails += `   👉 តម្លៃ: ${(p.qty * p.price).toLocaleString()} ៛ | ចំនួន: ${p.qty}\n`;
+          orderDetails += `▪️ ${p.type} (${p.flavor} - ${p.size}) x ${p.qty} = ${(p.qty * p.price).toLocaleString()} ៛\n`;
         }
       }
       orderDetails += `\n💰 **សរុបទឹកប្រាក់ត្រូវបង់:** ${calc.grandTotal.toLocaleString()} ៛\n`;
